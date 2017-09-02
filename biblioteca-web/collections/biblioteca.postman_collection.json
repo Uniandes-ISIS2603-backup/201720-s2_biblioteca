@@ -1,0 +1,64 @@
+{
+	"id": "3396b3ca-c356-8a89-8af8-ee9fd461db2a",
+	"name": "biblioteca",
+	"description": "Pruebas de los servicios Rest de Biblioteca",
+	"order": [
+		"8eb30617-3308-6de5-1d9b-7c5b5ac3bef0",
+		"68008abd-50e0-310b-7a15-8247628f7a29"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 0,
+	"owner": "351987",
+	"public": false,
+	"requests": [
+		{
+			"id": "68008abd-50e0-310b-7a15-8247628f7a29",
+			"name": "Crear una biblioteca que ya existe. ",
+			"description": "Post /bibliotecas\n\nVerifica que no pueda crear una nueva biblioteca con un nombre que ya existe.\n\nDebe retornar error 412",
+			"collectionId": "3396b3ca-c356-8a89-8af8-ee9fd461db2a",
+			"method": "POST",
+			"headers": "Content-Type: application/json",
+			"dataMode": "raw",
+			"data": [],
+			"rawModeData": "{\n  \"name\":\"Norma\"\n}",
+			"tests": "tests[\"No crea con el mismo nombre\"] = responseCode.code === 412;\n\ntests[\"Mensaje correcto de error\"] = responseBody.has(\"Ya existe una Biblioteca con el nombre\");",
+			"preRequestScript": "",
+			"url": "http://localhost:8080/biblioteca-web/api/bibliotecas",
+			"responses": [],
+			"queryParams": [],
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": ""
+				}
+			],
+			"collection_id": "3396b3ca-c356-8a89-8af8-ee9fd461db2a"
+		},
+		{
+			"id": "8eb30617-3308-6de5-1d9b-7c5b5ac3bef0",
+			"name": "Crear una biblioteca que no existe. ",
+			"description": "Post /bibliotecas\n\nVerifica que el código de retorno HTTP es 200.",
+			"collectionId": "3396b3ca-c356-8a89-8af8-ee9fd461db2a",
+			"method": "POST",
+			"headers": "Content-Type: application/json",
+			"dataMode": "raw",
+			"data": [],
+			"rawModeData": "{\n  \"name\":\"Norma\"\n}",
+			"tests": "tests[\"no genera error en el Post\"] = responseCode.code === 200;\n\n",
+			"preRequestScript": "",
+			"url": "http://localhost:8080/biblioteca-web/api/bibliotecas",
+			"responses": [],
+			"queryParams": [],
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": ""
+				}
+			],
+			"collection_id": "3396b3ca-c356-8a89-8af8-ee9fd461db2a"
+		}
+	]
+}
