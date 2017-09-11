@@ -86,6 +86,15 @@ public class UsuarioPersistence{ private static final Logger LOGGER = Logger.get
          */
         return em.find(UsuarioEntity.class, id);
     }
+    
+    
+   public UsuarioEntity findByName(String name) {
+        LOGGER.log(Level.INFO, "Consultando usuario con name= ", name);
+        TypedQuery<UsuarioEntity> q
+                = em.createQuery("select u from UsuarioEntity u where u.name = :name", UsuarioEntity.class);
+        q = q.setParameter("name", name);
+        return q.getSingleResult();
+    }
 
     /**
      * Devuelve todas las Usuarioes de la base de datos.

@@ -33,12 +33,12 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class UsuarioPersistenceTest {
-    
+
     /**
      *
      * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
-     * embebido. El jar contiene las clases de Usuario, el descriptor de la
-     * base de datos y el archivo beans.xml para resolver la inyección de
+     * embebido. El jar contiene las clases de Usuario, el descriptor de la base
+     * de datos y el archivo beans.xml para resolver la inyección de
      * dependencias.
      */
     @Deployment
@@ -49,7 +49,7 @@ public class UsuarioPersistenceTest {
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
+
     /**
      * Inyección de la dependencia a la clase UsuarioPersistence cuyos métodos
      * se van a probar.
@@ -71,17 +71,16 @@ public class UsuarioPersistenceTest {
     @Inject
     UserTransaction utx;
 
-     /**
+    /**
      * Entities a usar
      */
     private List<UsuarioEntity> data = new ArrayList<UsuarioEntity>();
-    
+
     private void clearData() {
         em.createQuery("delete from UsuarioEntity").executeUpdate();
     }
 
-
- private void insertData() {
+    private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             UsuarioEntity entity = factory.manufacturePojo(UsuarioEntity.class);
@@ -90,22 +89,22 @@ public class UsuarioPersistenceTest {
             data.add(entity);
         }
     }
-    
+
     public UsuarioPersistenceTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
-        
+
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
-         try {
+        try {
             utx.begin();
             em.joinTransaction();
             clearData();
@@ -120,7 +119,7 @@ public class UsuarioPersistenceTest {
             }
         }
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -131,13 +130,13 @@ public class UsuarioPersistenceTest {
     @Test
     public void testCreate() throws Exception {
         PodamFactory factory = new PodamFactoryImpl();
-    UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
-    UsuarioEntity result = persistence.create(newEntity);
+        UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
+        UsuarioEntity result = persistence.create(newEntity);
 
-    Assert.assertNotNull(result);
-    UsuarioEntity entity = em.find(UsuarioEntity.class, result.getId());
-    Assert.assertNotNull(entity);
-    Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertNotNull(result);
+        UsuarioEntity entity = em.find(UsuarioEntity.class, result.getId());
+        Assert.assertNotNull(entity);
+        Assert.assertEquals(newEntity.getName(), entity.getName());
     }
 
     /**
@@ -145,7 +144,17 @@ public class UsuarioPersistenceTest {
      */
     @Test
     public void testUpdate() throws Exception {
-        fail("");
+        UsuarioEntity entity = data.get(0);
+        PodamFactory factory = new PodamFactoryImpl();
+        UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
+
+        newEntity.setId(entity.getId());
+
+        persistence.update(newEntity);
+
+        UsuarioEntity resp = em.find(UsuarioEntity.class, entity.getId());
+
+        Assert.assertEquals(newEntity.getName(), resp.getName());
     }
 
     /**
@@ -153,7 +162,10 @@ public class UsuarioPersistenceTest {
      */
     @Test
     public void testDelete() throws Exception {
-        fail("");
+        UsuarioEntity entity = data.get(0);
+        persistence.delete(entity.getId());
+        UsuarioEntity deleted = em.find(UsuarioEntity.class, entity.getId());
+        Assert.assertNull(deleted);
     }
 
     /**
@@ -161,7 +173,18 @@ public class UsuarioPersistenceTest {
      */
     @Test
     public void testFind() throws Exception {
-        fail("");
+        UsuarioEntity entity = data.get(0);
+        UsuarioEntity newEntity = persistence.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getName(), newEntity.getName());
+    }
+
+    @Test
+    public void testFindByName() {
+        UsuarioEntity entity = data.get(0);
+        UsuarioEntity newEntity = persistence.findByName(entity.getName());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getName(), newEntity.getName());
     }
 
     /**
@@ -169,7 +192,18 @@ public class UsuarioPersistenceTest {
      */
     @Test
     public void testFindAll() throws Exception {
-        fail("");
+        List<UsuarioEntity> list = persistence.findAll();
+        Assert.assertEquals(data.size(), list.size());
+        for (UsuarioEntity ent : list) {
+            boolean found = false;
+            for (UsuarioEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+
     }
-    
+
 }
