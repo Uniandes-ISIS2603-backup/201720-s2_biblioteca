@@ -88,6 +88,14 @@ public class PrestamoPersistence
          */
         return em.find(PrestamoEntity.class, id);
     }
+    
+      public PrestamoEntity findByName(String name) {
+        LOGGER.log(Level.INFO, "Consultando prestamo con name= ", name);
+        TypedQuery<PrestamoEntity> q
+                = em.createQuery("select u from PrestamoEntity u where u.name = :name", PrestamoEntity.class);
+        q = q.setParameter("name", name);
+        return q.getSingleResult();
+    }
 
     /**
      * Devuelve todas las Prestamoes de la base de datos.

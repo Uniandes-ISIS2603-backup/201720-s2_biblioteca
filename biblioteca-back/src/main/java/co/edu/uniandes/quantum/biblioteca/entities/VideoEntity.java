@@ -5,10 +5,12 @@
  */
 package co.edu.uniandes.quantum.biblioteca.entities;
 
+import java.io.Serializable;
+
 /**
  *
  * @author jp.sanmiguel
  */
-public class VideoEntity {
+public class VideoEntity extends BaseEntity implements Serializable {
     
 }
