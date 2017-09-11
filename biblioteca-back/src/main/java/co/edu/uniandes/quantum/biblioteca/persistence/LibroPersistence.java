@@ -22,7 +22,7 @@ import javax.persistence.TypedQuery;
 public class LibroPersistence 
 {
     private static final Logger LOGGER = Logger.getLogger(LibroPersistence.class.getName());
-      @PersistenceContext(unitName = "libroPU")
+      @PersistenceContext(unitName = "bibliotecaPU")
          protected EntityManager em; 
       
     /**

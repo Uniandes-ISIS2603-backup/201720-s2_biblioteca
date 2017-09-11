@@ -26,7 +26,7 @@ public class MultaPersistence {
     
     private static final Logger LOGGER = Logger.getLogger(MultaPersistence.class.getName());
 
-    @PersistenceContext(unitName = "multaPU")
+    @PersistenceContext(unitName = "bibliotecaPU")
     protected EntityManager em;
 
     /**

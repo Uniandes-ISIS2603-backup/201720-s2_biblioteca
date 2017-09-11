@@ -23,7 +23,7 @@ public class PrestamoPersistence
 {
     private static final Logger LOGGER = Logger.getLogger(BibliotecaPersistence.class.getName());
 
-    @PersistenceContext(unitName = "prestamoPU")
+    @PersistenceContext(unitName = "bibliotecaPU")
     protected EntityManager em; 
     
     /**
