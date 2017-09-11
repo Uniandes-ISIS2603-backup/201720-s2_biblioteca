@@ -13,6 +13,38 @@ import javax.persistence.Entity;
  * @author f.posada
  */
 @Entity
-public class RecursoEntity extends BaseEntity implements Serializable{
+
+public abstract class RecursoEntity extends BaseEntity implements Serializable
+{
+    private String autor;
+    private int unidadesExistentes;
+    private int unidadesDisponibles;
     
+    
+    public String getAutor()
+    {
+        return autor;
+    }
+    public void setAutor(String pAutor)
+    {
+        autor=pAutor;
+    }
+    
+    public int getUnidadesExistentes()
+    {
+        return unidadesExistentes;
+    }
+    public void setUnidadesExistentes(int pUnidades)
+    {
+        unidadesExistentes=pUnidades;
+    }
+    
+        public int getUnidadesDisponibles()
+    {
+        return unidadesDisponibles;
+    }
+    public void setUnidadesDisponibles(int pUnidades)
+    {
+        unidadesDisponibles=pUnidades;
+    }
 }
