@@ -6,13 +6,37 @@
 package co.edu.uniandes.quantum.biblioteca.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
- * @author f.posada
+ * @author da.leon
  */
 @Entity
 public class ComentarioEntity extends BaseEntity implements Serializable{
+  
+     
+    @Temporal(TemporalType.DATE)
+    private Date fechaPublicado;
+    
+    private String comentario;
+    
+    public Date getFechaPublicado(){
+        return fechaPublicado;
+    }
+    
+    public String getComentario(){
+        return comentario;
+    }
+    
+    public void setComentario( String nuevoComentario){
+        
+        comentario = nuevoComentario;
+    }
+    
+    
     
 }
