@@ -25,7 +25,11 @@ package co.edu.uniandes.quantum.biblioteca.entities;
 
 import co.edu.uniandes.quantum.biblioteca.entities.BaseEntity;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -34,4 +38,75 @@ import javax.persistence.Entity;
 @Entity
 public class BibliotecaEntity extends BaseEntity implements Serializable {
    
+    /**
+     * Nombre biblioteca
+     */
+    private String nombre;
+    
+    /**
+     * Ubicación biblioteca
+     */
+    private String ubicacion;
+    
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SalaEntity> salas = new ArrayList<SalaEntity>();
+    
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    private ArrayList<LibroEntity> libros = new ArrayList<LibroEntity>();
+    
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<VideoEntity> videos = new ArrayList<VideoEntity>();
+    
+    private SistemaBibliotecaEntity sistemaBiblioteca;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
+    public List<SalaEntity> getSalas() {
+        return salas;
+    }
+
+    public void setSalas(List<SalaEntity> salas) {
+        this.salas = salas;
+    }
+
+    public ArrayList<LibroEntity> getLibros() {
+        return libros;
+    }
+
+    public void setLibros(ArrayList<LibroEntity> libros) {
+        this.libros = libros;
+    }
+
+    public List<VideoEntity> getVideos() {
+        return videos;
+    }
+
+    public void setVideos(List<VideoEntity> videos) {
+        this.videos = videos;
+    }
+
+    
+
+    public SistemaBibliotecaEntity getSistemaBiblioteca() {
+        return sistemaBiblioteca;
+    }
+
+    public void setSistemaBiblioteca(SistemaBibliotecaEntity sistemaBiblioteca) {
+        this.sistemaBiblioteca = sistemaBiblioteca;
+    }   
+    
 }
