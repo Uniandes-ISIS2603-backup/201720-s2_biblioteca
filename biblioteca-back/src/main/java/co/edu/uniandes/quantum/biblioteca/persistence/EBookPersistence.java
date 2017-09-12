@@ -19,7 +19,7 @@ public class EBookPersistence {
 
     private static final Logger LOGGER = Logger.getLogger(EBookPersistence.class.getName());
 
-    @PersistenceContext(unitName = "eBookPU")
+    @PersistenceContext(unitName = "bibliotecaPU")
     protected EntityManager em;
 
     /**

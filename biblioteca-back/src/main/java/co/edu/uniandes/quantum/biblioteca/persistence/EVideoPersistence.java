@@ -19,7 +19,7 @@ public class EVideoPersistence {
 
     private static final Logger LOGGER = Logger.getLogger(EVideoPersistence.class.getName());
 
-    @PersistenceContext(unitName = "EVideoPU")
+    @PersistenceContext(unitName = "bibliotecaPU")
     protected EntityManager em;
 
     /**

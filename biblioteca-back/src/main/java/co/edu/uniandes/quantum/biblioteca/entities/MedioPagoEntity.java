@@ -5,10 +5,12 @@
  */
 package co.edu.uniandes.quantum.biblioteca.entities;
 
+import java.io.Serializable;
+
 /**
  *
  * @author jp.sanmiguel
  */
-public class MedioPagoEntity {
+public class MedioPagoEntity extends BaseEntity implements Serializable {
     
 }

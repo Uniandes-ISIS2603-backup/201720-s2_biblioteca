@@ -29,16 +29,16 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
      */
     private String direccion;
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    //@OneToMany(mappedBy = "prestamo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PrestamoEntity> prestamos = new ArrayList<PrestamoEntity>();
     
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    //@OneToMany(mappedBy = "multa", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MultaEntity> multas = new ArrayList<MultaEntity>();
     
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    //@OneToMany(mappedBy = "reserva", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ReservaEntity> reservas = new ArrayList<ReservaEntity>();
     
-     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    // @OneToMany(mappedBy = "comentario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ComentarioEntity> comentarios = new ArrayList<ComentarioEntity>();
 
     public List<PrestamoEntity> getPrestamos() {

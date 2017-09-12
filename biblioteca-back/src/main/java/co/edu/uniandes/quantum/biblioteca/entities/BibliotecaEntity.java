@@ -48,16 +48,16 @@ public class BibliotecaEntity extends BaseEntity implements Serializable {
      */
     private String ubicacion;
     
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    //@OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SalaEntity> salas = new ArrayList<SalaEntity>();
     
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    //@OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     private ArrayList<LibroEntity> libros = new ArrayList<LibroEntity>();
     
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    //@OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<VideoEntity> videos = new ArrayList<VideoEntity>();
     
-    private SistemaBibliotecaEntity sistemaBiblioteca;
+    //private SistemaBibliotecaEntity sistemaBiblioteca;
 
     public String getNombre() {
         return nombre;
@@ -101,12 +101,12 @@ public class BibliotecaEntity extends BaseEntity implements Serializable {
 
     
 
-    public SistemaBibliotecaEntity getSistemaBiblioteca() {
-        return sistemaBiblioteca;
-    }
+ //   public SistemaBibliotecaEntity getSistemaBiblioteca() {
+   //     return sistemaBiblioteca;
+    //}
 
-    public void setSistemaBiblioteca(SistemaBibliotecaEntity sistemaBiblioteca) {
-        this.sistemaBiblioteca = sistemaBiblioteca;
-    }   
+   // public void setSistemaBiblioteca(SistemaBibliotecaEntity sistemaBiblioteca) {
+     //   this.sistemaBiblioteca = sistemaBiblioteca;
+    //}   
     
 }

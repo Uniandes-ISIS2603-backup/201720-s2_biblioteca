@@ -11,6 +11,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 
@@ -26,16 +27,16 @@ public class ReservaEntity extends BaseEntity implements Serializable
     private int mesInicio;
     private int anioInicio;
     
-     @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
-    private  List<RecursoEntity> recursos = new ArrayList<RecursoEntity>();
+     //@ManyToMany(mappedBy = "id", cascade = CascadeType.ALL)
+    //private  List<RecursoEntity> recursos = new ArrayList<RecursoEntity>();
 
-    public List<RecursoEntity> getRecursos() {
-        return recursos;
-    }
+   // public List<RecursoEntity> getRecursos() {
+   //     return recursos;
+   // }
 
-    public void setRecursos(List<RecursoEntity> recursos) {
-        this.recursos = recursos;
-    }
+  //  public void setRecursos(List<RecursoEntity> recursos) {
+   //     this.recursos = recursos;
+    //}
      
     public boolean isCompletada()
     {return completada;}

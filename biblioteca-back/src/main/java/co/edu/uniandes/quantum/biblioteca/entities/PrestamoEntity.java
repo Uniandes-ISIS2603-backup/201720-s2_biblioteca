@@ -32,7 +32,7 @@ public class PrestamoEntity extends BaseEntity implements Serializable {
     private boolean retornado;
     private boolean externo;
     
-    @ManyToMany(mappedBy = "book", cascade = CascadeType.ALL)
+   // @ManyToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<RecursoEntity> reservas = new ArrayList<RecursoEntity>();
 
     public Date getFechaInicio() {
