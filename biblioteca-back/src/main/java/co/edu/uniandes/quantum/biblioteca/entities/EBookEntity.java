@@ -8,5 +8,27 @@ public class EBookEntity extends BaseEntity implements Serializable{
     private Integer numeroPaginas;
     private String autor, direccion;
 
+    public Integer getNumeroPaginas() {
+        return numeroPaginas;
+    }
 
+    public void setNumeroPaginas(Integer numeroPaginas) {
+        this.numeroPaginas = numeroPaginas;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
 }
