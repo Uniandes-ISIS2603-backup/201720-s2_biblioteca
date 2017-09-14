@@ -49,12 +49,13 @@ public class MultaEntity extends BaseEntity implements Serializable {
     /**
      * Medio de pago de la multa.
      */
+    @OneToOne
     private MedioPagoEntity medioPago;
     
     /**
      * Prestamo al que se le crea la multa.
      */
-    //@OneToOne
+    @OneToOne
     private PrestamoEntity prestamo;
 
     public Date getFecha() {
