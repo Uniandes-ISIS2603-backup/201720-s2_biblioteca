@@ -30,40 +30,17 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
     private String direccion;
 
     //@OneToMany(mappedBy = "prestamo", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<PrestamoEntity> prestamos = new ArrayList<PrestamoEntity>();
+    //private List<PrestamoEntity> prestamos = new ArrayList<PrestamoEntity>();
     
     //@OneToMany(mappedBy = "multa", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<MultaEntity> multas = new ArrayList<MultaEntity>();
+   // private List<MultaEntity> multas = new ArrayList<MultaEntity>();
     
     //@OneToMany(mappedBy = "reserva", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ReservaEntity> reservas = new ArrayList<ReservaEntity>();
+   // private List<ReservaEntity> reservas = new ArrayList<ReservaEntity>();
     
     // @OneToMany(mappedBy = "comentario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ComentarioEntity> comentarios = new ArrayList<ComentarioEntity>();
+    //private List<ComentarioEntity> comentarios = new ArrayList<ComentarioEntity>();
 
-    public List<PrestamoEntity> getPrestamos() {
-        return prestamos;
-    }
-
-    public void setPrestamos(List<PrestamoEntity> prestamos) {
-        this.prestamos = prestamos;
-    }
-
-    public List<MultaEntity> getMultas() {
-        return multas;
-    }
-
-    public void setMultas(List<MultaEntity> multas) {
-        this.multas = multas;
-    }
-
-    public List<ReservaEntity> getReservas() {
-        return reservas;
-    }
-
-    public void setReservas(List<ReservaEntity> reservas) {
-        this.reservas = reservas;
-    }
 
     public String getTelefono() {
         return telefono;

@@ -33,19 +33,11 @@ public class PrestamoEntity extends BaseEntity implements Serializable {
     private boolean externo;
     
    // @ManyToMany(mappedBy = "book", cascade = CascadeType.ALL)
-    private List<RecursoEntity> reservas = new ArrayList<RecursoEntity>();
+   // private List<RecursoEntity> reservas = new ArrayList<RecursoEntity>();
 
     public Date getFechaInicio() {
         return fechaInicio;
-    }
-
-    public List<RecursoEntity> getReservas() {
-        return reservas;
-    }
-
-    public void setReservas(List<RecursoEntity> reservas) {
-        this.reservas = reservas;
-    }
+    }    
 
     public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
