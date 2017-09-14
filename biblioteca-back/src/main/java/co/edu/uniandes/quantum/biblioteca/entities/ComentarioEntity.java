@@ -8,6 +8,7 @@ package co.edu.uniandes.quantum.biblioteca.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -18,7 +19,8 @@ import javax.persistence.TemporalType;
 @Entity
 public class ComentarioEntity extends BaseEntity implements Serializable{
   
-     
+     @ManyToOne
+    private UsuarioEntity miUsuario;
     @Temporal(TemporalType.DATE)
     private Date fechaPublicado;
     

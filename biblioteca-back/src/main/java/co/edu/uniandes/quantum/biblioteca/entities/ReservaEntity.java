@@ -12,6 +12,7 @@ import javax.persistence.CascadeType;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 
@@ -22,6 +23,9 @@ import javax.persistence.OneToMany;
 @Entity
 public class ReservaEntity extends BaseEntity implements Serializable
 {
+    
+    @ManyToOne
+    private UsuarioEntity miUsuario;
     private boolean completada;
     private int diaInicio;
     private int mesInicio;

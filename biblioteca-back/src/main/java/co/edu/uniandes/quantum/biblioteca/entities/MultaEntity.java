@@ -8,6 +8,7 @@ package co.edu.uniandes.quantum.biblioteca.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
@@ -16,6 +17,9 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class MultaEntity extends BaseEntity implements Serializable {
+    
+    @ManyToOne
+    private UsuarioEntity miUsuario;
     
     /**
      * Fecha en que se pusó la multa.
