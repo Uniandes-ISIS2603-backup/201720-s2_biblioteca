@@ -11,6 +11,30 @@ import java.io.Serializable;
  *
  * @author jp.sanmiguel
  */
-public class SalaEntity extends BaseEntity implements Serializable{
+public class SalaEntity implements Serializable{
     
+    private Long  id;
+    
+    private Integer capacidad;
+    
+    public Long getId()
+    {
+        return id;
+    }
+    
+    public void setId(Long pId)
+    {
+        id = pId;
+    }
+    
+    public Integer getCapacidad()
+    {
+        return capacidad;
+    }
+    
+    public void setCapacidad(Integer pCapacidad)
+    {
+        capacidad = pCapacidad;
+    }
 }
+
