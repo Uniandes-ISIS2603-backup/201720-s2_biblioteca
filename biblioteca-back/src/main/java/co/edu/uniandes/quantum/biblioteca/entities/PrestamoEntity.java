@@ -12,6 +12,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,8 +33,11 @@ public class PrestamoEntity extends BaseEntity implements Serializable {
     private boolean retornado;
     private boolean externo;
     
-   // @ManyToMany(mappedBy = "book", cascade = CascadeType.ALL)
-   // private List<RecursoEntity> reservas = new ArrayList<RecursoEntity>();
+   @OneToMany(mappedBy = "miPrestamo", cascade = CascadeType.ALL)
+   private List<RecursoEntity> recursos = new ArrayList<RecursoEntity>();
+   
+   @ManyToOne
+   private UsuarioEntity miUsuario;
 
     public Date getFechaInicio() {
         return fechaInicio;

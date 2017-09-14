@@ -6,7 +6,9 @@
 package co.edu.uniandes.quantum.biblioteca.entities;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -20,6 +22,8 @@ public abstract class RecursoEntity extends BaseEntity implements Serializable
     private int unidadesExistentes;
     private int unidadesDisponibles;
     
+    @ManyToOne
+    private PrestamoEntity miPrestamo;
     
     public String getAutor()
     {

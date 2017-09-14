@@ -29,8 +29,8 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
      */
     private String direccion;
 
-    //@OneToMany(mappedBy = "prestamo", cascade = CascadeType.ALL, orphanRemoval = true)
-    //private List<PrestamoEntity> prestamos = new ArrayList<PrestamoEntity>();
+    @OneToMany(mappedBy = "miUsuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PrestamoEntity> prestamos = new ArrayList<PrestamoEntity>();
     
     //@OneToMany(mappedBy = "multa", cascade = CascadeType.ALL, orphanRemoval = true)
    // private List<MultaEntity> multas = new ArrayList<MultaEntity>();
