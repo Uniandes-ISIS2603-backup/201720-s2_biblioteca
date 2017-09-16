@@ -10,6 +10,8 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -24,6 +26,7 @@ public class MultaEntity extends BaseEntity implements Serializable {
     /**
      * Fecha en que se pusó la multa.
      */
+     @Temporal(TemporalType.DATE)
     private Date fecha;
     
     /**
