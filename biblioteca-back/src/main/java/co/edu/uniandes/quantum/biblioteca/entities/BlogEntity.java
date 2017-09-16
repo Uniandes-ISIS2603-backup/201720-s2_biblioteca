@@ -6,12 +6,14 @@
 package co.edu.uniandes.quantum.biblioteca.entities;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 /**
  *
  * @author da.leon
  */
+@Entity
 public class BlogEntity extends BaseEntity implements Serializable{
     
        @ManyToOne
@@ -20,6 +22,7 @@ public class BlogEntity extends BaseEntity implements Serializable{
     /**
      * titulo del libro sobre el cual se crea el blog
      */   
+       
     private String tituloLibro;
     
     /**

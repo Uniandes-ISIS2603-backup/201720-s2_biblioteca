@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -33,11 +34,29 @@ public class PrestamoEntity extends BaseEntity implements Serializable {
     private boolean retornado;
     private boolean externo;
     
+    @PodamExclude
    @OneToMany(mappedBy = "miPrestamo", cascade = CascadeType.ALL)
    private List<RecursoEntity> recursos = new ArrayList<RecursoEntity>();
    
+    @PodamExclude
    @ManyToOne
    private UsuarioEntity miUsuario;
+
+    public List<RecursoEntity> getRecursos() {
+        return recursos;
+    }
+
+    public void setRecursos(List<RecursoEntity> recursos) {
+        this.recursos = recursos;
+    }
+
+    public UsuarioEntity getMiUsuario() {
+        return miUsuario;
+    }
+
+    public void setMiUsuario(UsuarioEntity miUsuario) {
+        this.miUsuario = miUsuario;
+    }
 
     public Date getFechaInicio() {
         return fechaInicio;

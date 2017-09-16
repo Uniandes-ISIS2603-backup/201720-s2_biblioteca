@@ -80,36 +80,21 @@ public class PrestamoPersistence
      * @param id: id correspondiente a la Prestamo buscada.
      * @return un prestamo.
      */
-    public PrestamoEntity find(Long id) {
-        LOGGER.log(Level.INFO, "Consultando Prestamo con id={0}", id);
-        /* Note que se hace uso del metodo "find" propio del EntityManager, el cual recibe como argumento 
-        el tipo de la clase y el objeto que nos hara el filtro en la base de datos en este caso el "id"
-        Suponga que es algo similar a "select * from PrestamoEntity where id=id;" - "SELECT * FROM table_codigo WHERE condition;" en SQL.
-         */
-        return em.find(PrestamoEntity.class, id);
-    }
+    public PrestamoEntity find(Long usuarioid, Long prestamoid) {
+        TypedQuery<PrestamoEntity> q = em.createQuery("select p from PrestamoEntity p where (p.usuario.id = :usuarioid) and (p.id = :prestamoid)", PrestamoEntity.class);
+        q.setParameter("usuarioid", usuarioid);
+        q.setParameter("prestamoid", prestamoid);
+        List<PrestamoEntity> results = q.getResultList();
+        PrestamoEntity prestamo = null;
+        if (results == null) {
+            prestamo = null;
+        } else if (results.isEmpty()) {
+            prestamo = null;
+        } else if (results.size() >= 1) {
+            prestamo = results.get(0);
+        }
+        return prestamo;
+    }    
     
-      public PrestamoEntity findByName(String name) {
-        LOGGER.log(Level.INFO, "Consultando prestamo con name= ", name);
-        TypedQuery<PrestamoEntity> q
-                = em.createQuery("select u from PrestamoEntity u where u.name = :name", PrestamoEntity.class);
-        q = q.setParameter("name", name);
-        return q.getSingleResult();
-    }
-
-    /**
-     * Devuelve todas las Prestamoes de la base de datos.
-     *
-     * @return una lista con todas las Prestamoes que encuentre en la base de
-     * datos, "select u from PrestamoEntity u" es como un "select * from
-     * PrestamoEntity;" - "SELECT * FROM table_codigo" en SQL.
-     */
-    public List<PrestamoEntity> findAll() {
-        LOGGER.info("Consultando todas las Prestamoes");
-        // Se crea un query para buscar todas las Prestamoes en la base de datos.
-        TypedQuery query = em.createQuery("select u from PrestamoEntity u", PrestamoEntity.class);
-        // Note que en el query se hace uso del método getResultList() que obtiene una lista de Prestamoes.
-        return query.getResultList();
-    }
     
 }

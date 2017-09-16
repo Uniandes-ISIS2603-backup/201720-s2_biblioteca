@@ -7,6 +7,7 @@ package co.edu.uniandes.quantum.biblioteca.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -17,6 +18,9 @@ public class LibroEntity extends RecursoEntity implements Serializable
 {
     private int numPaginas;
     private int anioPublicacion;
+    
+    @ManyToOne    
+    private BibliotecaEntity miBiblioteca;
     
     
     public int getNumeroPaginas()

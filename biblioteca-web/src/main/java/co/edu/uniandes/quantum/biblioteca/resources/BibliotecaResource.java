@@ -57,7 +57,6 @@ import javax.ws.rs.WebApplicationException;
 @Path("bibliotecas")
 @Produces("application/json")
 @Consumes("application/json")
-@Stateless
 public class BibliotecaResource {
 
     @Inject

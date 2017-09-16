@@ -7,8 +7,8 @@ package co.edu.uniandes.quantum.biblioteca.dtos;
 
 /**
  *
- * @author jp.sanmiguel
+ * @author f.posada
  */
-public class MultaDetailDTO {
+public class MedioPagoDTO {
     
 }

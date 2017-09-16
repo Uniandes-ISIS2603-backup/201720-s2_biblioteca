@@ -31,8 +31,8 @@ public class ReservaEntity extends BaseEntity implements Serializable
     private int mesInicio;
     private int anioInicio;
     
-     //@ManyToMany(mappedBy = "id", cascade = CascadeType.ALL)
-    //private  List<RecursoEntity> recursos = new ArrayList<RecursoEntity>();
+    @ManyToMany
+    private  List<RecursoEntity> recursos = new ArrayList<RecursoEntity>();
 
    // public List<RecursoEntity> getRecursos() {
    //     return recursos;

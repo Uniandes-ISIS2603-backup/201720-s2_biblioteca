@@ -6,8 +6,11 @@
 package co.edu.uniandes.quantum.biblioteca.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 /**
@@ -16,7 +19,7 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 
-public abstract class RecursoEntity extends BaseEntity implements Serializable
+public class RecursoEntity extends BaseEntity implements Serializable
 {
     private String autor;
     private int unidadesExistentes;
@@ -24,6 +27,9 @@ public abstract class RecursoEntity extends BaseEntity implements Serializable
     
     @ManyToOne
     private PrestamoEntity miPrestamo;
+    
+    @ManyToMany(mappedBy = "recursos")
+    private  List<ReservaEntity> reservas = new ArrayList<ReservaEntity>();
     
     public String getAutor()
     {

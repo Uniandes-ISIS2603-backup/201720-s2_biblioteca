@@ -168,42 +168,8 @@ public class PrestamoPersistenceTest {
         Assert.assertNull(deleted);
     }
 
-    /**
-     * Test of find method, of class PrestamoPersistence.
-     */
-    @Test
-    public void testFind() throws Exception {
-        PrestamoEntity entity = data.get(0);
-        PrestamoEntity newEntity = persistence.find(entity.getId());
-        Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
-    }
+   
 
-    @Test
-    public void testFindByName() {
-        PrestamoEntity entity = data.get(0);
-        PrestamoEntity newEntity = persistence.findByName(entity.getName());
-        Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
-    }
-
-    /**
-     * Test of findAll method, of class PrestamoPersistence.
-     */
-    @Test
-    public void testFindAll() throws Exception {
-        List<PrestamoEntity> list = persistence.findAll();
-        Assert.assertEquals(data.size(), list.size());
-        for (PrestamoEntity ent : list) {
-            boolean found = false;
-            for (PrestamoEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
-                    found = true;
-                }
-            }
-            Assert.assertTrue(found);
-        }
-
-    }
+    
 
 }
