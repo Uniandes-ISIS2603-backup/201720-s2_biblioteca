@@ -103,5 +103,25 @@ public class ReservaPersistence
         // Note que en el query se hace uso del método getResultList() que obtiene una lista de reservas.
         return query.getResultList();
     }
-    
+     /**
+     * Busca si hay algun Reserva con el id que se envía de argumento
+     *
+     * @param id: id correspondiente a la Reserva buscada.
+     * @return un Reserva.
+     */
+    public ReservaEntity find(Long usuarioid, Long Reservaid) {
+        TypedQuery<ReservaEntity> q = em.createQuery("select p from ReservaEntity p where (p.usuario.id = :usuarioid) and (p.id = :Reservaid)", ReservaEntity.class);
+        q.setParameter("usuarioid", usuarioid);
+        q.setParameter("Reservaid", Reservaid);
+        List<ReservaEntity> results = q.getResultList();
+        ReservaEntity Reserva = null;
+        if (results == null) {
+            Reserva = null;
+        } else if (results.isEmpty()) {
+            Reserva = null;
+        } else if (results.size() >= 1) {
+            Reserva = results.get(0);
+        }
+        return Reserva;
+    }    
 }

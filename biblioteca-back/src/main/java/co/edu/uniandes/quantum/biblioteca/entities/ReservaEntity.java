@@ -7,6 +7,7 @@ package co.edu.uniandes.quantum.biblioteca.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 
@@ -14,6 +15,9 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
 
 
 /**
@@ -24,16 +28,22 @@ import javax.persistence.OneToMany;
 public class ReservaEntity extends BaseEntity implements Serializable
 {
     
-    @ManyToOne
-    private UsuarioEntity miUsuario;
+   
     private boolean completada;
-    private int diaInicio;
-    private int mesInicio;
-    private int anioInicio;
+     
+    @Temporal(TemporalType.DATE)
+    private Date fechaInicio;
     
-    @ManyToMany
-    private  List<RecursoEntity> recursos = new ArrayList<RecursoEntity>();
-
+    
+    @PodamExclude
+   @OneToMany(mappedBy = "mReserva", cascade = CascadeType.ALL)
+   private List<VideoEntity> videos = new ArrayList<VideoEntity>();
+   
+       @OneToMany(mappedBy = "miReserva", cascade = CascadeType.ALL)
+   private List<LibroEntity> libros = new ArrayList<LibroEntity>();
+   @PodamExclude
+   @ManyToOne
+   private UsuarioEntity miUsuario;
    // public List<RecursoEntity> getRecursos() {
    //     return recursos;
    // }
@@ -46,17 +56,40 @@ public class ReservaEntity extends BaseEntity implements Serializable
     {return completada;}
     public void setCompletada(boolean pComplete)
     {completada=pComplete;}
-    public int getDiaInicio()
-    {return diaInicio;}
-    public void setDiaInicio(int pDia)
-    {diaInicio=pDia;}
-     public int getMesInicio()
-    {return mesInicio;}
-    public void setMesInicio(int pMes)
-    {mesInicio=pMes;}
-     public int getAnioInicio()
-    {return anioInicio;}
-    public void setAnioInicio(int pAnio)
-    {anioInicio=pAnio;}
+
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public List<VideoEntity> getVideos() {
+        return videos;
+    }
+
+    public void setVideos(List<VideoEntity> videos) {
+        this.videos = videos;
+    }
+
+    public List<LibroEntity> getLibros() {
+        return libros;
+    }
+
+    public void setLibros(List<LibroEntity> libros) {
+        this.libros = libros;
+    }
+    
+
+  
+
+    public UsuarioEntity getMiUsuario() {
+        return miUsuario;
+    }
+
+    public void setMiUsuario(UsuarioEntity miUsuario) {
+        this.miUsuario = miUsuario;
+    }
     
 }
