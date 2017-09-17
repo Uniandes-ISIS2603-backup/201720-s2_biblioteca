@@ -178,14 +178,7 @@ public class BibliotecaPersistenceTest {
         Assert.assertEquals(entity.getName(), newEntity.getName());
     }
 
-    @Test
-    public void testFindByName() {
-        BibliotecaEntity entity = data.get(0);
-        BibliotecaEntity newEntity = persistence.findByName(entity.getName());
-        Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
-    }
-
+    
     /**
      * Test of findAll method, of class BibliotecaPersistence.
      */
