@@ -48,13 +48,13 @@ public class BibliotecaEntity extends BaseEntity implements Serializable {
      */
     private String ubicacion;
     
-    @OneToMany(mappedBy = "salas", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "miBiblioteca", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SalaEntity> salas  = new ArrayList<SalaEntity>();
     
-    @OneToMany(mappedBy = "libros")
+    @OneToMany(mappedBy = "miBiblioteca")
     private ArrayList<LibroEntity> libros = new ArrayList<LibroEntity>();
     
-    @OneToMany(mappedBy = "videos")
+    @OneToMany(mappedBy = "miBiblioteca")
     private List<VideoEntity> videos = new ArrayList<VideoEntity>();
     
     public String getNombre() {

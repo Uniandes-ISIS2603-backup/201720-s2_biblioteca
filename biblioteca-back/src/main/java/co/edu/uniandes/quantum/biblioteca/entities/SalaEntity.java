@@ -6,26 +6,23 @@
 package co.edu.uniandes.quantum.biblioteca.entities;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author jp.sanmiguel
  */
-public class SalaEntity implements Serializable{
+@Entity
+public class SalaEntity extends BaseEntity implements Serializable{
     
-    private Long  id;
+    @ManyToOne    
+    private BibliotecaEntity miBiblioteca;
+     
     
     private Integer capacidad;
     
-    public Long getId()
-    {
-        return id;
-    }
-    
-    public void setId(Long pId)
-    {
-        id = pId;
-    }
+   
     
     public Integer getCapacidad()
     {

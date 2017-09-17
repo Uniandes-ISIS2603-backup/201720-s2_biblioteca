@@ -11,6 +11,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  * Clase que representa un usuario de biblioteca
@@ -29,17 +30,53 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
      */
     private String direccion;
 
+    @PodamExclude
     @OneToMany(mappedBy = "miUsuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PrestamoEntity> prestamos = new ArrayList<PrestamoEntity>();
     
+    @PodamExclude
     @OneToMany(mappedBy = "miUsuario", cascade = CascadeType.ALL, orphanRemoval = true)
      private List<MultaEntity> multas = new ArrayList<MultaEntity>();
     
+    @PodamExclude
     @OneToMany(mappedBy = "miUsuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ReservaEntity> reservas = new ArrayList<ReservaEntity>();
     
+    @PodamExclude
     @OneToMany(mappedBy = "miUsuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ComentarioEntity> comentarios = new ArrayList<ComentarioEntity>();
+
+    public List<PrestamoEntity> getPrestamos() {
+        return prestamos;
+    }
+
+    public void setPrestamos(List<PrestamoEntity> prestamos) {
+        this.prestamos = prestamos;
+    }
+
+    public List<MultaEntity> getMultas() {
+        return multas;
+    }
+
+    public void setMultas(List<MultaEntity> multas) {
+        this.multas = multas;
+    }
+
+    public List<ReservaEntity> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(List<ReservaEntity> reservas) {
+        this.reservas = reservas;
+    }
+
+    public List<ComentarioEntity> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<ComentarioEntity> comentarios) {
+        this.comentarios = comentarios;
+    }
 
 
     public String getTelefono() {

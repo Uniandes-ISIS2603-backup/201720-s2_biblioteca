@@ -6,11 +6,18 @@
 package co.edu.uniandes.quantum.biblioteca.entities;
 
 import java.io.Serializable;
+import javax.persistence.ManyToOne;
+import javax.persistence.Entity;
 
 /**
  *
  * @author jp.sanmiguel
  */
+@Entity
 public class VideoEntity extends BaseEntity implements Serializable {
+    
+    @ManyToOne    
+    private BibliotecaEntity miBiblioteca;
+    
     
 }
