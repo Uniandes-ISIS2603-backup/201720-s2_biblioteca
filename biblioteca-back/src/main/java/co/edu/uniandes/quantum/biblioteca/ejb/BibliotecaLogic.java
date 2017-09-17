@@ -27,13 +27,14 @@ import co.edu.uniandes.quantum.biblioteca.entities.BibliotecaEntity;
 import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
 import co.edu.uniandes.quantum.biblioteca.persistence.BibliotecaPersistence;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
- * @author ISIS2603
+ * @author ISIS2603, jp.sanmiguel
  */
 @Stateless
 public class BibliotecaLogic {
@@ -54,6 +55,29 @@ public class BibliotecaLogic {
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de Biblioteca");
         return entity;
+    }
+    
+    public void deleteBiblioteca(Long id)
+    {
+        LOGGER.log(Level.INFO, "Inicia el proceso de eliminar la Biblioteca con el id: {0}", id);  
+        persistence.delete(id);
+        LOGGER.log(Level.INFO, "Termina el proceso de eliminar la Biblioteca con el id: {0}", id);  
+    }
+    
+    public BibliotecaEntity getBiblioteca(Long id)
+    {
+        LOGGER.log(Level.INFO, "Inicia el proceso de buscar la Biblioteca con el id: {0}", id);  
+        BibliotecaEntity entity = persistence.find(id);
+        LOGGER.log(Level.INFO, "Termina el proceso de buscar la Biblioteca con el id: {0}", id);  
+        return entity;
+    }
+    
+    public BibliotecaEntity updateBiblioteca(BibliotecaEntity entity)
+    {
+        LOGGER.info("Inicia el proceso de actualizar una Biblioteca");  
+        BibliotecaEntity entityActualizado = persistence.update(entity);
+        LOGGER.info("Termina el proceso de actualizar una Biblioteca");  
+        return entityActualizado;
     }
 
     /**

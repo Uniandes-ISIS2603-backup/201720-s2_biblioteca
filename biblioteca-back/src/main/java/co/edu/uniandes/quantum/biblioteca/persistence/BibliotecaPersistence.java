@@ -108,14 +108,7 @@ public class BibliotecaPersistence {
         return em.find(BibliotecaEntity.class, id);
     }
 
-    public BibliotecaEntity findByName(String name) {
-        LOGGER.log(Level.INFO, "Consultando biblioteca con name= ", name);
-        TypedQuery<BibliotecaEntity> q
-                = em.createQuery("select u from BibliotecaEntity u where u.name = :name", BibliotecaEntity.class);
-        q = q.setParameter("name", name);
-        return q.getSingleResult();
-    }
-    
+        
     /**
      * Devuelve todas las Bibliotecaes de la base de datos.
      *
