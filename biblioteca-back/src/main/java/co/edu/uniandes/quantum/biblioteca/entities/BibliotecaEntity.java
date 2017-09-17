@@ -73,6 +73,30 @@ public class BibliotecaEntity extends BaseEntity implements Serializable {
         this.ubicacion = ubicacion;
     }
 
+    public List<SalaEntity> getSalas() {
+        return salas;
+    }
+
+    public void setSalas(List<SalaEntity> salas) {
+        this.salas = salas;
+    }
+
+    public ArrayList<LibroEntity> getLibros() {
+        return libros;
+    }
+
+    public void setLibros(ArrayList<LibroEntity> libros) {
+        this.libros = libros;
+    }
+
+    public List<VideoEntity> getVideos() {
+        return videos;
+    }
+
+    public void setVideos(List<VideoEntity> videos) {
+        this.videos = videos;
+    }
+
      
     
 }

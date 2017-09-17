@@ -24,6 +24,7 @@ SOFTWARE.
 package co.edu.uniandes.quantum.biblioteca.persistence;
 
 import co.edu.uniandes.quantum.biblioteca.entities.BibliotecaEntity;
+import co.edu.uniandes.quantum.biblioteca.entities.LibroEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.UsuarioEntity;
 import java.util.List;
 import java.util.logging.Level;
@@ -123,6 +124,27 @@ public class BibliotecaPersistence {
         // Note que en el query se hace uso del método getResultList() que obtiene una lista de Bibliotecaes.
         return query.getResultList();
     }
-
-   
+    
+    public List<LibroEntity> getAllBooksBiblioteca(Long id)
+    {
+        LOGGER.log(Level.INFO, "Consultando todos los libros de la Biblioteca con id: {0}", id);
+        BibliotecaEntity bibliotecaBuscada = find(id);
+        return bibliotecaBuscada.getLibros();
+    }
+    
+    public LibroEntity getBookById(Long idBiblioteca, Long idLibro)
+    {
+        LOGGER.log(Level.INFO, "Consultando el libro con id: {0} de la Biblioteca con id: {1}", new Object[]{idLibro, idBiblioteca});
+        BibliotecaEntity biblioteca = find(idBiblioteca);
+        List<LibroEntity> librosBiblioteca = biblioteca.getLibros();
+        LibroEntity libro = null;
+        for(LibroEntity libroActual : librosBiblioteca)
+        {
+            if(idLibro == libroActual.getId())
+            {
+                libro =libroActual;
+            }
+        }
+        return libro;
+    }
 }
