@@ -79,4 +79,16 @@ public class VideoDTO
         this.duracion = duracion;
     }
     
+    public VideoEntity toEntity() 
+    {
+        VideoEntity ent=new VideoEntity();
+        ent.setId(this.id);
+        ent.setAutor(this.autor);
+        ent.setDuracion(duracion);
+          ent.setName(name);
+        ent.setUnidadesDisponibles(uniandesDisponibles);
+        ent.setUnidadesExistentes(uniandesDisponibles);
+        return ent;
+        
+    }
 }

@@ -40,4 +40,11 @@ public class SalaDTO
         this.capacidad = capacidad;
     }
     
+    public SalaEntity toEntity()
+    {
+        SalaEntity sa = new SalaEntity();
+        sa.setCapacidad(capacidad);
+        sa.setId(id);
+        return sa;
+    }
 }
