@@ -26,14 +26,14 @@ public class VideoEntity extends RecursoEntity implements Serializable {
     @ManyToOne   
     private PrestamoEntity miPrestamo;
     
-    private Long duracion;
+    private int duracion;
     
-    public Long getDuracion()
+    public int getDuracion()
     {
         return duracion;
     }
     
-    public void setDuracion(Long pDuracion)
+    public void setDuracion(int pDuracion)
     {
         duracion = pDuracion;
     }
