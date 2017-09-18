@@ -21,7 +21,8 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class MultaEntity extends BaseEntity implements Serializable {
     
-    @ManyToOne
+    @PodamExclude
+    @ManyToOne    
     private UsuarioEntity miUsuario;
     
     /**
