@@ -9,6 +9,8 @@ package co.edu.uniandes.quantum.biblioteca.resources;
  *
  * @author cg.chavarro
  */
+
+//TODO implementar clase y api rest
 public class ReservaResource {
     
 }

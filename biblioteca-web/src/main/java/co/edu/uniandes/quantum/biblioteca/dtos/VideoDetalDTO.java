@@ -11,6 +11,8 @@ import co.edu.uniandes.quantum.biblioteca.entities.VideoEntity;
  *
  * @author cg.chavarro
  */
+
+//TODO se debe implementar esta clase
 public class VideoDetalDTO extends VideoDTO
 {
     
