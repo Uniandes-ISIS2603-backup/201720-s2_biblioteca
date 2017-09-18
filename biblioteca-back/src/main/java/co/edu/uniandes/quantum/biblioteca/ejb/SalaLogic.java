@@ -90,7 +90,7 @@ public class SalaLogic
   * @return  el Sala como un objeto Entity.
   * Corresponde a la lógica de PUT Salas/{id}
   */
-      public SalaEntity updateBook(Long id, SalaEntity entity) throws BusinessLogicException {
+      public SalaEntity updateSala(Long id, SalaEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar Sala con id={0}", id);
         if (!validateId(entity.getId())) {
             throw new BusinessLogicException("El   (id) es inválido");
@@ -105,11 +105,12 @@ public class SalaLogic
   * @param id  del Sala a borrar.
   * Corresponde a la lógica de DELETE Salas/{id}
   */
-    public void deleteBook(Long id) {
+    public void deleteSalas(Long id) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar Sala con id={0}", id);
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar Sala con id={0}", id);
     }
+
 
 }
 
