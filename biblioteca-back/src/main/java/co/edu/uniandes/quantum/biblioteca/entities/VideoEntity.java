@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -26,6 +28,11 @@ public class VideoEntity extends RecursoEntity implements Serializable {
     @ManyToOne   
     private PrestamoEntity miPrestamo;
     
+    @PodamExclude
+    @OneToOne
+    private SalaEntity sala;
+    
+    
     private int duracion;
     
     public int getDuracion()
@@ -36,6 +43,14 @@ public class VideoEntity extends RecursoEntity implements Serializable {
     public void setDuracion(int pDuracion)
     {
         duracion = pDuracion;
+    }
+
+    public SalaEntity getSala() {
+        return sala;
+    }
+
+    public void setSala(SalaEntity sala) {
+        this.sala = sala;
     }
     
 }
