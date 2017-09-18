@@ -144,7 +144,8 @@ public class BibliotecaResource {
     }
 
     @GET
-    public BibliotecaDTO getBiblioteca(Long id)
+    @Path("{id: \\d+}")
+    public BibliotecaDTO getBiblioteca(@PathParam("id")Long id)
     {
         BibliotecaEntity entity = bibliotecaLogic.getBiblioteca(id);
         if(entity == null)

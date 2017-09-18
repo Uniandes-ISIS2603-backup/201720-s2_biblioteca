@@ -38,6 +38,9 @@ public class UsuarioResource {
 
     @GET
     public List<UsuarioDetailDTO> getUsuarios() throws BusinessLogicException {
+        if(listUsuarioEntity2DetailDTO(usuarioLogic.getUsuarios()).isEmpty())
+            throw new WebApplicationException("No hay usuarios");
+        else
         return listUsuarioEntity2DetailDTO(usuarioLogic.getUsuarios());
     }
 
