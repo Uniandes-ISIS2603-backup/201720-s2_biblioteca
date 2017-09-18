@@ -90,10 +90,20 @@ public class MultaDTO {
     public void setTituloServicio(String tituloServicio) {
         this.tituloServicio = tituloServicio;
     }
+    
+    public MultaDTO()
+    {
+    }
       
      
     public MultaDTO(MultaEntity entityMulta) {
         this.id = entityMulta.getId();
+        this.costo=entityMulta.getCosto();
+        this.pagada=entityMulta.isPagada();
+        this.descripcion=entityMulta.getDescripcion();
+        this.fecha=entityMulta.getFecha();
+        this.tituloServicio=entityMulta.getTituloServicio();
+        
     }
 
     public MultaEntity toEntity() {

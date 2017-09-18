@@ -73,7 +73,7 @@ public class MultaLogic {
      * 
      */
     public MultaEntity createMulta(Long usuarioid, MultaEntity entity) {
-        LOGGER.info("Inicia proceso de crear review");
+        LOGGER.info("Inicia proceso de crear multa");
         UsuarioEntity usuario = usuarioLogic.getUsuario(usuarioid);
         entity.setMiUsuario(usuario);
         return persistence.create(entity);

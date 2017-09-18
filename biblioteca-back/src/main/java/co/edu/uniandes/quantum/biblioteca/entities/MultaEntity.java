@@ -58,13 +58,7 @@ public class MultaEntity extends BaseEntity implements Serializable {
     @OneToOne
     private MedioPagoEntity medioPago;
     
-    /**
-     * Prestamo al que se le crea la multa.
-     */
-    @PodamExclude
-    @OneToOne
-    private PrestamoEntity prestamo;
-
+    
     public UsuarioEntity getMiUsuario() {
         return miUsuario;
     }
@@ -121,11 +115,5 @@ public class MultaEntity extends BaseEntity implements Serializable {
         this.medioPago = medioPago;
     }
 
-    public PrestamoEntity getPrestamo() {
-        return prestamo;
-    }
-
-    public void setPrestamo(PrestamoEntity prestamo) {
-        this.prestamo = prestamo;
-    }
+   
 }

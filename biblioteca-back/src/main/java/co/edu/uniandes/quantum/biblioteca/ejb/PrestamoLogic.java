@@ -72,7 +72,7 @@ public class PrestamoLogic {
      * 
      */
     public PrestamoEntity createPrestamo(Long usuarioid, PrestamoEntity entity) {
-        LOGGER.info("Inicia proceso de crear review");
+        LOGGER.info("Inicia proceso de crear prestamo");
         UsuarioEntity usuario = usuarioLogic.getUsuario(usuarioid);
         entity.setMiUsuario(usuario);
         return persistence.create(entity);
