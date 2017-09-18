@@ -6,7 +6,10 @@
 package co.edu.uniandes.quantum.biblioteca.ejb;
 
 import co.edu.uniandes.quantum.biblioteca.entities.MultaEntity;
+import co.edu.uniandes.quantum.biblioteca.entities.MultaEntity;
+import co.edu.uniandes.quantum.biblioteca.entities.UsuarioEntity;
 import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
+import co.edu.uniandes.quantum.biblioteca.persistence.MultaPersistence;
 import co.edu.uniandes.quantum.biblioteca.persistence.MultaPersistence;
 import java.util.List;
 import java.util.logging.Level;
@@ -26,42 +29,85 @@ public class MultaLogic {
     @Inject
     private MultaPersistence persistence;
 
+    @Inject
+    private UsuarioLogic usuarioLogic;
+
     /**
-     * @param entity
-     * @return MultaEntity creado.
-     * @throws BusinessLogicException
+     * Obtiene la lista de los registros de Multa que pertenecen a un Usuario.
+     *
+     * @param usuarioid id del Usuario el cual es padre de los Multas.
+     * @return Colección de objetos de MultaEntity.
+     * @throws co.edu.uniandes.csw.usuariostore.exceptions.BusinessLogicException
      */
-    public MultaEntity createMulta(MultaEntity entity) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de creación de una multa");
-        persistence.create(entity);
-        LOGGER.info("Termina proceso de creación de una multa");
-        return entity;
+    public List<MultaEntity> getMultas(Long usuarioid) throws BusinessLogicException {
+        LOGGER.info("Inicia proceso de consultar todos los multas");
+        UsuarioEntity usuario = usuarioLogic.getUsuario(usuarioid);
+        if (usuario.getMultas() == null) {
+            throw new BusinessLogicException("El usuario que consulta aún no tiene multas");
+        }
+        if (usuario.getMultas().isEmpty()) {
+            throw new BusinessLogicException("El usuario que consulta aún no tiene multas");
+        }
+        return usuario.getMultas();
     }
 
-    public MultaEntity updateEntity(MultaEntity entity) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de actualización de una multa.");
-        MultaEntity entityActualizado = persistence.update(entity);
-        LOGGER.info("Termina el proceso de actualización de una multa.");
-        return entityActualizado;
+    /**
+     * Obtiene los datos de una instancia de Multa a partir de su ID.
+     *
+     * @param usuarioid
+     * @pre La existencia del elemento padre Usuario se debe garantizar.
+     * @param reviewid) Identificador del Multa a consultar
+     * @return Instancia de MultaEntity con los datos del Multa consultado.
+     * 
+     */
+    public MultaEntity getMulta(Long usuarioid, Long reviewid) {
+        return persistence.find(usuarioid, reviewid);
     }
 
-    public void deleteMulta(Long id) {
-        LOGGER.log(Level.INFO, "Inicia el proceso de eliminar la multa con el id: {0}", id);
-        persistence.delete(id);
-        LOGGER.log(Level.INFO, "Termina el proceso de eliminar la multa con el id: {0}", id);
+    /**
+     * Se encarga de crear un Multa en la base de datos.
+     *
+     * @param entity Objeto de MultaEntity con los datos nuevos
+     * @param usuarioid id del Usuario el cual sera padre del nuevo Multa.
+     * @return Objeto de MultaEntity con los datos nuevos y su ID.
+     * 
+     */
+    public MultaEntity createMulta(Long usuarioid, MultaEntity entity) {
+        LOGGER.info("Inicia proceso de crear review");
+        UsuarioEntity usuario = usuarioLogic.getUsuario(usuarioid);
+        entity.setMiUsuario(usuario);
+        return persistence.create(entity);
     }
 
-    public MultaEntity getMulta(Long id){
-        LOGGER.log(Level.INFO, "Inicia el proceso de encontrar la multa con id: {0}", id);
-        MultaEntity entity = persistence.find(id);
-        LOGGER.log(Level.INFO, "Termina el proceso de encontrar la multa con id: {0}", id);
-        return entity;
+    /**
+     * Actualiza la información de una instancia de Multa.
+     *
+     * @param entity Instancia de MultaEntity con los nuevos datos.
+     * @param usuarioid id del Usuario el cual sera padre del Multa actualizado.
+     * @return Instancia de MultaEntity con los datos actualizados.
+     * 
+     */
+    public MultaEntity updateMulta(Long usuarioid, MultaEntity entity) {
+        LOGGER.info("Inicia proceso de actualizar review");
+        UsuarioEntity usuario = usuarioLogic.getUsuario(usuarioid);
+        entity.setMiUsuario(usuario);
+        return persistence.update(entity);
     }
-    
-    public List<MultaEntity> getMultas(){
-        LOGGER.info("Inicia el proceso de encontrar todas las multas.");
-        List<MultaEntity> multas = persistence.findAll();
-        LOGGER.info("Termina el proceso de encontrar todas las multas.");
-        return multas;
+
+    /**
+     * Elimina una instancia de Multa de la base de datos.
+     *
+     * @param id Identificador de la instancia a eliminar.
+     * @param usuarioid id del Usuario el cual es padre del Multa.
+     * 
+     */
+    public void deleteMulta(Long usuarioid, Long id) {
+        LOGGER.info("Inicia proceso de borrar review");
+        MultaEntity old = getMulta(usuarioid, id);
+        persistence.delete(old.getId());
+    }
+
+    public List<MultaEntity> getMultas() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

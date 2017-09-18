@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.quantum.biblioteca.resources;
 
+import co.edu.uniandes.quantum.biblioteca.dtos.UsuarioDTO;
 import co.edu.uniandes.quantum.biblioteca.dtos.UsuarioDetailDTO;
 import co.edu.uniandes.quantum.biblioteca.ejb.UsuarioLogic;
 import co.edu.uniandes.quantum.biblioteca.entities.UsuarioEntity;
@@ -37,7 +38,7 @@ public class UsuarioResource {
     UsuarioLogic usuarioLogic;
 
     @GET
-    public List<UsuarioDetailDTO> getUsuarios() throws BusinessLogicException {
+    public List<UsuarioDTO> getUsuarios() throws BusinessLogicException {
         if(listUsuarioEntity2DetailDTO(usuarioLogic.getUsuarios()).isEmpty())
             throw new WebApplicationException("No hay usuarios");
         else
@@ -46,7 +47,7 @@ public class UsuarioResource {
 
     @GET
     @Path("{id: \\d+}")
-    public UsuarioDetailDTO getUsuario(@PathParam("id") Long id) throws BusinessLogicException {
+    public UsuarioDTO getUsuario(@PathParam("id") Long id) throws BusinessLogicException {
         UsuarioEntity entity = usuarioLogic.getUsuario(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /usuarios/" + id + " no existe.", 404);
@@ -56,7 +57,7 @@ public class UsuarioResource {
 
    
     @POST
-    public UsuarioDetailDTO createUsuario(UsuarioDetailDTO usuario) throws BusinessLogicException {        
+    public UsuarioDetailDTO createUsuario(UsuarioDTO usuario) throws BusinessLogicException {        
          return new UsuarioDetailDTO(usuarioLogic.createUsuario(usuario.toEntity()));
     }
 
@@ -80,11 +81,41 @@ public class UsuarioResource {
         }
         usuarioLogic.deleteUsuario(id);
     }   
+    
+    @Path("{idUsuario: \\d+}/prestamos")
+    public Class<PrestamoResource> getPrestamoResource(@PathParam("idUsuario") Long usuarioId) {
+        UsuarioEntity entity = usuarioLogic.getUsuario(usuarioId);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /usuarios/" + usuarioId + "/prestamos no existe.", 404);
+        }
+        return PrestamoResource.class;
+    }
+    
+    @Path("{idUsuario: \\d+}/multas")
+    public Class<MultaResource> getMultaResource(@PathParam("idUsuario") Long usuariosId) {
+        UsuarioEntity entity = usuarioLogic.getUsuario(usuariosId);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /usuarios/" + usuariosId + "/multas no existe.", 404);
+        }
+        return MultaResource.class;
+    }
+    
+    @Path("{idUsuario: \\d+}/reservas")
+    public Class<ReservaResource> getReservaResource(@PathParam("idUsuario") Long usuariosId) {
+        UsuarioEntity entity = usuarioLogic.getUsuario(usuariosId);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /usuarios/" + usuariosId + "/reviews no existe.", 404);
+        }
+        return ReservaResource.class;
+    }
+    
+    
+    
 
-    private List<UsuarioDetailDTO> listUsuarioEntity2DetailDTO(List<UsuarioEntity> entityList) {
-        List<UsuarioDetailDTO> list = new ArrayList<>();
+    private List<UsuarioDTO> listUsuarioEntity2DetailDTO(List<UsuarioEntity> entityList) {
+        List<UsuarioDTO> list = new ArrayList<>();
         for (UsuarioEntity entity : entityList) {
-            list.add(new UsuarioDetailDTO(entity));
+            list.add(new UsuarioDTO(entity));
         }
         return list;
     }

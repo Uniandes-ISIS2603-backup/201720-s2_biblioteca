@@ -41,7 +41,7 @@ public class MultaDTO {
      */
     private String tituloServicio;
     
-    private MedioPagoDTO medioPago;
+    
 
     public Long getId() {
         return id;
@@ -90,14 +90,7 @@ public class MultaDTO {
     public void setTituloServicio(String tituloServicio) {
         this.tituloServicio = tituloServicio;
     }
-
-    public MedioPagoDTO getMedioPago() {
-        return medioPago;
-    }
-
-    public void setMedioPago(MedioPagoDTO medioPago) {
-        this.medioPago = medioPago;
-    }    
+      
      
     public MultaDTO(MultaEntity entityMulta) {
         this.id = entityMulta.getId();
@@ -109,7 +102,6 @@ public class MultaDTO {
         entity.setFecha(fecha);
         entity.setCosto(costo);
         entity.setDescripcion(descripcion);
-        entity.setMedioPago(medioPago.toEntity());
         entity.setPagada(pagada);
         entity.setTituloServicio(tituloServicio);
         return entity;

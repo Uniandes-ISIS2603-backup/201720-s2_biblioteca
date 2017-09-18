@@ -167,35 +167,6 @@ public class MultaPersistenceTest {
         Assert.assertNull(deleted);
     }
 
-    /**
-     * Test of find method, of class MultaPersistence.
-     */
-    @Test
-    public void testFind() throws Exception {
-        MultaEntity entity = data.get(0);
-        MultaEntity newEntity = persistence.find(entity.getId());
-        Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
-    }
-
-    
-    /**
-     * Test of findAll method, of class MultaPersistence.
-     */
-    @Test
-    public void testFindAll() throws Exception {
-        List<MultaEntity> list = persistence.findAll();
-        Assert.assertEquals(data.size(), list.size());
-        for (MultaEntity ent : list) {
-            boolean found = false;
-            for (MultaEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
-                    found = true;
-                }
-            }
-            Assert.assertTrue(found);
-        }
-
-    }
+   
 }
 
