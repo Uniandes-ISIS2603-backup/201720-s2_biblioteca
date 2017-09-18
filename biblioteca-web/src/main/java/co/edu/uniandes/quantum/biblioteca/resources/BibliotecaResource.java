@@ -23,15 +23,17 @@ SOFTWARE.
  */
 package co.edu.uniandes.quantum.biblioteca.resources;
 
+import co.edu.uniandes.quantum.biblioteca.dtos.BibliotecaDTO;
 import co.edu.uniandes.quantum.biblioteca.ejb.BibliotecaLogic;
 import co.edu.uniandes.quantum.biblioteca.dtos.BibliotecaDetailDTO;
+import co.edu.uniandes.quantum.biblioteca.dtos.MultaDTO;
 import co.edu.uniandes.quantum.biblioteca.entities.BibliotecaEntity;
+import co.edu.uniandes.quantum.biblioteca.entities.MultaEntity;
 import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
-
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -51,7 +53,7 @@ import javax.ws.rs.WebApplicationException;
  * este recurso tiene la ruta "Bibliotecas". Al ejecutar la aplicación, el
  * recurso será accesibe a través de la ruta "/api/Bibliotecas"
  *
- * @author ISIS2603
+ * @author ISIS2603, jp.sanmiguel
  *
  */
 @Path("bibliotecas")
@@ -96,13 +98,12 @@ public class BibliotecaResource {
         return listEntity2DetailDTO(bibliotecaLogic.getBibliotecas());
     }
 
-   
     /**
-     * PUT http://localhost:8080/biblioteca-web/api/bibliotecas/1 Ejemplo
-     * json { "id": 1, "atirbuto1": "Valor nuevo" }
+     * PUT http://localhost:8080/biblioteca-web/api/bibliotecas/1 Ejemplo json {
+     * "id": 1, "atirbuto1": "Valor nuevo" }
      *
      * @param id corresponde a la Biblioteca a actualizar.
-     * @param biblioteca corresponde  al objeto con los cambios que se van a
+     * @param biblioteca corresponde al objeto con los cambios que se van a
      * realizar.
      * @return La Biblioteca actualizada.
      * @throws BusinessLogicException
@@ -112,9 +113,14 @@ public class BibliotecaResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public BibliotecaDetailDTO updateBiblioteca(@PathParam("id") Long id, BibliotecaDetailDTO biblioteca) throws BusinessLogicException, UnsupportedOperationException {
-          throw new UnsupportedOperationException("Este servicio  no está implementado");
-      
+    public BibliotecaDTO updateBiblioteca(@PathParam("id") Long id, BibliotecaDetailDTO biblioteca) throws BusinessLogicException, UnsupportedOperationException {
+        biblioteca.setId(id);
+        BibliotecaEntity entity = bibliotecaLogic.getBiblioteca(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso biblioteca " + id + " no existe.", 404);
+        }
+        return new BibliotecaDTO(bibliotecaLogic.updateBiblioteca(entity));
+
     }
 
     /**
@@ -130,15 +136,29 @@ public class BibliotecaResource {
     @DELETE
     @Path("{id: \\d+}")
     public void deleteBiblioteca(@PathParam("id") Long id) throws BusinessLogicException {
-         throw new UnsupportedOperationException("Este servicio no está implementado");
+        if(bibliotecaLogic.getBiblioteca(id) == null)
+        {
+            throw new WebApplicationException("El recurso biblioteca " + id + " no existe.", 404);
+        }
+        bibliotecaLogic.deleteBiblioteca(id);
     }
 
+    @GET
+    public BibliotecaDTO getBiblioteca(Long id)
+    {
+        BibliotecaEntity entity = bibliotecaLogic.getBiblioteca(id);
+        if(entity == null)
+        {
+            throw new WebApplicationException("El recurso biblioteca " + id + " no existe.", 404);
+        }
+        return new BibliotecaDTO(entity);
+    }
     /**
      *
      * lista de entidades a DTO.
      *
-     * Este método convierte una lista de objetos BibliotecaEntity a una lista de
-     * objetos BibliotecaDetailDTO (json)
+     * Este método convierte una lista de objetos BibliotecaEntity a una lista
+     * de objetos BibliotecaDetailDTO (json)
      *
      * @param entityList corresponde a la lista de Bibliotecaes de tipo Entity
      * que vamos a convertir a DTO.

@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -52,15 +53,25 @@ public class MultaEntity extends BaseEntity implements Serializable {
     /**
      * Medio de pago de la multa.
      */
+    @PodamExclude
     @OneToOne
     private MedioPagoEntity medioPago;
     
     /**
      * Prestamo al que se le crea la multa.
      */
+    @PodamExclude
     @OneToOne
     private PrestamoEntity prestamo;
 
+    public UsuarioEntity getMiUsuario() {
+        return miUsuario;
+    }
+
+    public void setMiUsuario(UsuarioEntity miUsuario) {
+        this.miUsuario = miUsuario;
+    }    
+    
     public Date getFecha() {
         return fecha;
     }

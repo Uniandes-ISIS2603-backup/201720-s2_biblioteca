@@ -55,7 +55,7 @@ public class BibliotecaEntity extends BaseEntity implements Serializable {
     
     @PodamExclude
     @OneToMany(mappedBy = "miBiblioteca")
-    private ArrayList<LibroEntity> libros = new ArrayList<LibroEntity>();
+    private List<LibroEntity> libros = new ArrayList<LibroEntity>();
     
     @PodamExclude
     @OneToMany(mappedBy = "miBiblioteca")
@@ -85,11 +85,11 @@ public class BibliotecaEntity extends BaseEntity implements Serializable {
         this.salas = salas;
     }
 
-    public ArrayList<LibroEntity> getLibros() {
+    public List<LibroEntity> getLibros() {
         return libros;
     }
 
-    public void setLibros(ArrayList<LibroEntity> libros) {
+    public void setLibros(List<LibroEntity> libros) {
         this.libros = libros;
     }
 
@@ -99,8 +99,6 @@ public class BibliotecaEntity extends BaseEntity implements Serializable {
 
     public void setVideos(List<VideoEntity> videos) {
         this.videos = videos;
-    }
-
-     
+    }     
     
 }
