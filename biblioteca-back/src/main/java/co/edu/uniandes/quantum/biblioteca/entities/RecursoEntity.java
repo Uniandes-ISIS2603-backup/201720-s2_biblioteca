@@ -28,8 +28,7 @@ public class RecursoEntity extends BaseEntity implements Serializable
     @ManyToOne
     private PrestamoEntity miPrestamo;
     
-    @ManyToMany(mappedBy = "recursos")
-    private  List<ReservaEntity> reservas = new ArrayList<ReservaEntity>();
+    
     
     public String getAutor()
     {

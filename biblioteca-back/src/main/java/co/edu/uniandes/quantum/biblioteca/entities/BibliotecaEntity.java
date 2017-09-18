@@ -30,6 +30,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -48,12 +49,15 @@ public class BibliotecaEntity extends BaseEntity implements Serializable {
      */
     private String ubicacion;
     
+    @PodamExclude
     @OneToMany(mappedBy = "miBiblioteca", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SalaEntity> salas  = new ArrayList<SalaEntity>();
     
+    @PodamExclude
     @OneToMany(mappedBy = "miBiblioteca")
     private ArrayList<LibroEntity> libros = new ArrayList<LibroEntity>();
     
+    @PodamExclude
     @OneToMany(mappedBy = "miBiblioteca")
     private List<VideoEntity> videos = new ArrayList<VideoEntity>();
     

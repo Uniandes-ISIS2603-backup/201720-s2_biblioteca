@@ -14,10 +14,14 @@ import javax.persistence.Entity;
  * @author jp.sanmiguel
  */
 @Entity
-public class VideoEntity extends BaseEntity implements Serializable {
+public class VideoEntity extends RecursoEntity implements Serializable {
     
     @ManyToOne    
     private BibliotecaEntity miBiblioteca;
+    
+    @ManyToOne    
+    private ReservaEntity mReserva;
+    
     private Long duracion;
     
     public Long getDuracion()

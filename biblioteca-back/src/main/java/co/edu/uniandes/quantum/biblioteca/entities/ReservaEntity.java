@@ -35,6 +35,8 @@ public class ReservaEntity extends BaseEntity implements Serializable
     private Date fechaInicio;
     
     
+    
+    
     @PodamExclude
    @OneToMany(mappedBy = "mReserva", cascade = CascadeType.ALL)
    private List<VideoEntity> videos = new ArrayList<VideoEntity>();
