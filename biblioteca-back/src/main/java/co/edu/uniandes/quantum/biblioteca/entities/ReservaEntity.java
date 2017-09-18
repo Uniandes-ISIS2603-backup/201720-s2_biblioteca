@@ -38,10 +38,10 @@ public class ReservaEntity extends BaseEntity implements Serializable
     
     
     @PodamExclude
-   @OneToMany(mappedBy = "mReserva", cascade = CascadeType.ALL)
+   @OneToMany(mappedBy = "mReserva")
    private List<VideoEntity> videos = new ArrayList<VideoEntity>();
    
-       @OneToMany(mappedBy = "miReserva", cascade = CascadeType.ALL)
+       @OneToMany(mappedBy = "miReserva")
    private List<LibroEntity> libros = new ArrayList<LibroEntity>();
    @PodamExclude
    @ManyToOne

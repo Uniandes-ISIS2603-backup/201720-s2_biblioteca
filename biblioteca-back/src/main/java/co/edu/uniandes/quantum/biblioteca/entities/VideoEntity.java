@@ -8,6 +8,7 @@ package co.edu.uniandes.quantum.biblioteca.entities;
 import java.io.Serializable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -21,6 +22,9 @@ public class VideoEntity extends RecursoEntity implements Serializable {
     
     @ManyToOne    
     private ReservaEntity mReserva;
+    
+    @ManyToOne   
+    private PrestamoEntity miPrestamo;
     
     private Long duracion;
     

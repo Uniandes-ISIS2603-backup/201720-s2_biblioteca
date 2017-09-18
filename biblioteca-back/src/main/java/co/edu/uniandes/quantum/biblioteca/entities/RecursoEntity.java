@@ -19,14 +19,13 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 
-public class RecursoEntity extends BaseEntity implements Serializable
+public  class RecursoEntity extends BaseEntity implements Serializable
 {
     private String autor;
     private int unidadesExistentes;
     private int unidadesDisponibles;
     
-    @ManyToOne
-    private PrestamoEntity miPrestamo;
+    
     
     
     
