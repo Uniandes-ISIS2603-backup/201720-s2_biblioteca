@@ -34,7 +34,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
- * @author ISIS2603
+ * @author ISIS2603, jp.sanmiguel
  */
 @Entity
 public class BibliotecaEntity extends BaseEntity implements Serializable {

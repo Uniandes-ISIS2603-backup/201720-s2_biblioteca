@@ -121,10 +121,7 @@ public class MultaResource {
          multaLogic.deleteMulta(id);
     }
 
-    @GET
-    public List<MultaDTO> getUsuarios() throws BusinessLogicException {
-        return listEntity2DTO(multaLogic.getMultas());
-    }
+  
     
     /**
      *
