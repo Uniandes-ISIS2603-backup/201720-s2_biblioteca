@@ -18,6 +18,17 @@ public class VideoEntity extends BaseEntity implements Serializable {
     
     @ManyToOne    
     private BibliotecaEntity miBiblioteca;
+    private Long duracion;
     
+    public Long getDuracion()
+    {
+        return duracion;
+    }
+    
+    public void setDuracion(Long pDuracion)
+    {
+        duracion = pDuracion;
+    }
     
 }
+
