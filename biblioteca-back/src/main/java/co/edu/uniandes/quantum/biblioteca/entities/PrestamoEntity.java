@@ -46,6 +46,22 @@ public class PrestamoEntity extends BaseEntity implements Serializable {
    @ManyToOne
    private UsuarioEntity miUsuario;
 
+    public List<VideoEntity> getVideos() {
+        return videos;
+    }
+
+    public void setVideos(List<VideoEntity> videos) {
+        this.videos = videos;
+    }
+
+    public List<LibroEntity> getLibros() {
+        return libros;
+    }
+
+    public void setLibros(List<LibroEntity> libros) {
+        this.libros = libros;
+    }
+
     
 
     public UsuarioEntity getMiUsuario() {
