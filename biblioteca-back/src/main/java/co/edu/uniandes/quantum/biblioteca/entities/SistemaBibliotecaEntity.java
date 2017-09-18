@@ -3,20 +3,12 @@ package co.edu.uniandes.quantum.biblioteca.entities;
 import java.io.Serializable;
 import java.util.List;
 
-public class SistemaBilbiotecaEntity extends BaseEntity implements Serializable {
+public class SistemaBibliotecaEntity extends BaseEntity implements Serializable {
 
-    private String nombre;
+
     private List<BibliotecaEntity> bibliotecas;
     private List<EBookEntity> eBooks;
     private List<EVideoEntity> eVideo;
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
 
     public List<BibliotecaEntity> getBibliotecas() {
         return bibliotecas;

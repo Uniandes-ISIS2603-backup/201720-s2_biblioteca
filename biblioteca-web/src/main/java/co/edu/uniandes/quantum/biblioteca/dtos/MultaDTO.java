@@ -6,6 +6,8 @@
 package co.edu.uniandes.quantum.biblioteca.dtos;
 
 import co.edu.uniandes.quantum.biblioteca.entities.MultaEntity;
+import co.edu.uniandes.quantum.biblioteca.entities.UsuarioEntity;
+import java.util.Date;
 
 /**
  *
@@ -13,12 +15,104 @@ import co.edu.uniandes.quantum.biblioteca.entities.MultaEntity;
  */
 public class MultaDTO {
 
-    MultaDTO(MultaEntity entityMulta) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private Long id;
+    /**
+     * Fecha en que se pusó la multa.
+     */
+    private Date fecha;
+    
+    /**
+     * Costo de la multa.
+     */
+    private double costo;
+    
+    /**
+     * Veifica si ya está pagada la multa.
+     */
+    private boolean pagada;
+    
+    /**
+     * Descripción de la multa.
+     */
+    private String descripcion;
+    
+    /**
+     * Nombre del servicio por el que se creó la multa.
+     */
+    private String tituloServicio;
+    
+    private MedioPagoDTO medioPago;
+
+    public Long getId() {
+        return id;
     }
 
-    MultaEntity toEntity() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public double getCosto() {
+        return costo;
+    }
+
+    public void setCosto(double costo) {
+        this.costo = costo;
+    }
+
+    public boolean isPagada() {
+        return pagada;
+    }
+
+    public void setPagada(boolean pagada) {
+        this.pagada = pagada;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getTituloServicio() {
+        return tituloServicio;
+    }
+
+    public void setTituloServicio(String tituloServicio) {
+        this.tituloServicio = tituloServicio;
+    }
+
+    public MedioPagoDTO getMedioPago() {
+        return medioPago;
+    }
+
+    public void setMedioPago(MedioPagoDTO medioPago) {
+        this.medioPago = medioPago;
+    }    
+     
+    public MultaDTO(MultaEntity entityMulta) {
+        this.id = entityMulta.getId();
+    }
+
+    public MultaEntity toEntity() {
+        MultaEntity entity = new MultaEntity();
+        entity.setId(id);
+        entity.setFecha(fecha);
+        entity.setCosto(costo);
+        entity.setDescripcion(descripcion);
+        entity.setMedioPago(medioPago.toEntity());
+        entity.setPagada(pagada);
+        entity.setTituloServicio(tituloServicio);
+        return entity;
     }
     
 }

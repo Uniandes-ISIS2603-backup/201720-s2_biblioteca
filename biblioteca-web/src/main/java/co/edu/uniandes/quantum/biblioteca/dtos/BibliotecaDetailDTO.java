@@ -23,6 +23,13 @@ SOFTWARE.
 */
 package co.edu.uniandes.quantum.biblioteca.dtos;
 import co.edu.uniandes.quantum.biblioteca.entities.BibliotecaEntity;
+import co.edu.uniandes.quantum.biblioteca.entities.LibroEntity;
+import co.edu.uniandes.quantum.biblioteca.entities.MultaEntity;
+import co.edu.uniandes.quantum.biblioteca.entities.PrestamoEntity;
+import co.edu.uniandes.quantum.biblioteca.entities.SalaEntity;
+import co.edu.uniandes.quantum.biblioteca.entities.VideoEntity;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -30,20 +37,64 @@ import co.edu.uniandes.quantum.biblioteca.entities.BibliotecaEntity;
  */
 public class BibliotecaDetailDTO extends BibliotecaDTO {
 
+    private List<SalaDTO> salas;
+    
+    private List<VideoDTO> videos;
+    
+    private List<LibroDTO> libros;    
+    
     /**
      * Constructor por defecto
      */
-    public BibliotecaDetailDTO() {
-    }
-
-    /**
-     * Constructor para transformar un Entity a un DTO
-     *
-     * @param entity
-     */
     public BibliotecaDetailDTO(BibliotecaEntity entity) {
         super(entity);
+        if (entity.getSalas() != null) {
+            salas = new ArrayList<>();
+            for (SalaEntity entitySala : entity.getSalas()) {
+                salas.add(new SalaDTO(entitySala));
+            }
+        }
+        
+        if (entity.getVideos() != null) {
+            videos = new ArrayList<>();
+            for (VideoEntity entityVideo : entity.getVideos()) {
+                videos.add(new VideoDTO(entityVideo));
+            }
+        }
+        
+        if (entity.getLibros() != null) {
+            libros = new ArrayList<>();
+            for (LibroEntity entityLibro : entity.getLibros()) {
+                libros.add(new LibroDTO(entityLibro));
+            }
+        }
     }
+
+    public List<SalaDTO> getSalas() {
+        return salas;
+    }
+
+    public void setSalas(List<SalaDTO> salas) {
+        this.salas = salas;
+    }
+
+    public List<VideoDTO> getVideos() {
+        return videos;
+    }
+
+    public void setVideos(List<VideoDTO> video) {
+        this.videos = video;
+    }
+
+    public List<LibroDTO> getLibros() {
+        return libros;
+    }
+
+    public void setLibros(List<LibroDTO> libro) {
+        this.libros = libro;
+    }
+    
+    
 
     /**
      * Transformar un DTO a un Entity
@@ -52,8 +103,30 @@ public class BibliotecaDetailDTO extends BibliotecaDTO {
      */
     @Override
     public BibliotecaEntity toEntity() {
-        BibliotecaEntity BibliotecaE = super.toEntity();
-        return BibliotecaE;
+        BibliotecaEntity biblioteca = super.toEntity();
+        if (getLibros() != null) {
+            List<LibroEntity> librosEntity = new ArrayList<>();
+            for (LibroDTO dtoLibro : getLibros()) {
+                librosEntity.add(dtoLibro.toEntity());
+            }
+            biblioteca.setLibros(librosEntity);
+        }
+        
+        if (getVideos() != null) {
+            List<VideoEntity> videosEntity = new ArrayList<>();
+            for (VideoDTO dtoVideo : getVideos()) {
+                videosEntity.add(dtoVideo.toEntity());
+            }
+            biblioteca.setVideos(videosEntity);
+        }
+        if (getSalas() != null) {
+            List<SalaEntity> salasEntity = new ArrayList<>();
+            for (SalaDTO dtoSala : getSalas()) {
+                salasEntity.add(dtoSala.toEntity());
+            }
+            biblioteca.setSalas(salasEntity);
+        }
+        return biblioteca;
     }
 
 }
