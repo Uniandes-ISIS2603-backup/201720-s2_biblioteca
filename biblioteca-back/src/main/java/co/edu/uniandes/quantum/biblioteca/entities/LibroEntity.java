@@ -22,6 +22,12 @@ public class LibroEntity extends RecursoEntity implements Serializable
     @ManyToOne    
     private BibliotecaEntity miBiblioteca;
     
+    @ManyToOne   
+    private PrestamoEntity miPrestamo; 
+    
+    @ManyToOne   
+    private ReservaEntity miReserva; 
+   
     
     public int getNumeroPaginas()
     {return numPaginas;}

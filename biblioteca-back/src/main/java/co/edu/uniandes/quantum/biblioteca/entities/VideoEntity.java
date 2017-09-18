@@ -8,24 +8,32 @@ package co.edu.uniandes.quantum.biblioteca.entities;
 import java.io.Serializable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 
 /**
  *
  * @author jp.sanmiguel
  */
 @Entity
-public class VideoEntity extends BaseEntity implements Serializable {
+public class VideoEntity extends RecursoEntity implements Serializable {
     
     @ManyToOne    
     private BibliotecaEntity miBiblioteca;
-    private Long duracion;
     
-    public Long getDuracion()
+    @ManyToOne    
+    private ReservaEntity mReserva;
+    
+    @ManyToOne   
+    private PrestamoEntity miPrestamo;
+    
+    private int duracion;
+    
+    public int getDuracion()
     {
         return duracion;
     }
     
-    public void setDuracion(Long pDuracion)
+    public void setDuracion(int pDuracion)
     {
         duracion = pDuracion;
     }

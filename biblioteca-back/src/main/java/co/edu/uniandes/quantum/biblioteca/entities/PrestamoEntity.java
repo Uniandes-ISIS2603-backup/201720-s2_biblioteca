@@ -35,20 +35,18 @@ public class PrestamoEntity extends BaseEntity implements Serializable {
     private boolean externo;
     
     @PodamExclude
-   @OneToMany(mappedBy = "miPrestamo", cascade = CascadeType.ALL)
-   private List<RecursoEntity> recursos = new ArrayList<RecursoEntity>();
+   @OneToMany(mappedBy = "miPrestamo")
+   private List<VideoEntity> videos = new ArrayList<VideoEntity>();
+    
+     @PodamExclude
+   @OneToMany(mappedBy = "miPrestamo")
+   private List<LibroEntity> libros = new ArrayList<LibroEntity>();
    
     @PodamExclude
    @ManyToOne
    private UsuarioEntity miUsuario;
 
-    public List<RecursoEntity> getRecursos() {
-        return recursos;
-    }
-
-    public void setRecursos(List<RecursoEntity> recursos) {
-        this.recursos = recursos;
-    }
+    
 
     public UsuarioEntity getMiUsuario() {
         return miUsuario;
