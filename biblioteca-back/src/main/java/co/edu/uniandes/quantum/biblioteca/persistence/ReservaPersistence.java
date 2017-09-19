@@ -110,7 +110,7 @@ public class ReservaPersistence
      * @return un Reserva.
      */
     public ReservaEntity find(Long usuarioid, Long Reservaid) {
-        TypedQuery<ReservaEntity> q = em.createQuery("select p from ReservaEntity p where (p.usuario.id = :usuarioid) and (p.id = :Reservaid)", ReservaEntity.class);
+        TypedQuery<ReservaEntity> q = em.createQuery("select p from ReservaEntity p where (p.miUsuario.id = :usuarioid) and (p.id = :Reservaid)", ReservaEntity.class);
         q.setParameter("usuarioid", usuarioid);
         q.setParameter("Reservaid", Reservaid);
         List<ReservaEntity> results = q.getResultList();

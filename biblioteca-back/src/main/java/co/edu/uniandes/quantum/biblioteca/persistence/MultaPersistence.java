@@ -90,7 +90,7 @@ public class MultaPersistence {
      * @return un multa.
      */
     public MultaEntity find(Long usuarioid, Long multaid) {
-        TypedQuery<MultaEntity> q = em.createQuery("select p from MultaEntity p where (p.usuario.id = :usuarioid) and (p.id = :multaid)", MultaEntity.class);
+        TypedQuery<MultaEntity> q = em.createQuery("select p from MultaEntity p where (p.miUsuario.id = :usuarioid) and (p.id = :multaid)", MultaEntity.class);
         q.setParameter("usuarioid", usuarioid);
         q.setParameter("multaid", multaid);
         List<MultaEntity> results = q.getResultList();

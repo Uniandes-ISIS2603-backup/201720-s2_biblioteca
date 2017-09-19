@@ -81,7 +81,7 @@ public class PrestamoPersistence
      * @return un prestamo.
      */
     public PrestamoEntity find(Long usuarioid, Long prestamoid) {
-        TypedQuery<PrestamoEntity> q = em.createQuery("select p from PrestamoEntity p where (p.usuario.id = :usuarioid) and (p.id = :prestamoid)", PrestamoEntity.class);
+        TypedQuery<PrestamoEntity> q = em.createQuery("select p from PrestamoEntity p where (p.miUsuario.id = :usuarioid) and (p.id = :prestamoid)", PrestamoEntity.class);
         q.setParameter("usuarioid", usuarioid);
         q.setParameter("prestamoid", prestamoid);
         List<PrestamoEntity> results = q.getResultList();
