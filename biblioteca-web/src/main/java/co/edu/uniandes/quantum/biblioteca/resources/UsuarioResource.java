@@ -57,7 +57,7 @@ public class UsuarioResource {
 
    
     @POST
-    public UsuarioDetailDTO createUsuario(UsuarioDTO usuario) throws BusinessLogicException {        
+    public UsuarioDTO createUsuario(UsuarioDTO usuario) throws BusinessLogicException {        
          return new UsuarioDetailDTO(usuarioLogic.createUsuario(usuario.toEntity()));
     }
 
