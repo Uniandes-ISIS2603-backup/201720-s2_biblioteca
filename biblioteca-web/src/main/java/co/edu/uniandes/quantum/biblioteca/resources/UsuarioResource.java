@@ -63,7 +63,7 @@ public class UsuarioResource {
 
     @PUT
     @Path("{id: \\d+}")
-    public UsuarioDetailDTO updateUsuario(@PathParam("id") Long id, UsuarioDetailDTO usuario) throws BusinessLogicException {
+    public UsuarioDTO updateUsuario(@PathParam("id") Long id, UsuarioDTO usuario) throws BusinessLogicException {
         usuario.setId(id);
         UsuarioEntity entity = usuarioLogic.getUsuario(id);
         if (entity == null) {
