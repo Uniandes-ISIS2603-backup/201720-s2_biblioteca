@@ -173,13 +173,13 @@ public class LibroPersistenceTest
         Assert.assertEquals(entity.getName(), newEntity.getName());
     }
 
-    @Test
-    public void testFindByName() {
-        LibroEntity entity = data.get(0);
-        LibroEntity newEntity = persistence.findByName(entity.getName());
-        Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
-    }
+//    @Test
+//    public void testFindByName() {
+//        LibroEntity entity = data.get(0);
+//        LibroEntity newEntity = persistence.findByName(entity.getName());
+//        Assert.assertNotNull(newEntity);
+//        Assert.assertEquals(entity.getName(), newEntity.getName());
+//    }
 
     /**
      * Test of findAll method, of class LibroPersistence.

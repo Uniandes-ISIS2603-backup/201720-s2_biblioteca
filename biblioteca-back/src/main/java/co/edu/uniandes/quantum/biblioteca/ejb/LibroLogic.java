@@ -63,12 +63,36 @@ public class LibroLogic
   * @return  el libro como un objeto Entity.
   * Corresponde a la lógica de POST/libros
   */
+//  public UsuarioEntity createUsuario(UsuarioEntity entity) throws BusinessLogicException {
+//        LOGGER.info("Inicia proceso de creación de usuario");    
+//        List<UsuarioEntity> usuarioz= persistence.findByName(entity.getName());
+//        for (UsuarioEntity usuario: usuarioz){
+//        if(usuario!=null)
+//        {
+//            if (usuario.getDireccion().equals(entity.getDireccion()) && usuario.getTelefono().equals(entity.getTelefono()))
+//            {
+//                throw new BusinessLogicException("Ya existe un usuario con el mismo nombre, telefono y dirección.");
+//            }
+//        }}
+//        persistence.create(entity);
+//        LOGGER.info("Termina proceso de creación de usuario");
+//        return entity;
+//    }
+
    public LibroEntity crearLibro(LibroEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de libro");
-        if (!validateId(entity.getId())) 
-        {
-            throw new BusinessLogicException("El ISBN (Id) es inválido");
-        }
+       List<LibroEntity> libros = persistence.findByName(entity.getName());
+                               
+              for(LibroEntity libro:libros)
+              {
+                  if(libro!=null)
+                  {
+                      if(libro.getAnioPublicacion()==entity.getAnioPublicacion()&& libro.getAutor().equals(entity.getAutor()))
+                      {
+                          throw new BusinessLogicException("Ya existe un usuario con el mismo nombre, telefono y dirección.");
+                      }
+                  }
+              }
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de libro");
         return entity;

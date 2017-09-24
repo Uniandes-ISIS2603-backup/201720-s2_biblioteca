@@ -47,6 +47,7 @@ public class UsuarioLogic {
         return Usuario;
     }
 
+    
     public UsuarioEntity createUsuario(UsuarioEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de usuario");    
         List<UsuarioEntity> usuarioz= persistence.findByName(entity.getName());

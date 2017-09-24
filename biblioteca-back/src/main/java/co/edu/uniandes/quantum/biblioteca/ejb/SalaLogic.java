@@ -65,10 +65,6 @@ public class SalaLogic
   */
    public SalaEntity crearSala(SalaEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Sala");
-        if (!validateId(entity.getId())) 
-        {
-            throw new BusinessLogicException("El  (Id) es inválido");
-        }
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de Sala");
         return entity;

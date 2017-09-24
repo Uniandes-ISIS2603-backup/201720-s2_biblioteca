@@ -89,14 +89,13 @@ public class LibroPersistence
          */
         return em.find(LibroEntity.class, id);
     }
-    
-    
-   public LibroEntity findByName(String name) {
+     
+   public List<LibroEntity> findByName(String name) {
         LOGGER.log(Level.INFO, "Consultando el libro con name= ", name);
         TypedQuery<LibroEntity> q
                 = em.createQuery("select u from LibroEntity u where u.name = :name", LibroEntity.class);
         q = q.setParameter("name", name);
-        return q.getSingleResult();
+        return q.getResultList();
     }
 
     /**
