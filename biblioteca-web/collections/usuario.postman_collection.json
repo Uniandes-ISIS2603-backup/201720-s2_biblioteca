@@ -1,0 +1,107 @@
+{
+	"variables": [],
+	"info": {
+		"name": "usuario",
+		"_postman_id": "7e1b2413-b13a-0fd4-6ca8-9cae4d397875",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear un usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/biblioteca-web/api/usuarios",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n\t\"name\":\"Usuario1\",\n\t\"telefono\":\"telefono1\",\n\t\"direccion\":\"calle1\"\n\t\n\t\n}"
+				},
+				"description": "Crea un usuario nuevo"
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar los usuarios",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/biblioteca-web/api/usuarios",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Consulta todos los usuarios"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un usuario con informacion repetida copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/biblioteca-web/api/usuarios",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n\t\"name\":\"Usuario1\",\n\t\"telefono\":\"telefono1\",\n\t\"direccion\":\"calle1\"\n\t\n\t\n}"
+				},
+				"description": "Crea un usuario con el mismo nombre, telefono y direccion que el usuario creado inmediatamente antes"
+			},
+			"response": []
+		}
+	]
+}

@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.quantum.biblioteca.ejb;
 
+import co.edu.uniandes.quantum.biblioteca.entities.BibliotecaEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.LibroEntity;
 import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
 import co.edu.uniandes.quantum.biblioteca.persistence.LibroPersistence;
@@ -27,7 +28,8 @@ public class LibroLogic
  @Inject
     private LibroPersistence persistence;
  
- 
+ @Inject
+    private BibliotecaLogic bibliotecaLogic;
  /**
   * Devuelve los libros que se encuentran en la base de datos.
   * @return  los libros como una lista de objetos.
@@ -46,29 +48,84 @@ public class LibroLogic
   * @return  el libro como un objeto Entity.
   * Corresponde a la lógica de GET libros/{id}
   */
- public LibroEntity getLibro(Long id) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar libro con id={0}", id);
-        LibroEntity book = persistence.find(id);
-        if (book == null) 
-        {
-            LOGGER.log(Level.SEVERE, "El libro con el id {0} no existe", id);
-        }
-        LOGGER.log(Level.INFO, "Termina proceso de consultar libro con id={0}", id);
-        return book;
-    }
+// public LibroEntity getLibro(Long id) {
+//        LOGGER.log(Level.INFO, "Inicia proceso de consultar libro con id={0}", id);
+//        LibroEntity book = persistence.find(id);
+//        if (book == null) 
+//        {
+//            LOGGER.log(Level.SEVERE, "El libro con el id {0} no existe", id);
+//        }
+//        LOGGER.log(Level.INFO, "Termina proceso de consultar libro con id={0}", id);
+//        return book;
+//    }
  
+    /**
+     * Obtiene la lista de los registros de Multa que pertenecen a un Usuario.
+     *
+     * @param usuarioid id del Usuario el cual es padre de los Multas.
+     * @return Colección de objetos de MultaEntity.
+     * @throws co.edu.uniandes.csw.usuariostore.exceptions.BusinessLogicException
+     */
+    public List<LibroEntity> getLibros(Long idBiblio) throws BusinessLogicException
+    {
+        LOGGER.info("Inicia proceso de consultar todos los multas");
+        BibliotecaEntity biblioteca = bibliotecaLogic.getBiblioteca(idBiblio);
+        if (biblioteca.getLibros()== null) {
+            throw new BusinessLogicException("El usuario que consulta aún no tiene libros");
+        }
+
+        return biblioteca.getLibros();
+    }
+    
+    public LibroEntity getLibro (Long idBiblio, Long idlibro) throws BusinessLogicException
+    {
+        List<LibroEntity> librosBiblioteca = getLibros(idBiblio);
+       LibroEntity libroR=null;
+        for (LibroEntity libro : librosBiblioteca)
+        {
+           if(libro.getId()==idlibro)
+           {
+               libroR=libro;
+           }
+            
+        }
+        if(libroR==null)
+        {
+            throw new BusinessLogicException("el libro no existe");
+        }
+        return libroR;
+    }
+   
  /**
   * Devuelve el libro que se hizo persistir en la base de datos.
   * @param entity libro a persistir
   * @return  el libro como un objeto Entity.
   * Corresponde a la lógica de POST/libros
   */
-   public LibroEntity crearLibro(LibroEntity entity) throws BusinessLogicException {
+
+    public LibroEntity crearLibro(LibroEntity entity)
+    {
         LOGGER.info("Inicia proceso de creación de libro");
-        if (!validateId(entity.getId())) 
-        {
-            throw new BusinessLogicException("El ISBN (Id) es inválido");
-        }
+        persistence.create(entity);
+        LOGGER.info("Termina proceso de creación de libro");
+        return entity;
+    }
+   public LibroEntity crearLibro(LibroEntity entity, Long idBiblioteca) throws BusinessLogicException {
+        LOGGER.info("Inicia proceso de creación de libro");
+        BibliotecaEntity biblioteca =bibliotecaLogic.getBiblioteca(idBiblioteca);
+        entity.setMiBiblioteca(biblioteca);
+       List<LibroEntity> libros = biblioteca.getLibros();
+                               
+              for(LibroEntity libro:libros)
+              {
+                  if(libro!=null)
+                  {
+                      if(libro.getAnioPublicacion()==entity.getAnioPublicacion()&& libro.getAutor().equals(entity.getAutor()))
+                      {
+                          throw new BusinessLogicException("Ya existe un usuario con el mismo nombre, telefono y dirección.");
+                      }
+                  }
+              }
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de libro");
         return entity;
@@ -90,8 +147,9 @@ public class LibroLogic
   * @return  el libro como un objeto Entity.
   * Corresponde a la lógica de PUT libros/{id}
   */
-      public LibroEntity updateBook(Long id, LibroEntity entity) throws BusinessLogicException {
+      public LibroEntity updateBook(Long id, LibroEntity entity, Long idBiblioteca) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar libro con id={0}", id);
+        entity.setMiBiblioteca(bibliotecaLogic.getBiblioteca(idBiblioteca));
         if (!validateId(entity.getId())) {
             throw new BusinessLogicException("El ISBN  (id) es inválido");
         }
@@ -105,9 +163,11 @@ public class LibroLogic
   * @param id ISBN del libro a borrar.
   * Corresponde a la lógica de DELETE libros/{id}
   */
-    public void deleteBook(Long id) {
+    public void deleteBook(Long id, Long idBiblioteca) throws BusinessLogicException 
+    {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar libro con id={0}", id);
-        persistence.delete(id);
+           LibroEntity old = getLibro(idBiblioteca, id);
+        persistence.delete(old.getId());
         LOGGER.log(Level.INFO, "Termina proceso de borrar libro con id={0}", id);
     }
 

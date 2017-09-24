@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.quantum.biblioteca.resources;
 
+import co.edu.uniandes.quantum.biblioteca.dtos.UsuarioDTO;
 import co.edu.uniandes.quantum.biblioteca.dtos.UsuarioDetailDTO;
 import co.edu.uniandes.quantum.biblioteca.ejb.UsuarioLogic;
 import co.edu.uniandes.quantum.biblioteca.entities.UsuarioEntity;
@@ -34,37 +35,43 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class UsuarioResource {
 
+    private static final String MEN_ERROR="El recurso /usuarios/";
+    private static final String NO_EXISTE="no existe.";
+    
     @Inject
     UsuarioLogic usuarioLogic;
 
     @GET
-    public List<UsuarioDetailDTO> getUsuarios() throws BusinessLogicException {
+    public List<UsuarioDTO> getUsuarios() throws BusinessLogicException {
+        if(listUsuarioEntity2DetailDTO(usuarioLogic.getUsuarios()).isEmpty())
+            throw new WebApplicationException("No hay usuarios");
+        else
         return listUsuarioEntity2DetailDTO(usuarioLogic.getUsuarios());
     }
 
     @GET
     @Path("{id: \\d+}")
-    public UsuarioDetailDTO getUsuario(@PathParam("id") Long id) throws BusinessLogicException {
+    public UsuarioDTO getUsuario(@PathParam("id") Long id) throws BusinessLogicException {
         UsuarioEntity entity = usuarioLogic.getUsuario(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + id + " no existe.", 404);
+            throw new WebApplicationException(MEN_ERROR + id + NO_EXISTE, 404);
         }
         return new UsuarioDetailDTO(entity);
     }
 
    
     @POST
-    public UsuarioDetailDTO createUsuario(UsuarioDetailDTO usuario) throws BusinessLogicException {        
+    public UsuarioDTO createUsuario(UsuarioDTO usuario) throws BusinessLogicException {        
          return new UsuarioDetailDTO(usuarioLogic.createUsuario(usuario.toEntity()));
     }
 
     @PUT
     @Path("{id: \\d+}")
-    public UsuarioDetailDTO updateUsuario(@PathParam("id") Long id, UsuarioDetailDTO usuario) throws BusinessLogicException {
+    public UsuarioDTO updateUsuario(@PathParam("id") Long id, UsuarioDTO usuario) throws BusinessLogicException {
         usuario.setId(id);
         UsuarioEntity entity = usuarioLogic.getUsuario(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + id + " no existe.", 404);
+            throw new WebApplicationException(MEN_ERROR + id + NO_EXISTE, 404);
         }
         return new UsuarioDetailDTO(usuarioLogic.updateUsuario(id, usuario.toEntity()));
     }
@@ -74,15 +81,45 @@ public class UsuarioResource {
     public void deleteUsuario(@PathParam("usuariosId") Long id) throws BusinessLogicException {
         UsuarioEntity entity = usuarioLogic.getUsuario(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + id + " no existe.", 404);
+            throw new WebApplicationException(MEN_ERROR + id + NO_EXISTE, 404);
         }
         usuarioLogic.deleteUsuario(id);
     }   
+    
+    @Path("{idUsuario: \\d+}/prestamos")
+    public Class<PrestamoResource> getPrestamoResource(@PathParam("idUsuario") Long usuarioId) {
+        UsuarioEntity entity = usuarioLogic.getUsuario(usuarioId);
+        if (entity == null) {
+            throw new WebApplicationException(MEN_ERROR + usuarioId + "/prestamos no existe.", 404);
+        }
+        return PrestamoResource.class;
+    }
+    
+    @Path("{idUsuario: \\d+}/multas")
+    public Class<MultaResource> getMultaResource(@PathParam("idUsuario") Long usuariosId) {
+        UsuarioEntity entity = usuarioLogic.getUsuario(usuariosId);
+        if (entity == null) {
+            throw new WebApplicationException(MEN_ERROR + usuariosId + "/multas no existe.", 404);
+        }
+        return MultaResource.class;
+    }
+    
+    @Path("{idUsuario: \\d+}/reservas")
+    public Class<ReservaResource> getReservaResource(@PathParam("idUsuario") Long usuariosId) {
+        UsuarioEntity entity = usuarioLogic.getUsuario(usuariosId);
+        if (entity == null) {
+            throw new WebApplicationException(MEN_ERROR + usuariosId + "/reviews no existe.", 404);
+        }
+        return ReservaResource.class;
+    }
+    
+    
+    
 
-    private List<UsuarioDetailDTO> listUsuarioEntity2DetailDTO(List<UsuarioEntity> entityList) {
-        List<UsuarioDetailDTO> list = new ArrayList<>();
+    private List<UsuarioDTO> listUsuarioEntity2DetailDTO(List<UsuarioEntity> entityList) {
+        List<UsuarioDTO> list = new ArrayList<>();
         for (UsuarioEntity entity : entityList) {
-            list.add(new UsuarioDetailDTO(entity));
+            list.add(new UsuarioDTO(entity));
         }
         return list;
     }

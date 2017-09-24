@@ -7,15 +7,16 @@ public class EBookDTO {
     private Long id;
     private String name;
     private Integer numeroPaginas;
-    private String autor, direccion;
+    private String autor;
+    private String direccion;
 
     public EBookDTO(){
-
+        //Se deja el constructor vacio ya que es necesario
     }
 
     public EBookDTO(EBookEntity entity){
 
-        setId(entity.getId());
+       this.setId(entity.getId());
         setName(entity.getName());
         setAutor(entity.getAutor());
         setDireccion(entity.getDireccion());

@@ -29,7 +29,7 @@ import javax.ws.rs.WebApplicationException;
 @Path("salas")
 @Produces("application/json")
 @Consumes("application/json")
-public class SalaResources 
+public class SalaResource 
 {
 //    GET /salas  ya
 //GET /salas/{id}   ya
@@ -42,9 +42,13 @@ public class SalaResources
    
      @GET
     public List<SalaDTO> getSalas() throws BusinessLogicException {
+         if(listEntity2DTO(SalaLogic.getSalas()).isEmpty())
+            throw new WebApplicationException("No hay salas en el sistema.");
+        else
         return listEntity2DTO(SalaLogic.getSalas());
     }
     
+
     
     @GET
     @Path("{id: \\d+}")
@@ -80,6 +84,8 @@ public class SalaResources
      * @return
      * @throws BusinessLogicException
      */
+    
+   
     @PUT
     @Path("{id: \\d+}")
     public SalaDTO updateSala(@PathParam("id") Long id, SalaDTO Sala) throws BusinessLogicException {
@@ -91,6 +97,8 @@ public class SalaResources
         return new SalaDTO(SalaLogic.updateSala(id, Sala.toEntity()));
     }
 
+  
+    
     @DELETE
     @Path("{SalasId: \\d+}")
     public void deleteSala(@PathParam("SalasId") Long id) throws BusinessLogicException {

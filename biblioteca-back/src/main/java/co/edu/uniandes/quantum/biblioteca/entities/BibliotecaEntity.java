@@ -39,11 +39,8 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class BibliotecaEntity extends BaseEntity implements Serializable {
    
-    /**
-     * Nombre biblioteca
-     */
-    private String nombre;
-    
+
+   
     /**
      * Ubicación biblioteca
      */
@@ -60,15 +57,9 @@ public class BibliotecaEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy = "miBiblioteca")
     private List<VideoEntity> videos = new ArrayList<VideoEntity>();
+   
+  
     
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public String getUbicacion() {
         return ubicacion;
     }

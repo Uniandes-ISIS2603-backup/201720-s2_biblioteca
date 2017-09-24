@@ -17,27 +17,26 @@ public class LibroDTO
     private String name;
     private int unidadesExistentes;
     private String autor;
-    private int uniandesDisponibles;
+    private int unidadesDisponibles;
     private int numPaginas; 
     private int anioPublicacion;
     
-   /*  public UsuarioDTO(UsuarioEntity us)
-    {
-        this.id=us.getId();
-        this.name=us.getName();
-        this.direccion=us.getDireccion();
-        this.telefono=us.getTelefono();
-    }*/
+ 
     public LibroDTO(LibroEntity l)
     {
         this.id=l.getId();
         this.name =l.getName();
         this.unidadesExistentes=l.getUnidadesExistentes();
-        this.uniandesDisponibles=l.getUnidadesDisponibles();
+        this.unidadesDisponibles=l.getUnidadesDisponibles();
         this.numPaginas=l.getNumeroPaginas();
         this.anioPublicacion=l.getAnioPublicacion();
         this.autor=l.getAutor();
              
+    }
+    
+    public LibroDTO()
+    {
+        //Se deja el constructor vacio ya que es necesario
     }
 
     public Long getId() {
@@ -65,11 +64,11 @@ public class LibroDTO
     }
 
     public int getUniandesDisponibles() {
-        return uniandesDisponibles;
+        return unidadesDisponibles;
     }
 
     public void setUniandesDisponibles(int uniandesDisponibles) {
-        this.uniandesDisponibles = uniandesDisponibles;
+        this.unidadesDisponibles = uniandesDisponibles;
     }
 
     public int getNumPaginas() {
@@ -98,15 +97,7 @@ public class LibroDTO
     
     
     
-  /*  public UsuarioEntity toEntity()
-    {
-        UsuarioEntity entity=new UsuarioEntity();
-        entity.setId(this.id);
-        entity.setName(this.name);
-        entity.setDireccion(this.direccion);
-        entity.setTelefono(this.telefono);
-        return entity;
-    }*/
+  
     
     public LibroEntity toEntity()
     {
@@ -116,7 +107,7 @@ public class LibroDTO
         entity.setId(this.id);
         entity.setName(this.name);
         entity.setNumeroPaginas(this.numPaginas);
-        entity.setUnidadesDisponibles(this.uniandesDisponibles);
+        entity.setUnidadesDisponibles(this.unidadesDisponibles);
         entity.setUnidadesExistentes(this.unidadesExistentes);
         
         return entity;

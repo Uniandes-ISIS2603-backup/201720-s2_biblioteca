@@ -91,15 +91,7 @@ public class SalaPersistence
     }
     
     
-   public SalaEntity findByName(String name) {
-        LOGGER.log(Level.INFO, "Consultando la sala con name= ", name);
-        TypedQuery<SalaEntity> q
-                = em.createQuery("select u from SalaEntity u where u.name = :name", SalaEntity.class);
-        q = q.setParameter("name", name);
-        return q.getSingleResult();
-    }
-
-    /**
+       /**
      * Devuelve todas las salas de la base de datos.
      *
      * @return una lista con todas las salas que encuentre en la base de

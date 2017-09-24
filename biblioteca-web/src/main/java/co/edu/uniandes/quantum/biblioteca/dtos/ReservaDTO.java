@@ -50,6 +50,11 @@ public class ReservaDTO
     public void setCompletada(boolean completada) {
         this.completada = completada;
     }
+    
+    public ReservaDTO()
+    {
+        //Se deja el constructor vacio ya que es necesario
+    }
   
     
     public ReservaEntity toEntity()

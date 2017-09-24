@@ -20,6 +20,7 @@ public class UsuarioDTO {
     
     public UsuarioDTO()
     {
+        //Se deja el constructor vacio ya que es necesario
     }
     
     public UsuarioDTO(UsuarioEntity us)

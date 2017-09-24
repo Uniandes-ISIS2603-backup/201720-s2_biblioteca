@@ -6,12 +6,10 @@
 package co.edu.uniandes.quantum.biblioteca.ejb;
 
 import co.edu.uniandes.quantum.biblioteca.entities.PrestamoEntity;
-import co.edu.uniandes.quantum.biblioteca.entities.RecursoEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.UsuarioEntity;
 import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
 import co.edu.uniandes.quantum.biblioteca.persistence.PrestamoPersistence;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -27,6 +25,7 @@ public class PrestamoLogic {
 
     @Inject
     private PrestamoPersistence persistence;
+    
 
     @Inject
     private UsuarioLogic usuarioLogic;
@@ -72,7 +71,7 @@ public class PrestamoLogic {
      * 
      */
     public PrestamoEntity createPrestamo(Long usuarioid, PrestamoEntity entity) {
-        LOGGER.info("Inicia proceso de crear review");
+        LOGGER.info("Inicia proceso de crear prestamo");
         UsuarioEntity usuario = usuarioLogic.getUsuario(usuarioid);
         entity.setMiUsuario(usuario);
         return persistence.create(entity);

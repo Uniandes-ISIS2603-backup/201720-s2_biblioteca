@@ -36,11 +36,15 @@ public class BibliotecaDTO {
 
     private Long id;
     
-
+    private String name;
+    
+    private String ubicacion;
+    
     /**
      * Constructor por defecto
      */
     public BibliotecaDTO() {
+        //Se deja vacio ya que es necesario para el buen funcionamiento
     }
 
     /**
@@ -49,8 +53,10 @@ public class BibliotecaDTO {
      *
      * @param Biblioteca: Es la entidad que se va a convertir a DTO
      */
-    public BibliotecaDTO(BibliotecaEntity Biblioteca) {
-        this.id = Biblioteca.getId();
+    public BibliotecaDTO(BibliotecaEntity biblioteca) {
+        this.id = biblioteca.getId();
+        this.name = biblioteca.getName();
+        this.ubicacion = biblioteca.getUbicacion();
     }
 
     /**
@@ -66,7 +72,24 @@ public class BibliotecaDTO {
     public void setId(Long id) {
         this.id = id;
     }
+    
+    
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
+    }    
     /**
      * Convertir DTO a Entity
      *
@@ -75,6 +98,8 @@ public class BibliotecaDTO {
     public BibliotecaEntity toEntity() {
         BibliotecaEntity entity = new BibliotecaEntity();
         entity.setId(this.id);
+        entity.setName(this.name);
+        entity.setUbicacion(ubicacion);
         return entity;
     }
     

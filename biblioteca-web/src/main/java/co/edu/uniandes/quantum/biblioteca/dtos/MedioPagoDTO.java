@@ -12,6 +12,8 @@ import co.edu.uniandes.quantum.biblioteca.entities.MedioPagoEntity;
  * @author f.posada
  */
 public class MedioPagoDTO {
+    
+    
 
     MedioPagoDTO(MedioPagoEntity medioPago) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

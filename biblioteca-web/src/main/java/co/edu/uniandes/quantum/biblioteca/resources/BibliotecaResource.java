@@ -26,14 +26,12 @@ package co.edu.uniandes.quantum.biblioteca.resources;
 import co.edu.uniandes.quantum.biblioteca.dtos.BibliotecaDTO;
 import co.edu.uniandes.quantum.biblioteca.ejb.BibliotecaLogic;
 import co.edu.uniandes.quantum.biblioteca.dtos.BibliotecaDetailDTO;
-import co.edu.uniandes.quantum.biblioteca.dtos.MultaDTO;
 import co.edu.uniandes.quantum.biblioteca.entities.BibliotecaEntity;
-import co.edu.uniandes.quantum.biblioteca.entities.MultaEntity;
 import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.ejb.Stateless;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -77,13 +75,8 @@ public class BibliotecaResource {
      * @throws BusinessLogicException
      */
     @POST
-    public BibliotecaDetailDTO createBiblioteca(BibliotecaDetailDTO Biblioteca) throws BusinessLogicException {
-        // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
-        BibliotecaEntity BibliotecaEntity = Biblioteca.toEntity();
-        // Invoca la lógica para crear la Biblioteca nueva
-        BibliotecaEntity nuevoBiblioteca = bibliotecaLogic.createBiblioteca(BibliotecaEntity);
-        // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
-        return new BibliotecaDetailDTO(nuevoBiblioteca);
+    public BibliotecaDTO createBiblioteca(BibliotecaDTO Biblioteca) throws BusinessLogicException {
+        return new BibliotecaDetailDTO(bibliotecaLogic.createBiblioteca(Biblioteca.toEntity()));
     }
 
     /**
@@ -94,8 +87,11 @@ public class BibliotecaResource {
      * @throws BusinessLogicException
      */
     @GET
-    public List<BibliotecaDetailDTO> getBibliotecas() throws BusinessLogicException {
-        return listEntity2DetailDTO(bibliotecaLogic.getBibliotecas());
+    public List<BibliotecaDTO> getBibliotecas() throws BusinessLogicException {
+        if(listEntity2DetailDTO(bibliotecaLogic.getBibliotecas()).isEmpty())
+            throw new WebApplicationException("No hay bibliotecas");
+        else
+        return listEntity2DTO(bibliotecaLogic.getBibliotecas());
     }
 
     /**
@@ -112,15 +108,42 @@ public class BibliotecaResource {
      * 404 con el mensaje.
      */
     @PUT
-    @Path("{id: \\d+}")
-    public BibliotecaDTO updateBiblioteca(@PathParam("id") Long id, BibliotecaDetailDTO biblioteca) throws BusinessLogicException, UnsupportedOperationException {
+    @Path("{idBiblioteca: \\d+}")
+    public BibliotecaDTO updateBiblioteca(@PathParam("idBiblioteca") Long id, BibliotecaDTO biblioteca) throws BusinessLogicException, UnsupportedOperationException {
         biblioteca.setId(id);
         BibliotecaEntity entity = bibliotecaLogic.getBiblioteca(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso biblioteca " + id + " no existe.", 404);
         }
-        return new BibliotecaDTO(bibliotecaLogic.updateBiblioteca(entity));
+        return new BibliotecaDetailDTO(bibliotecaLogic.updateBiblioteca(entity));
 
+    }
+    
+    @Path("{idBiblioteca: \\d+}/libros")
+    public Class<LibroResource> getLibrosBiblioteca(@PathParam("idBiblioteca") Long id) {
+        BibliotecaEntity biblioteca = bibliotecaLogic.getBiblioteca(id);
+        if (biblioteca == null) {
+            throw new WebApplicationException("El recurso biblioteca con id:" + id + " no existe.", 404);
+        }
+        return LibroResource.class;
+    }
+    
+     @Path("{idBiblioteca: \\d+}/videos")
+    public Class<VideoResource> getVideosBiblioteca(@PathParam("idBiblioteca") Long id) {
+        BibliotecaEntity biblioteca = bibliotecaLogic.getBiblioteca(id);
+        if (biblioteca == null) {
+            throw new WebApplicationException("El recurso biblioteca con id:" + id + " no existe.", 404);
+        }
+        return VideoResource.class;
+    }
+    
+     @Path("{idBiblioteca: \\d+}/salas")
+    public Class<SalaResource> getSalasBiblioteca(@PathParam("idBiblioteca") Long id) {
+        BibliotecaEntity biblioteca = bibliotecaLogic.getBiblioteca(id);
+        if (biblioteca == null) {
+            throw new WebApplicationException("El recurso biblioteca con id:" + id + " no existe.", 404);
+        }
+        return SalaResource.class;
     }
 
     /**
@@ -134,25 +157,26 @@ public class BibliotecaResource {
      *
      */
     @DELETE
-    @Path("{id: \\d+}")
-    public void deleteBiblioteca(@PathParam("id") Long id) throws BusinessLogicException {
-        if(bibliotecaLogic.getBiblioteca(id) == null)
-        {
-            throw new WebApplicationException("El recurso biblioteca " + id + " no existe.", 404);
-        }
-        bibliotecaLogic.deleteBiblioteca(id);
-    }
-
-    @GET
-    public BibliotecaDTO getBiblioteca(Long id)
-    {
+    @Path("{idBiblioteca: \\d+}")
+    public void deleteBiblioteca(@PathParam("idBiblioteca") Long id) throws BusinessLogicException {
         BibliotecaEntity entity = bibliotecaLogic.getBiblioteca(id);
-        if(entity == null)
-        {
+        if (entity == null) {
+            throw new WebApplicationException("El recurso biblioteca " + id + "  no existe.", 404);
+        }
+        LOGGER.log(Level.WARNING, "Inicia el proceso de eliminar la Biblioteca con el id: {0}", id);
+        bibliotecaLogic.deleteBiblioteca(id);
+    }   
+    
+    @GET
+    @Path("{idBiblioteca: \\d+}")
+    public BibliotecaDTO getBiblioteca(@PathParam("idBiblioteca") Long id) {
+        BibliotecaEntity entity = bibliotecaLogic.getBiblioteca(id);
+        if (entity == null) {
             throw new WebApplicationException("El recurso biblioteca " + id + " no existe.", 404);
         }
         return new BibliotecaDTO(entity);
     }
+    
     /**
      *
      * lista de entidades a DTO.
@@ -171,5 +195,12 @@ public class BibliotecaResource {
         }
         return list;
     }
-
+    
+    private List<BibliotecaDTO> listEntity2DTO(List<BibliotecaEntity> entityList) {
+        List<BibliotecaDTO> list = new ArrayList<>();
+        for (BibliotecaEntity entity : entityList) {
+            list.add(new BibliotecaDTO(entity));
+        }
+        return list;
+    }
 }

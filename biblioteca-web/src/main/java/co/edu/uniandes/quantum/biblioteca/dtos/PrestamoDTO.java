@@ -26,6 +26,7 @@ public class PrestamoDTO {
     
     public PrestamoDTO()
     {
+        //Se deja el constructor vacio ya que es necesario
     }
     
     public PrestamoDTO(PrestamoEntity ent)

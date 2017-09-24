@@ -47,11 +47,18 @@ public class UsuarioLogic {
         return Usuario;
     }
 
+    
     public UsuarioEntity createUsuario(UsuarioEntity entity) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de creación de usuario");
-        if (!validateID(entity.getId())) {
-            throw new BusinessLogicException("El ID es inválido");
-        }
+        LOGGER.info("Inicia proceso de creación de usuario");    
+        List<UsuarioEntity> usuarioz= persistence.findByName(entity.getName());
+        for (UsuarioEntity usuario: usuarioz){
+        if(usuario!=null)
+        {
+            if (usuario.getDireccion().equals(entity.getDireccion()) && usuario.getTelefono().equals(entity.getTelefono()))
+            {
+                throw new BusinessLogicException("Ya existe un usuario con el mismo nombre, telefono y dirección.");
+            }
+        }}
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de usuario");
         return entity;
@@ -59,9 +66,7 @@ public class UsuarioLogic {
 
     public UsuarioEntity updateUsuario(Long id, UsuarioEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar usuario con id={0}", id);
-        if (!validateID(entity.getId())) {
-            throw new BusinessLogicException("El ID es inválido");
-        }
+        
         UsuarioEntity newEntity = persistence.update(entity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar usuario con id={0}", entity.getId());
         return newEntity;
@@ -84,26 +89,26 @@ public class UsuarioLogic {
      * Obtiene una colección de instancias de PrestamoEntity asociadas a una
      * instancia de Usuario
      *
-     * @param UsuarioId Identificador de la instancia de Usuario
+     * @param usuarioId Identificador de la instancia de Usuario
      * @return Colección de instancias de PrestamoEntity asociadas a la instancia
      * de Usuario
      * 
      */
-    public List<PrestamoEntity> listPrestamos(Long UsuarioId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los prestamos del usuario con id = {0}", UsuarioId);
-        return getUsuario(UsuarioId).getPrestamos();
+    public List<PrestamoEntity> listPrestamos(Long usuarioId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consuarioIsultar todos los prestamos del usuario con id = {0}", usuarioId);
+        return getUsuario(usuarioId).getPrestamos();
     }
 
     /**
      * Obtiene una instancia de PrestamoEntity asociada a una instancia de Usuario
      *
-     * @param UsuarioId Identificador de la instancia de Usuario
+     * @param usuarioId Identificador de la instancia de Usuario
      * @param prestamosId Identificador de la instancia de Prestamo
      * 
      */
-    public PrestamoEntity getPrestamo(Long UsuarioId, Long prestamosId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar un prestamo del usuario con id = {0}", UsuarioId);
-        List<PrestamoEntity> list = getUsuario(UsuarioId).getPrestamos();
+    public PrestamoEntity getPrestamo(Long usuarioId, Long prestamosId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar un prestamo del usuario con id = {0}", usuarioId);
+        List<PrestamoEntity> list = getUsuario(usuarioId).getPrestamos();
         PrestamoEntity prestamosEntity = new PrestamoEntity();
         prestamosEntity.setId(prestamosId);
         int index = list.indexOf(prestamosEntity);
@@ -116,32 +121,32 @@ public class UsuarioLogic {
     /**
      * Asocia un Prestamo existente a un Usuario
      *
-     * @param UsuarioId Identificador de la instancia de Usuario
+     * @param usuarioId Identificador de la instancia de Usuario
      * @param prestamosId Identificador de la instancia de Prestamo
      * @return Instancia de PrestamoEntity que fue asociada a Usuario
      * 
      */
-    public PrestamoEntity addPrestamo(Long UsuarioId, Long prestamosId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de asociar un prestamo al usuario con id = {0}", UsuarioId);
-        UsuarioEntity UsuarioEntity = getUsuario(UsuarioId);
+    public PrestamoEntity addPrestamo(Long usuarioId, Long prestamosId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de asociar un prestamo al usuario con id = {0}", usuarioId);
+        UsuarioEntity UsuarioEntity = getUsuario(usuarioId);
         PrestamoEntity prestamosEntity = new PrestamoEntity();
         prestamosEntity.setId(prestamosId);
         UsuarioEntity.getPrestamos().add(prestamosEntity);
-        return getPrestamo(UsuarioId, prestamosId);
+        return getPrestamo(usuarioId, prestamosId);
     }
 
     /**
      * Remplaza las instancias de Prestamo asociadas a una instancia de Usuario
      *
-     * @param UsuarioId Identificador de la instancia de Usuario
+     * @param usuarioId Identificador de la instancia de Usuario
      * @param list Colección de instancias de PrestamoEntity a asociar a instancia
      * de Usuario
      * @return Nueva colección de PrestamoEntity asociada a la instancia de Usuario
      * 
      */
-    public List<PrestamoEntity> replacePrestamos(Long UsuarioId, List<PrestamoEntity> list) {
-        LOGGER.log(Level.INFO, "Inicia proceso de reemplazar un prestamo del usuario con id = {0}", UsuarioId);
-        UsuarioEntity UsuarioEntity = getUsuario(UsuarioId);
+    public List<PrestamoEntity> replacePrestamos(Long usuarioId, List<PrestamoEntity> list) {
+        LOGGER.log(Level.INFO, "Inicia proceso de reemplazar un prestamo del usuario con id = {0}", usuarioId);
+        UsuarioEntity UsuarioEntity = getUsuario(usuarioId);
         UsuarioEntity.setPrestamos(list);
         return UsuarioEntity.getPrestamos();
     }
@@ -149,13 +154,13 @@ public class UsuarioLogic {
     /**
      * Desasocia un Prestamo existente de un Usuario existente
      *
-     * @param UsuarioId Identificador de la instancia de Usuario
+     * @param usuarioId Identificador de la instancia de Usuario
      * @param prestamosId Identificador de la instancia de Prestamo
      * 
      */
-    public void removePrestamo(Long UsuarioId, Long prestamosId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar un prestamo del usuario con id = {0}", UsuarioId);
-        UsuarioEntity entity = getUsuario(UsuarioId);
+    public void removePrestamo(Long usuarioId, Long prestamosId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar un prestamo del usuario con id = {0}", usuarioId);
+        UsuarioEntity entity = getUsuario(usuarioId);
         PrestamoEntity prestamosEntity = new PrestamoEntity();
         prestamosEntity.setId(prestamosId);
         entity.getPrestamos().remove(prestamosEntity);
@@ -165,26 +170,26 @@ public class UsuarioLogic {
      * Obtiene una colección de instancias de MultaEntity asociadas a una
      * instancia de Usuario
      *
-     * @param UsuarioId Identificador de la instancia de Usuario
+     * @param usuarioId Identificador de la instancia de Usuario
      * @return Colección de instancias de MultaEntity asociadas a la instancia
      * de Usuario
      * 
      */
-    public List<MultaEntity> listMultas(Long UsuarioId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los multas del usuario con id = {0}", UsuarioId);
-        return getUsuario(UsuarioId).getMultas();
+    public List<MultaEntity> listMultas(Long usuarioId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los multas del usuario con id = {0}", usuarioId);
+        return getUsuario(usuarioId).getMultas();
     }
 
     /**
      * Obtiene una instancia de MultaEntity asociada a una instancia de Usuario
      *
-     * @param UsuarioId Identificador de la instancia de Usuario
+     * @param usuarioId Identificador de la instancia de Usuario
      * @param multasId Identificador de la instancia de Multa
      * 
      */
-    public MultaEntity getMulta(Long UsuarioId, Long multasId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar un multa del usuario con id = {0}", UsuarioId);
-        List<MultaEntity> list = getUsuario(UsuarioId).getMultas();
+    public MultaEntity getMulta(Long usuarioId, Long multasId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar un multa del usuario con id = {0}", usuarioId);
+        List<MultaEntity> list = getUsuario(usuarioId).getMultas();
         MultaEntity multasEntity = new MultaEntity();
         multasEntity.setId(multasId);
         int index = list.indexOf(multasEntity);
@@ -197,32 +202,32 @@ public class UsuarioLogic {
     /**
      * Asocia un Multa existente a un Usuario
      *
-     * @param UsuarioId Identificador de la instancia de Usuario
+     * @param usuarioId Identificador de la instancia de Usuario
      * @param multasId Identificador de la instancia de Multa
      * @return Instancia de MultaEntity que fue asociada a Usuario
      * 
      */
-    public MultaEntity addMulta(Long UsuarioId, Long multasId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de asociar un multa al usuario con id = {0}", UsuarioId);
-        UsuarioEntity UsuarioEntity = getUsuario(UsuarioId);
+    public MultaEntity addMulta(Long usuarioId, Long multasId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de asociar un multa al usuario con id = {0}", usuarioId);
+        UsuarioEntity UsuarioEntity = getUsuario(usuarioId);
         MultaEntity multasEntity = new MultaEntity();
         multasEntity.setId(multasId);
         UsuarioEntity.getMultas().add(multasEntity);
-        return getMulta(UsuarioId, multasId);
+        return getMulta(usuarioId, multasId);
     }
 
     /**
      * Remplaza las instancias de Multa asociadas a una instancia de Usuario
      *
-     * @param UsuarioId Identificador de la instancia de Usuario
+     * @param usuarioId Identificador de la instancia de Usuario
      * @param list Colección de instancias de MultaEntity a asociar a instancia
      * de Usuario
      * @return Nueva colección de MultaEntity asociada a la instancia de Usuario
      * 
      */
-    public List<MultaEntity> replaceMultas(Long UsuarioId, List<MultaEntity> list) {
-        LOGGER.log(Level.INFO, "Inicia proceso de reemplazar un multa del usuario con id = {0}", UsuarioId);
-        UsuarioEntity UsuarioEntity = getUsuario(UsuarioId);
+    public List<MultaEntity> replaceMultas(Long usuarioId, List<MultaEntity> list) {
+        LOGGER.log(Level.INFO, "Inicia proceso de reemplazar un multa del usuario con id = {0}", usuarioId);
+        UsuarioEntity UsuarioEntity = getUsuario(usuarioId);
         UsuarioEntity.setMultas(list);
         return UsuarioEntity.getMultas();
     }
@@ -230,13 +235,13 @@ public class UsuarioLogic {
     /**
      * Desasocia un Multa existente de un Usuario existente
      *
-     * @param UsuarioId Identificador de la instancia de Usuario
+     * @param usuarioId Identificador de la instancia de Usuario
      * @param multasId Identificador de la instancia de Multa
      * 
      */
-    public void removeMulta(Long UsuarioId, Long multasId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar un multa del usuario con id = {0}", UsuarioId);
-        UsuarioEntity entity = getUsuario(UsuarioId);
+    public void removeMulta(Long usuarioId, Long multasId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar un multa del usuario con id = {0}", usuarioId);
+        UsuarioEntity entity = getUsuario(usuarioId);
         MultaEntity multasEntity = new MultaEntity();
         multasEntity.setId(multasId);
         entity.getMultas().remove(multasEntity);
@@ -246,26 +251,26 @@ public class UsuarioLogic {
      * Obtiene una colección de instancias de ReservaEntity asociadas a una
      * instancia de Usuario
      *
-     * @param UsuarioId Identificador de la instancia de Usuario
+     * @param usuarioId Identificador de la instancia de Usuario
      * @return Colección de instancias de ReservaEntity asociadas a la instancia
      * de Usuario
      * 
      */
-    public List<ReservaEntity> listReservas(Long UsuarioId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los reservas del usuario con id = {0}", UsuarioId);
-        return getUsuario(UsuarioId).getReservas();
+    public List<ReservaEntity> listReservas(Long usuarioId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los reservas del usuario con id = {0}", usuarioId);
+        return getUsuario(usuarioId).getReservas();
     }
 
     /**
      * Obtiene una instancia de ReservaEntity asociada a una instancia de Usuario
      *
-     * @param UsuarioId Identificador de la instancia de Usuario
+     * @param usuarioId Identificador de la instancia de Usuario
      * @param reservasId Identificador de la instancia de Reserva
      * 
      */
-    public ReservaEntity getReserva(Long UsuarioId, Long reservasId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar un reserva del usuario con id = {0}", UsuarioId);
-        List<ReservaEntity> list = getUsuario(UsuarioId).getReservas();
+    public ReservaEntity getReserva(Long usuarioId, Long reservasId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar un reserva del usuario con id = {0}", usuarioId);
+        List<ReservaEntity> list = getUsuario(usuarioId).getReservas();
         ReservaEntity reservasEntity = new ReservaEntity();
         reservasEntity.setId(reservasId);
         int index = list.indexOf(reservasEntity);
@@ -278,32 +283,32 @@ public class UsuarioLogic {
     /**
      * Asocia un Reserva existente a un Usuario
      *
-     * @param UsuarioId Identificador de la instancia de Usuario
+     * @param usuarioId Identificador de la instancia de Usuario
      * @param reservasId Identificador de la instancia de Reserva
      * @return Instancia de ReservaEntity que fue asociada a Usuario
      * 
      */
-    public ReservaEntity addReserva(Long UsuarioId, Long reservasId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de asociar un reserva al usuario con id = {0}", UsuarioId);
-        UsuarioEntity UsuarioEntity = getUsuario(UsuarioId);
+    public ReservaEntity addReserva(Long usuarioId, Long reservasId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de asociar un reserva al usuario con id = {0}", usuarioId);
+        UsuarioEntity UsuarioEntity = getUsuario(usuarioId);
         ReservaEntity reservasEntity = new ReservaEntity();
         reservasEntity.setId(reservasId);
         UsuarioEntity.getReservas().add(reservasEntity);
-        return getReserva(UsuarioId, reservasId);
+        return getReserva(usuarioId, reservasId);
     }
 
     /**
      * Remplaza las instancias de Reserva asociadas a una instancia de Usuario
      *
-     * @param UsuarioId Identificador de la instancia de Usuario
+     * @param usuarioId Identificador de la instancia de Usuario
      * @param list Colección de instancias de ReservaEntity a asociar a instancia
      * de Usuario
      * @return Nueva colección de ReservaEntity asociada a la instancia de Usuario
      * 
      */
-    public List<ReservaEntity> replaceReservas(Long UsuarioId, List<ReservaEntity> list) {
-        LOGGER.log(Level.INFO, "Inicia proceso de reemplazar un reserva del usuario con id = {0}", UsuarioId);
-        UsuarioEntity UsuarioEntity = getUsuario(UsuarioId);
+    public List<ReservaEntity> replaceReservas(Long usuarioId, List<ReservaEntity> list) {
+        LOGGER.log(Level.INFO, "Inicia proceso de reemplazar un reserva del usuario con id = {0}", usuarioId);
+        UsuarioEntity UsuarioEntity = getUsuario(usuarioId);
         UsuarioEntity.setReservas(list);
         return UsuarioEntity.getReservas();
     }
@@ -311,13 +316,13 @@ public class UsuarioLogic {
     /**
      * Desasocia un Reserva existente de un Usuario existente
      *
-     * @param UsuarioId Identificador de la instancia de Usuario
+     * @param usuarioId Identificador de la instancia de Usuario
      * @param reservasId Identificador de la instancia de Reserva
      * 
      */
-    public void removeReserva(Long UsuarioId, Long reservasId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar un reserva del usuario con id = {0}", UsuarioId);
-        UsuarioEntity entity = getUsuario(UsuarioId);
+    public void removeReserva(Long usuarioId, Long reservasId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar un reserva del usuario con id = {0}", usuarioId);
+        UsuarioEntity entity = getUsuario(usuarioId);
         ReservaEntity reservasEntity = new ReservaEntity();
         reservasEntity.setId(reservasId);
         entity.getReservas().remove(reservasEntity);
@@ -327,26 +332,26 @@ public class UsuarioLogic {
      * Obtiene una colección de instancias de ComentarioEntity asociadas a una
      * instancia de Usuario
      *
-     * @param UsuarioId Identificador de la instancia de Usuario
+     * @param usuarioId Identificador de la instancia de Usuario
      * @return Colección de instancias de ComentarioEntity asociadas a la instancia
      * de Usuario
      * 
      */
-    public List<ComentarioEntity> listComentarios(Long UsuarioId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los comentarios del usuario con id = {0}", UsuarioId);
-        return getUsuario(UsuarioId).getComentarios();
+    public List<ComentarioEntity> listComentarios(Long usuarioId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los comentarios del usuario con id = {0}", usuarioId);
+        return getUsuario(usuarioId).getComentarios();
     }
 
     /**
      * Obtiene una instancia de ComentarioEntity asociada a una instancia de Usuario
      *
-     * @param UsuarioId Identificador de la instancia de Usuario
+     * @param usuarioId Identificador de la instancia de Usuario
      * @param comentariosId Identificador de la instancia de Comentario
      * 
      */
-    public ComentarioEntity getComentario(Long UsuarioId, Long comentariosId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar un comentarios del usuario con id = {0}", UsuarioId);
-        List<ComentarioEntity> list = getUsuario(UsuarioId).getComentarios();
+    public ComentarioEntity getComentario(Long usuarioId, Long comentariosId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar un comentarios del usuario con id = {0}", usuarioId);
+        List<ComentarioEntity> list = getUsuario(usuarioId).getComentarios();
         ComentarioEntity comentariosEntity = new ComentarioEntity();
         comentariosEntity.setId(comentariosId);
         int index = list.indexOf(comentariosEntity);
@@ -359,32 +364,32 @@ public class UsuarioLogic {
     /**
      * Asocia un Comentario existente a un Usuario
      *
-     * @param UsuarioId Identificador de la instancia de Usuario
+     * @param usuarioId Identificador de la instancia de Usuario
      * @param comentariosId Identificador de la instancia de Comentario
      * @return Instancia de ComentarioEntity que fue asociada a Usuario
      * 
      */
-    public ComentarioEntity addComentario(Long UsuarioId, Long comentariosId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de asociar un comentarios al usuario con id = {0}", UsuarioId);
-        UsuarioEntity UsuarioEntity = getUsuario(UsuarioId);
+    public ComentarioEntity addComentario(Long usuarioId, Long comentariosId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de asociar un comentarios al usuario con id = {0}", usuarioId);
+        UsuarioEntity UsuarioEntity = getUsuario(usuarioId);
         ComentarioEntity comentariosEntity = new ComentarioEntity();
         comentariosEntity.setId(comentariosId);
         UsuarioEntity.getComentarios().add(comentariosEntity);
-        return getComentario(UsuarioId, comentariosId);
+        return getComentario(usuarioId, comentariosId);
     }
 
     /**
      * Remplaza las instancias de Comentario asociadas a una instancia de Usuario
      *
-     * @param UsuarioId Identificador de la instancia de Usuario
+     * @param usuarioId Identificador de la instancia de Usuario
      * @param list Colección de instancias de ComentarioEntity a asociar a instancia
      * de Usuario
      * @return Nueva colección de ComentarioEntity asociada a la instancia de Usuario
      * 
      */
-    public List<ComentarioEntity> replaceComentarios(Long UsuarioId, List<ComentarioEntity> list) {
-        LOGGER.log(Level.INFO, "Inicia proceso de reemplazar un comentarios del usuario con id = {0}", UsuarioId);
-        UsuarioEntity UsuarioEntity = getUsuario(UsuarioId);
+    public List<ComentarioEntity> replaceComentarios(Long usuarioId, List<ComentarioEntity> list) {
+        LOGGER.log(Level.INFO, "Inicia proceso de reemplazar un comentarios del usuario con id = {0}", usuarioId);
+        UsuarioEntity UsuarioEntity = getUsuario(usuarioId);
         UsuarioEntity.setComentarios(list);
         return UsuarioEntity.getComentarios();
     }
@@ -392,13 +397,13 @@ public class UsuarioLogic {
     /**
      * Desasocia un Comentario existente de un Usuario existente
      *
-     * @param UsuarioId Identificador de la instancia de Usuario
+     * @param usuarioId Identificador de la instancia de Usuario
      * @param comentariosId Identificador de la instancia de Comentario
      * 
      */
-    public void removeComentario(Long UsuarioId, Long comentariosId) {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar un comentarios del usuario con id = {0}", UsuarioId);
-        UsuarioEntity entity = getUsuario(UsuarioId);
+    public void removeComentario(Long usuarioId, Long comentariosId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar un comentarios del usuario con id = {0}", usuarioId);
+        UsuarioEntity entity = getUsuario(usuarioId);
         ComentarioEntity comentariosEntity = new ComentarioEntity();
         comentariosEntity.setId(comentariosId);
         entity.getComentarios().remove(comentariosEntity);
