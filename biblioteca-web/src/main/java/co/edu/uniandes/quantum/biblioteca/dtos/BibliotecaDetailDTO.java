@@ -31,7 +31,7 @@ import java.util.List;
 
 /**
  *
- * @author ISIS2603
+ * @author ISIS2603, jp.sanmiguel
  */
 public class BibliotecaDetailDTO extends BibliotecaDTO {
 
@@ -43,6 +43,7 @@ public class BibliotecaDetailDTO extends BibliotecaDTO {
     
     /**
      * Constructor por defecto
+     * @param entity
      */
     public BibliotecaDetailDTO(BibliotecaEntity entity) {
         super(entity);

@@ -47,6 +47,7 @@ public class MultaResource {
         return listEntity2DTO(multaLogic.getMultas(idUsuario));
     }
 
+    
     @GET
     @Path("{id: \\d+}")
     public MultaDTO getMulta(@PathParam("idUsuario") Long idUsuario, @PathParam("id") Long id) throws BusinessLogicException {
