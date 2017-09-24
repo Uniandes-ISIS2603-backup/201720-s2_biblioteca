@@ -34,6 +34,9 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class UsuarioResource {
 
+    private static final String MEN_ERROR="El recurso /usuarios/";
+    private static final String NO_EXISTE="no existe.";
+    
     @Inject
     UsuarioLogic usuarioLogic;
 
@@ -50,7 +53,7 @@ public class UsuarioResource {
     public UsuarioDTO getUsuario(@PathParam("id") Long id) throws BusinessLogicException {
         UsuarioEntity entity = usuarioLogic.getUsuario(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + id + " no existe.", 404);
+            throw new WebApplicationException(MEN_ERROR + id + NO_EXISTE, 404);
         }
         return new UsuarioDetailDTO(entity);
     }
@@ -67,7 +70,7 @@ public class UsuarioResource {
         usuario.setId(id);
         UsuarioEntity entity = usuarioLogic.getUsuario(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + id + " no existe.", 404);
+            throw new WebApplicationException(MEN_ERROR + id + NO_EXISTE, 404);
         }
         return new UsuarioDetailDTO(usuarioLogic.updateUsuario(id, usuario.toEntity()));
     }
@@ -77,7 +80,7 @@ public class UsuarioResource {
     public void deleteUsuario(@PathParam("usuariosId") Long id) throws BusinessLogicException {
         UsuarioEntity entity = usuarioLogic.getUsuario(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + id + " no existe.", 404);
+            throw new WebApplicationException(MEN_ERROR + id + NO_EXISTE, 404);
         }
         usuarioLogic.deleteUsuario(id);
     }   
@@ -86,7 +89,7 @@ public class UsuarioResource {
     public Class<PrestamoResource> getPrestamoResource(@PathParam("idUsuario") Long usuarioId) {
         UsuarioEntity entity = usuarioLogic.getUsuario(usuarioId);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + usuarioId + "/prestamos no existe.", 404);
+            throw new WebApplicationException(MEN_ERROR + usuarioId + "/prestamos no existe.", 404);
         }
         return PrestamoResource.class;
     }
@@ -95,7 +98,7 @@ public class UsuarioResource {
     public Class<MultaResource> getMultaResource(@PathParam("idUsuario") Long usuariosId) {
         UsuarioEntity entity = usuarioLogic.getUsuario(usuariosId);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + usuariosId + "/multas no existe.", 404);
+            throw new WebApplicationException(MEN_ERROR + usuariosId + "/multas no existe.", 404);
         }
         return MultaResource.class;
     }
@@ -104,7 +107,7 @@ public class UsuarioResource {
     public Class<ReservaResource> getReservaResource(@PathParam("idUsuario") Long usuariosId) {
         UsuarioEntity entity = usuarioLogic.getUsuario(usuariosId);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + usuariosId + "/reviews no existe.", 404);
+            throw new WebApplicationException(MEN_ERROR + usuariosId + "/reviews no existe.", 404);
         }
         return ReservaResource.class;
     }

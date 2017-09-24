@@ -90,7 +90,7 @@ public class PrestamoPersistence
             prestamo = null;
         } else if (results.isEmpty()) {
             prestamo = null;
-        } else if (results.size() >= 1) {
+        } else if (!results.isEmpty()) {
             prestamo = results.get(0);
         }
         return prestamo;

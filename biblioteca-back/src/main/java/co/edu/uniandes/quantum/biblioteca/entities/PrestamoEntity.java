@@ -9,9 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -36,11 +34,11 @@ public class PrestamoEntity extends BaseEntity implements Serializable {
     
     @PodamExclude
    @OneToMany(mappedBy = "miPrestamo")
-   private List<VideoEntity> videos = new ArrayList<VideoEntity>();
+   private List<VideoEntity> videos = new ArrayList<>();
     
      @PodamExclude
    @OneToMany(mappedBy = "miPrestamo")
-   private List<LibroEntity> libros = new ArrayList<LibroEntity>();
+   private List<LibroEntity> libros = new ArrayList<>();
    
     @PodamExclude
    @ManyToOne

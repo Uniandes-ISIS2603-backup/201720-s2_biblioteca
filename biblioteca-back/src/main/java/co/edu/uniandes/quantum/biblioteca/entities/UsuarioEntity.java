@@ -32,19 +32,19 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
 
     @PodamExclude
     @OneToMany(mappedBy = "miUsuario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<PrestamoEntity> prestamos = new ArrayList<PrestamoEntity>();
+    private List<PrestamoEntity> prestamos = new ArrayList<>();
     
     @PodamExclude
     @OneToMany(mappedBy = "miUsuario", cascade = CascadeType.ALL, orphanRemoval = true)
-     private List<MultaEntity> multas = new ArrayList<MultaEntity>();
+     private List<MultaEntity> multas = new ArrayList<>();
     
     @PodamExclude
     @OneToMany(mappedBy = "miUsuario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ReservaEntity> reservas = new ArrayList<ReservaEntity>();
+    private List<ReservaEntity> reservas = new ArrayList<>();
     
     @PodamExclude
     @OneToMany(mappedBy = "miUsuario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ComentarioEntity> comentarios = new ArrayList<ComentarioEntity>();
+    private List<ComentarioEntity> comentarios = new ArrayList<>();
 
     public List<PrestamoEntity> getPrestamos() {
         return prestamos;
@@ -93,6 +93,19 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (! super.equals(obj)) {
+      return false;
+    }
+        UsuarioEntity us=(UsuarioEntity)obj;
+        if(us.telefono.equals(us.getTelefono())&&us.direccion.equals(us.getDireccion()))
+        {
+            return true;
+        }
+        return false;
     }
     
     

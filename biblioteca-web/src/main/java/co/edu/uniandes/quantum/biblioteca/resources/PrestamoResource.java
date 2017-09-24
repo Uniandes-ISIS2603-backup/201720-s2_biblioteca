@@ -33,6 +33,8 @@ import javax.ws.rs.WebApplicationException;
 @Produces("application/json")
 @Consumes("application/json")
 public class PrestamoResource {
+    private static final String MEN_ERROR="El recurso /usuarios/";
+    private static final String NO_EXISTE="no existe.";
 
     @Inject
     PrestamoLogic prestamoLogic;
@@ -47,7 +49,7 @@ public class PrestamoResource {
     public PrestamoDTO getPrestamo(@PathParam("idUsuario") Long idUsuario, @PathParam("id") Long id) throws BusinessLogicException {
         PrestamoEntity entity = prestamoLogic.getPrestamo(idUsuario, id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + idUsuario + "/prestamos/" + id + " no existe.", 404);
+            throw new WebApplicationException(MEN_ERROR + idUsuario + "/prestamos/" + id + NO_EXISTE, 404);
         }
         return new PrestamoDTO(entity);
     }
@@ -63,7 +65,7 @@ public class PrestamoResource {
         prestamo.setId(id);
         PrestamoEntity entity = prestamoLogic.getPrestamo(idUsuario, id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + idUsuario + "/prestamos/" + id + " no existe.", 404);
+            throw new WebApplicationException(MEN_ERROR + idUsuario + "/prestamos/" + id + NO_EXISTE, 404);
         }
         return new PrestamoDTO(prestamoLogic.updatePrestamo(idUsuario, prestamo.toEntity()));
 
@@ -74,7 +76,7 @@ public class PrestamoResource {
     public void deletePrestamo(@PathParam("idUsuario") Long idUsuario, @PathParam("id") Long id) throws BusinessLogicException {
         PrestamoEntity entity = prestamoLogic.getPrestamo(idUsuario, id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + idUsuario + "/prestamos/" + id + " no existe.", 404);
+            throw new WebApplicationException(MEN_ERROR + idUsuario + "/prestamos/" + id + NO_EXISTE, 404);
         }
         prestamoLogic.deletePrestamo(idUsuario, id);
     }
