@@ -23,6 +23,11 @@ public class SalaDTO
         this.capacidad=l.getCapacidad();
      
     }
+    
+    public SalaDTO()
+    {
+        //Se deja el constructor vacio ya que es necesario
+    }
 
     public Long getId() {
         return id;

@@ -8,14 +8,14 @@ public class EVideoDTO {
     private String name;
     private Integer duracion;
 
+    private String autor;
+    private String direccion;
 
-    private String autor, direccion;
-
-    public EVideoDTO(){
-
+    public EVideoDTO() {
+//Se deja el constructor vacio ya que es necesario
     }
 
-    public EVideoDTO(EVideoEntity entity){
+    public EVideoDTO(EVideoEntity entity) {
 
         setId(entity.getId());
         setName(entity.getName());
@@ -23,7 +23,6 @@ public class EVideoDTO {
         setDireccion(entity.getDireccion());
         setDuracion(entity.getDuracion());
     }
-
 
     public Long getId() {
         return id;
@@ -49,7 +48,6 @@ public class EVideoDTO {
         this.duracion = duracion;
     }
 
-
     public String getAutor() {
         return autor;
     }
@@ -66,9 +64,7 @@ public class EVideoDTO {
         this.direccion = direccion;
     }
 
-
-
-    public EVideoEntity toEntity(){
+    public EVideoEntity toEntity() {
         EVideoEntity entity = new EVideoEntity();
 
         entity.setId(getId());
@@ -76,7 +72,6 @@ public class EVideoDTO {
         entity.setAutor(getAutor());
         entity.setDireccion(getDireccion());
         entity.setDuracion(getDuracion());
-
 
         return entity;
     }

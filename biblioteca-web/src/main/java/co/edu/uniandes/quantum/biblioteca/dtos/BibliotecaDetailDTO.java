@@ -24,8 +24,6 @@ SOFTWARE.
 package co.edu.uniandes.quantum.biblioteca.dtos;
 import co.edu.uniandes.quantum.biblioteca.entities.BibliotecaEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.LibroEntity;
-import co.edu.uniandes.quantum.biblioteca.entities.MultaEntity;
-import co.edu.uniandes.quantum.biblioteca.entities.PrestamoEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.SalaEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.VideoEntity;
 import java.util.ArrayList;

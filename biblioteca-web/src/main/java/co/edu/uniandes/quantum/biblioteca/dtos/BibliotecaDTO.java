@@ -41,6 +41,7 @@ public class BibliotecaDTO {
      * Constructor por defecto
      */
     public BibliotecaDTO() {
+        //Se deja vacio ya que es necesario para el buen funcionamiento
     }
 
     /**
@@ -49,8 +50,8 @@ public class BibliotecaDTO {
      *
      * @param Biblioteca: Es la entidad que se va a convertir a DTO
      */
-    public BibliotecaDTO(BibliotecaEntity Biblioteca) {
-        this.id = Biblioteca.getId();
+    public BibliotecaDTO(BibliotecaEntity biblioteca) {
+        this.id = biblioteca.getId();
     }
 
     /**

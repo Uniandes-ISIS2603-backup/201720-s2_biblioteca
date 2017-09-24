@@ -21,13 +21,7 @@ public class LibroDTO
     private int numPaginas; 
     private int anioPublicacion;
     
-   /*  public UsuarioDTO(UsuarioEntity us)
-    {
-        this.id=us.getId();
-        this.name=us.getName();
-        this.direccion=us.getDireccion();
-        this.telefono=us.getTelefono();
-    }*/
+ 
     public LibroDTO(LibroEntity l)
     {
         this.id=l.getId();
@@ -38,6 +32,11 @@ public class LibroDTO
         this.anioPublicacion=l.getAnioPublicacion();
         this.autor=l.getAutor();
              
+    }
+    
+    public LibroDTO()
+    {
+        //Se deja el constructor vacio ya que es necesario
     }
 
     public Long getId() {
@@ -98,15 +97,7 @@ public class LibroDTO
     
     
     
-  /*  public UsuarioEntity toEntity()
-    {
-        UsuarioEntity entity=new UsuarioEntity();
-        entity.setId(this.id);
-        entity.setName(this.name);
-        entity.setDireccion(this.direccion);
-        entity.setTelefono(this.telefono);
-        return entity;
-    }*/
+  
     
     public LibroEntity toEntity()
     {

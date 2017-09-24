@@ -23,6 +23,7 @@ public class SistemaBibliotecaDTO {
     }
 
     public SistemaBibliotecaDTO(){
+        //Se deja el constructor vacio ya que es necesario
 
     }
     public SistemaBibliotecaDTO(SistemaBibliotecaEntity entity){

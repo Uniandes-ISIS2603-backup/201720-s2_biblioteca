@@ -6,7 +6,6 @@
 package co.edu.uniandes.quantum.biblioteca.dtos;
 
 import co.edu.uniandes.quantum.biblioteca.entities.MultaEntity;
-import co.edu.uniandes.quantum.biblioteca.entities.UsuarioEntity;
 import java.util.Date;
 
 /**
@@ -40,6 +39,22 @@ public class MultaDTO {
      * Nombre del servicio por el que se creó la multa.
      */
     private String tituloServicio;
+    
+     public MultaDTO()
+    {
+        //Se deja el constructor vacio ya que es necesario
+    }
+      
+     
+    public MultaDTO(MultaEntity entityMulta) {
+        this.id = entityMulta.getId();
+        this.costo=entityMulta.getCosto();
+        this.pagada=entityMulta.isPagada();
+        this.descripcion=entityMulta.getDescripcion();
+        this.fecha=entityMulta.getFecha();
+        this.tituloServicio=entityMulta.getTituloServicio();
+        
+    }
     
     
 
@@ -91,20 +106,7 @@ public class MultaDTO {
         this.tituloServicio = tituloServicio;
     }
     
-    public MultaDTO()
-    {
-    }
-      
-     
-    public MultaDTO(MultaEntity entityMulta) {
-        this.id = entityMulta.getId();
-        this.costo=entityMulta.getCosto();
-        this.pagada=entityMulta.isPagada();
-        this.descripcion=entityMulta.getDescripcion();
-        this.fecha=entityMulta.getFecha();
-        this.tituloServicio=entityMulta.getTituloServicio();
-        
-    }
+   
 
     public MultaEntity toEntity() {
         MultaEntity entity = new MultaEntity();
