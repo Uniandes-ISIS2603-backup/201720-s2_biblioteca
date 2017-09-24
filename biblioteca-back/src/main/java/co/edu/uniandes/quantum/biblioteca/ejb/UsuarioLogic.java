@@ -48,10 +48,16 @@ public class UsuarioLogic {
     }
 
     public UsuarioEntity createUsuario(UsuarioEntity entity) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de creación de usuario");
-        if (!validateID(entity.getId())) {
-            throw new BusinessLogicException("El ID es inválido");
-        }
+        LOGGER.info("Inicia proceso de creación de usuario");    
+        List<UsuarioEntity> usuarioz= persistence.findByName(entity.getName());
+        for (UsuarioEntity usuario: usuarioz){
+        if(usuario!=null)
+        {
+            if (usuario.getDireccion().equals(entity.getDireccion()) && usuario.getTelefono().equals(entity.getTelefono()))
+            {
+                throw new BusinessLogicException("Ya existe un usuario con el mismo nombre, telefono y dirección.");
+            }
+        }}
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de usuario");
         return entity;
@@ -59,9 +65,7 @@ public class UsuarioLogic {
 
     public UsuarioEntity updateUsuario(Long id, UsuarioEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar usuario con id={0}", id);
-        if (!validateID(entity.getId())) {
-            throw new BusinessLogicException("El ID es inválido");
-        }
+        
         UsuarioEntity newEntity = persistence.update(entity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar usuario con id={0}", entity.getId());
         return newEntity;

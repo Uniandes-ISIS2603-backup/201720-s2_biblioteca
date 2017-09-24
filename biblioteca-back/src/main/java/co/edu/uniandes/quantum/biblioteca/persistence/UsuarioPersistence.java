@@ -88,12 +88,12 @@ public class UsuarioPersistence{ private static final Logger LOGGER = Logger.get
     }
     
     
-   public UsuarioEntity findByName(String name) {
+   public List<UsuarioEntity> findByName(String name) {
         LOGGER.log(Level.INFO, "Consultando usuario con name= ", name);
         TypedQuery<UsuarioEntity> q
                 = em.createQuery("select u from UsuarioEntity u where u.name = :name", UsuarioEntity.class);
         q = q.setParameter("name", name);
-        return q.getSingleResult();
+        return q.getResultList();
     }
 
     /**

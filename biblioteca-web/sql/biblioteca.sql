@@ -1,3 +1,3 @@
-delete from BibliotecaEntity;
+delete  from BibliotecaEntity;
 
 
