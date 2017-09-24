@@ -25,6 +25,7 @@ public class PrestamoLogic {
 
     @Inject
     private PrestamoPersistence persistence;
+    
 
     @Inject
     private UsuarioLogic usuarioLogic;
