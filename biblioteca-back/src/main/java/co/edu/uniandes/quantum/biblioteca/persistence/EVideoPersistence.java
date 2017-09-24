@@ -107,7 +107,7 @@ public class EVideoPersistence {
      * @return null si no existe ningun EVideo con el codigo del argumento.
      * Si existe alguna devuelve la primera.
      */
-    public EVideoEntity findByCodigo(String codigo) {
+    public EVideoEntity findByName(String codigo) {
         LOGGER.log(Level.INFO, "Consultando EVideo por código ", codigo);
 
         // Se crea un query para buscar EVideoes con el codigo que recibe el método como argumento. ":codigo" es un placeholder que debe ser remplazado

@@ -11,11 +11,13 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 /**
- *
  * @author ISIS2603
  */
 @Stateless
 public class EBookPersistence {
+    
+
+
 
     private static final Logger LOGGER = Logger.getLogger(EBookPersistence.class.getName());
 
@@ -23,7 +25,6 @@ public class EBookPersistence {
     protected EntityManager em;
 
     /**
-     *
      * @param entity objeto EBook que se creará en la base de datos
      * @return devuelve la entidad creada con un id dado por la base de datos.
      */
@@ -41,7 +42,7 @@ public class EBookPersistence {
      * Actualiza un EBook.
      *
      * @param entity: el EBook que viene con los nuevos cambios. Por ejemplo
-     * el codigo pudo cambiar. En ese caso, se haria uso del método update.
+     *                el codigo pudo cambiar. En ese caso, se haria uso del método update.
      * @return un eBook con los cambios aplicados.
      */
     public EBookEntity update(EBookEntity entity) {
@@ -54,7 +55,6 @@ public class EBookPersistence {
     }
 
     /**
-     *
      * Borra un EBook de la base de datos recibiendo como argumento el id
      * de la EBook
      *
@@ -107,7 +107,7 @@ public class EBookPersistence {
      * @return null si no existe ningun EBook con el codigo del argumento.
      * Si existe alguna devuelve la primera.
      */
-    public EBookEntity findByCodigo(String codigo) {
+    public EBookEntity findByName(String codigo) {
         LOGGER.log(Level.INFO, "Consultando EBook por código ", codigo);
 
         // Se crea un query para buscar EBookes con el codigo que recibe el método como argumento. ":codigo" es un placeholder que debe ser remplazado
