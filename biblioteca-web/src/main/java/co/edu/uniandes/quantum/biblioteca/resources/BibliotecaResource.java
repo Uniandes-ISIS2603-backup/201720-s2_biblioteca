@@ -26,17 +26,12 @@ package co.edu.uniandes.quantum.biblioteca.resources;
 import co.edu.uniandes.quantum.biblioteca.dtos.BibliotecaDTO;
 import co.edu.uniandes.quantum.biblioteca.ejb.BibliotecaLogic;
 import co.edu.uniandes.quantum.biblioteca.dtos.BibliotecaDetailDTO;
-import co.edu.uniandes.quantum.biblioteca.dtos.LibroDTO;
-import co.edu.uniandes.quantum.biblioteca.dtos.MultaDTO;
-import co.edu.uniandes.quantum.biblioteca.dtos.UsuarioDetailDTO;
 import co.edu.uniandes.quantum.biblioteca.entities.BibliotecaEntity;
-import co.edu.uniandes.quantum.biblioteca.entities.MultaEntity;
 import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.ejb.Stateless;
-import javax.enterprise.context.RequestScoped;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -62,7 +57,6 @@ import javax.ws.rs.WebApplicationException;
 @Path("bibliotecas")
 @Produces("application/json")
 @Consumes("application/json")
-@RequestScoped
 public class BibliotecaResource {
 
     @Inject
@@ -114,8 +108,8 @@ public class BibliotecaResource {
      * 404 con el mensaje.
      */
     @PUT
-    @Path("{id: \\d+}")
-    public BibliotecaDTO updateBiblioteca(@PathParam("id") Long id, BibliotecaDTO biblioteca) throws BusinessLogicException, UnsupportedOperationException {
+    @Path("{idBiblioteca: \\d+}")
+    public BibliotecaDTO updateBiblioteca(@PathParam("idBiblioteca") Long id, BibliotecaDTO biblioteca) throws BusinessLogicException, UnsupportedOperationException {
         biblioteca.setId(id);
         BibliotecaEntity entity = bibliotecaLogic.getBiblioteca(id);
         if (entity == null) {
@@ -125,17 +119,17 @@ public class BibliotecaResource {
 
     }
     
-//     @Path("{id: \\d+}/libros")
-//    public Class<LibroResource> getLibrosBiblioteca(@PathParam("id") Long id) {
-//        BibliotecaEntity biblioteca = bibliotecaLogic.getBiblioteca(id);
-//        if (biblioteca == null) {
-//            throw new WebApplicationException("El recurso biblioteca con id:" + id + " no existe.", 404);
-//        }
-//        return LibroResource.class;
-//    }
+    @Path("{idBiblioteca: \\d+}/libros")
+    public Class<LibroResource> getLibrosBiblioteca(@PathParam("idBiblioteca") Long id) {
+        BibliotecaEntity biblioteca = bibliotecaLogic.getBiblioteca(id);
+        if (biblioteca == null) {
+            throw new WebApplicationException("El recurso biblioteca con id:" + id + " no existe.", 404);
+        }
+        return LibroResource.class;
+    }
     
-     @Path("{id: \\d+}/videos")
-    public Class<VideoResource> getVideosBiblioteca(@PathParam("id") Long id) {
+     @Path("{idBiblioteca: \\d+}/videos")
+    public Class<VideoResource> getVideosBiblioteca(@PathParam("idBiblioteca") Long id) {
         BibliotecaEntity biblioteca = bibliotecaLogic.getBiblioteca(id);
         if (biblioteca == null) {
             throw new WebApplicationException("El recurso biblioteca con id:" + id + " no existe.", 404);
@@ -143,8 +137,8 @@ public class BibliotecaResource {
         return VideoResource.class;
     }
     
-     @Path("{id: \\d+}/salas")
-    public Class<SalaResource> getSalasBiblioteca(@PathParam("id") Long id) {
+     @Path("{idBiblioteca: \\d+}/salas")
+    public Class<SalaResource> getSalasBiblioteca(@PathParam("idBiblioteca") Long id) {
         BibliotecaEntity biblioteca = bibliotecaLogic.getBiblioteca(id);
         if (biblioteca == null) {
             throw new WebApplicationException("El recurso biblioteca con id:" + id + " no existe.", 404);
@@ -163,17 +157,19 @@ public class BibliotecaResource {
      *
      */
     @DELETE
-    @Path("{id: \\d+}")
-    public void deleteBiblioteca(@PathParam("id") Long id) throws BusinessLogicException {
-        if (bibliotecaLogic.getBiblioteca(id) == null) {
-            throw new WebApplicationException("El recurso biblioteca " + id + " no existe.", 404);
+    @Path("{idBiblioteca: \\d+}")
+    public void deleteBiblioteca(@PathParam("idBiblioteca") Long id) throws BusinessLogicException {
+        BibliotecaEntity entity = bibliotecaLogic.getBiblioteca(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso biblioteca " + id + "  no existe.", 404);
         }
+        LOGGER.log(Level.WARNING, "Inicia el proceso de eliminar la Biblioteca con el id: {0}", id);
         bibliotecaLogic.deleteBiblioteca(id);
-    }
-
+    }   
+    
     @GET
-    @Path("{id: \\d+}")
-    public BibliotecaDTO getBiblioteca(@PathParam("id") Long id) {
+    @Path("{idBiblioteca: \\d+}")
+    public BibliotecaDTO getBiblioteca(@PathParam("idBiblioteca") Long id) {
         BibliotecaEntity entity = bibliotecaLogic.getBiblioteca(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso biblioteca " + id + " no existe.", 404);

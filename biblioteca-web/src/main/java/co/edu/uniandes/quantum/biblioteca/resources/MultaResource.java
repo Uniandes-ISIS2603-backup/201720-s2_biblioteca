@@ -4,21 +4,12 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.quantum.biblioteca.resources;
-
-import co.edu.uniandes.quantum.biblioteca.dtos.BibliotecaDTO;
 import co.edu.uniandes.quantum.biblioteca.dtos.MultaDTO;
-import co.edu.uniandes.quantum.biblioteca.dtos.MultaDTO;
-import co.edu.uniandes.quantum.biblioteca.dtos.UsuarioDetailDTO;
-import co.edu.uniandes.quantum.biblioteca.ejb.BibliotecaLogic;
 import co.edu.uniandes.quantum.biblioteca.ejb.MultaLogic;
-import co.edu.uniandes.quantum.biblioteca.ejb.MultaLogic;
-import co.edu.uniandes.quantum.biblioteca.entities.BibliotecaEntity;
-import co.edu.uniandes.quantum.biblioteca.entities.MultaEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.MultaEntity;
 import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
