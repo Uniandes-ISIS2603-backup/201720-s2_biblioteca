@@ -17,7 +17,7 @@ public class LibroDTO
     private String name;
     private int unidadesExistentes;
     private String autor;
-    private int uniandesDisponibles;
+    private int unidadesDisponibles;
     private int numPaginas; 
     private int anioPublicacion;
     
@@ -27,7 +27,7 @@ public class LibroDTO
         this.id=l.getId();
         this.name =l.getName();
         this.unidadesExistentes=l.getUnidadesExistentes();
-        this.uniandesDisponibles=l.getUnidadesDisponibles();
+        this.unidadesDisponibles=l.getUnidadesDisponibles();
         this.numPaginas=l.getNumeroPaginas();
         this.anioPublicacion=l.getAnioPublicacion();
         this.autor=l.getAutor();
@@ -64,11 +64,11 @@ public class LibroDTO
     }
 
     public int getUniandesDisponibles() {
-        return uniandesDisponibles;
+        return unidadesDisponibles;
     }
 
     public void setUniandesDisponibles(int uniandesDisponibles) {
-        this.uniandesDisponibles = uniandesDisponibles;
+        this.unidadesDisponibles = uniandesDisponibles;
     }
 
     public int getNumPaginas() {
@@ -107,7 +107,7 @@ public class LibroDTO
         entity.setId(this.id);
         entity.setName(this.name);
         entity.setNumeroPaginas(this.numPaginas);
-        entity.setUnidadesDisponibles(this.uniandesDisponibles);
+        entity.setUnidadesDisponibles(this.unidadesDisponibles);
         entity.setUnidadesExistentes(this.unidadesExistentes);
         
         return entity;

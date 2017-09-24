@@ -41,22 +41,33 @@ public class LibroResource
     @Inject
     LibroLogic LibroLogic;
     
+    private static final String MENSAJE_ERROR="El recurso /libros/";
+    private static final String NO_EXISTE="no existe.";
+    
      @GET
     public List<LibroDTO> getBooks() throws BusinessLogicException {
+        
+         if(listEntity2DTO(LibroLogic.getBooks()).isEmpty())
+            throw new WebApplicationException("No hay libros en el sistema.");
+        else
         return listEntity2DTO(LibroLogic.getBooks());
     }
     
+    
+
     
     @GET
     @Path("{id: \\d+}")
     public LibroDTO getBook(@PathParam("id") Long id) throws BusinessLogicException {
         LibroEntity entity = LibroLogic.getLibro(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /books/" + id + " no existe.", 404);
+            throw new WebApplicationException(MENSAJE_ERROR + id +NO_EXISTE, 404);
         }
         return new LibroDTO(entity);
     }
     
+    
+  
      /**
      *
      * @param book
@@ -81,16 +92,21 @@ public class LibroResource
      * @return
      * @throws BusinessLogicException
      */
+    
+
     @PUT
     @Path("{id: \\d+}")
     public LibroDTO updateBook(@PathParam("id") Long id, LibroDTO book) throws BusinessLogicException {
         book.setId(id);
         LibroEntity entity = LibroLogic.getLibro(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /books/" + id + " no existe.", 404);
+            throw new WebApplicationException(MENSAJE_ERROR + id + " no existe.", 404);
         }
         return new LibroDTO(LibroLogic.updateBook(id, book.toEntity()));
     }
+
+    
+    
 
     @DELETE
     @Path("{booksId: \\d+}")
