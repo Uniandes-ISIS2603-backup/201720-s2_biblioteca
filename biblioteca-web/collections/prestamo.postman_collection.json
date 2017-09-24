@@ -1,0 +1,139 @@
+{
+	"variables": [],
+	"info": {
+		"name": "prestamo",
+		"_postman_id": "bbfb35d0-9ee0-ebd9-ba84-9444246dba0e",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crea un usuario ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"tests[\"Status code is 200\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/biblioteca-web/api/usuarios",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n\t\"name\":\"Usuario1\",\n\t\"telefono\":\"telefono1\",\n\t\"direccion\":\"calle1\"\n\t\n\t\n}"
+				},
+				"description": "Crea un usuario para poder ver y crear prestamos"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener los prestamos del usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"tests[\"Status code is 200\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/prestamos",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Obtenemos los prestamos del usuario creado, que tiene id 1"
+			},
+			"response": []
+		},
+		{
+			"name": "Crea un prestamo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/prestamos",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"fechaInicio\":\"1/26/2017\",\"fechaFinal\":\"1/24/2017\",\"generoMulta\":false,\"retornado\":true,\"externo\":false}"
+				},
+				"description": "Crea un prestamo para el usuario con id 1"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un prestamo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"tests[\"Status code is 200\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/prestamos/1",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Borra el prestamo con id 1 del usuario 1"
+			},
+			"response": []
+		}
+	]
+}
