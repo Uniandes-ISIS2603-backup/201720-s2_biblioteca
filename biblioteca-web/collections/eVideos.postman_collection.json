@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "eVideos",
-		"_postman_id": "54d3c9fe-cd63-0f8b-4b5f-c5415d12e4a6",
+		"_postman_id": "627b29e8-610d-d740-406b-8db2e64efe87",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -22,7 +22,7 @@
 			],
 			"request": {
 				"url": {
-					"raw": "https://localhost:8080/biblioteca-web/api/eVideos/",
+					"raw": "https://localhost:8080/biblioteca-web/api/eVideos",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -31,8 +31,7 @@
 					"path": [
 						"biblioteca-web",
 						"api",
-						"eVideos",
-						""
+						"eVideos"
 					],
 					"query": [
 						{
@@ -93,13 +92,13 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "undefined",
+						"value": "application/json",
 						"description": ""
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\" : \"eVideo1\"\n\t\"duracion\" : 321\n\t\"autor\" : \"yotas\"\n\t\"direccion\" : \"www.com\"\n}\t"
+					"raw": "{\n\t\"name\" : \"eVideo1\",\n\t\"duracion\" : 321,\n\t\"autor\" : \"yotas\",\n\t\"direccion\" : \"www.com\"\n}\t"
 				},
 				"description": ""
 			},
@@ -146,13 +145,13 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "undefined",
+						"value": "application/json",
 						"description": ""
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\" : \"eVideo2\"\n\t\"duracion\" : 233\n\t\"autor\" : \"yotas\"\n\t\"direccion\" : \"www.comm\"\n}\t"
+					"raw": "{\n\t\"name\" : \"eVideo2\",\n\t\"duracion\" : 233,\n\t\"autor\" : \"yotas\",\n\t\"direccion\" : \"www.comm\"\n}\t"
 				},
 				"description": ""
 			},
@@ -254,67 +253,13 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "undefined",
+						"value": "application/json",
 						"description": ""
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\" : \"eVideo2234\"\n\t\"duracion\" : 33\n\t\"autor\" : \"yotaas\"\n\t\"direccion\" : \"www.commm\"\n}\t"
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Eliminar el eVideo con id 1",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": {
-					"raw": "https://localhost:8080/biblioteca-web/api/eVideos/1",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"biblioteca-web",
-						"api",
-						"eVideos",
-						"1"
-					],
-					"query": [
-						{
-							"key": "fields",
-							"value": "devices",
-							"equals": true,
-							"description": "",
-							"disabled": true
-						}
-					],
-					"variable": []
-				},
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "undefined",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
+					"raw": "{\n\t\"name\" : \"eVideo2234\",\n\t\"duracion\" : 33,\n\t\"autor\" : \"yotaas\",\n\t\"direccion\" : \"www.commm\"\n}\t"
 				},
 				"description": ""
 			},

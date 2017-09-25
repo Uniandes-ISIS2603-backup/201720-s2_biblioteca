@@ -1,7 +1,9 @@
 package co.edu.uniandes.quantum.biblioteca.ejb;
+
 import co.edu.uniandes.quantum.biblioteca.entities.EVideoEntity;
 import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
 import co.edu.uniandes.quantum.biblioteca.persistence.EVideoPersistence;
+
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,26 +26,27 @@ public class EVideoLogic {
     }
 
     public EVideoEntity getEVideo(Long id) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar eVideo con id= " + id , id);
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar eVideo con id= " + id, id);
         EVideoEntity eVideo = persistence.find(id);
         if (eVideo == null) {
-            LOGGER.log(Level.SEVERE, "El eVideo con el id= " + id +" no existe", id);
+            LOGGER.log(Level.SEVERE, "El eVideo con el id= " + id + " no existe", id);
         }
-        LOGGER.log(Level.INFO, "Termina proceso de consultar eVideo con id=" + id , id);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar eVideo con id=" + id, id);
         return eVideo;
     }
 
     public EVideoEntity createEVideo(EVideoEntity entity) throws BusinessLogicException {
         LOGGER.info("Verifica que no haya eVideos con el mismo nombre y autor.");
         List<EVideoEntity> eVideos = persistence.findByName(entity.getName());
-        for (EVideoEntity e: eVideos){
-            if(e!=null)
-            {
-                if (e.getAutor().equals(entity.getAutor()))
-                {
-                    throw new BusinessLogicException("Ya existe un eVideo con el mismo nombre y autor.");
+        if (eVideos != null) {
+            for (EVideoEntity e : eVideos) {
+                if (e != null) {
+                    if (e.getAutor().equals(entity.getAutor())) {
+                        throw new BusinessLogicException("Ya existe un eVideo con el mismo nombre y autor.");
+                    }
                 }
-            }}
+            }
+        }
         LOGGER.info("Ya que no hay eVideos con el mismo nombre y autor, se inicia el proceso de creación del eVideo");
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación del eVideo");
@@ -63,13 +66,6 @@ public class EVideoLogic {
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar eVideo con id={0}", id);
     }
-
-
-
-
-
-
-
 
 
 }
