@@ -46,6 +46,23 @@ public class BlogDTO
         this.tituloLibro = nuevoTitulo;
     }
    
+     /**
+     * obtiene el id
+     * @return id identificador del blog
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * cambia el id del blog
+     * @param id 
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+    
      public BlogEntity toEntity()
     {
         BlogEntity entity = new BlogEntity();
