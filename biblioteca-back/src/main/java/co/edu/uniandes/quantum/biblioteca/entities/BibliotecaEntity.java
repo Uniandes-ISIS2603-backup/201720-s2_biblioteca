@@ -92,4 +92,33 @@ public class BibliotecaEntity extends BaseEntity implements Serializable {
         this.videos = videos;
     }     
     
+    public void removeLibro(LibroEntity libro)
+    {
+        libros.remove(libro);
+    }
+    
+    public void addLibro(LibroEntity libro)
+    {
+        libros.add(libro);
+    }
+    
+    public void removeVideo(VideoEntity video)
+    {
+        videos.remove(video);
+    }
+    
+    public void addVideo(VideoEntity video)
+    {
+        videos.add(video);
+    }
+ 
+    public void removeSala(SalaEntity sala)
+    {
+        salas.remove(sala);
+    }
+    
+    public void addSala(SalaEntity sala)
+    {
+        salas.add(sala);
+    }
 }

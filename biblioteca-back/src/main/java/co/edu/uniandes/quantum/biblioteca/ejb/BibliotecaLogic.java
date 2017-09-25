@@ -24,6 +24,9 @@ SOFTWARE.
 package co.edu.uniandes.quantum.biblioteca.ejb;
 
 import co.edu.uniandes.quantum.biblioteca.entities.BibliotecaEntity;
+import co.edu.uniandes.quantum.biblioteca.entities.LibroEntity;
+import co.edu.uniandes.quantum.biblioteca.entities.SalaEntity;
+import co.edu.uniandes.quantum.biblioteca.entities.VideoEntity;
 import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
 import co.edu.uniandes.quantum.biblioteca.persistence.BibliotecaPersistence;
 import java.util.List;
@@ -93,6 +96,163 @@ public class BibliotecaLogic {
         LOGGER.info("Termina proceso de consultar todas las Bibliotecaes");
         return Bibliotecas;
     }
+    
+    public List<LibroEntity> getLibros(Long id)
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los libros de la biblioteca {0}", id);
+        List<LibroEntity> libros = getBiblioteca(id).getLibros();
+        LOGGER.log(Level.INFO, "Termina el proceso de consultar todos los libros de la biblioteca {0}", id);
+        return libros;
+    }
+    
+    public LibroEntity getLibroBibliotecca(Long idBiblioteca, Long idLibro)
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el libro {0} de la biblioteca {1}", new Object[]{idLibro, idBiblioteca});
+        List<LibroEntity> libros = getBiblioteca(idBiblioteca).getLibros();
+        for(LibroEntity libro:libros)
+        {
+            if(libro.getId() == idLibro)
+            {
+                return libro;
+            }
+        }
+        return null;
+    }
+    
+    public LibroEntity postLibro(Long bibliotecaId, Long libroId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de asociar un libro a la biblioteca con id = {0}", bibliotecaId);
+        BibliotecaEntity biblioteca = getBiblioteca(bibliotecaId);
+        LibroEntity libro = new LibroEntity();
+        libro.setId(libroId);
+        biblioteca.addLibro(libro);
+        LOGGER.log(Level.INFO, "Termina el proceso de asociar un libro a la biblioteca con id = {0}", bibliotecaId);
+        persistence.update(biblioteca);
+        return getLibroBibliotecca(bibliotecaId, libroId);
+    }
+    
+    public BibliotecaEntity updateLibros(Long idBiblioteca, List<LibroEntity> libros)
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar la lista de libros a la biblioteca con id = {0}", idBiblioteca);
+        BibliotecaEntity biblioteca = getBiblioteca(idBiblioteca);
+        biblioteca.setLibros(libros);
+        persistence.update(biblioteca);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar la lista de libros a la biblioteca con id = {0}", idBiblioteca);
+        return biblioteca;
+    }
+    
+    public void deleteLibro(Long idBiblioteca, Long idLibro)
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de eliminar el libro {0} de la biblioteca {1}", new Object[]{idLibro, idBiblioteca});
+        LibroEntity libro = getLibroBibliotecca(idBiblioteca, idLibro);
+        BibliotecaEntity entity = getBiblioteca(idBiblioteca);
+        entity.removeLibro(libro); 
+        persistence.update(entity);
+        LOGGER.log(Level.INFO, "Termina proceso de eliminar el libro {0} de la biblioteca {1}", new Object[]{idLibro, idBiblioteca});
+    }
 
-
+    public List<VideoEntity> getVideos(Long id)
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los videos de la biblioteca {0}", id);
+        List<VideoEntity> videos = getBiblioteca(id).getVideos();
+        LOGGER.log(Level.INFO, "Termina el proceso de consultar todos los videos de la biblioteca {0}", id);
+        return videos;
+    }
+    
+    public VideoEntity getVideoBibliotecca(Long idBiblioteca, Long idVideo)
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el video {0} de la biblioteca {1}", new Object[]{idVideo, idBiblioteca});
+        List<VideoEntity> videos = getBiblioteca(idBiblioteca).getVideos();
+        for(VideoEntity video:videos)
+        {
+            if(video.getId() == idVideo)
+            {
+                return video;
+            }
+        }
+        return null;
+    }
+    
+    public VideoEntity postVideo(Long bibliotecaId, Long videoId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de asociar un video a la biblioteca con id = {0}", bibliotecaId);
+        BibliotecaEntity biblioteca = getBiblioteca(bibliotecaId);
+        VideoEntity video = new VideoEntity();
+        video.setId(videoId);
+        biblioteca.addVideo(video);
+        LOGGER.log(Level.INFO, "Termina el proceso de asociar un video a la biblioteca con id = {0}", bibliotecaId);
+        persistence.update(biblioteca);
+        return getVideoBibliotecca(bibliotecaId, videoId);
+    }
+    
+    public BibliotecaEntity updateVideos(Long idBiblioteca, List<VideoEntity> videos)
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar la lista de videos a la biblioteca con id = {0}", idBiblioteca);
+        BibliotecaEntity biblioteca = getBiblioteca(idBiblioteca);
+        biblioteca.setVideos(videos);
+        persistence.update(biblioteca);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar la lista de videos a la biblioteca con id = {0}", idBiblioteca);
+        return biblioteca;
+    }
+    
+    public void deleteVideo(Long idBiblioteca, Long idVideo)
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de eliminar el video {0} de la biblioteca {1}", new Object[]{idVideo, idBiblioteca});
+        VideoEntity video = getVideoBibliotecca(idBiblioteca, idVideo);
+        BibliotecaEntity entity = getBiblioteca(idBiblioteca);
+        entity.removeVideo(video); 
+        persistence.update(entity);
+        LOGGER.log(Level.INFO, "Termina proceso de eliminar el video {0} de la biblioteca {1}", new Object[]{idVideo, idBiblioteca});
+    }
+    
+    public List<SalaEntity> getSalas(Long id)
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los salas de la biblioteca {0}", id);
+        List<SalaEntity> salas = getBiblioteca(id).getSalas();
+        LOGGER.log(Level.INFO, "Termina el proceso de consultar todos los salas de la biblioteca {0}", id);
+        return salas;
+    }
+    
+    public SalaEntity getSalaBibliotecca(Long idBiblioteca, Long idSala)
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar el sala {0} de la biblioteca {1}", new Object[]{idSala, idBiblioteca});
+        List<SalaEntity> salas = getBiblioteca(idBiblioteca).getSalas();
+        for(SalaEntity sala:salas)
+        {
+            if(sala.getId() == idSala)
+            {
+                return sala;
+            }
+        }
+        return null;
+    }
+    
+    public SalaEntity postSala(Long bibliotecaId, Long salaId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de asociar un sala a la biblioteca con id = {0}", bibliotecaId);
+        BibliotecaEntity biblioteca = getBiblioteca(bibliotecaId);
+        SalaEntity sala = new SalaEntity();
+        sala.setId(salaId);
+        biblioteca.addSala(sala);
+        LOGGER.log(Level.INFO, "Termina el proceso de asociar un sala a la biblioteca con id = {0}", bibliotecaId);
+        persistence.update(biblioteca);
+        return getSalaBibliotecca(bibliotecaId, salaId);
+    }
+    
+    public BibliotecaEntity updateSalas(Long idBiblioteca, List<SalaEntity> salas)
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar la lista de salas a la biblioteca con id = {0}", idBiblioteca);
+        BibliotecaEntity biblioteca = getBiblioteca(idBiblioteca);
+        biblioteca.setSalas(salas);
+        persistence.update(biblioteca);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar la lista de salas a la biblioteca con id = {0}", idBiblioteca);
+        return biblioteca;
+    }
+    
+    public void deleteSala(Long idBiblioteca, Long idSala)
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de eliminar el sala {0} de la biblioteca {1}", new Object[]{idSala, idBiblioteca});
+        SalaEntity sala = getSalaBibliotecca(idBiblioteca, idSala);
+        BibliotecaEntity entity = getBiblioteca(idBiblioteca);
+        entity.removeSala(sala); 
+        persistence.update(entity);
+        LOGGER.log(Level.INFO, "Termina proceso de eliminar el sala {0} de la biblioteca {1}", new Object[]{idSala, idBiblioteca});
+    }
 }
