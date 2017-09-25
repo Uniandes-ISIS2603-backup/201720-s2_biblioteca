@@ -76,7 +76,7 @@ public class LibroResource {
    
 
     @GET
-    @Path("{id: \\d+}")
+    @Path("{id: \\d+}/bib")
     public LibroDTO getBook(@PathParam("id") Long id, @PathParam("idBiblioteca") Long idBiblioteca) throws BusinessLogicException {
         LibroEntity entity = LibroLogic.getLibro(idBiblioteca, id);
         if (entity == null) {
@@ -85,7 +85,7 @@ public class LibroResource {
         return new LibroDTO(entity);
     }
     
-        @GET
+    @GET
     @Path("{id: \\d+}")
     public LibroDTO getBook(@PathParam("id") Long idLibro) throws BusinessLogicException {
         LibroEntity entity = LibroLogic.getLibro(idLibro);

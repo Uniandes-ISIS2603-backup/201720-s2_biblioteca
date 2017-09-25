@@ -60,8 +60,8 @@ public class VideoResource {
     }
 
     @GET
-    @Path("{id: \\d+}")
-    public VideoDTO getVideo(@PathParam("idBiblioteca") Long idBiblioteca, @PathParam("idVideo") Long idVideo) throws BusinessLogicException {
+    @Path("{id: \\d+}/bib")
+    public VideoDTO getVideo(@PathParam("idBiblioteca") Long idBiblioteca, @PathParam("id") Long idVideo) throws BusinessLogicException {
         VideoEntity entity = VideoLogic.getVideo(idBiblioteca, idVideo);
         if (entity == null) {
             throw new WebApplicationException(MENSAJE_ERROR + idVideo + NO_EXISTE, 404);
@@ -69,9 +69,9 @@ public class VideoResource {
         return new VideoDTO(entity);
     }
     
-        @GET
+    @GET
     @Path("{id: \\d+}")
-    public VideoDTO getVideo(@PathParam("idVideo") Long idVideo) throws BusinessLogicException {
+    public VideoDTO getVideo(@PathParam("id") Long idVideo) throws BusinessLogicException {
         VideoEntity entity = VideoLogic.getVideo(idVideo);
         if (entity == null) {
             throw new WebApplicationException(MENSAJE_ERROR + idVideo + NO_EXISTE, 404);
@@ -88,7 +88,7 @@ public class VideoResource {
 
     @PUT
     @Path("{id: \\d+}")
-    public VideoDTO updateMulta(@PathParam("idBiblioteca") Long idBiblioteca, @PathParam("idVideo") Long idVideo, VideoDTO video) throws BusinessLogicException {
+    public VideoDTO updateVideo(@PathParam("idBiblioteca") Long idBiblioteca, @PathParam("id") Long idVideo, VideoDTO video) throws BusinessLogicException {
         video.setId(idVideo);
         VideoEntity entity = VideoLogic.getVideo(idBiblioteca, idVideo);
         if (entity == null) {
@@ -100,7 +100,7 @@ public class VideoResource {
 
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteVideo(@PathParam("idBiblioteca") Long idBiblioteca, @PathParam("idVideo") Long idVideo) throws BusinessLogicException {
+    public void deleteVideo(@PathParam("idBiblioteca") Long idBiblioteca, @PathParam("id") Long idVideo) throws BusinessLogicException {
         VideoEntity entity = VideoLogic.getVideo(idBiblioteca, idVideo);
         if (entity == null) {
             throw new WebApplicationException("El recurso /bibliotecas/" + idBiblioteca + "/videos/" + idVideo + " no existe.", 404);
