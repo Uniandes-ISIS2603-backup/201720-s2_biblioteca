@@ -80,6 +80,17 @@ private static final Logger LOGGER = Logger.getLogger(VideoLogic.class.getName()
         return Video;
     }
  
+  public VideoEntity getVideo(Long idVideo) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar Video con id={0}", idVideo);
+        VideoEntity Video = persistence.find(idVideo);
+        if (Video == null) 
+        {
+            LOGGER.log(Level.SEVERE, "El Video con el id {0} no existe", idVideo);
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de consultar Video con id={0}", idVideo);
+        return Video;
+    }
+ 
  /**
   * Devuelve el Video que se hizo persistir en la base de datos.
   * @param entity Video a persistir

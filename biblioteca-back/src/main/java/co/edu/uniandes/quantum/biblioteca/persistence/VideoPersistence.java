@@ -98,6 +98,11 @@ public class VideoPersistence
         return Video;
     }
     
+        public VideoEntity find(Long id) {
+        LOGGER.log(Level.INFO, "Consultando video con id={0}", id);
+        return em.find(VideoEntity.class, id);
+    }
+    
     
    public VideoEntity findByName(String name) {
         LOGGER.log(Level.INFO, "Consultando el video con name= ", name);

@@ -68,6 +68,16 @@ public class VideoResource {
         }
         return new VideoDTO(entity);
     }
+    
+        @GET
+    @Path("{id: \\d+}")
+    public VideoDTO getVideo(@PathParam("idVideo") Long idVideo) throws BusinessLogicException {
+        VideoEntity entity = VideoLogic.getVideo(idVideo);
+        if (entity == null) {
+            throw new WebApplicationException(MENSAJE_ERROR + idVideo + NO_EXISTE, 404);
+        }
+        return new VideoDTO(entity);
+    }
 
    @POST
    @Path("bib")
