@@ -87,7 +87,7 @@ private static final Logger LOGGER = Logger.getLogger(VideoLogic.class.getName()
   * @return  el Video como un objeto Entity.
   * Corresponde a la lógica de POST/Videos
   */
-   public VideoEntity crearVideo(Long idBiblioteca, VideoEntity entity) {
+   public VideoEntity createVideo(Long idBiblioteca, VideoEntity entity) {
         LOGGER.info("Inicia proceso de creación de Video");
         BibliotecaEntity biblioteca = BibliotecaLogic.getBiblioteca(idBiblioteca);
         entity.setMiBiblioteca(biblioteca);
