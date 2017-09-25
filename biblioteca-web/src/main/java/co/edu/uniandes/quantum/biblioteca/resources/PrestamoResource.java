@@ -40,18 +40,18 @@ public class PrestamoResource {
     PrestamoLogic prestamoLogic;
 
     @GET
-    public List<PrestamoDTO> getPrestamos(@PathParam("idUsuario") Long idUsuario) throws BusinessLogicException {
-        return listEntity2DTO(prestamoLogic.getPrestamos(idUsuario));
+    public List<PrestamoDetailDTO> getPrestamos(@PathParam("idUsuario") Long idUsuario) throws BusinessLogicException {
+        return listEntity2DetailDTO(prestamoLogic.getPrestamos(idUsuario));
     }
 
     @GET
     @Path("{id: \\d+}")
-    public PrestamoDTO getPrestamo(@PathParam("idUsuario") Long idUsuario, @PathParam("id") Long id) throws BusinessLogicException {
+    public PrestamoDetailDTO getPrestamo(@PathParam("idUsuario") Long idUsuario, @PathParam("id") Long id) throws BusinessLogicException {
         PrestamoEntity entity = prestamoLogic.getPrestamo(idUsuario, id);
         if (entity == null) {
             throw new WebApplicationException(MEN_ERROR + idUsuario + "/prestamos/" + id + NO_EXISTE, 404);
         }
-        return new PrestamoDTO(entity);
+        return new PrestamoDetailDTO(entity);
     }
     
     @Path("{idPrestamo: \\d+}/libros")
@@ -74,8 +74,8 @@ public class PrestamoResource {
 
     
     @POST
-    public PrestamoDTO createPrestamo(@PathParam("idUsuario") Long idUsuario, PrestamoDTO prestamo) throws BusinessLogicException {
-        return new PrestamoDTO(prestamoLogic.createPrestamo(idUsuario, prestamo.toEntity()));
+    public PrestamoDetailDTO createPrestamo(@PathParam("idUsuario") Long idUsuario, PrestamoDetailDTO prestamo) throws BusinessLogicException {
+        return new PrestamoDetailDTO(prestamoLogic.createPrestamo(idUsuario, prestamo.toEntity()));
     }
 
     @PUT
@@ -107,6 +107,16 @@ public class PrestamoResource {
         }
         return list;
     }
+    
+     private List<PrestamoDetailDTO> listEntity2DetailDTO(List<PrestamoEntity> entityList) {
+        List<PrestamoDetailDTO> list = new ArrayList<>();
+        for (PrestamoEntity entity : entityList) {
+            list.add(new PrestamoDetailDTO(entity));
+        }
+        return list;
+    }
+    
+    
 
 
 }

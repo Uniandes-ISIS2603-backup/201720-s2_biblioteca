@@ -10,11 +10,13 @@ import co.edu.uniandes.quantum.biblioteca.entities.PrestamoEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.VideoEntity;
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author f.posada
  */
+@XmlRootElement
 public class PrestamoDetailDTO extends PrestamoDTO 
 {
     private List<LibroDTO> libros;
@@ -34,12 +36,16 @@ public class PrestamoDetailDTO extends PrestamoDTO
                 videos.add(new VideoDTO(entityVideo));
             }
         }
+        else
+            videos=new ArrayList<>();
         if (entity.getLibros() != null) {
             libros = new ArrayList<>();
             for (LibroEntity entityLibro : entity.getLibros()) {
                 libros.add(new LibroDTO(entityLibro));
             }
         }
+        else
+           libros=new ArrayList<>(); 
     }
 
     public List<LibroDTO> getLibros() {

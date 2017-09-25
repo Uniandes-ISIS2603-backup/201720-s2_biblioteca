@@ -23,7 +23,7 @@ public class PrestamoDTO {
     private boolean generomulta;
     private boolean retornado;
     private boolean externo;
-    
+        
     public PrestamoDTO()
     {
         //Se deja el constructor vacio ya que es necesario
