@@ -38,75 +38,51 @@ public class SalaResource
 //DELETE /salas/{id}    ya
     @Inject
     SalaLogic SalaLogic;
-  
+   
    
      @GET
-    public List<SalaDTO> getSalas() throws BusinessLogicException {
-         if(listEntity2DTO(SalaLogic.getSalas()).isEmpty())
-            throw new WebApplicationException("No hay salas en el sistema.");
-        else
-        return listEntity2DTO(SalaLogic.getSalas());
+    public List<SalaDTO> getSalasBiblioteca(@PathParam("idBiblioteca") Long idBiblioteca) throws BusinessLogicException {
+        return listEntity2DTO(SalaLogic.getSalas(idBiblioteca));
     }
     
 
     
     @GET
     @Path("{id: \\d+}")
-    public SalaDTO getSala(@PathParam("id") Long id) throws BusinessLogicException {
-        SalaEntity entity = SalaLogic.getSala(id);
+    public SalaDTO getSala(@PathParam("idBiblioteca") Long idBiblioteca, @PathParam("idSala") Long idSala) throws BusinessLogicException {
+        SalaEntity entity = SalaLogic.getSala(idBiblioteca,idSala);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /Salas/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /bibliotecas/" + idBiblioteca + "/salas/" + idSala + " no existe.", 404);
         }
         return new SalaDTO(entity);
     }
     
-     /**
-     *
-     * @param Sala
-     * @return
-     * @throws BusinessLogicException
-     */
     @POST
-    public SalaDTO createSala(SalaDTO Sala) throws BusinessLogicException {        
-         return new SalaDTO(SalaLogic.crearSala(Sala.toEntity()));
+    public SalaDTO createSala(@PathParam("idBiblioteca") Long idBiblioteca, SalaDTO sala) throws BusinessLogicException {
+        return new SalaDTO(SalaLogic.crearSala(idBiblioteca, sala.toEntity()));
     }
-    
-     /**
-     *
-     * Ejemplo: { "description": "Las habilidades gerenciales en arquitectos de
-     * software.", "editorial": { "id": 200, "name": "Oveja Negra 2" }, "image":
-     * "https://images-na.ssl-images-amazon.com/images/I/516GyHY9p6L.jpg",
-     * "isbn": "930330149-8", "name": "La comunicación en el software",
-     * "publishingdate": "2017-08-20T00:00:00-05:00" }
-     *
-     * @param id
-     * @param Sala
-     * @return
-     * @throws BusinessLogicException
-     */
-    
    
     @PUT
     @Path("{id: \\d+}")
-    public SalaDTO updateSala(@PathParam("id") Long id, SalaDTO Sala) throws BusinessLogicException {
-        Sala.setId(id);
-        SalaEntity entity = SalaLogic.getSala(id);
+    public SalaDTO updateSala(@PathParam("idBiblioteca") Long idBiblioteca, @PathParam("idSala") Long idSala, SalaDTO sala) throws BusinessLogicException {
+        sala.setId(idSala);
+        SalaEntity entity = SalaLogic.getSala(idBiblioteca,idSala);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /Salas/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /bibliotecas/" + idBiblioteca + "/salas/" + idSala + " no existe.", 404);
         }
-        return new SalaDTO(SalaLogic.updateSala(id, Sala.toEntity()));
+        return new SalaDTO(SalaLogic.updateSala(idBiblioteca, sala.toEntity()));
     }
 
   
     
     @DELETE
-    @Path("{SalasId: \\d+}")
-    public void deleteSala(@PathParam("SalasId") Long id) throws BusinessLogicException {
-        SalaEntity entity = SalaLogic.getSala(id);
+    @Path("{id: \\d+}")
+    public void deleteSala(@PathParam("idBiblioteca") Long idBiblioteca, @PathParam("idSala") Long idSala) throws BusinessLogicException {
+        SalaEntity entity = SalaLogic.getSala(idBiblioteca,idSala);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /Salas/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /bibliotecas/" + idBiblioteca + "/salas/" + idSala + " no existe.", 404);
         }
-        SalaLogic.deleteSalas(id);
+        SalaLogic.deleteSalas(idBiblioteca, idSala);
     }
     
     

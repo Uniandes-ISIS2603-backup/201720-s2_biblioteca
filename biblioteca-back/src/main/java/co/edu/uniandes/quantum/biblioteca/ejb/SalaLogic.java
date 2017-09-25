@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.quantum.biblioteca.ejb;
 
+import co.edu.uniandes.quantum.biblioteca.entities.BibliotecaEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.SalaEntity;
 import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
 import co.edu.uniandes.quantum.biblioteca.persistence.SalaPersistence;
@@ -21,92 +22,92 @@ import javax.inject.Inject;
 @Stateless
 public class SalaLogic 
 {
-
- private static final Logger LOGGER = Logger.getLogger(SalaLogic.class.getName());   
+private static final Logger LOGGER = Logger.getLogger(SalaLogic.class.getName());   
  
  @Inject
     private SalaPersistence persistence;
  
+ @Inject
+    private BibliotecaLogic BibliotecaLogic;
  
- /**
-  * Devuelve los Salas que se encuentran en la base de datos.
-  * @return  los Salas como una lista de objetos.
-  * Corresponde a la lógica de GET Salas
-  */
-  public List<SalaEntity> getSalas() {
+ 
+/**
+     * Obtiene la lista de los registros de Salas que pertenecen a una Biblioteca.
+     *
+     * @param idBiblioteca id de la Biblioteca la cual es "padre" de las Salas.
+     * @return Colección de objetos de SalaEntity.
+     * @throws BusinessLogicException
+     */
+  public List<SalaEntity> getSalas(Long idBiblioteca) throws BusinessLogicException{
         LOGGER.info("Inicia proceso de consultar todos los Salas");
-        List<SalaEntity>  salas = persistence.findAll();
+        BibliotecaEntity biblioteca = BibliotecaLogic.getBiblioteca(idBiblioteca);
+        List<SalaEntity>  salas = biblioteca.getSalas();
+        if (biblioteca.getSalas() == null || biblioteca.getSalas().isEmpty()) {
+          throw new BusinessLogicException("La biblioteca no tiene salas asociadas.");
+      }
         LOGGER.info("Termina proceso de consultar todos los Salas");
         return salas;
     }
   
   /**
   * Devuelve el Sala que se encuentran en la base de datos con el id dado.
-  * @param id del Sala a buscar en la DB.
+  * @param idBiblioteca de la Biblioteca a buscar en la DB.
+  * @param idSala de la Sala a buscar en la DB.
   * @return  el Sala como un objeto Entity.
   * Corresponde a la lógica de GET Salas/{id}
   */
- public SalaEntity getSala(Long id) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar Sala con id={0}", id);
-        SalaEntity sala = persistence.find(id);
+ public SalaEntity getSala(Long idBiblioteca, Long idSala) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar Sala con id={0}", idSala);
+        SalaEntity sala = persistence.find(idBiblioteca, idSala);
         if (sala == null) 
         {
-            LOGGER.log(Level.SEVERE, "El Sala con el id {0} no existe", id);
+            LOGGER.log(Level.SEVERE, "El Sala con el id {0} no existe", idSala);
         }
-        LOGGER.log(Level.INFO, "Termina proceso de consultar Sala con id={0}", id);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar Sala con id={0}", idSala);
         return sala;
     }
  
  /**
   * Devuelve el Sala que se hizo persistir en la base de datos.
   * @param entity Sala a persistir
+  * @param idBiblioteca id de la Biblioteca donde se creará la sala.
   * @return  el Sala como un objeto Entity.
   * Corresponde a la lógica de POST/Salas
   */
-   public SalaEntity crearSala(SalaEntity entity) throws BusinessLogicException {
+   public SalaEntity crearSala(Long idBiblioteca, SalaEntity entity) {
         LOGGER.info("Inicia proceso de creación de Sala");
-        persistence.create(entity);
+        BibliotecaEntity biblioteca = BibliotecaLogic.getBiblioteca(idBiblioteca);
+        entity.setMiBiblioteca(biblioteca);
         LOGGER.info("Termina proceso de creación de Sala");
-        return entity;
-    }
-    /**
-     * Método privado desde el cual se verifica que un id sea valido para un Sala.
-     * @param id a verificar.
-     * @return  true si es valido, false en caso contrario.
-     */
-    private boolean validateId(Long id)
-    {
-        return !(id==null||id ==0);
+        return persistence.create(entity);
     }
     
   /**
   * Devuelve el Sala que se actualizo en la base de datos.
-  * @param id  del Sala a actualizar.
+  * @param idBiblioteca  de la Biblioteca a actualizarle su sala.
   * @param entity Sala a actualizar
   * @return  el Sala como un objeto Entity.
   * Corresponde a la lógica de PUT Salas/{id}
   */
-      public SalaEntity updateSala(Long id, SalaEntity entity) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar Sala con id={0}", id);
-        if (!validateId(entity.getId())) {
-            throw new BusinessLogicException("El   (id) es inválido");
-        }
-        SalaEntity newEntity = persistence.update(entity);
+      public SalaEntity updateSala(Long idBiblioteca, SalaEntity entity) {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar Sala");
+          BibliotecaEntity biblioteca = BibliotecaLogic.getBiblioteca(idBiblioteca);
+        entity.setMiBiblioteca(biblioteca);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar Sala con id={0}", entity.getId());
-        return newEntity;
+        return persistence.update(entity);
     }
 
   /**
   * Devuelve el Sala que se borrará de la base de datos.
-  * @param id  del Sala a borrar.
+  * @param idBiblioteca de donde se borrará la Sala.
+  * @param idSala  del Sala a borrar.
   * Corresponde a la lógica de DELETE Salas/{id}
   */
-    public void deleteSalas(Long id) {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar Sala con id={0}", id);
-        persistence.delete(id);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar Sala con id={0}", id);
+    public void deleteSalas(Long idBiblioteca, Long idSala) {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar Sala con id={0}", idSala);
+        SalaEntity old = getSala(idBiblioteca, idSala);
+        persistence.delete(old.getId());
+        LOGGER.log(Level.INFO, "Termina proceso de borrar Sala con id={0}", idSala);
     }
-
-
 }
 

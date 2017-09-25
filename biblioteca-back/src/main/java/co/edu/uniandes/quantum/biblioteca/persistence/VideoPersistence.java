@@ -77,17 +77,25 @@ public class VideoPersistence
 
     /**
      * Busca si hay algun video con el id que se envía de argumento
-     *
-     * @param id: id correspondiente al video buscado.
+     * @param idBiblioteca id correspondiente a la biblioteca donde se busca el video.
+     * @param idVideo: id correspondiente al video buscado.
      * @return un VideoEntity.
      */
-    public VideoEntity find(Long id) {
-        LOGGER.log(Level.INFO, "Consultando video con id={0}", id);
-        /* Note que se hace uso del metodo "find" propio del EntityManager, el cual recibe como argumento 
-        el tipo de la clase y el objeto que nos hara el filtro en la base de datos en este caso el "id"
-        Suponga que es algo similar a "select * from VideoEntity where id=id;" - "SELECT * FROM table_codigo WHERE condition;" en SQL.
-         */
-        return em.find(VideoEntity.class, id);
+    public VideoEntity find(Long idBiblioteca, Long idVideo) {
+        LOGGER.log(Level.INFO, "Consultando video con id={0}", idVideo);
+        TypedQuery<VideoEntity> q = em.createQuery("select p from VideoEntity p where (p.miBiblioteca.id = :idBiblioteca) and (p.id = :idVideo)", VideoEntity.class);
+        q.setParameter("idBiblioteca", idBiblioteca);
+        q.setParameter("idVideo", idVideo);
+        List<VideoEntity> results = q.getResultList();
+        VideoEntity Video = null;
+        if (results == null) {
+            Video = null;
+        } else if (results.isEmpty()) {
+            Video = null;
+        } else if (results.size() >= 1) {
+            Video = results.get(0);
+        }
+        return Video;
     }
     
     
@@ -114,6 +122,5 @@ public class VideoPersistence
         // Note que en el query se hace uso del método getResultList() que obtiene una lista de videos.
         return query.getResultList();
     }
-
     
 }

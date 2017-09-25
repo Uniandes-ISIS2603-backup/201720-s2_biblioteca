@@ -11,6 +11,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -45,6 +46,18 @@ public class UsuarioEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy = "miUsuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ComentarioEntity> comentarios = new ArrayList<>();
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "miUsuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MedioPagoEntity> medioPago=new ArrayList<>();
+
+    public List<MedioPagoEntity> getMedioPago() {
+        return medioPago;
+    }
+
+    public void setMedioPago(List<MedioPagoEntity> medioPago) {
+        this.medioPago = medioPago;
+    }
 
     public List<PrestamoEntity> getPrestamos() {
         return prestamos;
