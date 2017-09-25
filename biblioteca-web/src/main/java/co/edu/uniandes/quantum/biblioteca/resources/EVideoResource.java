@@ -42,6 +42,16 @@ public class EVideoResource {
             return listEntity2DTO(EVideoLogic.getEVideos());
     }
 
+    @GET
+    @Path("{id: \\d+}")
+    public EVideoDTO getEVideo(@PathParam("id") Long id) throws BusinessLogicException {
+        EVideoEntity entity = EVideoLogic.getEVideo(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /EVideo/" + id + " no existe.", 404);
+        }
+        return new EVideoDTO(entity);
+    }
+
     @POST
     public EVideoDTO createEVideo(EVideoDTO eVideo) throws BusinessLogicException {
         return new EVideoDTO(EVideoLogic.createEVideo(eVideo.toEntity()));

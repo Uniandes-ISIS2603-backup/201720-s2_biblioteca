@@ -111,7 +111,7 @@ public class EBookPersistence {
         LOGGER.log(Level.INFO, "Consultando EBook por código ", name);
 
         // Se crea un query para buscar EBooks con el nombre que recibe el método como argumento. ":codigo" es un placeholder que debe ser remplazado
-        TypedQuery query = em.createQuery("Select e From EBookEntity e where e.name = : name", EBookEntity.class);
+        TypedQuery query = em.createQuery("Select e From EBookEntity e where e.name = :name", EBookEntity.class);
         // Se remplaza el placeholder ":codigo" con el valor del argumento
         query = query.setParameter("name", name);
         // Se invoca el query se obtiene la lista resultado

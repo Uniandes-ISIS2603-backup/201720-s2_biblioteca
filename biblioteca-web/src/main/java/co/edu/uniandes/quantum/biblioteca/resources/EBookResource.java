@@ -42,6 +42,17 @@ public class EBookResource {
             return listEntity2DTO(EBookLogic.getEBooks());
     }
     
+    
+    @GET
+    @Path("{id: \\d+}")
+    public EBookDTO getEBook(@PathParam("id") Long id) throws BusinessLogicException {
+        EBookEntity entity = EBookLogic.getEBook(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /EBook/" + id + " no existe.", 404);
+        }
+        return new EBookDTO(entity);
+    }
+    
     @POST
     public EBookDTO createEBook(EBookDTO eBook) throws BusinessLogicException {
         return new EBookDTO(EBookLogic.createEBook(eBook.toEntity()));
