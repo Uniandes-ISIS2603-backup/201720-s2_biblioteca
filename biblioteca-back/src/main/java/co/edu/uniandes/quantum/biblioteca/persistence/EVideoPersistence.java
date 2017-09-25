@@ -103,11 +103,11 @@ public class EVideoPersistence {
     /**
      * Busca si hay algun EVideo con el codigo que se envía de argumento
      *
-     * @param name: nombre del EVideo que se está buscando
+     * @param name : nombre del EVideo que se está buscando
      * @return null si no existe ningun EVideo con el codigo del argumento.
      * Si existe alguna devuelve la primera.
      */
-    public EVideoEntity findByName(String name) {
+    public List<EVideoEntity> findByName(String name) {
         LOGGER.log(Level.INFO, "Consultando EVideo por name ", name);
 
         // Se crea un query para buscar EVideoes con el name que recibe el método como argumento. ":name" es un placeholder que debe ser remplazado
@@ -119,7 +119,7 @@ public class EVideoPersistence {
         if (sameName.isEmpty()) {
             return null;
         } else {
-            return sameName.get(0);
+            return sameName;
         }
     }
 

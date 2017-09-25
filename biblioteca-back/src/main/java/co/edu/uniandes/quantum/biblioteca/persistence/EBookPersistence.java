@@ -103,11 +103,11 @@ public class EBookPersistence {
     /**
      * Busca si hay algun EBook con el codigo que se envía de argumento
      *
-     * @param name: codigo del EBook que se está buscando
+     * @param name : codigo del EBook que se está buscando
      * @return null si no existe ningun EBook con el codigo del argumento.
      * Si existe alguna devuelve la primera.
      */
-    public EBookEntity findByName(String name) {
+    public List<EBookEntity> findByName(String name) {
         LOGGER.log(Level.INFO, "Consultando EBook por código ", name);
 
         // Se crea un query para buscar EBooks con el nombre que recibe el método como argumento. ":codigo" es un placeholder que debe ser remplazado
@@ -119,7 +119,7 @@ public class EBookPersistence {
         if (sameName.isEmpty()) {
             return null;
         } else {
-            return sameName.get(0);
+            return sameName ;
         }
     }
 

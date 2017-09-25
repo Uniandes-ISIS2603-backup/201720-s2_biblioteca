@@ -1,0 +1,323 @@
+{
+	"variables": [],
+	"info": {
+		"name": "eBooks",
+		"_postman_id": "f4744539-6495-b196-4c1f-e73e9a8d27f7",
+		"description": "Pruebas para el recurso eBook\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener la lista de eBooks del catálogo.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "https://localhost:8080/biblioteca-web/api/eBooks/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"biblioteca-web",
+						"api",
+						"eBooks",
+						""
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "devices",
+							"equals": true,
+							"description": "",
+							"disabled": true
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar un eBook",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "https://localhost:8080/biblioteca-web/api/eBooks",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"biblioteca-web",
+						"api",
+						"eBooks"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "devices",
+							"equals": true,
+							"description": "",
+							"disabled": true
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "undefined",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"ebook1\"\n\t\"numeroPaginas\" : 321\n\t\"autor\" : \"yotas\"\n\t\"direccion\" : \"www.com\"\n}\t"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar un eBook2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "https://localhost:8080/biblioteca-web/api/eBooks",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"biblioteca-web",
+						"api",
+						"eBooks"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "devices",
+							"equals": true,
+							"description": "",
+							"disabled": true
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"ebook2\"\n\t\"numeroPaginas\" : 3\n\t\"autor\" : \"yotas\"\n\t\"direccion\" : \"www.comm\"\n}\t"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener el eBook con id 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "https://localhost:8080/biblioteca-web/api/eBooks/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"biblioteca-web",
+						"api",
+						"eBooks",
+						"2"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "devices",
+							"equals": true,
+							"description": "",
+							"disabled": true
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "undefined",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"ebook2\"\n\t\"numeroPaginas\" : 3\n\t\"autor\" : \"yotas\"\n\t\"direccion\" : \"www.comm\"\n}\t"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar el eBook con id 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "https://localhost:8080/biblioteca-web/api/eBooks/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"biblioteca-web",
+						"api",
+						"eBooks",
+						"2"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "devices",
+							"equals": true,
+							"description": "",
+							"disabled": true
+						}
+					],
+					"variable": []
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "undefined",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"ebook2234\"\n\t\"numeroPaginas\" : 33\n\t\"autor\" : \"yotaas\"\n\t\"direccion\" : \"www.commm\"\n}\t"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar el eBook con id 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "https://localhost:8080/biblioteca-web/api/eBooks/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"biblioteca-web",
+						"api",
+						"eBooks",
+						"1"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "devices",
+							"equals": true,
+							"description": "",
+							"disabled": true
+						}
+					],
+					"variable": []
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "undefined",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
