@@ -69,11 +69,11 @@ public class VideoResource {
         return new VideoDTO(entity);
     }
 
-//    @POST
-//    @Path("vid")
-//    public VideoDTO createVideo(@PathParam("idBiblioteca") Long idBiblioteca, VideoDTO video) throws BusinessLogicException {
-//        return new VideoDTO(VideoLogic.crearVideo(idBiblioteca,  video.toEntity()));
-//    }
+   @POST
+   @Path("bib")
+   public VideoDTO createVideo(@PathParam("idBiblioteca") Long idBiblioteca, VideoDTO video) throws BusinessLogicException {
+   return new VideoDTO(VideoLogic.createVideo(idBiblioteca,  video.toEntity()));
+}
 
 
     @PUT
