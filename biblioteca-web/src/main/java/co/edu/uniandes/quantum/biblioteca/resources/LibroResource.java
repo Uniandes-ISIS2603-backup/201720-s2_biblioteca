@@ -84,22 +84,23 @@ public class LibroResource {
         }
         return new LibroDTO(entity);
     }
+    
+        @GET
+    @Path("{id: \\d+}")
+    public LibroDTO getBook(@PathParam("id") Long idLibro) throws BusinessLogicException {
+        LibroEntity entity = LibroLogic.getLibro(idLibro);
+        if (entity == null) {
+            throw new WebApplicationException(MENSAJE_ERROR + idLibro + NO_EXISTE, 404);
+        }
+        return new LibroDTO(entity);
+    }
 
-//     public MultaEntity createMulta(Long usuarioid, MultaEntity entity) {
-//        LOGGER.info("Inicia proceso de crear multa");
-//        UsuarioEntity usuario = usuarioLogic.getUsuario(usuarioid);
-//        entity.setMiUsuario(usuario);
-//        return persistence.create(entity);
-//    }
     /**
      *
      * @param book
      * @return
      * @throws BusinessLogicException
      */
-//     public MultaDTO createMulta(@PathParam("idUsuario") Long idUsuario, MultaDTO multa) throws BusinessLogicException {
-//        return new MultaDTO(multaLogic.createMulta(idUsuario, multa.toEntity()));
-//    }
     @POST
     @Path("bib")
     public LibroDTO createBook(LibroDTO book, @PathParam("idBiblioteca") Long idBiblioteca) throws BusinessLogicException {

@@ -99,12 +99,22 @@ public class LibroLogic
        LibroEntity libroR=null;
         for (LibroEntity libro : librosBiblioteca)
         {
-           if(libro.getId()==idlibro)
+           if(libro.getId().equals(idlibro))
            {
                libroR=libro;
            }
             
         }
+        if(libroR==null)
+        {
+            throw new BusinessLogicException("el libro no existe");
+        }
+        return libroR;
+    }
+    
+        public LibroEntity getLibro (Long idlibro) throws BusinessLogicException
+    {
+       LibroEntity libroR = persistence.find(idlibro);
         if(libroR==null)
         {
             throw new BusinessLogicException("el libro no existe");
