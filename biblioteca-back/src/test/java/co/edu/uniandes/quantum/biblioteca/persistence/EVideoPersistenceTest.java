@@ -51,12 +51,12 @@ public class EVideoPersistenceTest {
     private List<EVideoEntity> data = new ArrayList<>();
 
     @BeforeClass
-    public void setUpClass() throws Exception {
+    public static void setUpClass() throws Exception {
 
     }
 
     @AfterClass
-    public void tearDownClass() throws Exception {
+    public static void tearDownClass() throws Exception {
     }
 
     @Before
@@ -155,13 +155,13 @@ public class EVideoPersistenceTest {
         }
     }
 
-    @Test
-    public void getEVideoByNameTest() {
-        EVideoEntity entity = data.get(0);
-        EVideoEntity newEntity = persistence.findByName(entity.getName());
-        Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
-    }
+//    @Test
+//    public void getEVideoByNameTest() {
+//        EVideoEntity entity = data.get(0);
+//        EVideoEntity newEntity = persistence.findByName(entity.getName());
+//        Assert.assertNotNull(newEntity);
+//        Assert.assertEquals(entity.getName(), newEntity.getName());
+//    }
 
     @Deployment
     public static JavaArchive createDeployment() {
