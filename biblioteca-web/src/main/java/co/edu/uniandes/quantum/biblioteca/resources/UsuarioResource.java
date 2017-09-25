@@ -104,11 +104,21 @@ public class UsuarioResource {
         return MultaResource.class;
     }
     
+     @Path("{idUsuario: \\d+}/medioPago")
+    public Class<MedioPagoResource> getMedioPagoResource(@PathParam("idUsuario") Long usuariosId) {
+        UsuarioEntity entity = usuarioLogic.getUsuario(usuariosId);
+        if (entity == null) {
+            throw new WebApplicationException(MEN_ERROR + usuariosId + "/medioPago no existe.", 404);
+        }
+        return MedioPagoResource.class;
+    }
+    
+    
     @Path("{idUsuario: \\d+}/reservas")
     public Class<ReservaResource> getReservaResource(@PathParam("idUsuario") Long usuariosId) {
         UsuarioEntity entity = usuarioLogic.getUsuario(usuariosId);
         if (entity == null) {
-            throw new WebApplicationException(MEN_ERROR + usuariosId + "/reviews no existe.", 404);
+            throw new WebApplicationException(MEN_ERROR + usuariosId + "/reservas no existe.", 404);
         }
         return ReservaResource.class;
     }
