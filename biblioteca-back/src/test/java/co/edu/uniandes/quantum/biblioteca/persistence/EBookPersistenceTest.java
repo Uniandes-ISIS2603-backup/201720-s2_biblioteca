@@ -48,7 +48,7 @@ public class EBookPersistenceTest {
     /**
      *
      */
-    private List<EBookEntity> data = new ArrayList<>();
+    private List<EBookEntity> data = new ArrayList< >();
 
 
 

@@ -103,23 +103,23 @@ public class EBookPersistence {
     /**
      * Busca si hay algun EBook con el codigo que se envía de argumento
      *
-     * @param codigo: codigo del EBook que se está buscando
+     * @param name: codigo del EBook que se está buscando
      * @return null si no existe ningun EBook con el codigo del argumento.
      * Si existe alguna devuelve la primera.
      */
-    public EBookEntity findByName(String codigo) {
-        LOGGER.log(Level.INFO, "Consultando EBook por código ", codigo);
+    public EBookEntity findByName(String name) {
+        LOGGER.log(Level.INFO, "Consultando EBook por código ", name);
 
-        // Se crea un query para buscar EBookes con el codigo que recibe el método como argumento. ":codigo" es un placeholder que debe ser remplazado
-        TypedQuery query = em.createQuery("Select e From EBookEntity e where e.codigo = :codigo", EBookEntity.class);
+        // Se crea un query para buscar EBooks con el nombre que recibe el método como argumento. ":codigo" es un placeholder que debe ser remplazado
+        TypedQuery query = em.createQuery("Select e From EBookEntity e where e.name = : name", EBookEntity.class);
         // Se remplaza el placeholder ":codigo" con el valor del argumento
-        query = query.setParameter("codigo", codigo);
+        query = query.setParameter("name", name);
         // Se invoca el query se obtiene la lista resultado
-        List<EBookEntity> sameCodigo = query.getResultList();
-        if (sameCodigo.isEmpty()) {
+        List<EBookEntity> sameName = query.getResultList();
+        if (sameName.isEmpty()) {
             return null;
         } else {
-            return sameCodigo.get(0);
+            return sameName.get(0);
         }
     }
 

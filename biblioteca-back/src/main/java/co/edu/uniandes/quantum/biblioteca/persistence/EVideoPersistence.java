@@ -103,23 +103,23 @@ public class EVideoPersistence {
     /**
      * Busca si hay algun EVideo con el codigo que se envía de argumento
      *
-     * @param codigo: codigo del EVideo que se está buscando
+     * @param name: nombre del EVideo que se está buscando
      * @return null si no existe ningun EVideo con el codigo del argumento.
      * Si existe alguna devuelve la primera.
      */
-    public EVideoEntity findByName(String codigo) {
-        LOGGER.log(Level.INFO, "Consultando EVideo por código ", codigo);
+    public EVideoEntity findByName(String name) {
+        LOGGER.log(Level.INFO, "Consultando EVideo por name ", name);
 
-        // Se crea un query para buscar EVideoes con el codigo que recibe el método como argumento. ":codigo" es un placeholder que debe ser remplazado
-        TypedQuery query = em.createQuery("Select e From EVideoEntity e where e.codigo = :codigo", EVideoEntity.class);
-        // Se remplaza el placeholder ":codigo" con el valor del argumento
-        query = query.setParameter("codigo", codigo);
+        // Se crea un query para buscar EVideoes con el name que recibe el método como argumento. ":name" es un placeholder que debe ser remplazado
+        TypedQuery query = em.createQuery("Select e From EVideoEntity e where e.name = :name", EVideoEntity.class);
+        // Se remplaza el placeholder ":name" con el valor del argumento
+        query = query.setParameter("name", name);
         // Se invoca el query se obtiene la lista resultado
-        List<EVideoEntity> sameCodigo = query.getResultList();
-        if (sameCodigo.isEmpty()) {
+        List<EVideoEntity> sameName= query.getResultList();
+        if (sameName.isEmpty()) {
             return null;
         } else {
-            return sameCodigo.get(0);
+            return sameName.get(0);
         }
     }
 
