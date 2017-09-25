@@ -16,13 +16,19 @@ import javax.persistence.ManyToOne;
 @Entity
 public class SalaEntity extends BaseEntity implements Serializable{
     
-    @ManyToOne    
+   @ManyToOne    
     private BibliotecaEntity miBiblioteca;
      
     
     private Integer capacidad;
     
-   
+    public BibliotecaEntity getMiBiblioteca() {
+        return miBiblioteca;
+    }
+
+    public void setMiBiblioteca(BibliotecaEntity miBiblioteca) {
+        this.miBiblioteca = miBiblioteca;
+    }   
     
     public Integer getCapacidad()
     {

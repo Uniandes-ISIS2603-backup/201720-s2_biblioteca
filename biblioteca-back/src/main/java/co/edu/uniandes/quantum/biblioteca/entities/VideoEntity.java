@@ -8,7 +8,6 @@ package co.edu.uniandes.quantum.biblioteca.entities;
 import java.io.Serializable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -23,7 +22,7 @@ public class VideoEntity extends RecursoEntity implements Serializable {
     private BibliotecaEntity miBiblioteca;
     
     @ManyToOne    
-    private ReservaEntity mReserva;
+    private ReservaEntity miReserva;
     
     @ManyToOne   
     private PrestamoEntity miPrestamo;
@@ -34,6 +33,16 @@ public class VideoEntity extends RecursoEntity implements Serializable {
     
     
     private int duracion;
+    
+    public BibliotecaEntity getMiBiblioteca()
+    {
+        return miBiblioteca;
+    }
+    
+    public void setMiBiblioteca(BibliotecaEntity pMiBiblioteca)
+    {
+        miBiblioteca = pMiBiblioteca;
+    }
     
     public int getDuracion()
     {
@@ -52,6 +61,5 @@ public class VideoEntity extends RecursoEntity implements Serializable {
     public void setSala(SalaEntity sala) {
         this.sala = sala;
     }
-    
-}
 
+}

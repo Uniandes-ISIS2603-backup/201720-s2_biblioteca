@@ -164,13 +164,13 @@ public class VideoPersistenceTest
     /**
      * Test of find method, of class LibroPersistence.
      */
-    @Test
-    public void testFind() throws Exception {
-        VideoEntity entity = data.get(0);
-        VideoEntity newEntity = persistence.find(entity.getId());
-        Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
-    }
+//    @Test
+//    public void testFind() throws Exception {
+//        VideoEntity entity = data.get(0);
+//        VideoEntity newEntity = persistence.find(entity.getId());
+//        Assert.assertNotNull(newEntity);
+//        Assert.assertEquals(entity.getName(), newEntity.getName());
+//    }
 
     @Test
     public void testFindByName() {

@@ -96,4 +96,21 @@ public class ReservaResource
         return list;
     }
    
+     @Path("{idReserva: \\d+}/libros")
+    public Class<LibroResource> getLibroResource(@PathParam("idUsuario") Long idUsuario,@PathParam("idReserva") Long reservaId) {
+        ReservaEntity entity = reservaLogic.getReserva(idUsuario,reservaId);
+        if (entity == null) {
+            throw new WebApplicationException(MEN_ERROR + idUsuario + "/reservas/" + reservaId + NO_EXISTE, 404);
+        }
+        return LibroResource.class;
+    }
+
+    @Path("{idReserva: \\d+}/videos")
+    public Class<VideoResource> getVideoResource(@PathParam("idUsuario") Long idUsuario,@PathParam("idReserva") Long reservaId) {
+        ReservaEntity entity = reservaLogic.getReserva(idUsuario,reservaId);
+        if (entity == null) {
+            throw new WebApplicationException(MEN_ERROR + idUsuario + "/reservas/" + reservaId + NO_EXISTE, 404);
+        }
+        return VideoResource.class;
+    }
 }

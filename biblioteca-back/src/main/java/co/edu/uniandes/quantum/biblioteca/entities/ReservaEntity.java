@@ -38,7 +38,7 @@ public class ReservaEntity extends BaseEntity implements Serializable
     
     
     @PodamExclude
-   @OneToMany(mappedBy = "mReserva")
+   @OneToMany(mappedBy = "miReserva")
    private List<VideoEntity> videos = new ArrayList<VideoEntity>();
    
          @PodamExclude

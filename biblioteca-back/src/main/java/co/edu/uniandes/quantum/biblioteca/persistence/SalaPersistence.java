@@ -21,7 +21,7 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class SalaPersistence 
 {
-    private static final Logger LOGGER = Logger.getLogger(SalaPersistence.class.getName());
+   private static final Logger LOGGER = Logger.getLogger(SalaPersistence.class.getName());
       @PersistenceContext(unitName = "bibliotecaPU")
          protected EntityManager em; 
       
@@ -77,17 +77,24 @@ public class SalaPersistence
 
     /**
      * Busca si hay alguna sala con el id que se envía de argumento
-     *
-     * @param id: id correspondiente al Sala buscado.
+     * @param idBiblioteca: id correspondiente a la biblioteca donde se busca.
+     * @param idSala: id correspondiente al Sala buscado.
      * @return un SalaEntity.
      */
-    public SalaEntity find(Long id) {
-        LOGGER.log(Level.INFO, "Consultando la sala con id={0}", id);
-        /* Note que se hace uso del metodo "find" propio del EntityManager, el cual recibe como argumento 
-        el tipo de la clase y el objeto que nos hara el filtro en la base de datos en este caso el "id"
-        Suponga que es algo similar a "select * from SalaEntity where id=id;" - "SELECT * FROM table_codigo WHERE condition;" en SQL.
-         */
-        return em.find(SalaEntity.class, id);
+    public SalaEntity find(Long idBiblioteca, Long idSala) {
+        TypedQuery<SalaEntity> q = em.createQuery("select p from SalaEntity p where (p.miBiblioteca.id = :idBiblioteca) and (p.id = :idSala)", SalaEntity.class);
+        q.setParameter("idBiblioteca", idBiblioteca);
+        q.setParameter("idSala", idSala);
+        List<SalaEntity> results = q.getResultList();
+        SalaEntity sala = null;
+        if (results == null) {
+            sala = null;
+        } else if (results.isEmpty()) {
+            sala = null;
+        } else if (results.size() >= 1) {
+            sala = results.get(0);
+        }
+        return sala;
     }
     
     
@@ -106,6 +113,4 @@ public class SalaPersistence
         // Note que en el query se hace uso del método getResultList() que obtiene una lista de salas.
         return query.getResultList();
     }
-
-    
 }
