@@ -18,12 +18,13 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class VideoEntity extends RecursoEntity implements Serializable {
     
+    @PodamExclude
     @ManyToOne    
     private BibliotecaEntity miBiblioteca;
-    
+    @PodamExclude
     @ManyToOne    
     private ReservaEntity miReserva;
-    
+    @PodamExclude
     @ManyToOne   
     private PrestamoEntity miPrestamo;
     
