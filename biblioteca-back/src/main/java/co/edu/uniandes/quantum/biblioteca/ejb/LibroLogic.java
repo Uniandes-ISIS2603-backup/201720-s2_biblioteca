@@ -7,6 +7,7 @@ package co.edu.uniandes.quantum.biblioteca.ejb;
 
 import co.edu.uniandes.quantum.biblioteca.entities.BibliotecaEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.LibroEntity;
+import co.edu.uniandes.quantum.biblioteca.entities.PrestamoEntity;
 import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
 import co.edu.uniandes.quantum.biblioteca.persistence.LibroPersistence;
 import java.util.List;
@@ -30,6 +31,9 @@ public class LibroLogic
  
  @Inject
     private BibliotecaLogic bibliotecaLogic;
+ 
+  @Inject
+  private PrestamoLogic prestamoLogic;
  /**
   * Devuelve los libros que se encuentran en la base de datos.
   * @return  los libros como una lista de objetos.
@@ -40,6 +44,18 @@ public class LibroLogic
         List<LibroEntity> books = persistence.findAll();
         LOGGER.info("Termina proceso de consultar todos los libros");
         return books;
+    }
+  
+   public List<LibroEntity> getBooksPrestamo(Long idUsuario, Long idPrestamo) throws BusinessLogicException {
+        LOGGER.info("Inicia proceso de consultar todos los libros");
+        PrestamoEntity prestamo = prestamoLogic.getPrestamo(idUsuario, idPrestamo);
+        if (prestamo.getLibros() == null) {
+            throw new BusinessLogicException("El prestamo que consulta aún no tiene libros");
+        }
+        if (prestamo.getLibros().isEmpty()) {
+            throw new BusinessLogicException("El usuario que consulta aún no tiene prestamos");
+        }
+        return prestamo.getLibros();
     }
   
   /**
@@ -130,6 +146,17 @@ public class LibroLogic
         LOGGER.info("Termina proceso de creación de libro");
         return entity;
     }
+   
+   public LibroEntity colocarLibroPrestamo(LibroEntity entity, Long idUsuario,Long idPrestamo) throws BusinessLogicException {
+        LOGGER.info("Inicia proceso de agregar libro al prestamo");
+        PrestamoEntity prestamo =prestamoLogic.getPrestamo(idUsuario, idPrestamo);
+        entity.setMiPrestamo(prestamo);        
+        persistence.create(entity);
+        LOGGER.info("Termina proceso de colocar libro en prestamo");
+        return entity;
+    }
+   
+   
     /**
      * Método privado desde el cual se verifica que un id sea valido para un libro.
      * @param id a verificar.

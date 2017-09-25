@@ -33,7 +33,7 @@ import javax.ws.rs.WebApplicationException;
 @Produces("application/json")
 @Consumes("application/json")
 public class PrestamoResource {
-    private static final String MEN_ERROR="El recurso /usuarios/";
+    private static final String MEN_ERROR="El recurso /prestamos/";
     private static final String NO_EXISTE="no existe.";
 
     @Inject
@@ -53,7 +53,26 @@ public class PrestamoResource {
         }
         return new PrestamoDTO(entity);
     }
+    
+    @Path("{idPrestamo: \\d+}/libros")
+    public Class<LibroResource> getLibroResource(@PathParam("idUsuario") Long idUsuario,@PathParam("idPrestamo") Long prestamoId) {
+        PrestamoEntity entity = prestamoLogic.getPrestamo(idUsuario,prestamoId);
+        if (entity == null) {
+            throw new WebApplicationException(MEN_ERROR + idUsuario + "/prestamos/" + prestamoId + NO_EXISTE, 404);
+        }
+        return LibroResource.class;
+    }
 
+    @Path("{idPrestamo: \\d+}/videos")
+    public Class<VideoResource> getVideoResource(@PathParam("idUsuario") Long idUsuario,@PathParam("idPrestamo") Long prestamoId) {
+        PrestamoEntity entity = prestamoLogic.getPrestamo(idUsuario,prestamoId);
+        if (entity == null) {
+            throw new WebApplicationException(MEN_ERROR + idUsuario + "/prestamos/" + prestamoId + NO_EXISTE, 404);
+        }
+        return VideoResource.class;
+    }
+
+    
     @POST
     public PrestamoDTO createPrestamo(@PathParam("idUsuario") Long idUsuario, PrestamoDTO prestamo) throws BusinessLogicException {
         return new PrestamoDTO(prestamoLogic.createPrestamo(idUsuario, prestamo.toEntity()));

@@ -63,6 +63,17 @@ public class LibroResource {
             return listEntity2DTO(LibroLogic.getLibros(idBiblioteca));
         }
     }
+    
+    @GET
+    @Path("{idPrestamo: \\d+}/libros")
+    public List<LibroDTO> getBooksPrestamo(@PathParam("idUsuario") Long idUsuario,@PathParam("idPrestamo") Long idPrestamo ) throws BusinessLogicException {
+        if (listEntity2DTO(LibroLogic.getBooksPrestamo(idUsuario, idPrestamo)).isEmpty()) {
+            throw new WebApplicationException("No hay libros en el prestamo.");
+        } else {
+            return listEntity2DTO(LibroLogic.getBooksPrestamo(idUsuario, idPrestamo));
+        }
+    }
+   
 
     @GET
     @Path("{id: \\d+}")
@@ -94,7 +105,12 @@ public class LibroResource {
     public LibroDTO createBook(LibroDTO book, @PathParam("idBiblioteca") Long idBiblioteca) throws BusinessLogicException {
         return new LibroDTO(LibroLogic.crearLibro(book.toEntity(), idBiblioteca));
     }
-
+    
+     @POST
+    public LibroDTO ponerBookPrestamo(LibroDTO book, @PathParam("idUsuario") Long idUsuario, @PathParam("idPrestamo") Long idPrestamo) throws BusinessLogicException {
+        LibroEntity lib=book.toEntity();
+        return new LibroDTO(LibroLogic.colocarLibroPrestamo(lib, idUsuario, idPrestamo));
+    }
 
     /**
      *
