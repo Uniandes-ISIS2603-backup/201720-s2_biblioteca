@@ -29,25 +29,19 @@ public class PrestamoDetailDTO extends PrestamoDTO
         super();
     }
     
-    public PrestamoDetailDTO(PrestamoEntity entity)
-    {
+    public PrestamoDetailDTO(PrestamoEntity entity) {
         super(entity);
-        if (entity.getVideos() != null) {
+        if (entity != null) {
             videos = new ArrayList<>();
             for (VideoEntity entityVideo : entity.getVideos()) {
                 videos.add(new VideoDTO(entityVideo));
             }
-        }
-        else
-            videos=new ArrayList<>();
-        if (entity.getLibros() != null) {
+
             libros = new ArrayList<>();
             for (LibroEntity entityLibro : entity.getLibros()) {
                 libros.add(new LibroDTO(entityLibro));
             }
         }
-        else
-           libros=new ArrayList<>(); 
     }
 
     public List<LibroDTO> getLibros() {
