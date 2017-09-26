@@ -42,14 +42,14 @@ public class PrestamoLogic {
      */
     public List<PrestamoEntity> getPrestamos(Long usuarioid) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de consultar todos los prestamos");
-        UsuarioEntity usuario = usuarioLogic.getUsuario(usuarioid);
-        if (usuario.getPrestamos() == null) {
+        List<PrestamoEntity> pres=persistence.findAll(usuarioid);
+        if (pres == null) {
             throw new BusinessLogicException("El usuario que consulta aún no tiene prestamos");
         }
-        if (usuario.getPrestamos().isEmpty()) {
-            throw new BusinessLogicException("El usuario que consulta aún no tiene prestamos");
+        if (pres.isEmpty()) {
+            throw new BusinessLogicException("El usuario que consulta tiene su lista de préstamos vacía");
         }
-        return usuario.getPrestamos();
+        return pres;
     }
 
     /**

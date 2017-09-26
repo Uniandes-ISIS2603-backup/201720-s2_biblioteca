@@ -96,5 +96,13 @@ public class PrestamoPersistence
         return prestamo;
     }    
     
+    public List<PrestamoEntity> findAll(Long usuarioid) {
+        TypedQuery<PrestamoEntity> q = em.createQuery("select p from PrestamoEntity p where (p.miUsuario.id = :usuarioid) ", PrestamoEntity.class);
+        q.setParameter("usuarioid", usuarioid);      
+        List<PrestamoEntity> results = q.getResultList();       
+        return results;
+    }   
+
+    
     
 }

@@ -68,6 +68,7 @@ public class UsuarioDetailDTO extends UsuarioDTO
     
     public UsuarioDetailDTO ()
     {
+        super();
     }
     
     public UsuarioDetailDTO(UsuarioEntity entity)

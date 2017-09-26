@@ -5,9 +5,12 @@
  */
 package co.edu.uniandes.quantum.biblioteca.resources;
 
+import co.edu.uniandes.quantum.biblioteca.dtos.PrestamoDetailDTO;
 import co.edu.uniandes.quantum.biblioteca.dtos.UsuarioDTO;
 import co.edu.uniandes.quantum.biblioteca.dtos.UsuarioDetailDTO;
+import co.edu.uniandes.quantum.biblioteca.ejb.PrestamoLogic;
 import co.edu.uniandes.quantum.biblioteca.ejb.UsuarioLogic;
+import co.edu.uniandes.quantum.biblioteca.entities.PrestamoEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.UsuarioEntity;
 import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
 
@@ -40,6 +43,9 @@ public class UsuarioResource {
     
     @Inject
     UsuarioLogic usuarioLogic;
+    
+    @Inject
+    PrestamoLogic prestamoLogic;
 
     @GET
     public List<UsuarioDTO> getUsuarios() throws BusinessLogicException {
@@ -87,7 +93,7 @@ public class UsuarioResource {
     }   
     
     @Path("{idUsuario: \\d+}/prestamos")
-    public Class<PrestamoResource> getPrestamoResource(@PathParam("idUsuario") Long usuarioId) {
+    public Class<PrestamoResource> getPrestamoResource(@PathParam("idUsuario") Long usuarioId) throws BusinessLogicException {
         UsuarioEntity entity = usuarioLogic.getUsuario(usuarioId);
         if (entity == null) {
             throw new WebApplicationException(MEN_ERROR + usuarioId + "/prestamos no existe.", 404);
@@ -130,6 +136,14 @@ public class UsuarioResource {
         List<UsuarioDTO> list = new ArrayList<>();
         for (UsuarioEntity entity : entityList) {
             list.add(new UsuarioDTO(entity));
+        }
+        return list;
+    }
+    
+    private List<PrestamoDetailDTO> alistUsuarioEntity2DetailDTO(List<PrestamoEntity> entityList) {
+        List<PrestamoDetailDTO> list = new ArrayList<>();
+        for (PrestamoEntity entity : entityList) {
+            list.add(new PrestamoDetailDTO(entity));
         }
         return list;
     }

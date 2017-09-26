@@ -23,8 +23,10 @@ public class PrestamoDetailDTO extends PrestamoDTO
     private List<VideoDTO> videos;
 
     
+    
     public PrestamoDetailDTO ()
     {
+        super();
     }
     
     public PrestamoDetailDTO(PrestamoEntity entity)

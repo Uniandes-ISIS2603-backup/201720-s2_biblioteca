@@ -41,6 +41,7 @@ public class PrestamoResource {
 
     @GET
     public List<PrestamoDetailDTO> getPrestamos(@PathParam("idUsuario") Long idUsuario) throws BusinessLogicException {
+      
         return listEntity2DetailDTO(prestamoLogic.getPrestamos(idUsuario));
     }
 
