@@ -24,13 +24,16 @@ public class LibroDTO
  
     public LibroDTO(LibroEntity l)
     {
+        if(l!=null){
         this.id=l.getId();
         this.name =l.getName();
         this.unidadesExistentes=l.getUnidadesExistentes();
         this.unidadesDisponibles=l.getUnidadesDisponibles();
         this.numPaginas=l.getNumeroPaginas();
         this.anioPublicacion=l.getAnioPublicacion();
-        this.autor=l.getAutor();
+        this.autor=l.getAutor();}
+        else
+            throw new NullPointerException("El libro fue nula");
              
     }
     

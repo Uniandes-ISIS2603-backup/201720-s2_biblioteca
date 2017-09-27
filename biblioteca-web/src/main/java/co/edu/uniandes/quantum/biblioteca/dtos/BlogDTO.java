@@ -21,11 +21,18 @@ public class BlogDTO
      */
     private String tituloLibro;
     
+    public BlogDTO()
+    {
+        //Se deja vacio
+    }
     
     public BlogDTO(BlogEntity req)
   {
+      if(req!=null){
       this.id = req.getId();
-      this.tituloLibro = req.getTituloLibro();   
+      this.tituloLibro = req.getTituloLibro();   }
+      else
+          throw new NullPointerException("El blog fue nulo");
   }
     
     /**

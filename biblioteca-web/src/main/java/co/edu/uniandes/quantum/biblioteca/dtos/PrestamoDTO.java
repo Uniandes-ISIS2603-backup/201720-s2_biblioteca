@@ -17,8 +17,8 @@ public class PrestamoDTO {
     private Long id;
 
     
-    private Date fechaInicio;
-    private Date fechaFinal;
+    private String fechaInicio;
+    private String fechaFinal;
     
     private boolean generomulta;
     private boolean retornado;
@@ -31,12 +31,16 @@ public class PrestamoDTO {
     
     public PrestamoDTO(PrestamoEntity ent)
     {
+        if(ent!=null){
         this.id=ent.getId();
         this.fechaInicio=ent.getFechaInicio();
         this.fechaFinal=ent.getFechaFinal();
         this.generomulta=ent.isGeneromulta();
         this.retornado=ent.isRetornado();
         this.externo=ent.isExterno();
+        }
+        else
+            throw new NullPointerException("El prestamo fue nulo");
     }
     
     public Long getId() {
@@ -47,19 +51,19 @@ public class PrestamoDTO {
         this.id = id;
     }
 
-    public Date getFechaInicio() {
+    public String getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(String fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaFinal() {
+    public String getFechaFinal() {
         return fechaFinal;
     }
 
-    public void setFechaFinal(Date fechaFinal) {
+    public void setFechaFinal(String fechaFinal) {
         this.fechaFinal = fechaFinal;
     }
 

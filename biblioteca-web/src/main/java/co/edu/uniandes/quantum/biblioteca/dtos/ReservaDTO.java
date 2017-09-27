@@ -21,11 +21,16 @@ public class ReservaDTO
     
     public ReservaDTO(ReservaEntity l)
     {
+        if(l!=null){
          this.id=l.getId();
         this.name =l.getName();
         this.completada=l.isCompletada();
-        this.fechaInicio=l.getFechaInicio();
+        this.fechaInicio=l.getFechaInicio();}
+        else
+            throw new NullPointerException("La reserva fue nula");
     }
+    
+    
 
     public Long getId() {
         return id;

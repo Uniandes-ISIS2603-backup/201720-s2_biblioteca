@@ -23,10 +23,9 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class PrestamoEntity extends BaseEntity implements Serializable {
     
-    @Temporal(TemporalType.DATE)
-    private Date fechaInicio;
-    @Temporal(TemporalType.DATE)
-    private Date fechaFinal;
+   
+    private String fechaInicio;
+    private String fechaFinal;
     
     private boolean generomulta;
     private boolean retornado;
@@ -70,19 +69,19 @@ public class PrestamoEntity extends BaseEntity implements Serializable {
         this.miUsuario = miUsuario;
     }
 
-    public Date getFechaInicio() {
+    public String getFechaInicio() {
         return fechaInicio;
     }    
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(String fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaFinal() {
+    public String getFechaFinal() {
         return fechaFinal;
     }
 
-    public void setFechaFinal(Date fechaFinal) {
+    public void setFechaFinal(String fechaFinal) {
         this.fechaFinal = fechaFinal;
     }
 

@@ -41,14 +41,14 @@ public class MedioPagoLogic {
      */
     public List<MedioPagoEntity> getMedioPagos(Long usuarioid) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de consultar todos los medioPagos");
-        UsuarioEntity usuario = usuarioLogic.getUsuario(usuarioid);
-        if (usuario.getMedioPago() == null) {
+        List<MedioPagoEntity> med=persistence.findAll(usuarioid);
+        if (med == null) {
             throw new BusinessLogicException("El usuario que consulta aún no tiene medioPagos");
         }
-        if (usuario.getMedioPago().isEmpty()) {
+        if (med.isEmpty()) {
             throw new BusinessLogicException("El usuario que consulta aún no tiene medioPagos");
         }
-        return usuario.getMedioPago();
+        return med;
     }
 
     /**

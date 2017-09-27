@@ -98,6 +98,13 @@ public class MedioPagoPersistence {
         }
         return medioPago;
     }      
+    
+    public List<MedioPagoEntity> findAll(Long usuarioid) {
+        TypedQuery<MedioPagoEntity> q = em.createQuery("select p from MedioPagoEntity p where p.miUsuario.id = :usuarioid", MedioPagoEntity.class);
+        q.setParameter("usuarioid", usuarioid);
+        List<MedioPagoEntity> results = q.getResultList();
+        return results;
+    }   
 
     
       

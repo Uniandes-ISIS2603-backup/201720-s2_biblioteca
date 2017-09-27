@@ -16,11 +16,14 @@ public class EBookDTO {
 
     public EBookDTO(EBookEntity entity){
 
+        if(entity!=null){
        this.setId(entity.getId());
         setName(entity.getName());
         setAutor(entity.getAutor());
         setDireccion(entity.getDireccion());
-        setNumeroPaginas(entity.getNumeroPaginas());
+        setNumeroPaginas(entity.getNumeroPaginas());}
+        else
+            throw new NullPointerException("El EBook fue nula");
     }
 
 

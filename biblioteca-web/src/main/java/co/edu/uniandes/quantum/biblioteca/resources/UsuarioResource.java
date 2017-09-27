@@ -52,12 +52,12 @@ public class UsuarioResource {
         if(listUsuarioEntity2DetailDTO(usuarioLogic.getUsuarios()).isEmpty())
             throw new WebApplicationException("No hay usuarios");
         else
-        return listUsuarioEntity2DetailDTO(usuarioLogic.getUsuarios());
+        return listUsuarioEntity2DTO(usuarioLogic.getUsuarios());
     }
 
     @GET
     @Path("{id: \\d+}")
-    public UsuarioDTO getUsuario(@PathParam("id") Long id) throws BusinessLogicException {
+    public UsuarioDetailDTO getUsuario(@PathParam("id") Long id) throws BusinessLogicException {
         UsuarioEntity entity = usuarioLogic.getUsuario(id);
         if (entity == null) {
             throw new WebApplicationException(MEN_ERROR + id + NO_EXISTE, 404);
@@ -67,13 +67,13 @@ public class UsuarioResource {
 
    
     @POST
-    public UsuarioDTO createUsuario(UsuarioDTO usuario) throws BusinessLogicException {        
+    public UsuarioDetailDTO createUsuario(UsuarioDetailDTO usuario) throws BusinessLogicException {        
          return new UsuarioDetailDTO(usuarioLogic.createUsuario(usuario.toEntity()));
     }
 
     @PUT
     @Path("{id: \\d+}")
-    public UsuarioDTO updateUsuario(@PathParam("id") Long id, UsuarioDTO usuario) throws BusinessLogicException {
+    public UsuarioDetailDTO updateUsuario(@PathParam("id") Long id, UsuarioDetailDTO usuario) throws BusinessLogicException {
         usuario.setId(id);
         UsuarioEntity entity = usuarioLogic.getUsuario(id);
         if (entity == null) {
@@ -132,7 +132,15 @@ public class UsuarioResource {
     
     
 
-    private List<UsuarioDTO> listUsuarioEntity2DetailDTO(List<UsuarioEntity> entityList) {
+    private List<UsuarioDetailDTO> listUsuarioEntity2DetailDTO(List<UsuarioEntity> entityList) {
+        List<UsuarioDetailDTO> list = new ArrayList<>();
+        for (UsuarioEntity entity : entityList) {
+            list.add(new UsuarioDetailDTO(entity));
+        }
+        return list;
+    }
+    
+    private List<UsuarioDTO> listUsuarioEntity2DTO(List<UsuarioEntity> entityList) {
         List<UsuarioDTO> list = new ArrayList<>();
         for (UsuarioEntity entity : entityList) {
             list.add(new UsuarioDTO(entity));

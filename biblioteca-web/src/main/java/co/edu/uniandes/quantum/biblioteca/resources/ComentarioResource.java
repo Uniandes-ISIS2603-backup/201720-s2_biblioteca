@@ -11,6 +11,7 @@ import co.edu.uniandes.quantum.biblioteca.entities.ComentarioEntity;
 import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -29,6 +30,7 @@ import javax.ws.rs.WebApplicationException;
 @Path("comentario")
 @Produces("application/json")
 @Consumes("application/json")
+@RequestScoped
 public class ComentarioResource 
 {
 

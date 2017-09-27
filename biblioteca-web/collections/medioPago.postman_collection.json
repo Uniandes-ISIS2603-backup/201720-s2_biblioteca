@@ -1,14 +1,14 @@
 {
 	"variables": [],
 	"info": {
-		"name": "prestamo",
-		"_postman_id": "68cf1bbb-7b32-eedb-9afa-c6980ea8c403",
-		"description": "Coleccion de postman del recurso prestamo",
+		"name": "medioPago",
+		"_postman_id": "f3d3b4b5-5f36-9cf0-5052-b0f03c033324",
+		"description": "Coleccion de Postman para el recurso medioPago",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Obtener los prestamos del usuario 1",
+			"name": "Obtener los medioPago del usuario 1",
 			"event": [
 				{
 					"listen": "test",
@@ -22,7 +22,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/prestamos",
+				"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/medioPago",
 				"method": "GET",
 				"header": [
 					{
@@ -33,14 +33,14 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "{\n        \"descripcion\": \"2222 1111 2222\",\n        \n        \"tipo\": 1\n    }"
 				},
 				"description": ""
 			},
 			"response": []
 		},
 		{
-			"name": "Obtener el prestamo 1 del usuario 1",
+			"name": "Obtener el medioPago del usuario 2 (ERROR)",
 			"event": [
 				{
 					"listen": "test",
@@ -48,13 +48,13 @@
 						"type": "text/javascript",
 						"exec": [
 							"",
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
 						]
 					}
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/prestamos/1",
+				"url": "http://localhost:8080/biblioteca-web/api/usuarios/2/medioPago",
 				"method": "GET",
 				"header": [
 					{
@@ -65,14 +65,14 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "{\n        \"descripcion\": \"2222 1111 2222\",\n        \n        \"tipo\": 1\n    }"
 				},
 				"description": ""
 			},
 			"response": []
 		},
 		{
-			"name": "Crear un prestamo",
+			"name": "Crear un mediopago para el usuario 2",
 			"event": [
 				{
 					"listen": "test",
@@ -86,7 +86,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/prestamos",
+				"url": "http://localhost:8080/biblioteca-web/api/usuarios/2/medioPago",
 				"method": "POST",
 				"header": [
 					{
@@ -97,14 +97,46 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"fechaInicio\":\"2017-10-10\",\n\t\"fechaFinal\":\"2017-10-12\",\n\t\"generomulta\":false,\n\t\"externo\":true,\n\t\"retornado\":false\n}"
+					"raw": "{\n        \"descripcion\": \"2222 1111 2222\",\n        \n        \"tipo\": 1\n    }"
 				},
 				"description": ""
 			},
 			"response": []
 		},
 		{
-			"name": "Eliminar el prestamo 1 del usuario 1",
+			"name": "Actualizar el medioPago del usuario 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/medioPago/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"descripcion\": \"3333 1111 2222\",\n        \n        \"tipo\": 1\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar el medioPago para el usuario 1",
 			"event": [
 				{
 					"listen": "test",
@@ -118,7 +150,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/prestamos/1",
+				"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/medioPago/1",
 				"method": "DELETE",
 				"header": [
 					{
@@ -130,38 +162,6 @@
 				"body": {
 					"mode": "raw",
 					"raw": ""
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Actualizar el prestamo 2 del usuario 1",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"",
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/prestamos/2",
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"fechaInicio\":\"2017-12-12\",\n\t\"fechaFinal\":\"2017-12-13\",\n\t\"generomulta\":true,\n\t\"externo\":true,\n\t\"retornado\":false\n}"
 				},
 				"description": ""
 			},

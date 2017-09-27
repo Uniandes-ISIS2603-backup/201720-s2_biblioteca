@@ -6,12 +6,13 @@
 package co.edu.uniandes.quantum.biblioteca.resources;
 
 import co.edu.uniandes.quantum.biblioteca.dtos.VideoDTO;
-import co.edu.uniandes.quantum.biblioteca.dtos.VideoDetalDTO;
+import co.edu.uniandes.quantum.biblioteca.dtos.VideoDetailDTO;
 import co.edu.uniandes.quantum.biblioteca.ejb.VideoLogic;
 import co.edu.uniandes.quantum.biblioteca.entities.VideoEntity;
 import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Path;
@@ -31,6 +32,7 @@ import javax.ws.rs.WebApplicationException;
 @Path("videos")
 @Produces("application/json")
 @Consumes("application/json")
+@RequestScoped
 public class VideoResource {
 
     @Inject
@@ -127,10 +129,10 @@ public class VideoResource {
         return list;
     }
 
-    private List<VideoDetalDTO> listEntity2DetailDTO(List<VideoEntity> entityList) {
-        List<VideoDetalDTO> list = new ArrayList<>();
+    private List<VideoDetailDTO> listEntity2DetailDTO(List<VideoEntity> entityList) {
+        List<VideoDetailDTO> list = new ArrayList<>();
         for (VideoEntity entity : entityList) {
-            list.add(new VideoDetalDTO(entity));
+            list.add(new VideoDetailDTO(entity));
         }
         return list;
     }

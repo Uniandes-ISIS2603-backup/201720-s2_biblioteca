@@ -13,7 +13,7 @@ import co.edu.uniandes.quantum.biblioteca.entities.VideoEntity;
  */
 
 //TODO se debe implementar esta clase
-public class VideoDetalDTO extends VideoDTO
+public class VideoDetailDTO extends VideoDTO
 {
     private SalaDTO sala;
 
@@ -25,11 +25,19 @@ public class VideoDetalDTO extends VideoDTO
         this.sala = sala;
     }
     
+    public VideoDetailDTO()
+    {
+        super();
+    }
     
-    public VideoDetalDTO(VideoEntity l)
+    
+    public VideoDetailDTO(VideoEntity l)
     {
         super(l);
-        sala = new SalaDTO(l.getSala());
+        if(l!=null){
+        sala = new SalaDTO(l.getSala());}
+        else
+            throw new NullPointerException("El video fue nula");
     }
     public VideoEntity toEntity()
     {

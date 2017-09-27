@@ -14,6 +14,10 @@ import co.edu.uniandes.quantum.biblioteca.entities.VideoEntity;
 public class VideoDTO 
 {
  
+    public VideoDTO(){
+    //Se deja vacio
+    }
+    
     private Long id; 
     private String name;
     private int unidadesExistentes;
@@ -23,12 +27,15 @@ public class VideoDTO
     
     public VideoDTO(VideoEntity l)
     {
+        if(l!=null){
         this.id=l.getId();
         this.name =l.getName();
         this.unidadesExistentes=l.getUnidadesExistentes();
         this.uniandesDisponibles=l.getUnidadesDisponibles();
      this.duracion=l.getDuracion();
-        this.autor=l.getAutor();
+        this.autor=l.getAutor();}
+        else
+            throw new NullPointerException("El video fue nula");
     }
 
     public Long getId() {

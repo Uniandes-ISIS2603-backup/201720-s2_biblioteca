@@ -41,6 +41,11 @@ public class BibliotecaDetailDTO extends BibliotecaDTO {
     
     private List<LibroDTO> libros;    
     
+    public BibliotecaDetailDTO()
+    {
+        super();
+    }
+    
     /**
      * Constructor por defecto
      * @param entity

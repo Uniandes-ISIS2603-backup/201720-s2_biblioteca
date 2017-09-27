@@ -54,9 +54,12 @@ public class BibliotecaDTO {
      * @param Biblioteca: Es la entidad que se va a convertir a DTO
      */
     public BibliotecaDTO(BibliotecaEntity biblioteca) {
+        if(biblioteca!=null){
         this.id = biblioteca.getId();
         this.name = biblioteca.getName();
-        this.ubicacion = biblioteca.getUbicacion();
+        this.ubicacion = biblioteca.getUbicacion();}
+        else
+            throw new NullPointerException("La biblioteca fue nula");
     }
 
     /**

@@ -12,6 +12,7 @@ import co.edu.uniandes.quantum.biblioteca.entities.LibroEntity;
 import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Path;
@@ -31,6 +32,7 @@ import javax.ws.rs.WebApplicationException;
 @Path("libros")
 @Produces("application/json")
 @Consumes("application/json")
+@RequestScoped
 public class LibroResource {
 //    GET /libros   ya
 //GET /libros/{id}   ya

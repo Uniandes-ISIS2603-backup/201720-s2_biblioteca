@@ -36,13 +36,21 @@ public class ComentarioDTO {
     @Temporal(TemporalType.DATE)
     private Date fechaPublicado;
     
+    public ComentarioDTO()
+    {
+        //Se deja vacio
+    }
+    
     
     public ComentarioDTO (ComentarioEntity rec)
     {
-         this.id= rec.getId();
+        if(rec!=null)
+        { this.id= rec.getId();
          this.comentario = rec.getComentario();
          this.fechaPublicado = rec.getFechaPublicado();
-         this.calificacion = rec.getCalificacion();
+         this.calificacion = rec.getCalificacion();}
+         else
+         throw new NullPointerException("El comentario fue nula");
     }
     
     /**

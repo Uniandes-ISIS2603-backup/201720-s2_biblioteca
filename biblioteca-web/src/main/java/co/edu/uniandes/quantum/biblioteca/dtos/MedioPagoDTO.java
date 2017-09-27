@@ -49,9 +49,12 @@ public class MedioPagoDTO {
 
    public MedioPagoDTO(MedioPagoEntity medioPago) {
    
+       if(medioPago!=null){
        this.id=medioPago.getId();
        this.tipo=medioPago.getTipo();
-       this.descripcion=medioPago.getDescripcion();
+       this.descripcion=medioPago.getDescripcion();}
+       else 
+           throw new NullPointerException("El mediopago fue nula");
    }
 
    public MedioPagoEntity toEntity() {

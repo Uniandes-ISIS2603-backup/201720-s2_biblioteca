@@ -12,6 +12,10 @@ import co.edu.uniandes.quantum.biblioteca.entities.LibroEntity;
  * @author jp.sanmiguel
  */
 public class LibroDetailDTO extends LibroDTO {
+    public LibroDetailDTO()
+    {
+        super();
+    }
 
     public LibroDetailDTO(LibroEntity entity) {
         super(entity);

@@ -17,13 +17,15 @@ public class EVideoDTO {
 
     public EVideoDTO(EVideoEntity entity) {
 
+        if(entity!=null){
         setId(entity.getId());
         setName(entity.getName());
         setAutor(entity.getAutor());
         setDireccion(entity.getDireccion());
-        setDuracion(entity.getDuracion());
-    }
-
+        setDuracion(entity.getDuracion());}
+        else
+            throw new NullPointerException("El Evideo fue nula");
+}
     public Long getId() {
         return id;
     }

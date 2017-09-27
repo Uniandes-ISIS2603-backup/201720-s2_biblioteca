@@ -47,12 +47,15 @@ public class MultaDTO {
       
      
     public MultaDTO(MultaEntity entityMulta) {
+        if(entityMulta!=null){
         this.id = entityMulta.getId();
         this.costo=entityMulta.getCosto();
         this.pagada=entityMulta.isPagada();
         this.descripcion=entityMulta.getDescripcion();
         this.fecha=entityMulta.getFecha();
-        this.tituloServicio=entityMulta.getTituloServicio();
+        this.tituloServicio=entityMulta.getTituloServicio();}
+        else
+            throw new NullPointerException("La multa fue nula");
         
     }
     

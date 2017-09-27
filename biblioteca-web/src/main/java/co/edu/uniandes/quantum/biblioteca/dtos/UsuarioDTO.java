@@ -25,10 +25,13 @@ public class UsuarioDTO {
     
     public UsuarioDTO(UsuarioEntity us)
     {
+        if(us!=null){
         this.id=us.getId();
         this.name=us.getName();
         this.direccion=us.getDireccion();
-        this.telefono=us.getTelefono();
+        this.telefono=us.getTelefono();}
+        else
+            throw new NullPointerException("El usuario fue nula");
     }
 
     public Long getId() {

@@ -19,8 +19,11 @@ public class SalaDTO
     
     public SalaDTO(SalaEntity l)
     {
+        if(l!=null){
         this.id=l.getId();
-        this.capacidad=l.getCapacidad();
+        this.capacidad=l.getCapacidad();}
+        else
+            throw new NullPointerException("La sala fue nula");
      
     }
     
