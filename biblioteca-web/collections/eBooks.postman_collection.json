@@ -2,28 +2,28 @@
 	"variables": [],
 	"info": {
 		"name": "eBooks",
-		"_postman_id": "25d862d8-5de7-492f-2f8e-b3cef7dacaa9",
+		"_postman_id": "7b1c78d8-8088-0879-94c5-86b0236321eb",
 		"description": "Pruebas para el recurso eBook\n",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Obtener la lista de eBooks del catálogo.",
+			"name": "Obtener la lista de eBooks del catálogo cuando no hay eBooks.",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+							"tests[\"Body matches string\"] = responseBody.has(\"No hay eBooks\");"
 						]
 					}
 				}
 			],
 			"request": {
 				"url": {
-					"raw": "https://localhost:8080/biblioteca-web/api/eBooks",
-					"protocol": "https",
+					"raw": "http://localhost:8080/biblioteca-web/api/eBooks",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
@@ -66,8 +66,8 @@
 			],
 			"request": {
 				"url": {
-					"raw": "https://localhost:8080/biblioteca-web/api/eBooks",
-					"protocol": "https",
+					"raw": "http://localhost:8080/biblioteca-web/api/eBooks",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
@@ -119,8 +119,8 @@
 			],
 			"request": {
 				"url": {
-					"raw": "https://localhost:8080/biblioteca-web/api/eBooks",
-					"protocol": "https",
+					"raw": "http://localhost:8080/biblioteca-web/api/eBooks",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
@@ -158,6 +158,50 @@
 			"response": []
 		},
 		{
+			"name": "Obtener la lista de eBooks del catálogo cuando ya hay eBooks.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/biblioteca-web/api/eBooks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"biblioteca-web",
+						"api",
+						"eBooks"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "devices",
+							"equals": true,
+							"description": "",
+							"disabled": true
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
 			"name": "Obtener el eBook con id 2",
 			"event": [
 				{
@@ -172,8 +216,8 @@
 			],
 			"request": {
 				"url": {
-					"raw": "https://localhost:8080/biblioteca-web/api/eBooks/2",
-					"protocol": "https",
+					"raw": "http://localhost:8080/biblioteca-web/api/eBooks/2",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
@@ -200,12 +244,13 @@
 					{
 						"key": "Content-Type",
 						"value": "undefined",
-						"description": ""
+						"description": "",
+						"disabled": true
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\" : \"ebook2\",\n\t\"numeroPaginas\" : 3\n\t\"autor\" : \"yotas\"\n\t\"direccion\" : \"www.comm\"\n}\t"
+					"raw": "{\n\t\"name\" : \"ebook2\"\n\t\"numeroPaginas\" : 3\n\t\"autor\" : \"yotas\"\n\t\"direccion\" : \"www.comm\"\n}\t"
 				},
 				"description": ""
 			},
@@ -226,8 +271,8 @@
 			],
 			"request": {
 				"url": {
-					"raw": "https://localhost:8080/biblioteca-web/api/eBooks/2",
-					"protocol": "https",
+					"raw": "http://localhost:8080/biblioteca-web/api/eBooks/2",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
@@ -253,13 +298,67 @@
 				"header": [
 					{
 						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"ebook2234\",\n\t\"numeroPaginas\" : 33,\n\t\"autor\" : \"yotaas\",\n\t\"direccion\" : \"www.commm\"\n}\t"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar el eBook con id 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "https://localhost:8080/biblioteca-web/api/eBooks/1?",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"biblioteca-web",
+						"api",
+						"eBooks",
+						"1"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "devices",
+							"equals": true,
+							"description": "",
+							"disabled": true
+						}
+					],
+					"variable": []
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
 						"value": "undefined",
 						"description": ""
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\" : \"ebook2234\"\n\t\"numeroPaginas\" : 33\n\t\"autor\" : \"yotaas\"\n\t\"direccion\" : \"www.commm\"\n}\t"
+					"raw": ""
 				},
 				"description": ""
 			},
