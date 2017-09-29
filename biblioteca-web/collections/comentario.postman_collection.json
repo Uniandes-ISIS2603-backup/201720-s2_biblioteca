@@ -1,0 +1,123 @@
+{
+	"variables": [],
+	"info": {
+		"name": "comentario",
+		"_postman_id": "7dc64b73-f7d8-6626-2e8c-73a5fb8e02a4",
+		"description": "coleccion de postman para el recurso comentario ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener todos los comentarios",
+			"description": "",
+			"item": [
+				{
+					"name": "obtener el usuario 1",
+					"description": "",
+					"item": [],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "http://localhost:8080/biblioteca-web/api/comentario/",
+			"request": {
+				"url": "http://localhost:8080/biblioteca-web/api/comentario/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\"id\": \"1\", \"comentario\":\"el libro es malisimo\", \"calificacion\": \"1.5\", \"fechaPublicado\":\"1/26/2017\"} "
+				},
+				"description": "prueba para POST en un comentario"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/biblioteca-web/api/comentario/",
+			"request": {
+				"url": "http://localhost:8080/biblioteca-web/api/comentario/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\"id\": \"2\", \"comentario\":\"el libro es malisimo\", \"calificacion\": \"1.5\", \"fechaPublicado\":\"1/26/2017\"} "
+				},
+				"description": "Prueba para pbtener TODOS los comentarios"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/biblioteca-web/api/comentario/1",
+			"request": {
+				"url": "http://localhost:8080/biblioteca-web/api/comentario/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\"id\": \"1\", \"comentario\":\"el libro es malisimo\", \"calificacion\": \"1.5\", \"fechaPublicado\":\"1/26/2017\"} "
+				},
+				"description": "devuelve un comentario especifico con el id"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/biblioteca-web/api/comentario/1",
+			"request": {
+				"url": "http://localhost:8080/biblioteca-web/api/comentario/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\"id\": \"1\", \"comentario\":\"el libro me parecia malo pero despues de releerlo me gusta mas\", \"calificacion\": \"3.5\", \"fechaPublicado\":\"1/26/2017\"} "
+				},
+				"description": "prueba para editar el contenido del comentario"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/biblioteca-web/api/comentario/1",
+			"request": {
+				"url": "http://localhost:8080/biblioteca-web/api/comentario/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\"id\": \"1\", \"comentario\":\"el libro me parecia malo pero despues de releerlo me gusta mas\", \"calificacion\": \"3.5\", \"fechaPublicado\":\"1/26/2017\"} "
+				},
+				"description": "muestra que si se edito el comentario con el id"
+			},
+			"response": []
+		}
+	]
+}

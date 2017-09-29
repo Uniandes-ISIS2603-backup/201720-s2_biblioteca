@@ -1,0 +1,91 @@
+{
+	"variables": [],
+	"info": {
+		"name": "blog",
+		"_postman_id": "d3ffe838-c710-f1ea-f711-8fcc1d4fddee",
+		"description": "pruebas del recurso blog ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/biblioteca-web/api/blog/",
+			"request": {
+				"url": "http://localhost:8080/biblioteca-web/api/blog/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\"id\": \"1\", \"tituloLibro\":\"Game of thrones\"} "
+				},
+				"description": "prueba de crear un blog "
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/biblioteca-web/api/blog/",
+			"request": {
+				"url": "http://localhost:8080/biblioteca-web/api/blog/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\"id\": \"1\", \"tituloLibro\":\"Game of thrones\"} "
+				},
+				"description": "obtiene TODOS los blogs "
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/biblioteca-web/api/blog/1",
+			"request": {
+				"url": "http://localhost:8080/biblioteca-web/api/blog/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\"id\": \"1\", \"tituloLibro\":\"a Game of thrones\"} "
+				},
+				"description": "prueba la modificacion de los parametros de blog"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/biblioteca-web/api/blog/1",
+			"request": {
+				"url": "http://localhost:8080/biblioteca-web/api/blog/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\"id\": \"1\", \"tituloLibro\":\"a Game of thrones\"} "
+				},
+				"description": "obtiene un blog usando solo el id"
+			},
+			"response": []
+		}
+	]
+}

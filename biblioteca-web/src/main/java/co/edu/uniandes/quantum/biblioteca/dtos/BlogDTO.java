@@ -17,7 +17,7 @@ public class BlogDTO
     private long id;
     
     /**
-     * stributo que corresponde al titulo del libro con el cual se relaciona el blog
+     * atributo que corresponde al titulo del libro con el cual se relaciona el blog
      */
     private String tituloLibro;
     
