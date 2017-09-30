@@ -35,13 +35,13 @@ private static final Logger LOGGER = Logger.getLogger(VideoLogic.class.getName()
   * Devuelve los Videos que se encuentran en la base de datos.
   * @return  los Videos como una lista de objetos.
   * Corresponde a la lógica de GET Videos
-  */
+  
   public List<VideoEntity> getVideos() {
         LOGGER.info("Inicia proceso de consultar todos los Videos");
         List<VideoEntity> videos = persistence.findAll();
         LOGGER.info("Termina proceso de consultar todos los Videos");
         return videos;
-    }
+    }*/
   
       /**
      * Obtiene la lista de los registros de Video que pertenecen a una Biblioteca.
@@ -51,13 +51,13 @@ private static final Logger LOGGER = Logger.getLogger(VideoLogic.class.getName()
      * @throws BusinessLogicException
      */
     public List<VideoEntity> getVideos(Long idBiblioteca) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de consultar todos los multas");
+        LOGGER.info("Inicia proceso de consultar todos los videos en una bblioteca");
         BibliotecaEntity biblioteca = BibliotecaLogic.getBiblioteca(idBiblioteca);
         if (biblioteca.getVideos() == null) {
-            throw new BusinessLogicException("El usuario que consulta aún no tiene multas");
+            throw new BusinessLogicException("La biblioteca que consulta aún no tiene videos");
         }
         if (biblioteca.getVideos().isEmpty()) {
-            throw new BusinessLogicException("El usuario que consulta aún no tiene multas");
+            throw new BusinessLogicException("La biblioteca que consulta aún no tiene videos");
         }
         return biblioteca.getVideos();
     }

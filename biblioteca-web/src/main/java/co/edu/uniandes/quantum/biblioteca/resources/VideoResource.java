@@ -41,7 +41,7 @@ public class VideoResource {
     private static final String MENSAJE_ERROR = "El recurso /Videos/";
     private static final String NO_EXISTE = "no existe.";
 
-    @GET
+    /**@GET
     public List<VideoDTO> getVideos() throws WebApplicationException {
 
         if (listEntity2DTO(VideoLogic.getVideos()).isEmpty()) {
@@ -49,10 +49,9 @@ public class VideoResource {
         } else {
             return listEntity2DTO(VideoLogic.getVideos());
         }
-    }
+    }*/
 
     @GET
-    @Path("bib")
     public List<VideoDTO> getVideosBiblioteca(@PathParam("idBiblioteca") Long idBiblioteca) throws BusinessLogicException {
         if (listEntity2DTO(VideoLogic.getVideos(idBiblioteca)).isEmpty()) {
             throw new WebApplicationException("No hay Videos en el sistema.");

@@ -46,7 +46,7 @@ public class LibroResource {
     private static final String MENSAJE_ERROR = "El recurso /libros/";
     private static final String NO_EXISTE = "no existe.";
 
-    @GET
+    /**@GET
     public List<LibroDTO> getBooks() throws WebApplicationException {
 
         if (listEntity2DTO(LibroLogic.getBooks()).isEmpty()) {
@@ -54,10 +54,9 @@ public class LibroResource {
         } else {
             return listEntity2DTO(LibroLogic.getBooks());
         }
-    }
+    }*/
 
     @GET
-    @Path("bib")
     public List<LibroDTO> getBooksBiblioteca(@PathParam("idBiblioteca") Long idBiblioteca) throws BusinessLogicException {
         if (listEntity2DTO(LibroLogic.getLibros(idBiblioteca)).isEmpty()) {
             throw new WebApplicationException("No hay libros en el sistema.");

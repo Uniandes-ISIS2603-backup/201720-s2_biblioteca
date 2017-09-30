@@ -31,7 +31,7 @@ import javax.ws.rs.WebApplicationException;
 //TODO implementar clase y api rest
 @Produces("application/json")
 @Consumes("application/json")
-@RequestScoped
+//@RequestScoped
 public class ReservaResource 
 {
  private static final String MEN_ERROR="El recurso /usuarios/";

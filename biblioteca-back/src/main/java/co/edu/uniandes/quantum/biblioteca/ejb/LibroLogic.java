@@ -38,13 +38,12 @@ public class LibroLogic
   * Devuelve los libros que se encuentran en la base de datos.
   * @return  los libros como una lista de objetos.
   * Corresponde a la lógica de GET libros
-  */
   public List<LibroEntity> getBooks() {
         LOGGER.info("Inicia proceso de consultar todos los libros");
         List<LibroEntity> books = persistence.findAll();
         LOGGER.info("Termina proceso de consultar todos los libros");
         return books;
-    }
+    }*/
   
    public List<LibroEntity> getBooksPrestamo(Long idUsuario, Long idPrestamo) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de consultar todos los libros");
@@ -57,23 +56,7 @@ public class LibroLogic
         }
         return prestamo.getLibros();
     }
-  
-  /**
-  * Devuelve el libro que se encuentran en la base de datos con el id dado.
-  * @param id del libro a buscar en la DB.
-  * @return  el libro como un objeto Entity.
-  * Corresponde a la lógica de GET libros/{id}
-  */
-// public LibroEntity getLibro(Long id) {
-//        LOGGER.log(Level.INFO, "Inicia proceso de consultar libro con id={0}", id);
-//        LibroEntity book = persistence.find(id);
-//        if (book == null) 
-//        {
-//            LOGGER.log(Level.SEVERE, "El libro con el id {0} no existe", id);
-//        }
-//        LOGGER.log(Level.INFO, "Termina proceso de consultar libro con id={0}", id);
-//        return book;
-//    }
+
  
     /**
      * Obtiene la lista de los registros de Multa que pertenecen a un Usuario.
