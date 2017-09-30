@@ -58,7 +58,6 @@ import javax.ws.rs.WebApplicationException;
 @Path("bibliotecas")
 @Produces("application/json")
 @Consumes("application/json")
-@RequestScoped
 public class BibliotecaResource {
 
     @Inject

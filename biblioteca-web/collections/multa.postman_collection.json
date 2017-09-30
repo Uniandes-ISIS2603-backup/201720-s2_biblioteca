@@ -1,0 +1,129 @@
+{
+	"id": "917c4be3-0de5-c616-5c10-42a20298e560",
+	"name": "multas copy",
+	"description": "",
+	"order": [
+		"31238926-c823-8bbc-488c-5ca2190f956e",
+		"dd8b19f1-270c-79c1-a10c-000195b61ea9",
+		"88c81fd5-3df3-852a-d068-a3bfad620fc9",
+		"d3b916f9-a17c-c034-3c64-7829ecc90418"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1506258879748,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "31238926-c823-8bbc-488c-5ca2190f956e",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/multas/bib",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1506742936442,
+			"name": "crea multa",
+			"description": "",
+			"collectionId": "917c4be3-0de5-c616-5c10-42a20298e560",
+			"responses": [],
+			"rawModeData": "{\r\n    \"name\": \"multa 1\"\r\n  }"
+		},
+		{
+			"id": "88c81fd5-3df3-852a-d068-a3bfad620fc9",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/multas/1",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1506742948514,
+			"name": "actualizar la multa con id 1",
+			"description": "",
+			"collectionId": "917c4be3-0de5-c616-5c10-42a20298e560",
+			"responses": [],
+			"rawModeData": "{\r\n    \"name\": \"multa111\"\r\n   \r\n}"
+		},
+		{
+			"id": "d3b916f9-a17c-c034-3c64-7829ecc90418",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/multas/1",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "DELETE",
+			"data": null,
+			"dataMode": "params",
+			"tests": "tests[\"Status code is 204\"] = responseCode.code === 204;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1506742952361,
+			"name": "borra una multa",
+			"description": "",
+			"collectionId": "917c4be3-0de5-c616-5c10-42a20298e560",
+			"responses": []
+		},
+		{
+			"id": "dd8b19f1-270c-79c1-a10c-000195b61ea9",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/multas/",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1506742943593,
+			"name": "obtener las multas",
+			"description": "",
+			"collectionId": "917c4be3-0de5-c616-5c10-42a20298e560",
+			"responses": [],
+			"rawModeData": "{\r\n    \"name\": \"multa1\"}"
+		}
+	]
+}
