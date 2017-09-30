@@ -127,6 +127,19 @@ public class LibroResource {
      * @return
      * @throws BusinessLogicException
      */
+
+//    @PUT
+//    @Path("{id: \\d+}")
+//    public MultaDTO updateMulta(@PathParam("idUsuario") Long idUsuario, @PathParam("id") Long id, MultaDTO multa) throws BusinessLogicException {
+//        multa.setId(id);
+//        MultaEntity entity = multaLogic.getMulta(idUsuario, id);
+//        if (entity == null) {
+//            throw new WebApplicationException("El recurso /usuarios/" + idUsuario + "/multas/" + id + " no existe.", 404);
+//        }
+//        return new MultaDTO(multaLogic.updateMulta(idUsuario, multa.toEntity()));
+//
+//    }
+
     @PUT
     @Path("{id: \\d+}")
     public LibroDTO updateBook(@PathParam("id") Long id, LibroDTO book, @PathParam("idBiblioteca") Long idBiblioteca) throws BusinessLogicException {

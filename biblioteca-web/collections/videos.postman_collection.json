@@ -1,21 +1,22 @@
 {
-	"id": "917c4be3-0de5-c616-5c10-42a20298e560",
-	"name": "libros copy",
+	"id": "0135a9c9-5feb-6578-f245-04a92f38f92c",
+	"name": "libros copy copy",
 	"description": "",
 	"order": [
-		"31238926-c823-8bbc-488c-5ca2190f956e",
-		"dd8b19f1-270c-79c1-a10c-000195b61ea9",
-		"88c81fd5-3df3-852a-d068-a3bfad620fc9",
-		"d3b916f9-a17c-c034-3c64-7829ecc90418"
+		"25eb18b7-9a44-4a1d-5c0c-25a59edde537",
+		"228faea0-36f6-9375-759a-5e2aa4532a66",
+		"ea9ce04f-75ef-e69e-2d19-440b7f436c1a",
+		"c6f392ed-8150-4588-5cbf-8868977da0fb"
 	],
 	"folders": [],
 	"folders_order": [],
 	"timestamp": 1506258879748,
 	"owner": 0,
 	"public": false,
+	"hasRequests": true,
 	"requests": [
 		{
-			"id": "31238926-c823-8bbc-488c-5ca2190f956e",
+			"id": "228faea0-36f6-9375-759a-5e2aa4532a66",
 			"headers": "Content-Type: application/json\n",
 			"headerData": [
 				{
@@ -25,88 +26,7 @@
 					"enabled": true
 				}
 			],
-			"url": "http://localhost:8080/biblioteca-web/api/bibliotecas/1/libros/bib",
-			"queryParams": [],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "POST",
-			"data": [],
-			"dataMode": "raw",
-			"version": 2,
-			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1506742936442,
-			"name": "crea libro",
-			"description": "",
-			"collectionId": "917c4be3-0de5-c616-5c10-42a20298e560",
-			"responses": [],
-			"rawModeData": "{\r\n    \"name\": \"el libro de la selva Volumen 1\"\r\n  }"
-		},
-		{
-			"id": "88c81fd5-3df3-852a-d068-a3bfad620fc9",
-			"headers": "Content-Type: application/json\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:8080/biblioteca-web/api/bibliotecas/1/libros/1",
-			"queryParams": [],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "PUT",
-			"data": [],
-			"dataMode": "raw",
-			"version": 2,
-			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1506742948514,
-			"name": "actualizar el libro con id 1",
-			"description": "",
-			"collectionId": "917c4be3-0de5-c616-5c10-42a20298e560",
-			"responses": [],
-			"rawModeData": "{\r\n    \"name\": \"el libro de la selva volumen 111110\"\r\n   \r\n}"
-		},
-		{
-			"id": "d3b916f9-a17c-c034-3c64-7829ecc90418",
-			"headers": "",
-			"headerData": [],
-			"url": "http://localhost:8080/biblioteca-web/api/bibliotecas/1/libros/1",
-			"queryParams": [],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "DELETE",
-			"data": null,
-			"dataMode": "params",
-			"tests": "tests[\"Status code is 204\"] = responseCode.code === 204;",
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1506742952361,
-			"name": "borra un libro",
-			"description": "",
-			"collectionId": "917c4be3-0de5-c616-5c10-42a20298e560",
-			"responses": []
-		},
-		{
-			"id": "dd8b19f1-270c-79c1-a10c-000195b61ea9",
-			"headers": "Content-Type: application/json\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:8080/biblioteca-web/api/bibliotecas/1/libros/",
+			"url": "http://localhost:8080/biblioteca-web/api/bibliotecas/1/videos",
 			"queryParams": [],
 			"preRequestScript": null,
 			"pathVariables": {},
@@ -118,12 +38,93 @@
 			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1506742943593,
-			"name": "obtener los libros",
+			"time": 1506742578606,
+			"name": "obtener los videos",
 			"description": "",
-			"collectionId": "917c4be3-0de5-c616-5c10-42a20298e560",
+			"collectionId": "0135a9c9-5feb-6578-f245-04a92f38f92c",
 			"responses": [],
 			"rawModeData": "{\r\n    \"name\": \"el libro de la selva\",\r\n    \"unidadesExistentes\": 5,\r\n    \"autor\": \"autor selvatico\",\r\n    \"unidadesDisponibles\": 5,\r\n    \"numPaginas\": 190,\r\n    \"anioPublicacion\": 1980\r\n}"
+		},
+		{
+			"id": "25eb18b7-9a44-4a1d-5c0c-25a59edde537",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/biblioteca-web/api/bibliotecas/1/videos/bib",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1506742874039,
+			"name": "crear video",
+			"description": "",
+			"collectionId": "0135a9c9-5feb-6578-f245-04a92f38f92c",
+			"responses": [],
+			"rawModeData": "{\r\n    \"name\": \"el libro de la selva Volumen 1\"\r\n  }"
+		},
+		{
+			"id": "c6f392ed-8150-4588-5cbf-8868977da0fb",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:8080/biblioteca-web/api/bibliotecas/1/videos/1",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "DELETE",
+			"data": null,
+			"dataMode": "params",
+			"tests": "tests[\"Status code is 204\"] = responseCode.code === 204;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1506742864394,
+			"name": "borra un video",
+			"description": "",
+			"collectionId": "0135a9c9-5feb-6578-f245-04a92f38f92c",
+			"responses": []
+		},
+		{
+			"id": "ea9ce04f-75ef-e69e-2d19-440b7f436c1a",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/biblioteca-web/api/bibliotecas/1/videos/1",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1506742852777,
+			"name": "actualizar el video con id 1",
+			"description": "",
+			"collectionId": "0135a9c9-5feb-6578-f245-04a92f38f92c",
+			"responses": [],
+			"rawModeData": "{\r\n    \"name\": \"el libro de la selva volumen 111110\"\r\n   \r\n}"
 		}
 	]
 }

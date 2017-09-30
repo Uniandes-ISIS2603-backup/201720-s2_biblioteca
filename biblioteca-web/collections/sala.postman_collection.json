@@ -1,14 +1,13 @@
 {
-	"id": "95c91121-093c-17f4-0d95-4ecfa37137a7",
+	"id": "ef1e5480-496a-b3c4-d24e-31c47e4b923f",
 	"name": "Sala",
 	"description": "Se presentan los test para el recurso sala",
 	"order": [
-		"448d3839-90b4-63fb-9085-7a7b02248a8c",
-		"852a7be8-124d-c089-980c-a8916e7d3532",
-		"8523df5d-54c8-6967-5334-02cdc9b86511",
-		"846b999a-59f3-ee73-d296-11c7f9f9fb5c",
-		"20bdfcdc-921b-26f9-caf6-afd9586fbea9",
-		"d64b7091-1604-3452-6ebd-d5acb72cf347"
+		"67382a85-9643-43b4-f5b6-738f4b50ec84",
+		"aed1b216-fe4b-bac8-adcb-a203b6aff7b9",
+		"ac1f38ea-f205-f04a-60a0-cc6b62607d7a",
+		"67c5c443-4fc5-0a21-e7d4-7bd2f7100695",
+		"198a61c0-c8c9-35a4-69c9-ece048261b39"
 	],
 	"folders": [],
 	"folders_order": [],
@@ -17,38 +16,30 @@
 	"public": false,
 	"requests": [
 		{
-			"id": "20bdfcdc-921b-26f9-caf6-afd9586fbea9",
-			"headers": "Content-Type: application/json\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:8080/biblioteca-web/api/salas/3",
+			"id": "198a61c0-c8c9-35a4-69c9-ece048261b39",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:8080/biblioteca-web/api/bibliotecas/1/salas/1",
 			"queryParams": [],
 			"pathVariables": {},
 			"pathVariableData": [],
 			"preRequestScript": null,
-			"method": "PUT",
-			"collectionId": "95c91121-093c-17f4-0d95-4ecfa37137a7",
-			"data": [],
-			"dataMode": "raw",
-			"name": "modificar la sala 3",
+			"method": "DELETE",
+			"collectionId": "ef1e5480-496a-b3c4-d24e-31c47e4b923f",
+			"data": null,
+			"dataMode": "params",
+			"name": "borrar una sala",
 			"description": "",
 			"descriptionFormat": "html",
-			"time": 1506258600490,
+			"time": 1506740913585,
 			"version": 2,
 			"responses": [],
-			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
+			"tests": "tests[\"Status code is 204\"] = responseCode.code === 204;",
 			"currentHelper": "normal",
-			"helperAttributes": {},
-			"rawModeData": "{\"capacidad\":2}"
+			"helperAttributes": {}
 		},
 		{
-			"id": "448d3839-90b4-63fb-9085-7a7b02248a8c",
+			"id": "67382a85-9643-43b4-f5b6-738f4b50ec84",
 			"headers": "Content-Type: application/json\n",
 			"headerData": [
 				{
@@ -58,121 +49,27 @@
 					"enabled": true
 				}
 			],
-			"url": "http://localhost:8080/biblioteca-web/api/salas",
+			"url": "http://localhost:8080/biblioteca-web/api/bibliotecas/1/salas",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
 			"method": "POST",
-			"collectionId": "95c91121-093c-17f4-0d95-4ecfa37137a7",
 			"data": [],
 			"dataMode": "raw",
-			"name": "Crear sala",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1506258488155,
 			"version": 2,
-			"responses": [],
 			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
 			"currentHelper": "normal",
 			"helperAttributes": {},
+			"time": 1506740807679,
+			"name": "Crear sala",
+			"description": "",
+			"collectionId": "ef1e5480-496a-b3c4-d24e-31c47e4b923f",
+			"responses": [],
 			"rawModeData": "{\"id\":1,\"name\": \"sala\", \"capacidad\":3}"
 		},
 		{
-			"id": "846b999a-59f3-ee73-d296-11c7f9f9fb5c",
-			"headers": "Content-Type: application/json\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:8080/biblioteca-web/api/salas",
-			"queryParams": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "POST",
-			"collectionId": "95c91121-093c-17f4-0d95-4ecfa37137a7",
-			"data": [],
-			"dataMode": "raw",
-			"name": "crear una cuarta sala",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1506258582869,
-			"version": 2,
-			"responses": [],
-			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"rawModeData": "{\"capacidad\":34}"
-		},
-		{
-			"id": "8523df5d-54c8-6967-5334-02cdc9b86511",
-			"headers": "Content-Type: application/json\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:8080/biblioteca-web/api/salas",
-			"queryParams": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "POST",
-			"collectionId": "95c91121-093c-17f4-0d95-4ecfa37137a7",
-			"data": [],
-			"dataMode": "raw",
-			"name": "crear sala",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1506258564044,
-			"version": 2,
-			"responses": [],
-			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"rawModeData": "{\"capacidad\":10}"
-		},
-		{
-			"id": "852a7be8-124d-c089-980c-a8916e7d3532",
-			"headers": "Content-Type: application/json\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:8080/biblioteca-web/api/salas",
-			"queryParams": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "POST",
-			"collectionId": "95c91121-093c-17f4-0d95-4ecfa37137a7",
-			"data": [],
-			"dataMode": "raw",
-			"name": "crear sala",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1506258540203,
-			"version": 2,
-			"responses": [],
-			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"rawModeData": "{\"capacidad\":5}"
-		},
-		{
-			"id": "d64b7091-1604-3452-6ebd-d5acb72cf347",
+			"id": "67c5c443-4fc5-0a21-e7d4-7bd2f7100695",
 			"headers": "//Content-Type: application/json\n",
 			"headerData": [
 				{
@@ -182,25 +79,84 @@
 					"enabled": false
 				}
 			],
-			"url": "http://localhost:8080/biblioteca-web/api/salas",
+			"url": "http://localhost:8080/biblioteca-web/api/bibliotecas/1/salas",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
 			"method": "GET",
-			"collectionId": "95c91121-093c-17f4-0d95-4ecfa37137a7",
 			"data": [],
 			"dataMode": "raw",
-			"name": "obetener las salas",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1506258644868,
 			"version": 2,
-			"responses": [],
 			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
 			"currentHelper": "normal",
 			"helperAttributes": {},
+			"time": 1506740878386,
+			"name": "obetener las salas",
+			"description": "",
+			"collectionId": "ef1e5480-496a-b3c4-d24e-31c47e4b923f",
+			"responses": [],
 			"rawModeData": "{\"capacidad\":1000}"
+		},
+		{
+			"id": "ac1f38ea-f205-f04a-60a0-cc6b62607d7a",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/biblioteca-web/api/bibliotecas/1/salas/1",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1506740844686,
+			"name": "modificar la sala 3",
+			"description": "",
+			"collectionId": "ef1e5480-496a-b3c4-d24e-31c47e4b923f",
+			"responses": [],
+			"rawModeData": "{\"capacidad\":2}"
+		},
+		{
+			"id": "aed1b216-fe4b-bac8-adcb-a203b6aff7b9",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/biblioteca-web/api/bibliotecas/1/salas",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1506740830737,
+			"name": "crear sala",
+			"description": "",
+			"collectionId": "ef1e5480-496a-b3c4-d24e-31c47e4b923f",
+			"responses": [],
+			"rawModeData": "{\"capacidad\":10}"
 		}
 	]
 }
