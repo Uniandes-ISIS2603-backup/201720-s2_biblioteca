@@ -80,7 +80,7 @@ public class SalaPersistence
      * @param idBiblioteca: id correspondiente a la biblioteca donde se busca.
      * @param idSala: id correspondiente al Sala buscado.
      * @return un SalaEntity.
-     */
+     
     public SalaEntity find(Long idBiblioteca, Long idSala) {
         TypedQuery<SalaEntity> q = em.createQuery("select p from SalaEntity p where (p.miBiblioteca.id = :idBiblioteca) and (p.id = :idSala)", SalaEntity.class);
         q.setParameter("idBiblioteca", idBiblioteca);
@@ -95,6 +95,15 @@ public class SalaPersistence
             sala = results.get(0);
         }
         return sala;
+    }*/
+    
+     public SalaEntity find(Long id) {
+        LOGGER.log(Level.INFO, "Consultando sala con id={0}", id);
+        /* Note que se hace uso del metodo "find" propio del EntityManager, el cual recibe como argumento 
+        el tipo de la clase y el objeto que nos hara el filtro en la base de datos en este caso el "id"
+        Suponga que es algo similar a "select * from LibroEntity where id=id;" - "SELECT * FROM table_codigo WHERE condition;" en SQL.
+         */
+        return em.find(SalaEntity.class, id);
     }
     
     

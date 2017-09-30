@@ -56,15 +56,22 @@ private static final Logger LOGGER = Logger.getLogger(SalaLogic.class.getName())
   * @return  el Sala como un objeto Entity.
   * Corresponde a la lógica de GET Salas/{id}
   */
- public SalaEntity getSala(Long idBiblioteca, Long idSala) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar Sala con id={0}", idSala);
-        SalaEntity sala = persistence.find(idBiblioteca, idSala);
-        if (sala == null) 
+ public SalaEntity getSala(Long idBiblioteca, Long idSala) throws BusinessLogicException{
+    List<SalaEntity> salasBiblioteca = getSalas(idBiblioteca);
+       SalaEntity salaR=null;
+        for (SalaEntity sala : salasBiblioteca)
         {
-            LOGGER.log(Level.SEVERE, "El Sala con el id {0} no existe", idSala);
+           if(sala.getId().equals(idSala))
+           {
+               salaR=sala;
+           }
+            
         }
-        LOGGER.log(Level.INFO, "Termina proceso de consultar Sala con id={0}", idSala);
-        return sala;
+        if(salaR==null)
+        {
+            throw new BusinessLogicException("la sala no existe");
+        }
+        return salaR;
     }
  
  /**
@@ -105,8 +112,11 @@ private static final Logger LOGGER = Logger.getLogger(SalaLogic.class.getName())
   */
     public void deleteSalas(Long idBiblioteca, Long idSala) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar Sala con id={0}", idSala);
-        SalaEntity old = getSala(idBiblioteca, idSala);
-        persistence.delete(old.getId());
+        try {
+                    SalaEntity old = getSala(idBiblioteca, idSala);
+                    persistence.delete(old.getId());
+        } catch (BusinessLogicException e) {
+        }
         LOGGER.log(Level.INFO, "Termina proceso de borrar Sala con id={0}", idSala);
     }
 }

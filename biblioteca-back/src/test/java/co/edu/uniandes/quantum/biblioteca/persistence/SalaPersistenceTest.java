@@ -162,7 +162,7 @@ public class SalaPersistenceTest
     }
 
     /**
-     * Test of find method, of class LibroPersistence.
+     * Test of find method, of class SalaPersistence.
      */
 //    @Test
 //    public void testFind() throws Exception {
