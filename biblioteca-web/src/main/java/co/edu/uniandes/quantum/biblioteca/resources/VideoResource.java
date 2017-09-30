@@ -32,7 +32,7 @@ import javax.ws.rs.WebApplicationException;
 @Path("videos")
 @Produces("application/json")
 @Consumes("application/json")
-@RequestScoped
+
 public class VideoResource {
 
     @Inject

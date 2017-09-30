@@ -1,15 +1,12 @@
 {
-	"id": "b2da8547-9c99-5658-728f-a0e357075527",
+	"id": "6e837482-8cb8-a8d1-d269-dba0efcf27e1",
 	"name": "libros",
 	"description": "",
 	"order": [
-		"c67874c5-3d77-6007-7d17-78e99e8fba4b",
-		"61e67f7d-4238-74d0-3341-be01ab9d95e1",
-		"bae5f811-e3d4-5a40-ce05-afbcd41cb004",
-		"f3731a40-fca1-fc88-45fc-59681a75ab6b",
-		"0ead7fdf-eefd-f293-7d96-5d18c10568b5",
-		"5395a85e-d31d-13c2-3be3-d30a54ee5e00",
-		"3c664198-6a77-b0e3-e36b-40e48ca1a6e0"
+		"9d10778d-6ce4-32f9-27bf-79a30466d0ee",
+		"a4a13f90-1c4a-08dc-1b28-049b7619b91c",
+		"c301ba83-01c1-e3df-6d69-145d08e424dd",
+		"9a91cf13-b8db-7818-bf33-8c846bf8d759"
 	],
 	"folders": [],
 	"folders_order": [],
@@ -18,38 +15,28 @@
 	"public": false,
 	"requests": [
 		{
-			"id": "0ead7fdf-eefd-f293-7d96-5d18c10568b5",
-			"headers": "Content-Type: application/json\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:8080/biblioteca-web/api/libros",
+			"id": "9a91cf13-b8db-7818-bf33-8c846bf8d759",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:8080/biblioteca-web/api/bibliotecas/1/videos/1",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "POST",
-			"collectionId": "b2da8547-9c99-5658-728f-a0e357075527",
-			"data": [],
-			"dataMode": "raw",
-			"name": "otro libro",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1506270658838,
-			"version": 2,
-			"responses": [],
-			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
+			"method": "DELETE",
+			"data": null,
+			"dataMode": "params",
+			"tests": "tests[\"Status code is 204\"] = responseCode.code === 204;",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"rawModeData": "{\r\n    \"name\": \"el libro de la selva Volumen 7\",\r\n    \"unidadesExistentes\": 5,\r\n    \"autor\": \"autor selvatico\",\r\n    \"unidadesDisponibles\": 5,\r\n    \"numPaginas\": 190,\r\n    \"anioPublicacion\": 1980\r\n}"
+			"time": 1506739425707,
+			"name": "borra un libro",
+			"description": "",
+			"collectionId": "6e837482-8cb8-a8d1-d269-dba0efcf27e1",
+			"responses": []
 		},
 		{
-			"id": "3c664198-6a77-b0e3-e36b-40e48ca1a6e0",
+			"id": "9d10778d-6ce4-32f9-27bf-79a30466d0ee",
 			"headers": "Content-Type: application/json\n",
 			"headerData": [
 				{
@@ -59,38 +46,7 @@
 					"enabled": true
 				}
 			],
-			"url": "http://localhost:8080/biblioteca-web/api/libros/5",
-			"queryParams": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "PUT",
-			"collectionId": "b2da8547-9c99-5658-728f-a0e357075527",
-			"data": [],
-			"dataMode": "raw",
-			"name": "actualizar el libro con id 5",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1506270784805,
-			"version": 2,
-			"responses": [],
-			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"rawModeData": "{\r\n    \"name\": \"el libro de la selva volumen 10\",\r\n    \"unidadesExistentes\": 155,\r\n    \"autor\": \"autor selvatico numero dos\",\r\n    \"unidadesDisponibles\": 5,\r\n    \"numPaginas\": 190,\r\n    \"anioPublicacion\": 1980\r\n}"
-		},
-		{
-			"id": "5395a85e-d31d-13c2-3be3-d30a54ee5e00",
-			"headers": "Content-Type: application/json\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:8080/biblioteca-web/api/libros",
+			"url": "http://localhost:8080/biblioteca-web/api/bibliotecas/1/videos",
 			"queryParams": [],
 			"preRequestScript": null,
 			"pathVariables": {},
@@ -102,15 +58,15 @@
 			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1506270742469,
-			"name": "se crea un quinto libro",
+			"time": 1506739399155,
+			"name": "crear el video selvatico 1",
 			"description": "",
-			"collectionId": "b2da8547-9c99-5658-728f-a0e357075527",
+			"collectionId": "6e837482-8cb8-a8d1-d269-dba0efcf27e1",
 			"responses": [],
-			"rawModeData": "{\r\n    \"name\": \"el libro de la selva Volumen 11\",\r\n    \"unidadesExistentes\": 5,\r\n    \"autor\": \"autor selvatico\",\r\n    \"unidadesDisponibles\": 55,\r\n    \"numPaginas\": 190,\r\n    \"anioPublicacion\": 1980\r\n}"
+			"rawModeData": "{\r\n    \"name\": \"el libro de la selva Volumen 1\"\r\n  }"
 		},
 		{
-			"id": "61e67f7d-4238-74d0-3341-be01ab9d95e1",
+			"id": "a4a13f90-1c4a-08dc-1b28-049b7619b91c",
 			"headers": "Content-Type: application/json\n",
 			"headerData": [
 				{
@@ -120,118 +76,54 @@
 					"enabled": true
 				}
 			],
-			"url": "http://localhost:8080/biblioteca-web/api/libros",
+			"url": "http://localhost:8080/biblioteca-web/api/bibliotecas/1/videos",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "POST",
-			"collectionId": "b2da8547-9c99-5658-728f-a0e357075527",
-			"data": [],
-			"dataMode": "raw",
-			"name": "Crear otro libro",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1506270546357,
-			"version": 2,
-			"responses": [],
-			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"rawModeData": "{\r\n    \"name\": \"el libro de la selva\",\r\n    \"unidadesExistentes\": 5,\r\n    \"autor\": \"autor selvatico\",\r\n    \"unidadesDisponibles\": 5,\r\n    \"numPaginas\": 190,\r\n    \"anioPublicacion\": 1980\r\n}"
-		},
-		{
-			"id": "bae5f811-e3d4-5a40-ce05-afbcd41cb004",
-			"headers": "Content-Type: application/json\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:8080/biblioteca-web/api/libros/",
-			"queryParams": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "POST",
-			"collectionId": "b2da8547-9c99-5658-728f-a0e357075527",
-			"data": [],
-			"dataMode": "raw",
-			"name": "se crea un tercer libro",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1506270582708,
-			"version": 2,
-			"responses": [],
-			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"rawModeData": "{\r\n    \"name\": \"el libro de la selva, volumen 4\",\r\n    \"unidadesExistentes\": 5,\r\n    \"autor\": \"autor selvatico numero dos\",\r\n    \"unidadesDisponibles\": 5,\r\n    \"numPaginas\": 190,\r\n    \"anioPublicacion\": 1980\r\n}"
-		},
-		{
-			"id": "c67874c5-3d77-6007-7d17-78e99e8fba4b",
-			"headers": "Content-Type: application/json\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:8080/biblioteca-web/api/libros",
-			"queryParams": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "POST",
-			"collectionId": "b2da8547-9c99-5658-728f-a0e357075527",
-			"data": [],
-			"dataMode": "raw",
-			"name": "crear el libro selvatico 1",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1506270506014,
-			"version": 2,
-			"responses": [],
-			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"rawModeData": "{\r\n    \"name\": \"el libro de la selva Volumen 1\",\r\n    \"unidadesExistentes\": 5,\r\n    \"autor\": \"autor selvatico\",\r\n    \"unidadesDisponibles\": 5,\r\n    \"numPaginas\": 190,\r\n    \"anioPublicacion\": 1980\r\n}"
-		},
-		{
-			"id": "f3731a40-fca1-fc88-45fc-59681a75ab6b",
-			"headers": "Content-Type: application/json\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:8080/biblioteca-web/api/libros",
-			"queryParams": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
 			"method": "GET",
-			"collectionId": "b2da8547-9c99-5658-728f-a0e357075527",
 			"data": [],
 			"dataMode": "raw",
-			"name": "obtener los libros",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1506270632196,
 			"version": 2,
-			"responses": [],
 			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
 			"currentHelper": "normal",
 			"helperAttributes": {},
+			"time": 1506739384920,
+			"name": "obtener los videos",
+			"description": "",
+			"collectionId": "6e837482-8cb8-a8d1-d269-dba0efcf27e1",
+			"responses": [],
 			"rawModeData": "{\r\n    \"name\": \"el libro de la selva\",\r\n    \"unidadesExistentes\": 5,\r\n    \"autor\": \"autor selvatico\",\r\n    \"unidadesDisponibles\": 5,\r\n    \"numPaginas\": 190,\r\n    \"anioPublicacion\": 1980\r\n}"
+		},
+		{
+			"id": "c301ba83-01c1-e3df-6d69-145d08e424dd",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/biblioteca-web/api/bibliotecas/1/video/1",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "tests[\"Status code is 200\"] = responseCode.code === 200;",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1506739442426,
+			"name": "actualizar el video con id 1",
+			"description": "",
+			"collectionId": "6e837482-8cb8-a8d1-d269-dba0efcf27e1",
+			"responses": [],
+			"rawModeData": "{\r\n    \"name\": \"el libro de la selva volumen 110\"\r\n   \r\n}"
 		}
 	]
 }

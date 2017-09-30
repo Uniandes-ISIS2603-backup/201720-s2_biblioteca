@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "reserva copy",
-		"_postman_id": "0df4ab88-7c14-8bc3-0998-54ba09aef9d2",
+		"_postman_id": "4c427503-bbf1-35ed-0f52-da0b8be3671f",
 		"description": "pruebas de integración para reserva",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -55,7 +55,10 @@
 				"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/reservas",
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"description": ""
 			},
 			"response": []
@@ -108,7 +111,10 @@
 				"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/reservas",
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"description": ""
 			},
 			"response": []
@@ -139,6 +145,37 @@
 				"body": {
 					"mode": "raw",
 					"raw": " {\n        \"completada\": true\n     \n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "borrar reserva",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/biblioteca-web/api/usuarios/14/reservas/1",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"fechaInicio\":\"1/26/2017\",\"completada\":true}"
 				},
 				"description": ""
 			},

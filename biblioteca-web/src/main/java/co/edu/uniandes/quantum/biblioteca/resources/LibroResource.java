@@ -32,7 +32,7 @@ import javax.ws.rs.WebApplicationException;
 @Path("libros")
 @Produces("application/json")
 @Consumes("application/json")
-@RequestScoped
+
 public class LibroResource {
 //    GET /libros   ya
 //GET /libros/{id}   ya
@@ -132,7 +132,8 @@ public class LibroResource {
     public LibroDTO updateBook(@PathParam("id") Long id, LibroDTO book, @PathParam("idBiblioteca") Long idBiblioteca) throws BusinessLogicException {
         book.setId(id);
         LibroEntity entity = LibroLogic.getLibro(idBiblioteca, id);
-        if (entity == null) {
+        if (entity == null) 
+        {
             throw new WebApplicationException(MENSAJE_ERROR + id + " no existe.", 404);
         }
         return new LibroDTO(LibroLogic.updateBook(id, book.toEntity(), idBiblioteca));

@@ -30,7 +30,7 @@ import javax.ws.rs.WebApplicationException;
 @Path("salas")
 @Produces("application/json")
 @Consumes("application/json")
-@RequestScoped
+
 public class SalaResource 
 {
 //    GET /salas  ya
