@@ -97,6 +97,14 @@ public class LibroPersistence
         q = q.setParameter("name", name);
         return q.getResultList();
     }
+   
+   public List<LibroEntity> findByPrestamo(Long idP) {
+        LOGGER.log(Level.INFO, "Consultando los libros con idPrestamo= ", idP);
+        TypedQuery<LibroEntity> q
+                = em.createQuery("select * from LibroEntity where miprestamo_id = idP", LibroEntity.class);
+        q = q.setParameter("idP", idP);
+        return q.getResultList();
+    }
 
     /**
      * Devuelve todos los libros de la base de datos.

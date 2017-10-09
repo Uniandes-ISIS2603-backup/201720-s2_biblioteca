@@ -16,7 +16,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author jp.sanmiguel
  */
 @Entity
-public class VideoEntity extends RecursoEntity implements Serializable {
+public class VideoEntity extends BaseEntity implements Serializable {
     
     @PodamExclude
     @ManyToOne    
@@ -26,14 +26,30 @@ public class VideoEntity extends RecursoEntity implements Serializable {
     private ReservaEntity miReserva;
     @PodamExclude
     @ManyToOne   
-    private PrestamoEntity miPrestamo;
+    private PrestamoEntity miPrestamo;    
     
     @PodamExclude
     @OneToOne
-    private SalaEntity sala;
-    
+    private SalaEntity sala; 
     
     private int duracion;
+    
+    private String autor;
+    
+    
+    
+    
+    
+    public String getAutor()
+    {
+        return autor;
+    }
+    public void setAutor(String pAutor)
+    {
+        autor=pAutor;
+    }
+    
+    
     
     public BibliotecaEntity getMiBiblioteca()
     {

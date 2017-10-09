@@ -6,7 +6,6 @@
 package co.edu.uniandes.quantum.biblioteca.ejb;
 
 import co.edu.uniandes.quantum.biblioteca.entities.ReservaEntity;
-import co.edu.uniandes.quantum.biblioteca.entities.RecursoEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.UsuarioEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.VideoEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.LibroEntity;

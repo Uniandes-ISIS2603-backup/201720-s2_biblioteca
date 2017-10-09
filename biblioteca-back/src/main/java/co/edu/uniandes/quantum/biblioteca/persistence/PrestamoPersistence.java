@@ -96,6 +96,21 @@ public class PrestamoPersistence
         return prestamo;
     }    
     
+    public PrestamoEntity findPorId(Long prestamoid) {
+        TypedQuery<PrestamoEntity> q = em.createQuery("select p from PrestamoEntity p where (p.id = :prestamoid)", PrestamoEntity.class);
+        q.setParameter("prestamoid", prestamoid);
+        List<PrestamoEntity> results = q.getResultList();
+        PrestamoEntity prestamo = null;
+        if (results == null) {
+            prestamo = null;
+        } else if (results.isEmpty()) {
+            prestamo = null;
+        } else if (!results.isEmpty()) {
+            prestamo = results.get(0);
+        }
+        return prestamo;
+    }  
+    
     public List<PrestamoEntity> findAll(Long usuarioid) {
         TypedQuery<PrestamoEntity> q = em.createQuery("select p from PrestamoEntity p where (p.miUsuario.id = :usuarioid) ", PrestamoEntity.class);
         q.setParameter("usuarioid", usuarioid);      

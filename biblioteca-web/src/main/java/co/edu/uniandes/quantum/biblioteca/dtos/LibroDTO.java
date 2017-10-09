@@ -15,9 +15,7 @@ public class LibroDTO
 {
     private Long id; 
     private String name;
-    private int unidadesExistentes;
     private String autor;
-    private int unidadesDisponibles;
     private int numPaginas; 
     private int anioPublicacion;
     
@@ -27,8 +25,6 @@ public class LibroDTO
         if(l!=null){
         this.id=l.getId();
         this.name =l.getName();
-        this.unidadesExistentes=l.getUnidadesExistentes();
-        this.unidadesDisponibles=l.getUnidadesDisponibles();
         this.numPaginas=l.getNumeroPaginas();
         this.anioPublicacion=l.getAnioPublicacion();
         this.autor=l.getAutor();}
@@ -57,23 +53,7 @@ public class LibroDTO
     public void setName(String name) {
         this.name = name;
     }
-
-    public int getUnidadesExistentes() {
-        return unidadesExistentes;
-    }
-
-    public void setUnidadesExistentes(int unidadesExistentes) {
-        this.unidadesExistentes = unidadesExistentes;
-    }
-
-    public int getUniandesDisponibles() {
-        return unidadesDisponibles;
-    }
-
-    public void setUniandesDisponibles(int uniandesDisponibles) {
-        this.unidadesDisponibles = uniandesDisponibles;
-    }
-
+    
     public int getNumPaginas() {
         return numPaginas;
     }
@@ -96,10 +76,7 @@ public class LibroDTO
 
     public void setAutor(String autor) {
         this.autor = autor;
-    }
-    
-    
-    
+    }   
   
     
     public LibroEntity toEntity()
@@ -110,8 +87,6 @@ public class LibroDTO
         entity.setId(this.id);
         entity.setName(this.name);
         entity.setNumeroPaginas(this.numPaginas);
-        entity.setUnidadesDisponibles(this.unidadesDisponibles);
-        entity.setUnidadesExistentes(this.unidadesExistentes);
         
         return entity;
     }

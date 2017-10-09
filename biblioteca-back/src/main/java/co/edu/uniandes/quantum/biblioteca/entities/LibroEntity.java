@@ -16,7 +16,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author cg.chavarro
  */
 @Entity
-public class LibroEntity extends RecursoEntity implements Serializable
+public class LibroEntity extends BaseEntity implements Serializable
 {
     private int numPaginas;
     private int anioPublicacion;
@@ -24,6 +24,18 @@ public class LibroEntity extends RecursoEntity implements Serializable
     @PodamExclude
     @ManyToOne    
     private BibliotecaEntity miBiblioteca;
+    
+    private String autor;    
+    
+    public String getAutor()
+    {
+        return autor;
+    }
+    public void setAutor(String pAutor)
+    {
+        autor=pAutor;
+    }    
+  
 
     public int getNumPaginas() {
         return numPaginas;

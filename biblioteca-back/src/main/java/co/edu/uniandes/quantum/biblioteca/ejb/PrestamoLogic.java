@@ -64,6 +64,10 @@ public class PrestamoLogic {
     public PrestamoEntity getPrestamo(Long usuarioid, Long prestamoid) {
         return persistence.find(usuarioid, prestamoid);
     }
+    
+    public PrestamoEntity getPrestamo(Long prestamoid) {
+        return persistence.findPorId(prestamoid);
+    }
 
     /**
      * Se encarga de crear un Prestamo en la base de datos.
