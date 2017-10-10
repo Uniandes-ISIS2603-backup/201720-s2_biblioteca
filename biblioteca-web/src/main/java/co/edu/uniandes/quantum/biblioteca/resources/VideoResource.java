@@ -29,7 +29,7 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author jf.garcia
  */
-@Path("videos")
+@Path("{idAcceso: \\\\d+}/videos")
 @Produces("application/json")
 @Consumes("application/json")
 
@@ -82,14 +82,18 @@ public class VideoResource {
 
    @POST
    @Path("bib")
-   public VideoDTO createVideo(@PathParam("idBiblioteca") Long idBiblioteca, VideoDTO video) throws BusinessLogicException {
-   return new VideoDTO(VideoLogic.createVideo(idBiblioteca,  video.toEntity()));
+   public VideoDTO createVideo(@PathParam("idAcceso") Long idAcceso, @PathParam("idBiblioteca") Long idBiblioteca, VideoDTO video) throws BusinessLogicException {
+   
+       validarAccesoAdmin(idAcceso);
+       return new VideoDTO(VideoLogic.createVideo(idBiblioteca,  video.toEntity()));
 }
 
 
     @PUT
     @Path("{id: \\d+}")
-    public VideoDTO updateVideo(@PathParam("idBiblioteca") Long idBiblioteca, @PathParam("id") Long idVideo, VideoDTO video) throws BusinessLogicException {
+    public VideoDTO updateVideo(@PathParam("idAcceso") Long idAcceso,@PathParam("idBiblioteca") Long idBiblioteca, @PathParam("id") Long idVideo, VideoDTO video) throws BusinessLogicException {
+               validarAccesoAdmin(idAcceso);
+
         video.setId(idVideo);
         VideoEntity entity = VideoLogic.getVideo(idBiblioteca, idVideo);
         if (entity == null) {
@@ -101,7 +105,9 @@ public class VideoResource {
 
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteVideo(@PathParam("idBiblioteca") Long idBiblioteca, @PathParam("id") Long idVideo) throws BusinessLogicException {
+    public void deleteVideo(@PathParam("idAcceso") Long idAcceso,@PathParam("idBiblioteca") Long idBiblioteca, @PathParam("id") Long idVideo) throws BusinessLogicException {
+               validarAccesoAdmin(idAcceso);
+
         VideoEntity entity = VideoLogic.getVideo(idBiblioteca, idVideo);
         if (entity == null) {
             throw new WebApplicationException("El recurso /bibliotecas/" + idBiblioteca + "/videos/" + idVideo + " no existe.", 404);
@@ -134,5 +140,11 @@ public class VideoResource {
             list.add(new VideoDetailDTO(entity));
         }
         return list;
+    }
+    
+    private void validarAccesoAdmin(Long id)
+    {
+        if(id!=999)
+            throw new WebApplicationException("Sólo un administrador del sistema puede realizar esta operación.");
     }
 }

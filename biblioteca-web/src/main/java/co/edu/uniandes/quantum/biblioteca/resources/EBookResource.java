@@ -22,7 +22,7 @@ import javax.ws.rs.WebApplicationException;
 /**
  * @author de.agudelo
  */
-@Path("eBooks")
+@Path("{idAcceso: \\d+}/eBooks")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -54,13 +54,15 @@ public class EBookResource {
     }
     
     @POST
-    public EBookDTO createEBook(EBookDTO eBook) throws BusinessLogicException {
+    public EBookDTO createEBook(@PathParam("idAcceso") Long idAcceso,EBookDTO eBook) throws BusinessLogicException {
+        validarAccesoAdmin(idAcceso);
         return new EBookDTO(EBookLogic.createEBook(eBook.toEntity()));
     }
 
     @PUT
     @Path("{id: \\d+}")
-    public EBookDTO updateEBook(@PathParam("id") Long id, EBookDTO ebook) throws BusinessLogicException {
+    public EBookDTO updateEBook(@PathParam("idAcceso") Long idAcceso,@PathParam("id") Long id, EBookDTO ebook) throws BusinessLogicException {
+         validarAccesoAdmin(idAcceso);
         ebook.setId(id);
         EBookEntity entity = EBookLogic.getEBook(id);
         if (entity == null) {
@@ -71,7 +73,8 @@ public class EBookResource {
 
     @DELETE
     @Path("{eBooksId: \\d+}")
-    public void deleteEBook(@PathParam("eBooksId") Long id) throws BusinessLogicException {
+    public void deleteEBook(@PathParam("idAcceso") Long idAcceso,@PathParam("eBooksId") Long id) throws BusinessLogicException {
+         validarAccesoAdmin(idAcceso);
         EBookEntity entity = EBookLogic.getEBook(id);
         if (entity == null) {
             throw new WebApplicationException(MEN_ERROR + id + NO_EXISTE, 404);
@@ -88,6 +91,12 @@ public class EBookResource {
         return list;
 
 
+    }
+    
+    private void validarAccesoAdmin(Long id)
+    {
+        if(id!=999)
+            throw new WebApplicationException("Sólo un administrador del sistema puede realizar esta operación.");
     }
 
 

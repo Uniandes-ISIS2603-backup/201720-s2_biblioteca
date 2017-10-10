@@ -27,7 +27,7 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author da.leon
  */
-@Path("comentario")
+@Path("{idAcceso: \\d+}/comentario")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -112,5 +112,11 @@ public class ComentarioResource
             list.add(new ComentarioDTO(entity));
         }
         return list;
+    }
+    
+    private void validarAccesoAdmin(Long id)
+    {
+        if(id!=999)
+            throw new WebApplicationException("Sólo un administrador del sistema puede realizar esta operación.");
     }
 }

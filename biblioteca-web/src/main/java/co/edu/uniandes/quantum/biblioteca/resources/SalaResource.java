@@ -27,7 +27,7 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author cg.chavarro
  */
-@Path("salas")
+@Path("{idAcceso: \\d+}/salas")
 @Produces("application/json")
 @Consumes("application/json")
 
@@ -60,13 +60,15 @@ public class SalaResource
     }
     
     @POST
-    public SalaDTO createSala(@PathParam("idBiblioteca") Long idBiblioteca, SalaDTO sala) throws BusinessLogicException {
+    public SalaDTO createSala(@PathParam("idAcceso") Long idAcceso,@PathParam("idBiblioteca") Long idBiblioteca, SalaDTO sala) throws BusinessLogicException {
+        validarAccesoAdmin(idAcceso);
         return new SalaDTO(SalaLogic.crearSala(idBiblioteca, sala.toEntity()));
     }
    
     @PUT
     @Path("{id: \\d+}")
-    public SalaDTO updateSala(@PathParam("idBiblioteca") Long idBiblioteca, @PathParam("idSala") Long idSala, SalaDTO sala) throws BusinessLogicException {
+    public SalaDTO updateSala(@PathParam("idAcceso") Long idAcceso,@PathParam("idBiblioteca") Long idBiblioteca, @PathParam("idSala") Long idSala, SalaDTO sala) throws BusinessLogicException {
+        validarAccesoAdmin(idAcceso);
         sala.setId(idSala);
         SalaEntity entity = SalaLogic.getSala(idBiblioteca,idSala);
         if (entity == null) {
@@ -79,7 +81,8 @@ public class SalaResource
     
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteSala(@PathParam("idBiblioteca") Long idBiblioteca, @PathParam("idSala") Long idSala) throws BusinessLogicException {
+    public void deleteSala(@PathParam("idAcceso") Long idAcceso,@PathParam("idBiblioteca") Long idBiblioteca, @PathParam("idSala") Long idSala) throws BusinessLogicException {
+        validarAccesoAdmin(idAcceso);
         SalaEntity entity = SalaLogic.getSala(idBiblioteca,idSala);
         if (entity == null) {
             throw new WebApplicationException("El recurso /bibliotecas/" + idBiblioteca + "/salas/" + idSala + " no existe.", 404);
@@ -106,5 +109,11 @@ public class SalaResource
             list.add(new SalaDTO(entity));
         }
         return list;
+    }
+    
+    private void validarAccesoAdmin(Long id)
+    {
+        if(id!=999)
+            throw new WebApplicationException("Sólo un administrador del sistema puede realizar esta operación.");
     }
 }

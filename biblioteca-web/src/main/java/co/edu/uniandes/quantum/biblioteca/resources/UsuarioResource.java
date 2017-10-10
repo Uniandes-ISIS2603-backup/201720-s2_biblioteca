@@ -16,6 +16,7 @@ import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.GET;;
@@ -32,7 +33,7 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author f.posada
  */
-@Path("usuarios")
+@Path("{idAcceso: \\d+}/usuarios")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -48,7 +49,8 @@ public class UsuarioResource {
     PrestamoLogic prestamoLogic;
 
     @GET
-    public List<UsuarioDTO> getUsuarios() throws BusinessLogicException {
+    public List<UsuarioDTO> getUsuarios(@PathParam("idAcceso") Long idAcceso) throws BusinessLogicException {
+        validarAccesoAdmin(idAcceso);
         if(listUsuarioEntity2DetailDTO(usuarioLogic.getUsuarios()).isEmpty())
             throw new WebApplicationException("No hay usuarios");
         else
@@ -57,7 +59,9 @@ public class UsuarioResource {
 
     @GET
     @Path("{id: \\d+}")
-    public UsuarioDetailDTO getUsuario(@PathParam("id") Long id) throws BusinessLogicException {
+    public UsuarioDetailDTO getUsuario(@PathParam("idAcceso") Long idAcceso,@PathParam("id") Long id) throws BusinessLogicException {
+        if(!Objects.equals(idAcceso, id)&&idAcceso!=999)
+            throw new WebApplicationException("Sólo un admin o el usuario con id "+id+" puede ver esta información.");
         UsuarioEntity entity = usuarioLogic.getUsuario(id);
         if (entity == null) {
             throw new WebApplicationException(MEN_ERROR + id + NO_EXISTE, 404);
@@ -73,7 +77,9 @@ public class UsuarioResource {
 
     @PUT
     @Path("{id: \\d+}")
-    public UsuarioDetailDTO updateUsuario(@PathParam("id") Long id, UsuarioDetailDTO usuario) throws BusinessLogicException {
+    public UsuarioDetailDTO updateUsuario(@PathParam("idAcceso") Long idAcceso,@PathParam("id") Long id, UsuarioDetailDTO usuario) throws BusinessLogicException {
+        if(!Objects.equals(idAcceso, id)&&idAcceso!=999)
+            throw new WebApplicationException("Sólo un admin o el usuario con id "+id+" puede ver esta información.");
         usuario.setId(id);
         UsuarioEntity entity = usuarioLogic.getUsuario(id);
         if (entity == null) {
@@ -84,7 +90,9 @@ public class UsuarioResource {
 
     @DELETE
     @Path("{usuariosId: \\d+}")
-    public void deleteUsuario(@PathParam("usuariosId") Long id) throws BusinessLogicException {
+    public void deleteUsuario(@PathParam("idAcceso") Long idAcceso,@PathParam("usuariosId") Long id) throws BusinessLogicException {
+        if(!Objects.equals(idAcceso, id)&&idAcceso!=999)
+            throw new WebApplicationException("Sólo un admin o el usuario con id "+id+" puede ver esta información.");
         UsuarioEntity entity = usuarioLogic.getUsuario(id);
         if (entity == null) {
             throw new WebApplicationException(MEN_ERROR + id + NO_EXISTE, 404);
@@ -93,7 +101,9 @@ public class UsuarioResource {
     }   
     
     @Path("{idUsuario: \\d+}/prestamos")
-    public Class<PrestamoResource> getPrestamoResource(@PathParam("idUsuario") Long usuarioId) throws BusinessLogicException {
+    public Class<PrestamoResource> getPrestamoResource(@PathParam("idAcceso") Long idAcceso,@PathParam("idUsuario") Long usuarioId) throws BusinessLogicException {
+        if(!Objects.equals(idAcceso, usuarioId)&&idAcceso!=999)
+            throw new WebApplicationException("Sólo un admin o el usuario con id "+usuarioId+" puede ver esta información.");
         UsuarioEntity entity = usuarioLogic.getUsuario(usuarioId);
         if (entity == null) {
             throw new WebApplicationException(MEN_ERROR + usuarioId + "/prestamos no existe.", 404);
@@ -102,7 +112,9 @@ public class UsuarioResource {
     }
     
     @Path("{idUsuario: \\d+}/multas")
-    public Class<MultaResource> getMultaResource(@PathParam("idUsuario") Long usuariosId) {
+    public Class<MultaResource> getMultaResource(@PathParam("idAcceso") Long idAcceso,@PathParam("idUsuario") Long usuariosId) {
+       if(!Objects.equals(idAcceso, usuariosId)&&idAcceso!=999)
+            throw new WebApplicationException("Sólo un admin o el usuario con id "+usuariosId+" puede ver esta información.");
         UsuarioEntity entity = usuarioLogic.getUsuario(usuariosId);
         if (entity == null) {
             throw new WebApplicationException(MEN_ERROR + usuariosId + "/multas no existe.", 404);
@@ -111,7 +123,9 @@ public class UsuarioResource {
     }
     
      @Path("{idUsuario: \\d+}/medioPago")
-    public Class<MedioPagoResource> getMedioPagoResource(@PathParam("idUsuario") Long usuariosId) {
+    public Class<MedioPagoResource> getMedioPagoResource(@PathParam("idAcceso") Long idAcceso,@PathParam("idUsuario") Long usuariosId) {
+       if(!Objects.equals(idAcceso, usuariosId)&&idAcceso!=999)
+            throw new WebApplicationException("Sólo un admin o el usuario con id "+usuariosId+" puede ver esta información.");
         UsuarioEntity entity = usuarioLogic.getUsuario(usuariosId);
         if (entity == null) {
             throw new WebApplicationException(MEN_ERROR + usuariosId + "/medioPago no existe.", 404);
@@ -121,7 +135,7 @@ public class UsuarioResource {
     
     
     @Path("{idUsuario: \\d+}/reservas")
-    public Class<ReservaResource> getReservaResource(@PathParam("idUsuario") Long usuariosId) {
+    public Class<ReservaResource> getReservaResource(@PathParam("idAcceso") Long idAcceso,@PathParam("idUsuario") Long usuariosId) {
         UsuarioEntity entity = usuarioLogic.getUsuario(usuariosId);
         if (entity == null) {
             throw new WebApplicationException(MEN_ERROR + usuariosId + "/reservas no existe.", 404);
@@ -154,5 +168,11 @@ public class UsuarioResource {
             list.add(new PrestamoDetailDTO(entity));
         }
         return list;
+    }
+    
+    private void validarAccesoAdmin(Long id)
+    {
+        if(id!=999)
+            throw new WebApplicationException("Sólo un administrador del sistema puede realizar esta operación.");
     }
 }

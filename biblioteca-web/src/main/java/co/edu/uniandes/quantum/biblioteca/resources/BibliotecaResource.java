@@ -55,7 +55,7 @@ import javax.ws.rs.WebApplicationException;
  * @author ISIS2603, jp.sanmiguel
  *
  */
-@Path("bibliotecas")
+@Path("{idAcceso: \\d+}/bibliotecas")
 @Produces("application/json")
 @Consumes("application/json")
 public class BibliotecaResource {
@@ -76,7 +76,8 @@ public class BibliotecaResource {
      * @throws BusinessLogicException
      */
     @POST
-    public BibliotecaDTO createBiblioteca(BibliotecaDTO Biblioteca) throws BusinessLogicException {
+    public BibliotecaDTO createBiblioteca(@PathParam("idAcceso") Long idAcceso,BibliotecaDTO Biblioteca) throws BusinessLogicException {
+         validarAccesoAdmin(idAcceso);
         return new BibliotecaDetailDTO(bibliotecaLogic.createBiblioteca(Biblioteca.toEntity()));
     }
 
@@ -110,7 +111,8 @@ public class BibliotecaResource {
      */
     @PUT
     @Path("{idBiblioteca: \\d+}")
-    public BibliotecaDTO updateBiblioteca(@PathParam("idBiblioteca") Long id, BibliotecaDTO biblioteca) throws BusinessLogicException, UnsupportedOperationException {
+    public BibliotecaDTO updateBiblioteca(@PathParam("idAcceso") Long idAcceso,@PathParam("idBiblioteca") Long id, BibliotecaDTO biblioteca) throws BusinessLogicException, UnsupportedOperationException {
+         validarAccesoAdmin(idAcceso);
         biblioteca.setId(id);
         BibliotecaEntity entity = bibliotecaLogic.getBiblioteca(id);
         if (entity == null) {
@@ -159,7 +161,8 @@ public class BibliotecaResource {
      */
     @DELETE
     @Path("{idBiblioteca: \\d+}")
-    public void deleteBiblioteca(@PathParam("idBiblioteca") Long id) throws BusinessLogicException {
+    public void deleteBiblioteca(@PathParam("idAcceso") Long idAcceso,@PathParam("idBiblioteca") Long id) throws BusinessLogicException {
+        validarAccesoAdmin(idAcceso);
         BibliotecaEntity entity = bibliotecaLogic.getBiblioteca(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso biblioteca " + id + "  no existe.", 404);
@@ -203,5 +206,11 @@ public class BibliotecaResource {
             list.add(new BibliotecaDTO(entity));
         }
         return list;
+    }
+    
+    private void validarAccesoAdmin(Long id)
+    {
+        if(id!=999)
+            throw new WebApplicationException("Sólo un administrador del sistema puede realizar esta operación.");
     }
 }

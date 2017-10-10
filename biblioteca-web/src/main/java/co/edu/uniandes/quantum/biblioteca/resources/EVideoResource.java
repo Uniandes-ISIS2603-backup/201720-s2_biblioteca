@@ -22,7 +22,7 @@ import javax.ws.rs.WebApplicationException;
 /**
  * @author de.agudelo
  */
-@Path("eVideos")
+@Path("{idAcceso: \\d+}/eVideos")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -53,13 +53,15 @@ public class EVideoResource {
     }
 
     @POST
-    public EVideoDTO createEVideo(EVideoDTO eVideo) throws BusinessLogicException {
+    public EVideoDTO createEVideo(@PathParam("idAcceso") Long idAcceso,EVideoDTO eVideo) throws BusinessLogicException {
+        validarAccesoAdmin(idAcceso);
         return new EVideoDTO(EVideoLogic.createEVideo(eVideo.toEntity()));
     }
 
     @PUT
     @Path("{id: \\d+}")
-    public EVideoDTO updateEVideo(@PathParam("id") Long id, EVideoDTO eVideo) throws BusinessLogicException {
+    public EVideoDTO updateEVideo(@PathParam("idAcceso") Long idAcceso,@PathParam("id") Long id, EVideoDTO eVideo) throws BusinessLogicException {
+        validarAccesoAdmin(idAcceso);
         eVideo.setId(id);
         EVideoEntity entity = EVideoLogic.getEVideo(id);
         if (entity == null) {
@@ -70,7 +72,8 @@ public class EVideoResource {
 
     @DELETE
     @Path("{eVideosId: \\d+}")
-    public void deleteEVideo(@PathParam("eVideosId") Long id) throws BusinessLogicException {
+    public void deleteEVideo(@PathParam("idAcceso") Long idAcceso,@PathParam("eVideosId") Long id) throws BusinessLogicException {
+         validarAccesoAdmin(idAcceso);
         EVideoEntity entity = EVideoLogic.getEVideo(id);
         if (entity == null) {
             throw new WebApplicationException(MEN_ERROR + id + NO_EXISTE, 404);
@@ -87,5 +90,11 @@ public class EVideoResource {
         return list;
 
 
+    }
+    
+    private void validarAccesoAdmin(Long id)
+    {
+        if(id!=999)
+            throw new WebApplicationException("Sólo un administrador del sistema puede realizar esta operación.");
     }
 }

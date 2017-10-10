@@ -28,7 +28,7 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author da.leon
  */
-@Path("blog")
+@Path("{idAcceso: \\d+}/blog")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -66,8 +66,9 @@ public class BlogResource
      * @throws BusinessLogicException
      */
     @POST
-    public BlogDTO createBlog(BlogDTO Blog) throws BusinessLogicException {        
-         return new BlogDTO(BlogLogic.crearBlog(Blog.toEntity()));
+    public BlogDTO createBlog(@PathParam("idAcceso") Long idAcceso,BlogDTO Blog) throws BusinessLogicException {        
+         validarAccesoAdmin(idAcceso);
+        return new BlogDTO(BlogLogic.crearBlog(Blog.toEntity()));
     }
     
     
@@ -86,7 +87,8 @@ public class BlogResource
     
     @DELETE
     @Path("{BlogsId: \\d+}")
-    public void deleteBlog(@PathParam("BlogsId") Long id) throws BusinessLogicException {
+    public void deleteBlog(@PathParam("idAcceso") Long idAcceso,@PathParam("BlogsId") Long id) throws BusinessLogicException {
+         validarAccesoAdmin(idAcceso);
         BlogEntity entity = BlogLogic.getBlog(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /Blogs/" + id + " no existe.", 404);
@@ -113,5 +115,11 @@ public class BlogResource
             list.add(new BlogDTO(entity));
         }
         return list;
+    }
+    
+    private void validarAccesoAdmin(Long id)
+    {
+        if(id!=999)
+            throw new WebApplicationException("Sólo un administrador del sistema puede realizar esta operación.");
     }
 }

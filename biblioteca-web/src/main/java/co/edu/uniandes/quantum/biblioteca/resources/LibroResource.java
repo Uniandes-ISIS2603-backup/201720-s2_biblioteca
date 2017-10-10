@@ -29,7 +29,7 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author cg.chavarro
  */
-@Path("libros")
+@Path("{idAcceso: \\d+}/libros")
 @Produces("application/json")
 @Consumes("application/json")
 
@@ -114,19 +114,22 @@ public class LibroResource {
      */
     @PUT
     @Path("{bib}")
-    public LibroDTO ponerBookBiblioteca(LibroDTO book, @PathParam("idBiblioteca") Long idBiblioteca) throws BusinessLogicException {
+    public LibroDTO ponerBookBiblioteca(@PathParam("idAcceso") Long idAcceso,LibroDTO book, @PathParam("idBiblioteca") Long idBiblioteca) throws BusinessLogicException {
+         validarAccesoAdmin(idAcceso);
         return new LibroDTO(LibroLogic.colocarLibroBiblioteca(book.toEntity(), idBiblioteca));
     }
     
      @PUT
      @Path("{actual}/{prestamo}")
     public LibroDTO ponerBookPrestamo(LibroDTO book, @PathParam("idPrestamo") Long idPrestamo) throws BusinessLogicException {
+        
         LibroEntity lib=book.toEntity();
         return new LibroDTO(LibroLogic.colocarLibroPrestamo(lib,idPrestamo));
     }
     
     @POST
-    public LibroDTO createBook(LibroDTO book) throws BusinessLogicException {
+    public LibroDTO createBook(@PathParam("idAcceso") Long idAcceso,LibroDTO book) throws BusinessLogicException {
+         validarAccesoAdmin(idAcceso);
         return new LibroDTO(LibroLogic.crearLibro(book.toEntity()));
     }
 
@@ -158,7 +161,8 @@ public class LibroResource {
 
     @PUT
     @Path("{id: \\d+}")
-    public LibroDTO updateBook(@PathParam("id") Long id, LibroDTO book) throws BusinessLogicException {
+    public LibroDTO updateBook(@PathParam("idAcceso") Long idAcceso,@PathParam("id") Long id, LibroDTO book) throws BusinessLogicException {
+         validarAccesoAdmin(idAcceso);
         book.setId(id);
         LibroEntity entity = LibroLogic.getLibro(id);
         if (entity == null) 
@@ -170,7 +174,8 @@ public class LibroResource {
 
     @DELETE
     @Path("{booksId: \\d+}")
-    public void deleteBook(@PathParam("booksId") Long id) throws BusinessLogicException {
+    public void deleteBook(@PathParam("idAcceso") Long idAcceso,@PathParam("booksId") Long id) throws BusinessLogicException {
+       validarAccesoAdmin(idAcceso);
         LibroEntity entity = LibroLogic.getLibro(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /books/" + id + " no existe.", 404);
@@ -203,5 +208,11 @@ public class LibroResource {
             list.add(new LibroDetailDTO(entity));
         }
         return list;
+    }
+    
+    private void validarAccesoAdmin(Long id)
+    {
+        if(id!=999)
+            throw new WebApplicationException("Sólo un administrador del sistema puede realizar esta operación.");
     }
 }
