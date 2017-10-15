@@ -21,6 +21,12 @@ public class LibroEntity extends BaseEntity implements Serializable
     private int numPaginas;
     private int anioPublicacion;
     
+       @PodamExclude
+    @ManyToOne   
+    private PrestamoEntity miPrestamo; 
+    @PodamExclude
+    @ManyToOne   
+    private ReservaEntity miReserva; 
     @PodamExclude
     @ManyToOne    
     private BibliotecaEntity miBiblioteca;
@@ -69,12 +75,7 @@ public class LibroEntity extends BaseEntity implements Serializable
         this.miReserva = miReserva;
     }
     
-    @PodamExclude
-    @ManyToOne   
-    private PrestamoEntity miPrestamo; 
-    @PodamExclude
-    @ManyToOne   
-    private ReservaEntity miReserva; 
+ 
    
     
     public int getNumeroPaginas()
