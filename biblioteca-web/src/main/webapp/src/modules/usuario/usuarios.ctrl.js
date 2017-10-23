@@ -1,9 +1,9 @@
 (function (ng) {
     var mod = ng.module("usuarioModule");
-    mod.constant("usuarioContext", "api/usuarios");
+    mod.constant("usuarioContext", "api/999/usuarios");
     mod.controller('usuarioCtrl', ['$scope', '$http', 'usuarioContext',
         function ($scope, $http, usuarioContext) {
-            $http.get('data/usuarios.json').then(function (response) {
+            $http.get(usuarioContext).then(function (response) {
                 $scope.usuarioRecords = response.data;
             });
         }
