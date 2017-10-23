@@ -7,7 +7,7 @@
             // En basePath se encuentran los templates y controladores de módulo
             var basePath = 'src/modules/biblioteca/';
             // Mostrar la lista de autores será el estado por defecto del módulo
-            $urlRouterProvider.otherwise("/bibliotecasList");
+            //$urlRouterProvider.otherwise("/bibliotecasList");
             // Definición del estado 'authorsList' donde se listan los autores
             $stateProvider.state('bibliotecasList', {
                 // Url que aparecerá en el browser
