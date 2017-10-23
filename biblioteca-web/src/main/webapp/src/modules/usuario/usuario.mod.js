@@ -1,4 +1,4 @@
-function (ng) {
+(function (ng) {
     // Definición del módulo
     var mod = ng.module("usuarioModule", ['ui.router']);
 
@@ -22,4 +22,4 @@ function (ng) {
             });
         }
     ]);
-}(window.angular);
+})(window.angular);
