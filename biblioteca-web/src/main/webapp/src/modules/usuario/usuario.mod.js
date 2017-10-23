@@ -7,11 +7,11 @@
             // En basePath se encuentran los templates y controladores de módulo
             var basePath = 'src/modules/usuario/';
             // Mostrar la lista de autores será el estado por defecto del módulo
-            $urlRouterProvider.otherwise("/usuarioList");
+            //$urlRouterProvider.otherwise("/usuarioList");
             // Definición del estado 'authorsList' donde se listan los autores
             $stateProvider.state('usuarioList', {
                 // Url que aparecerá en el browser
-                url: '/pruebaz',
+                url: '/usuarios',
                 views: {
                     'mainView': {
                         templateUrl: basePath + 'usuarios.list.html',
