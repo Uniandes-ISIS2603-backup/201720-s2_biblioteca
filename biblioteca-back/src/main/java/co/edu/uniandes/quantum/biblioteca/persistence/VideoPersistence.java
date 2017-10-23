@@ -74,29 +74,6 @@ public class VideoPersistence
          Es similar a "delete from LibroEntity where id=id;" - "DELETE FROM table_codigo WHERE condition;" en SQL.*/
         em.remove(entity);
     }
-
-    /**
-     * Busca si hay algun video con el id que se envía de argumento
-     * @param idBiblioteca id correspondiente a la biblioteca donde se busca el video.
-     * @param idVideo: id correspondiente al video buscado.
-     * @return un VideoEntity.
-     */
-    public VideoEntity find(Long idBiblioteca, Long idVideo) {
-        LOGGER.log(Level.INFO, "Consultando video con id={0}", idVideo);
-        TypedQuery<VideoEntity> q = em.createQuery("select p from VideoEntity p where (p.miBiblioteca.id = :idBiblioteca) and (p.id = :idVideo)", VideoEntity.class);
-        q.setParameter("idBiblioteca", idBiblioteca);
-        q.setParameter("idVideo", idVideo);
-        List<VideoEntity> results = q.getResultList();
-        VideoEntity Video = null;
-        if (results == null) {
-            Video = null;
-        } else if (results.isEmpty()) {
-            Video = null;
-        } else if (results.size() >= 1) {
-            Video = results.get(0);
-        }
-        return Video;
-    }
     
         public VideoEntity find(Long id) {
         LOGGER.log(Level.INFO, "Consultando video con id={0}", id);
@@ -126,6 +103,15 @@ public class VideoPersistence
         TypedQuery query = em.createQuery("select u from VideoEntity u", VideoEntity.class);
         // Note que en el query se hace uso del método getResultList() que obtiene una lista de videos.
         return query.getResultList();
+    }
+    
+       
+   public List<VideoEntity> findByPrestamo(Long idP) {
+        LOGGER.log(Level.INFO, "Consultando los videos con idPrestamo= ", idP);
+        TypedQuery<VideoEntity> q
+                = em.createQuery("select * from VideoEntity where miprestamo_id = idP", VideoEntity.class);
+        q = q.setParameter("idP", idP);
+        return q.getResultList();
     }
     
 }

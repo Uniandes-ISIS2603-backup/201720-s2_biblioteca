@@ -41,22 +41,21 @@ public class VideoResource {
     private static final String MENSAJE_ERROR = "El recurso /Videos/";
     private static final String NO_EXISTE = "no existe.";
 
-    /**@GET
-    public List<VideoDTO> getVideos() throws WebApplicationException {
-
-        if (listEntity2DTO(VideoLogic.getVideos()).isEmpty()) {
-            throw new WebApplicationException("No hay Videos en el sistema.");
-        } else {
-            return listEntity2DTO(VideoLogic.getVideos());
-        }
-    }*/
-
     @GET
     public List<VideoDTO> getVideosBiblioteca(@PathParam("idBiblioteca") Long idBiblioteca) throws BusinessLogicException {
         if (listEntity2DTO(VideoLogic.getVideos(idBiblioteca)).isEmpty()) {
             throw new WebApplicationException("No hay Videos en el sistema.");
         } else {
             return listEntity2DTO(VideoLogic.getVideos(idBiblioteca));
+        }
+    }
+    
+    @GET
+    public List<VideoDetailDTO> getVideos() throws BusinessLogicException {
+        if (listEntity2DTO(VideoLogic.getVideos()).isEmpty()) {
+            throw new WebApplicationException("No hay videos en el sistema.");
+        } else {
+            return listEntity2DetailDTO(VideoLogic.getVideos());
         }
     }
 
@@ -79,42 +78,59 @@ public class VideoResource {
         }
         return new VideoDTO(entity);
     }
+    
+     /**
+     *
+     * @param idAcceso
+     * @param video
+     * @param idBiblioteca
+     * @return
+     * @throws BusinessLogicException
+     */
+    @PUT
+    @Path("{bib}")
+    public VideoDTO ponerVideoBiblioteca(@PathParam("idAcceso") Long idAcceso,VideoDTO video, @PathParam("idBiblioteca") Long idBiblioteca) throws BusinessLogicException {
+         validarAccesoAdmin(idAcceso);
+        return new VideoDTO(VideoLogic.colocarVideoBiblioteca(video.toEntity(), idBiblioteca));
+    }
+    
+     @PUT
+     @Path("{actual}/{prestamo}")
+    public VideoDTO ponerVideoPrestamo(VideoDTO video, @PathParam("idPrestamo") Long idPrestamo) throws BusinessLogicException {
+        
+        VideoEntity vid = video.toEntity();
+        return new VideoDTO(VideoLogic.colocarVideoPrestamo(vid,idPrestamo));
+    }
 
-   @POST
-   @Path("bib")
-   public VideoDTO createVideo(@PathParam("idAcceso") Long idAcceso, @PathParam("idBiblioteca") Long idBiblioteca, VideoDTO video) throws BusinessLogicException {
-   
-       validarAccesoAdmin(idAcceso);
-       return new VideoDTO(VideoLogic.createVideo(idBiblioteca,  video.toEntity()));
-}
-
+    @POST
+    public VideoDTO createVideo(@PathParam("idAcceso") Long idAcceso,VideoDTO video) throws BusinessLogicException {
+         validarAccesoAdmin(idAcceso);
+        return new VideoDTO(VideoLogic.crearVideo(video.toEntity()));
+    }
 
     @PUT
     @Path("{id: \\d+}")
-    public VideoDTO updateVideo(@PathParam("idAcceso") Long idAcceso,@PathParam("idBiblioteca") Long idBiblioteca, @PathParam("id") Long idVideo, VideoDTO video) throws BusinessLogicException {
-               validarAccesoAdmin(idAcceso);
-
-        video.setId(idVideo);
-        VideoEntity entity = VideoLogic.getVideo(idBiblioteca, idVideo);
-        if (entity == null) {
-            throw new WebApplicationException("El recurso /bibliotecas/" + idBiblioteca + "/videos/" + idVideo + " no existe.", 404);
+    public VideoDTO updateVideo(@PathParam("idAcceso") Long idAcceso,@PathParam("id") Long id, VideoDTO video) throws BusinessLogicException {
+        validarAccesoAdmin(idAcceso);
+        video.setId(id);
+        VideoEntity entity = VideoLogic.getVideo(id);
+        if (entity == null) 
+        {
+            throw new WebApplicationException(MENSAJE_ERROR + id + " no existe.", 404);
         }
-        return new VideoDTO(VideoLogic.updateVideo(idBiblioteca, video.toEntity()));
-
+        return new VideoDTO(VideoLogic.updateVideo(id, video.toEntity()));
     }
 
     @DELETE
-    @Path("{id: \\d+}")
-    public void deleteVideo(@PathParam("idAcceso") Long idAcceso,@PathParam("idBiblioteca") Long idBiblioteca, @PathParam("id") Long idVideo) throws BusinessLogicException {
-               validarAccesoAdmin(idAcceso);
-
-        VideoEntity entity = VideoLogic.getVideo(idBiblioteca, idVideo);
+    @Path("{VideosId: \\d+}")
+    public void deleteVideo(@PathParam("idAcceso") Long idAcceso,@PathParam("VideosId") Long id) throws BusinessLogicException {
+       validarAccesoAdmin(idAcceso);
+        VideoEntity entity = VideoLogic.getVideo(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /bibliotecas/" + idBiblioteca + "/videos/" + idVideo + " no existe.", 404);
+            throw new WebApplicationException("El recurso /Videos/" + id + " no existe.", 404);
         }
-        VideoLogic.deleteVideo(idBiblioteca, idVideo);
+        VideoLogic.deleteVideo(id);
     }
-
     /**
      *
      * lista de entidades a DTO.

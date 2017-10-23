@@ -12,10 +12,32 @@ import co.edu.uniandes.quantum.biblioteca.entities.VideoEntity;
  * @author cg.chavarro
  */
 
-//TODO se debe implementar esta clase
 public class VideoDetailDTO extends VideoDTO
 {
     private SalaDTO sala;
+    private  BibliotecaDTO biblioteca;
+    private PrestamoDTO prestamo;
+    private ReservaDTO reserva;
+    public VideoDetailDTO()
+    {
+        super();
+
+    }
+
+    public VideoDetailDTO(VideoEntity entity) {
+        super(entity);
+        if(entity.getMiBiblioteca()!=null)
+        {
+            this.biblioteca = new BibliotecaDTO(entity.getMiBiblioteca());
+        }
+        if(entity.getMiPrestamo()!=null)
+            this.prestamo = new PrestamoDTO(entity.getMiPrestamo());
+        if(entity.getMiReserva()!=null)
+            this.reserva = new ReservaDTO(entity.getMiReserva());
+        if(entity.getMiSala()!=null)
+            this.sala = new SalaDTO(entity.getMiSala());
+        
+    }
 
     public SalaDTO getSala() {
         return sala;
@@ -24,25 +46,15 @@ public class VideoDetailDTO extends VideoDTO
     public void setSala(SalaDTO sala) {
         this.sala = sala;
     }
-    
-    public VideoDetailDTO()
-    {
-        super();
-    }
-    
-    
-    public VideoDetailDTO(VideoEntity l)
-    {
-        super(l);
-        if(l!=null){
-        sala = new SalaDTO(l.getSala());}
-        else
-            throw new NullPointerException("El video fue nula");
-    }
-    public VideoEntity toEntity()
-    {
-        VideoEntity preEnt=super.toEntity();
-        preEnt.setSala(sala.toEntity());
-        return preEnt;    
+    @Override
+    public VideoEntity toEntity() {
+        VideoEntity s =super.toEntity();
+        if(biblioteca!=null)
+            s.setMiBiblioteca(this.biblioteca.toEntity());
+        if(prestamo!=null)
+            s.setMiPrestamo(this.prestamo.toEntity());
+        if(reserva!=null)
+            s.setMiReserva(this.reserva.toEntity());
+        return s;
     }
 }

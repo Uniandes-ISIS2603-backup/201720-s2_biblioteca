@@ -31,7 +31,7 @@ public class VideoDTO
      this.duracion=l.getDuracion();
         this.autor=l.getAutor();}
         else
-            throw new NullPointerException("El video fue nula");
+            throw new NullPointerException("El video fue nulo");
     }
 
     public Long getId() {

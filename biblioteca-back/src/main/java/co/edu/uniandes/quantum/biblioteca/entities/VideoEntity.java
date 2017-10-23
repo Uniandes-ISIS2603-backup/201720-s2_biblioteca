@@ -18,6 +18,9 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class VideoEntity extends BaseEntity implements Serializable {
     
+    private int duracion;
+    private String autor;
+    
     @PodamExclude
     @ManyToOne    
     private BibliotecaEntity miBiblioteca;
@@ -27,17 +30,9 @@ public class VideoEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @ManyToOne   
     private PrestamoEntity miPrestamo;    
-    
     @PodamExclude
     @OneToOne
-    private SalaEntity sala; 
-    
-    private int duracion;
-    
-    private String autor;
-    
-    
-    
+    private SalaEntity miSala; 
     
     
     public String getAutor()
@@ -61,6 +56,30 @@ public class VideoEntity extends BaseEntity implements Serializable {
         miBiblioteca = pMiBiblioteca;
     }
     
+        public PrestamoEntity getMiPrestamo() {
+        return miPrestamo;
+    }
+
+    public void setMiPrestamo(PrestamoEntity miPrestamo) {
+        this.miPrestamo = miPrestamo;
+    }
+
+    public ReservaEntity getMiReserva() {
+        return miReserva;
+    }
+
+    public void setMiReserva(ReservaEntity miReserva) {
+        this.miReserva = miReserva;
+    }
+    
+    public SalaEntity getMiSala() {
+        return miSala;
+    }
+
+    public void setMiSala(SalaEntity miSala) {
+        this.miSala = miSala;
+    }
+    
     public int getDuracion()
     {
         return duracion;
@@ -69,14 +88,6 @@ public class VideoEntity extends BaseEntity implements Serializable {
     public void setDuracion(int pDuracion)
     {
         duracion = pDuracion;
-    }
-
-    public SalaEntity getSala() {
-        return sala;
-    }
-
-    public void setSala(SalaEntity sala) {
-        this.sala = sala;
     }
 
 }

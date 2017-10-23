@@ -29,7 +29,7 @@ public class LibroDTO
         this.anioPublicacion=l.getAnioPublicacion();
         this.autor=l.getAutor();}
         else
-            throw new NullPointerException("El libro fue nula");
+            throw new NullPointerException("El libro fue nulo");
              
     }
     

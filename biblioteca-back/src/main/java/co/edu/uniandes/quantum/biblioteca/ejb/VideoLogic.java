@@ -7,6 +7,7 @@ package co.edu.uniandes.quantum.biblioteca.ejb;
 
 import co.edu.uniandes.quantum.biblioteca.entities.BibliotecaEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.VideoEntity;
+import co.edu.uniandes.quantum.biblioteca.entities.PrestamoEntity;
 import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
 import co.edu.uniandes.quantum.biblioteca.persistence.VideoPersistence;
 import java.util.List;
@@ -28,20 +29,23 @@ private static final Logger LOGGER = Logger.getLogger(VideoLogic.class.getName()
  @Inject
     private VideoPersistence persistence;
  
-  @Inject
+ @Inject
     private BibliotecaLogic BibliotecaLogic;
+  
+ @Inject
+    private PrestamoLogic PrestamoLogic;
  
  /**
   * Devuelve los Videos que se encuentran en la base de datos.
   * @return  los Videos como una lista de objetos.
   * Corresponde a la lógica de GET Videos
-  
+  */
   public List<VideoEntity> getVideos() {
         LOGGER.info("Inicia proceso de consultar todos los Videos");
         List<VideoEntity> videos = persistence.findAll();
         LOGGER.info("Termina proceso de consultar todos los Videos");
         return videos;
-    }*/
+    }
   
       /**
      * Obtiene la lista de los registros de Video que pertenecen a una Biblioteca.
@@ -67,17 +71,22 @@ private static final Logger LOGGER = Logger.getLogger(VideoLogic.class.getName()
   * @param idBiblioteca de la Biblioteca a buscar en la DB.
   * @param idVideo del Video a buscar en la DB.
   * @return  el Video como un objeto Entity.
+  * @throws BusinessLogicException
   * Corresponde a la lógica de GET Videos/{id}
   */
- public VideoEntity getVideo(Long idBiblioteca, Long idVideo) {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar Video con id={0}", idVideo);
-        VideoEntity Video = persistence.find(idBiblioteca, idVideo);
-        if (Video == null) 
-        {
-            LOGGER.log(Level.SEVERE, "El Video con el id {0} no existe", idVideo);
+ public VideoEntity getVideo(Long idBiblioteca, Long idVideo) throws BusinessLogicException{
+ List<VideoEntity> VideosBiblioteca = getVideos(idBiblioteca);
+        VideoEntity videoR = null;
+        for (VideoEntity Video : VideosBiblioteca) {
+            if (Video.getId().equals(idVideo)) {
+                videoR = Video;
+            }
+
         }
-        LOGGER.log(Level.INFO, "Termina proceso de consultar Video con id={0}", idVideo);
-        return Video;
+        if (videoR == null) {
+            throw new BusinessLogicException("el video no existe");
+        }
+        return videoR;
     }
  
   public VideoEntity getVideo(Long idVideo) {
@@ -91,6 +100,20 @@ private static final Logger LOGGER = Logger.getLogger(VideoLogic.class.getName()
         return Video;
     }
  
+      /**
+     * Devuelve el video que se hizo persistir en la base de datos.
+     *
+     * @param entity Video a persistir
+     * @return el Video como un objeto Entity. Corresponde a la lógica de
+     * POST/Videos
+     */
+    public VideoEntity crearVideo(VideoEntity entity) {
+        LOGGER.info("Inicia proceso de creación de Video");
+        persistence.create(entity);
+        LOGGER.info("Termina proceso de creación de Video");
+        return entity;
+    }
+  
  /**
   * Devuelve el Video que se hizo persistir en la base de datos.
   * @param entity Video a persistir
@@ -105,32 +128,65 @@ private static final Logger LOGGER = Logger.getLogger(VideoLogic.class.getName()
         LOGGER.info("Termina proceso de creación de Video");
         return persistence.create(entity);
     }
+   
+       public VideoEntity colocarVideoPrestamo(VideoEntity entity, Long idPrestamo) throws BusinessLogicException {
+        LOGGER.info("Inicia proceso de agregar video al prestamo");
+        VideoEntity ent= persistence.find(entity.getId());
+        PrestamoEntity p = PrestamoLogic.getPrestamo(idPrestamo);
+        ent.setMiPrestamo(p);
+        persistence.update(ent);
+        LOGGER.info("Termina proceso de colocar video en prestamo");
+        return entity;
+    }
+   
+       public VideoEntity colocarVideoBiblioteca(VideoEntity entity, Long idBiblioteca) throws BusinessLogicException {
+        LOGGER.info("Inicia proceso de agregar Video al prestamo");
+        VideoEntity ent= persistence.find(entity.getId());
+        BibliotecaEntity p= BibliotecaLogic.getBiblioteca(idBiblioteca);
+        ent.setMiBiblioteca(p);
+        persistence.update(ent);
+        LOGGER.info("Termina proceso de colocar Video en biblioteca");
+        return entity;
+    }
+       
+           /**
+     * Método privado desde el cual se verifica que un id sea valido para un
+     * video.
+     *
+     * @param id a verificar.
+     * @return true si es valido, false en caso contrario.
+     */
+    private boolean validateId(Long id) {
+        return !(id == null || id == 0);
+    }
     
   /**
   * Devuelve el Video que se actualizo en la base de datos.
-  * @param idBiblioteca  de la Biblioteca a actualizarle su Video.
+  * @param id  del video.
   * @param entity Video a actualizar
   * @return  el Video como un objeto Entity.
+  * @throws BusinessLogicException
   * Corresponde a la lógica de PUT Videos/{id}
   */
-      public VideoEntity updateVideo(Long idBiblioteca, VideoEntity entity) {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar Video");
-          BibliotecaEntity biblioteca = BibliotecaLogic.getBiblioteca(idBiblioteca);
-        entity.setMiBiblioteca(biblioteca);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar Video con id={0}", entity.getId());
-        return persistence.update(entity);
+    public VideoEntity updateVideo(Long id, VideoEntity entity) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar video con id={0}", id);
+        if (!validateId(entity.getId())) {
+            throw new BusinessLogicException("El ISBN  (id) es inválido");
+        }
+        VideoEntity newEntity = persistence.update(entity);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar V¿video con id={0}", entity.getId());
+        return newEntity;
     }
 
   /**
   * Devuelve el Video que se borrará de la base de datos.
-  * @param idBiblioteca de donde se borrará el Video.
   * @param idVideo  del Video a borrar.
   * Corresponde a la lógica de DELETE Videos/{id}
   */
-    public void deleteVideo(Long idBiblioteca, Long idVideo) {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar Video con id={0}", idVideo);
-        VideoEntity old = getVideo(idBiblioteca, idVideo);
+    public void deleteVideo(Long idVideo) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar video con id={0}", idVideo);
+        VideoEntity old = getVideo(idVideo);
         persistence.delete(old.getId());
-        LOGGER.log(Level.INFO, "Termina proceso de borrar Video con id={0}", idVideo);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar libro con id={0}", idVideo);
     }
 }

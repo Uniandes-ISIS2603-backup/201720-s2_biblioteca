@@ -46,16 +46,6 @@ public class LibroResource {
     private static final String MENSAJE_ERROR = "El recurso /libros/";
     private static final String NO_EXISTE = "no existe.";
 
-    /**@GET
-    public List<LibroDTO> getBooks() throws WebApplicationException {
-
-        if (listEntity2DTO(LibroLogic.getBooks()).isEmpty()) {
-            throw new WebApplicationException("No hay libros en el sistema.");
-        } else {
-            return listEntity2DTO(LibroLogic.getBooks());
-        }
-    }*/
-
     @GET
     @Path("{perBib}")    
     public List<LibroDTO> getBooksBiblioteca(@PathParam("idBiblioteca") Long idBiblioteca) throws BusinessLogicException {
@@ -132,32 +122,6 @@ public class LibroResource {
          validarAccesoAdmin(idAcceso);
         return new LibroDTO(LibroLogic.crearLibro(book.toEntity()));
     }
-
-    /**
-     *
-     * Ejemplo: { "description": "Las habilidades gerenciales en arquitectos de
-     * software.", "editorial": { "id": 200, "name": "Oveja Negra 2" }, "image":
-     * "https://images-na.ssl-images-amazon.com/images/I/516GyHY9p6L.jpg",
-     * "isbn": "930330149-8", "name": "La comunicación en el software",
-     * "publishingdate": "2017-08-20T00:00:00-05:00" }
-     *
-     * @param id
-     * @param book
-     * @return
-     * @throws BusinessLogicException
-     */
-
-//    @PUT
-//    @Path("{id: \\d+}")
-//    public MultaDTO updateMulta(@PathParam("idUsuario") Long idUsuario, @PathParam("id") Long id, MultaDTO multa) throws BusinessLogicException {
-//        multa.setId(id);
-//        MultaEntity entity = multaLogic.getMulta(idUsuario, id);
-//        if (entity == null) {
-//            throw new WebApplicationException("El recurso /usuarios/" + idUsuario + "/multas/" + id + " no existe.", 404);
-//        }
-//        return new MultaDTO(multaLogic.updateMulta(idUsuario, multa.toEntity()));
-//
-//    }
 
     @PUT
     @Path("{id: \\d+}")
