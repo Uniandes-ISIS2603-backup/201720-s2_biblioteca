@@ -5,7 +5,8 @@
         'ui.bootstrap',
         // Internal modules dependencies
         'usuarioModule',
-        'bibliotecaModule'
+        'bibliotecaModule',
+        'librosModule'
     ]);
     // Resuelve problemas de las promesas
     app.config(['$qProvider', function ($qProvider) {
