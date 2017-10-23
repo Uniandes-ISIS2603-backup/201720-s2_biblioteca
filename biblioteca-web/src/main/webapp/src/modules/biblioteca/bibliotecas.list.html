@@ -1,0 +1,21 @@
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+<div id="alertPanel" style="text-align: center"></div>
+<div class="container-fluid">
+    <div class="col-md-4">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>    
+                    <th>Id</th>  
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="bib in bibliotecasRecords">
+                    <td id="{{$index}}-name">{{bib.name}}</td>
+                    <td id="{{$index}}-iD">{{bib.id}}</td>                   
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
