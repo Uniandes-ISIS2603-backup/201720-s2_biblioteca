@@ -1,45 +1,45 @@
 (function (ng) {
     // Definición del módulo
-    var mod = ng.module("usuarioModule", ['ui.router']);
+    var mod = ng.module("prestamoModule", ['ui.router']);
 
     // Configuración de los estados del módulo
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             // En basePath se encuentran los templates y controladores de módulo
-            var basePath = 'src/modules/usuario/';
+            var basePath = 'src/modules/prestamo/';
             // Mostrar la lista de autores será el estado por defecto del módulo
-            //$urlRouterProvider.otherwise("/usuarioList");
+            //$urlRouterProvider.otherwise("/prestamoList");
             // Definición del estado 'authorsList' donde se listan los autores
-            $stateProvider.state('usuarios', {
-                url: '/usuarios',
+            $stateProvider.state('prestamos', {
+                url: '/prestamos',
                 abstract: true,
                 views: {
                     'mainView': {
-                        templateUrl: basePath + 'usuarios.html',
-                        controller: 'usuarioCtrl',
+                        templateUrl: basePath + 'prestamos.html',
+                        controller: 'prestamoCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
-            }).state('usuarioList', {
+            }).state('prestamoList', {
                 url: '/list',
-                parent: 'usuarios',
+                parent: 'prestamos',
                 views: {
                     'listView': {
-                        templateUrl: basePath + 'usuarios.list.html'
+                        templateUrl: basePath + 'prestamos.list.html'
                     }
                 }
-            }).state('usuarioDetail', {
-                url: '/{usuarioId:int}/detail',
-                parent: 'usuarios',
+            }).state('prestamoDetail', {
+                url: '/{prestamoId:int}/detail',
+                parent: 'prestamos',
                 param: {
-                    usuarioId: null
+                    prestamoId: null
                 },
                 views: {
                     'listView': {
-                        templateUrl: basePath + 'usuarios.list.html'
+                        templateUrl: basePath + 'prestamos.list.html'
                     },
                     'detailView': {
-                        templateUrl: basePath + 'usuarios.detail.html',
-                        controller: 'usuarioCtrl',
+                        templateUrl: basePath + 'prestamos.detail.html',
+                        controller: 'prestamoCtrl',
                         controllerAs: 'ctrl'
                     }
 
