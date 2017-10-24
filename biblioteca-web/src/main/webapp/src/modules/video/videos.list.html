@@ -1,0 +1,18 @@
+<div class="container-fluid">
+    <div class="col-md-4">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>    
+                    <th>Id</th>  
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="video in videoRecords">
+                    <td id="{{$index}}-name">{{video.name}}</td>
+                    <td id="{{$index}}-descrption">{{video.id}}</td>                   
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
