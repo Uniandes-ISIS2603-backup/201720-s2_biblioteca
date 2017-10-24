@@ -1,8 +1,8 @@
 (function (ng) {
-    var mod = ng.module("videoModule");
-    mod.constant("videoContext", "api/videos");
-    mod.controller('videoCtrl', ['$scope', '$http', 'videoContext',
-        function ($scope, $http, videoContext) {
+    var mod = ng.module("videosModule");
+    mod.constant("videosContext", "api/videos");
+    mod.controller('videosCtrl', ['$scope', '$http', 'videosContext',
+        function ($scope, $http, videosContext) {
             $http.get('data/videos.json').then(function (response) {
                 $scope.videoRecords = response.data;
             });
