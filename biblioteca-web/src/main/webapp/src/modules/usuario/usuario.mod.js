@@ -34,9 +34,7 @@
                     usuarioId: null
                 },
                 views: {
-                    'listView': {
-                        templateUrl: basePath + 'usuarios.list.html'
-                    },
+                    
                     'detailView': {
                         templateUrl: basePath + 'usuarios.detail.html',
                         controller: 'usuarioCtrl',
