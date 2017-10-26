@@ -12,11 +12,10 @@
             $stateProvider.state('prestamos', {
                 url: '/prestamos',
                 abstract: true,
+                parent: 'usuarioDetail',
                 views: {
-                    'mainView': {
-                        templateUrl: basePath + 'prestamos.html',
-                        controller: 'prestamoCtrl',
-                        controllerAs: 'ctrl'
+                    'childrenView': {
+                        templateUrl: basePath + 'prestamos.html',                        
                     }
                 }
             }).state('prestamoList', {
@@ -24,27 +23,21 @@
                 parent: 'prestamos',
                 views: {
                     'listView': {
-                        templateUrl: basePath + 'prestamos.list.html'
+                        templateUrl: basePath + 'prestamos.list.html',
+                        controller: 'prestamoCtrl',
+                        controllerAs: 'ctrl'
                     }
                 }
             }).state('prestamoDetail', {
                 url: '/{prestamoId:int}/detail',
                 parent: 'prestamos',
-                param: {
-                    prestamoId: null
-                },
                 views: {
-                    'listView': {
-                        templateUrl: basePath + 'prestamos.list.html'
-                    },
                     'detailView': {
                         templateUrl: basePath + 'prestamos.detail.html',
                         controller: 'prestamoCtrl',
                         controllerAs: 'ctrl'
                     }
-
                 }
-
             });
         }
     ]);

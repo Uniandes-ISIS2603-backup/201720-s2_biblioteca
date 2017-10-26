@@ -1,18 +1,15 @@
 (function (ng) {
     var mod = ng.module("prestamoModule");
-    mod.constant("prestamoContext", "api/999/prestamos");
-    mod.controller('prestamoCtrl', ['$scope', '$http', 'prestamoContext', '$state',
-        function ($scope, $http, prestamoContext, $state) {
-            $http.get(prestamoContext).then(function (response) {
-                $scope.prestamoRecords = response.data;
-            });
-            
-            if ($state.params.prestamoId !== undefined) {
-                $http.get(prestamoContext + '/' + $state.params.prestamoId).then(function (response) {
-                    $scope.prestamoRecords = response.data.prestamos;
-                    $scope.currentUsuario = response.data;
+    mod.constant("prestamoContext", "prestamos");
+    mod.constant("usuarioContext","api/999/usuarios");
+    mod.controller('prestamoCtrl', ['$scope', '$http', '$state',
+        function ($scope, $http, $state) {
+            if ($state.params.usuarioId !== undefined) {
+                $http.get('api/999/usuarios/' + $state.params.usuarioId+'/prestamos').then(function (response) {
+                    $scope.prestamoRecords = response.data;                    
                 });
             }
+            
         }
     ]);
 }
