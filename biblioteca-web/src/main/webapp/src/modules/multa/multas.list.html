@@ -1,0 +1,25 @@
+<div class="container-fluid">
+    <div class="col-md-4">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>    
+                    <th>Fecha</th>  
+                    <th>Costo</th>
+                    <th>Pagada</th>
+                    <th>Descripcion</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="multa in multaRecords">
+                    <td id="{{$index}}-id"><a ui-sref="multaDetail({multaId: multa.id})">{{multa.id}}</a></td>
+                    <td id="{{$index}}-fecha">{{multa.fecha}}</td> 
+                    <td id="{{$index}}-costo">{{multa.costo}}</td>
+                    <td id="{{$index}}-pagada">{{multa.pagada}}</td>
+                    <td id="{{$index}}-descipcion">{{multa.descripcion}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

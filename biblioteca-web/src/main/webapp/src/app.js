@@ -7,7 +7,8 @@
         'usuarioModule',
         'bibliotecaModule',
         'librosModule',
-        'prestamoModule'
+        'prestamoModule',
+        'multaModule'
     ]);
     // Resuelve problemas de las promesas
     app.config(['$qProvider', function ($qProvider) {
