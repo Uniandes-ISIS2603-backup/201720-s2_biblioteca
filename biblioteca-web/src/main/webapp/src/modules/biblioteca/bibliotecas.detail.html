@@ -1,0 +1,31 @@
+<div class="panel panel-default"> 
+    <div class="panel-body">
+    <div class="row">
+        <div class="col-md-3">
+            <dl>                
+                <dt>Id:</dt>
+                <dd>{{currentBiblioteca.id}}</dd>
+                
+                <hr>
+                <dt>Nombre:</dt>
+                <dd>{{currentBiblioteca.name}}</dd>
+          
+                <hr>
+                <dt>Ubicacion</dt>
+                <dd>{{currentBiblioteca.ubicacion}}</dd>
+
+            </dl>
+        </div>
+    </div>
+        <ul class="nav nav-tabs">
+            
+                </ul>
+        </div>
+    <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-9">
+                <div ui-view="childrenView"></div>
+            </div>
+        </div>
+    
+</div>

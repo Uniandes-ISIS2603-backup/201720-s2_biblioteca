@@ -178,7 +178,7 @@ public class BibliotecaResource {
         if (entity == null) {
             throw new WebApplicationException("El recurso biblioteca " + id + " no existe.", 404);
         }
-        return new BibliotecaDTO(entity);
+        return new BibliotecaDetailDTO(entity);
     }
     
     /**

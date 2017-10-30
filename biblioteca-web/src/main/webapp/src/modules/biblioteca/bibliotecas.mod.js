@@ -19,6 +19,30 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('bibliotecaList', {
+                url: '/list',
+                parent: 'bibliotecas',
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'bibliotecas.list.html'
+                    }
+                }
+            }).state('bibliotecaDetail', {
+                url: '/{bibliotecaId:int}',
+                parent: 'bibliotecas',
+                param: {
+                    bibliotecaId: null
+                },
+                views: {
+                    
+                    'detailView': {
+                        templateUrl: basePath + 'bibliotecas.detail.html',
+                        controller: 'bibliotecaCtrl',
+                        controllerAs: 'ctrl'
+                    }
+
+                }
+
             });
         }
     ]);

@@ -4,16 +4,18 @@
     <div class="col-md-4">
         <table class="table table-striped">
             <thead>
-                <tr>
-                    <th>Name</th>    
+                <tr>  
                     <th>Id</th>  
+                    <th>Nombre</th>  
+                    <th>Ubicacion</th>  
 
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="bib in bibliotecasRecords">
+                    <td id="{{$index}}-iD"><a ui-sref="bibliotecaDetail({bibliotecaId: bib.id})">{{bib.id}}</a></td>
                     <td id="{{$index}}-name">{{bib.name}}</td>
-                    <td id="{{$index}}-iD">{{bib.id}}</td>                   
+                    <td id="{{$index}}-ubicacion">{{bib.ubicacion}}</td>
                 </tr>
             </tbody>
         </table>
