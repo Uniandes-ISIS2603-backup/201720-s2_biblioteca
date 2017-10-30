@@ -1,0 +1,16 @@
+[
+  {
+    "id" : 1,
+    "titulo" : "El tio petros y la conjetura de Goldbach",
+    "autor" : "Apostolos Dioxiadis",
+    "numeroPaginas" : 187,
+    "direccion" : "http://www.librosmaravillosos.com/conjeturagoldbach/pdf/El%20Tio%20Petros%20y%20la%20Conjetura%20de%20Goldbach%20-%20Apostolos%20Doxiadis.pdf"
+  },
+  {
+    "id" : 2,
+    "titulo" : "Cálculo Vectorial",
+    "autor" : "Jerrold Marsden, Anthony Tromba",
+    "numeroPaginas" : 660,
+    "direccion" : "http://webdelprofesor.ula.ve/economia/rubendel/documentos/MT.pdf"
+  }
+]
