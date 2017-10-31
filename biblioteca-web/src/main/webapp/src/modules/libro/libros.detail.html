@@ -1,0 +1,35 @@
+<div class="panel panel-default"> 
+    <div class="panel-body">
+    <div class="row">
+        <div class="col-md-3">
+            <dl>                
+                <dt>Id:</dt>
+                <dd>{{currentLibro.id}}</dd>
+                
+                <hr>
+                <dt>Nombre:</dt>
+                <dd>{{currentLibro.name}}</dd>
+          
+                <hr>
+                <dt>Numero páginas:</dt>
+                <dd>{{currentLibro.numPaginas}}</dd>
+                
+                <hr>
+                <dt>Anio publicacion:</dt>
+                <dd>{{currentLibro.aniopublicacion}}</dd>
+
+            </dl>
+        </div>
+    </div>
+        <ul class="nav nav-tabs">
+                   
+                   </ul>
+        </div>
+    <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-9">
+                <div ui-view="childrenView"></div>
+            </div>
+        </div>
+    
+</div>

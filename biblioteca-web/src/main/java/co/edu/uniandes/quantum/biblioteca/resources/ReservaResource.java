@@ -119,4 +119,10 @@ public class ReservaResource
         }
         return VideoResource.class;
     }
+    
+    private void validarAccesoAdmin(Long id)
+    {
+        if(id!=999)
+            throw new WebApplicationException("Sólo un administrador del sistema puede realizar esta operación.");
+    }
 }
