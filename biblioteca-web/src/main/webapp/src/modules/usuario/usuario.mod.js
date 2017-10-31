@@ -42,8 +42,16 @@
                     }
 
                 }
-
-            });
+            }).state('usuarioCreate', {
+                url: '/create',
+                parent: 'usuarios',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/new/usuarios.new.html',
+                        controller: 'usuarioNewCtrl'
+                    }
+                }
+});
         }
     ]);
 })(window.angular);

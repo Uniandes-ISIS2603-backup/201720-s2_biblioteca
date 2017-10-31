@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="panel-group">
         <div class="panel panel-primary">
-            <div class="panel-heading"><label ng-if="!edit" id="createUsuario">Create new Usuario</label>
+            <div class="panel-heading"><label ng-if="!edit" id="createUsuario">Crear un usuario nuevo</label>
                 <label ng-if="edit" id="editUsuario">Edit Usuario</label></div>
             <div class="panel-body">
                 <form ng-submit="createUsuario()" name="usuario">
@@ -27,14 +27,14 @@
                         <div class="form-group col-sm-4" ng-if="!usuario.$valid">
 
                             <div class="alert alert-warning" >
-                                <strong>Error!</strong><p>Se requiere llenar todos los campos*</p>
+                                <strong>Atención!</strong><p>Todavía hay campos sin llenar*</p>
                             </div> 
                         </div> 
                     </div> 
                     <div class="form-group row">
                         <div class="form-group col-sm-12">
                             <input ng-show="usuario.$valid" type="submit" value="Save" class="btn btn-success"/>
-                            <a class="btn btn-info" ui-sref="usuariosList">Cancel</a>
+                            <a class="btn btn-info" ui-sref="usuarioList">Cancel</a>
                         </div>
                     </div>
                 </form>
