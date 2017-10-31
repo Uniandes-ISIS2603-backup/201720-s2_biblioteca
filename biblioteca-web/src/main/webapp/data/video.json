@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "Nombre1",
+        "autor": "autor1",
+        "duracion":110
+        
+    },
+    {
+        "id": 2,
+        "name": "Nombre2",
+        "autor": "autor2",
+        "duracion":90
+        
+    },
+    {
+        "id": 3,
+        "name": "Nombre3",
+        "autor": "autor1",
+        "duracion":85
+        
+    }
+]

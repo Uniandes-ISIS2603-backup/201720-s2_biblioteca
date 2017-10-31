@@ -5,21 +5,21 @@
     // Configuración de los estados del módulo
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             // En basePath se encuentran los templates y controladores de módulo
-            var basePath = 'src/modules/videos/';
+            var basePath = 'src/modules/video/';
             // Mostrar la lista de videos será el estado por defecto del módulo
-            //$urlRouterProvider.otherwise("/videosList");
-            // Definición del estado 'authorsList' donde se listan los autores
+            $urlRouterProvider.otherwise("/videosList");
+            // Definición del estado 'videosList' donde se listan los videos
             $stateProvider.state('videos', {
                 url: '/videos',
                 abstract: true,
                 views: {
                     'mainView': {
-                        templateUrl: basePath + 'videoss.html',
+                        templateUrl: basePath + 'videos.html',
                         controller: 'videosCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
-            }).state('videoList', {
+            }).state('videosList', {
                 url: '/list',
                 parent: 'videos',
                 views: {
@@ -27,7 +27,7 @@
                         templateUrl: basePath + 'videos.list.html'
                     }
                 }
-            }).state('videoDetail', {
+            }).state('videosDetail', {
                 url: '/{videosId:int}/detail',
                 parent: 'videos',
                 param: {
