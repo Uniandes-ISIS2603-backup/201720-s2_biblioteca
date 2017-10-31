@@ -1,4 +1,4 @@
-function (ng) {
+(function (ng) {
     // Definición del módulo
     var mod = ng.module("eBookModule", ['ui.router']);
 
