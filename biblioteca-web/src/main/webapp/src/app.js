@@ -4,6 +4,8 @@
         'ui.router',
         'ui.bootstrap',
         // Internal modules dependencies
+        'eBookModule',
+        'eVideoModule',
         'usuarioModule',
         'bibliotecaModule',
         'librosModule',
