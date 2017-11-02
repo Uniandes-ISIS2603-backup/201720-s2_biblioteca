@@ -10,7 +10,7 @@
             </thead>
             <tbody>
             <tr ng-repeat="ebook in eBooksRecords">
-                <td id="{{$index}}-titulo">   <a ui-sref="eBooksDetail({eBookId: ebook.id})">{{ebook.id}}</a></td>
+                <td id="{{$index}}-titulo">   <a ui-sref="eBooksDetail({eBookId: ebook.id})">{{ebook.titulo}}</a></td>
                 <td id="{{$index}}-autor">{{ebook.autor}}</td>
                 <td id="{{$index}}-numeroPaginas">{{ebook.numeroPaginas}}</td>
             </tr>

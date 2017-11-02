@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="container-fluid">
+    <div class="col-md-4">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Titulo</th>
+                <th>Autor</th>
+                <th>Duración</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="evideo in eVideosRecords">
+                <td id="{{$index}}-titulo">   <a ui-sref="eVideosDetail({eVideoId: eVideo.id})">{{evideo.titulo}}</a></td>
+                <td id="{{$index}}-autor">{{evideo.autor}}</td>
+                <td id="{{$index}}-duracion">{{evideo.duracion}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
