@@ -10,7 +10,7 @@
             </thead>
             <tbody>
             <tr ng-repeat="evideo in eVideosRecords">
-                <td id="{{$index}}-titulo">   <a ui-sref="eVideosDetail({eVideoId: eVideo.id})">{{evideo.titulo}}</a></td>
+                <td id="{{$index}}-titulo">   <a ui-sref="eVideoDetail({eVideoId: eVideo.id})">{{evideo.titulo}}</a></td>
                 <td id="{{$index}}-autor">{{evideo.autor}}</td>
                 <td id="{{$index}}-duracion">{{evideo.duracion}}</td>
             </tr>

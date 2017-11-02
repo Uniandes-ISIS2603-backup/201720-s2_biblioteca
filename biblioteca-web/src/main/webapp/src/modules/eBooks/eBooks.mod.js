@@ -9,16 +9,42 @@
         // Mostrar la lista de autores será el estado por defecto del módulo
         $urlRouterProvider.otherwise("/eBooksList");
         // Definición del estado 'eBooksList' donde se listan los autores
-        $stateProvider.state('eBooksList', {
-            // Url que aparecerá en el browser
-            url: '/eBooks/list',
+        $stateProvider.state('eBooks', {
+            url: '/eBooks',
+            abstract: true,
             views: {
                 'mainView': {
-                    templateUrl: basePath + 'eBooks.list.html',
+                    templateUrl: basePath + 'eBooks.html',
                     controller: 'eBookCtrl',
                     controllerAs: 'ctrl'
                 }
             }
+        }).state('eBooksList', {
+            // Url que aparecerá en el browser
+            url: '/list',
+            parent: 'eBooks',
+            views: {
+                'listView': {
+                    templateUrl: basePath + 'eBooks.list.html'
+                }
+            }
+        }).state('eBookDetail', {
+            url: '/{eBookId:int}/detail',
+            parent: 'eBooks',
+            param: {
+                eBookId: null
+            },
+            views: {
+                'listView': {
+                    templateUrl: basePath + 'eBooks.list.html'
+                },
+                'detailView': {
+                    templateUrl: basePath + 'eBooks.detail.html',
+                    controller: 'eBookCtrl',
+                    controllerAs: 'ctrl'
+                }
+            }
+
         });
     }
     ]);
