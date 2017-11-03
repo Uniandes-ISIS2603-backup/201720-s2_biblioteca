@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="panel-group">
         <div class="panel panel-primary">
-            <div class="panel-heading"><label ng-if="!edit" id="createUsuario">Crear un usuario nuevo</label>
+            <div class="panel-heading"><label id="createUsuario">Ingrese la informacion del usuario</label>
                 <label ng-if="edit" id="editUsuario">Edit Usuario</label></div>
             <div class="panel-body">
                 <form ng-submit="createUsuario()" name="usuario">
@@ -14,7 +14,7 @@
                     <div class="form-group row">
                         <div class="form-group col-md-6">
                             <label for="usuarioTelefono" class="col-sm-2">Telefono:</label>
-                            <input type="number" id="usuarioTelefono" required ng-model="usuarioTelefono" class="col-sm-6"/>
+                            <textarea id="usuarioTelefono" required ng-model="usuarioTelefono" class="col-sm-6"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
