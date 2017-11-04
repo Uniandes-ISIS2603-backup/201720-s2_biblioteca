@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -46,13 +46,17 @@ public class UsuarioPersistence{ private static final Logger LOGGER = Logger.get
      * la direccion pudo cambiar. En ese caso, se haria uso del método update.
      * @return un usuario con los cambios aplicados.
      */
-    public UsuarioEntity update(UsuarioEntity entity) {
+    public int update(UsuarioEntity entity) {
         LOGGER.log(Level.INFO, "Actualizando Usuario con id={0}", entity.getId());
         /* Note que hacemos uso de un método propio del EntityManager llamado merge() que recibe como argumento
         la Usuario con los cambios, esto es similar a 
         "UPDATE table_codigo SET column1 = value1, column2 = value2, ... WHERE condition;" en SQL.
          */
-        return em.merge(entity);
+         TypedQuery<UsuarioEntity> q
+                = em.createQuery("UPDATE UsuarioEntity SET DIRECCION='"+entity.getDireccion()+"', NAME='"+entity.getName()+
+                        "',TELEFONO='"+entity.getTelefono()+"' where u.id = "+entity.getId(), UsuarioEntity.class);
+         
+        return q.executeUpdate();
     }
 
     /**

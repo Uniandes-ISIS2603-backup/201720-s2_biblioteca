@@ -63,7 +63,19 @@
                         controller: 'usuarioUpdateCtrl'
                     }
                 }
-            });
+            }).state('usuarioDelete', {
+                url: '/{usuarioId:int}/delete',
+                parent: 'usuarios',
+                param: {
+                    usuarioId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/delete/usuario.delete.html',
+                        controller: 'usuarioDeleteCtrl'
+                    }
+                }
+});;
         }
     ]);
 })(window.angular);

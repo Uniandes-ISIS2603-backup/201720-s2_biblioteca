@@ -14,13 +14,12 @@
                     $http.get(usuarioContext + '/' + idUsuario).then(function (response) {
                         var usuario = response.data;
                         $scope.usuarioName = usuario.name;
-                        $scope.usuarioTelefono = new Date(usuario.telefono);
+                        $scope.usuarioTelefono = usuario.telefono;
                         $scope.usuarioDireccion = usuario.direccion;
                     });        
                     
 
-                    $scope.createUsuario = function () {                 
-                        
+                    $scope.createUsuario = function () {                   
                         $http.put(usuarioContext + "/" + idUsuario, {
                             name: $scope.usuarioName,
                             telefono: $scope.usuarioTelefono,
