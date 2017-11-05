@@ -28,6 +28,25 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('prestamoDelete', {
+                url: '/{prestamoId:int}/delete',
+                parent: 'prestamos',
+                views: {
+                    'detailView': {
+                        templateUrl: 'src/modules/prestamo/delete/prestamo.delete.html',
+                        controller: 'prestamoDeleteCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('prestamoCreate', {
+                url: '/create',
+                parent: 'prestamos',
+                views: {
+                    'detailView': {
+                        templateUrl: 'src/modules/prestamo/new/prestamo.new.html',
+                        controller: 'prestamoNewCtrl'
+                    }
+                }
             }).state('prestamoDetail', {
                 url: '/{prestamoId:int}/detail',
                 parent: 'prestamos',
@@ -39,6 +58,7 @@
                     }
                 }
             });
+            ;
         }
     ]);
 })(window.angular);

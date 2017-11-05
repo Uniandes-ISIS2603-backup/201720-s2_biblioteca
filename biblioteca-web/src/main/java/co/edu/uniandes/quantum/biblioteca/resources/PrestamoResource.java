@@ -29,7 +29,6 @@ import javax.ws.rs.WebApplicationException;
  * @author f.posada
  */
 
-@Path("{idAcceso: \\d+}/reservas")
 @Produces("application/json")
 @Consumes("application/json")
 public class PrestamoResource {
