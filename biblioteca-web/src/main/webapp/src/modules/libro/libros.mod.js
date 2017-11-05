@@ -44,6 +44,15 @@
 
                 }
 
+            }).state('librosCreate', {
+                url: '/create',
+                parent: 'libros',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/new/libros.new.html',
+                        controller: 'libroNewCtrl'
+                    }
+                }
             });
         }]);
 })(window.angular);
