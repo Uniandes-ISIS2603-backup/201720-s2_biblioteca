@@ -65,6 +65,18 @@
                         controller: 'librosDeleteCtrl'
                     }
                 }
-});
+}).state('libroUpdate', {
+                url: '/{libroId:int}/update',
+                parent: 'libros',
+                param: {
+                    usuarioId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/new/libros.new.html',
+                        controller: 'librosUpdateCtrl'
+                    }
+                }
+            });
         }]);
 })(window.angular);

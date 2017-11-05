@@ -7,7 +7,7 @@
                 function ($scope, $http, usuarioContext, $state, prestamoContext, $rootScope, $filter) {
                     $rootScope.edit = true;
 
-                    var idUsuario = $state.params.usuarioId;
+                    var idUsuario = $state.params.libroId;
 
                     //Consulto el autor a editar.
                     console.info(usuarioContext+'/' + idUsuario);
