@@ -1,9 +1,9 @@
 <div class="container-fluid">
     <div class="col-md-4">
-        <div class="panel-heading"><label>Préstamos </label></div>
+        <div class="panel-heading"><label>Medios de pago </label></div>
         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <a class="btn btn-info" ui-sref="prestamoCreate"><span class="glyphicon glyphicon-plus-sign">Crear</span></a>
+                        <a class="btn btn-info" ui-sref="medioPagoCreate"><span class="glyphicon glyphicon-plus-sign">Agregar</span></a>
                     </div>
                 </div>
 <div class="container-fluid">
@@ -11,21 +11,18 @@
             <thead>
                 <tr>
                     <th>Id</th>    
-                    <th>Fecha de Inicio</th>  
-                    <th>Fecha Final</th>
-                    <th>Retornado</th>
+                    <th>Tipo</th> 
+                    <th>Descripcion</th>3                    
                     <th>Actions</th>
-                    
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="prestamo in prestamoRecords">
-                    <td id="{{$index}}-id"><a ui-sref="prestamoDetail({prestamoId: prestamo.id})">{{prestamo.id}}</a></td>
-                    <td id="{{$index}}-name">{{prestamo.fechaInicio}}</td> 
-                    <td id="{{$index}}-name">{{prestamo.fechaFinal}}</td>
-                    <td id="{{$index}}-name">{{prestamo.retornado}}</td>
+                <tr ng-repeat="medioPago in medioPagoRecords">
+                    <td id="{{$index}}-id">{{medioPago.id}}</td>
+                    <td id="{{$index}}-name">{{medioPago.tipo}}</td>
+                    <td id="{{$index}}-descipcion">{{medioPago.descripcion}}</td> 
                     <td id="{{$index}}-actions">
-<a class="btn btn-danger btn-sm" ui-sref="prestamoDelete({prestamoId: prestamo.id})"><span class="glyphicon glyphicon-trash"></span></a>
+<a class="btn btn-danger btn-sm" ui-sref="medioPagoDelete({medioPagoId: medioPago.id})"><span class="glyphicon glyphicon-trash"></span></a>
 
 </td>
                 </tr>

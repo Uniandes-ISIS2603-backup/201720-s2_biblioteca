@@ -1,59 +1,59 @@
 (function (ng) {
     // Definición del módulo
-    var mod = ng.module("prestamoModule", ['ui.router']);
+    var mod = ng.module("medioPagoModule", ['ui.router']);
 
     // Configuración de los estados del módulo
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             // En basePath se encuentran los templates y controladores de módulo
-            var basePath = 'src/modules/prestamo/';
+            var basePath = 'src/modules/medioPago/';
             // Mostrar la lista de autores será el estado por defecto del módulo
-            //$urlRouterProvider.otherwise("/prestamoList");
+            //$urlRouterProvider.otherwise("/medioPagoList");
             // Definición del estado 'authorsList' donde se listan los autores
-            $stateProvider.state('prestamos', {
-                url: '/prestamos',
+            $stateProvider.state('medioPagos', {
+                url: '/medioPagos',
                 abstract: true,
                 parent: 'usuarioDetail',
                 views: {
                     'childrenView': {
-                        templateUrl: basePath + 'prestamos.html',                        
+                        templateUrl: basePath + 'medioPago.html',                        
                     }
                 }
-            }).state('prestamoList', {
+            }).state('medioPagoList', {
                 url: '/list',
-                parent: 'prestamos',
+                parent: 'medioPagos',
                 views: {
                     'listView': {
-                        templateUrl: basePath + 'prestamos.list.html',
-                        controller: 'prestamoCtrl',
+                        templateUrl: basePath + 'medioPago.list.html',
+                        controller: 'medioPagoCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
-            }).state('prestamoDelete', {
-                url: '/{prestamoId:int}/delete',
-                parent: 'prestamos',
+            }).state('medioPagoDelete', {
+                url: '/{medioPagoId:int}/delete',
+                parent: 'medioPagos',
                 views: {
                     'detailView': {
-                        templateUrl: 'src/modules/prestamo/delete/prestamo.delete.html',
-                        controller: 'prestamoDeleteCtrl',
+                        templateUrl: 'src/modules/medioPago/delete/medioPago.delete.html',
+                        controller: 'medioPagoDeleteCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
-            }).state('prestamoCreate', {
+            }).state('medioPagoCreate', {
                 url: '/create',
-                parent: 'prestamos',
+                parent: 'medioPagos',
                 views: {
                     'detailView': {
-                        templateUrl: 'src/modules/prestamo/new/prestamo.new.html',
-                        controller: 'prestamoNewCtrl'
+                        templateUrl: 'src/modules/medioPago/new/medioPago.new.html',
+                        controller: 'medioPagoNewCtrl'
                     }
                 }
-            }).state('prestamoDetail', {
-                url: '/{prestamoId:int}/detail',
-                parent: 'prestamos',
+            }).state('medioPagoDetail', {
+                url: '/{medioPagoId:int}/detail',
+                parent: 'medioPagos',
                 views: {
                     'detailView': {
-                        templateUrl: basePath + 'prestamos.detail.html',
-                        controller: 'prestamoCtrl',
+                        templateUrl: basePath + 'medioPago.detail.html',
+                        controller: 'medioPagoCtrl',
                         controllerAs: 'ctrl'
                     }
                 }

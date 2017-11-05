@@ -10,7 +10,8 @@
         'bibliotecaModule',
         'librosModule',
         'prestamoModule',
-        'multaModule'
+        'multaModule',
+        'medioPagoModule'
     ]);
     // Resuelve problemas de las promesas
     app.config(['$qProvider', function ($qProvider) {
