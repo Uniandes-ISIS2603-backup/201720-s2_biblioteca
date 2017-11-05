@@ -17,7 +17,8 @@
                     $scope.currentPrestamoLibros=response.data.libros;
                     $scope.currentPrestamoVideos=response.data.videos;
                 });
-            }
+            }       
+            
             
         }
     ]);

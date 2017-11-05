@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <div class="col-md-4">
+        <div class="panel-heading"><label>Agregar un libro a un prestamo </label></div>
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <a class="btn btn-info" ui-sref="prestamoCreate"><span class="glyphicon glyphicon-plus-sign">Crear</span></a>
+                    </div>
+                </div>
+<div class="container-fluid">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>    
+                    <th>Name</th>  
+                    <th>Autor</th>
+                    <th>Actions</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="lib in allBooks">
+                    <td id="{{$index}}-id">{{lib.id}}</td> 
+                    <td id="{{$index}}-name">{{lib.name}}</td>
+                    <td id="{{$index}}-autor">{{lib.autor}}</td>
+                    <td id="{{$index}}-actions">
+                    <td>
+<a class="btn btn-info" ng-click="agregarLibroPrestamo(lib.id)"><span class="glyphicon glyphicon-plus-sign"></span></a>
+
+</td>
+                </tr>
+            </tbody>
+        </table>
+</div>

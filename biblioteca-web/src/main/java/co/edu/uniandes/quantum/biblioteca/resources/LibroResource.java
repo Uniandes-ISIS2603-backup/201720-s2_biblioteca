@@ -110,10 +110,10 @@ public class LibroResource {
     }
     
      @PUT
-     @Path("{actual}/{prestamo}")
-    public LibroDTO ponerBookPrestamo(LibroDTO book, @PathParam("idPrestamo") Long idPrestamo) throws BusinessLogicException {
+     @Path("{actual}/{prestamo}/{idLibrito: \\d+}")
+    public LibroDTO ponerBookPrestamo(@PathParam("idPrestamo") Long idPrestamo, @PathParam("idLibrito") Long idB) throws BusinessLogicException {
         
-        LibroEntity lib=book.toEntity();
+        LibroEntity lib=LibroLogic.getLibro(idB);
         return new LibroDTO(LibroLogic.colocarLibroPrestamo(lib,idPrestamo));
     }
     

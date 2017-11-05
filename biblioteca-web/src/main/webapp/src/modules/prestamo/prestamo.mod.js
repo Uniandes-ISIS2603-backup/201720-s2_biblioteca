@@ -57,6 +57,16 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('prestamoAgregarLibros', {
+                url: '/{prestamoId:int}/agregarLibros',
+                parent: 'prestamos',
+                views: {
+                    'detailView': {
+                        templateUrl: 'src/modules/prestamo/agregarLibros/prestamo.agregarLibros.html',
+                        controller: 'prestamoAgregarLibrosCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             });
             ;
         }
