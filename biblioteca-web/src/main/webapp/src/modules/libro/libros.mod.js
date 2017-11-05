@@ -53,6 +53,18 @@
                         controller: 'libroNewCtrl'
                     }
                 }
-            });
+            }).state('libroDelete', {
+                url: '/{libroId:int}/delete',
+                parent: 'libros',
+                param: {
+                    libroId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/delete/libro.delete.html',
+                        controller: 'librosDeleteCtrl'
+                    }
+                }
+});
         }]);
 })(window.angular);
