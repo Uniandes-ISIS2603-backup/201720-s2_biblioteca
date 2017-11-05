@@ -10,6 +10,7 @@ import co.edu.uniandes.quantum.biblioteca.entities.LibroEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.PrestamoEntity;
 import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
 import co.edu.uniandes.quantum.biblioteca.persistence.LibroPersistence;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -62,6 +63,22 @@ public class LibroLogic {
         LOGGER.info("Termina proceso de consultar todos los usuarios");
         return Libros;
     }
+    
+    public List<LibroEntity> getLibrosDisponibles() {
+        LOGGER.info("Inicia proceso de consultar todos los usuarios");
+        List<LibroEntity> Libros = persistence.findAll();
+        List<LibroEntity> finalL =new ArrayList();
+        for(LibroEntity le:Libros)
+        {
+            if(le.getMiPrestamo()==null)
+            {
+                finalL.add(le);
+            }
+        }
+        LOGGER.info("Termina proceso de consultar todos los usuarios");
+        return finalL;
+    }
+    
 
     /**
      * Obtiene la lista de los registros de Multa que pertenecen a un Usuario.
@@ -154,6 +171,13 @@ public class LibroLogic {
         persistence.update(ent);
         LOGGER.info("Termina proceso de colocar libro en biblioteca");
         return entity;
+    }
+    
+    public void devolverLibro(LibroEntity entity) throws BusinessLogicException
+    {
+        LibroEntity ent=persistence.find(entity.getId());
+        ent.setMiPrestamo(null);
+        persistence.update(ent);
     }
 
     /**
