@@ -96,6 +96,9 @@
         </div>
         <br>
         <br>
+        <div>
+            <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+<div id="alertPanel" style="text-align: center"></div>
         <div class="navbar navbar-default navbar-fixed-bottom">
             <div class="container">
                 <p class="navbar-text pull-left">© Biblioteca - Quantum

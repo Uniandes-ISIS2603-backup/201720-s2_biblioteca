@@ -14,6 +14,8 @@
                 $http.get('api/999/usuarios/' + $state.params.usuarioId+'/prestamos/'+$state.params.prestamoId).then(function (response) {
                     $scope.prestamoRecords = response.data.prestamos;
                     $scope.currentPrestamo = response.data;
+                    $scope.currentPrestamoLibros=response.data.libros;
+                    $scope.currentPrestamoVideos=response.data.videos;
                 });
             }
             
