@@ -5,8 +5,8 @@
     mod.controller('prestamoAgregarLibrosCtrl', ['$scope', '$http', '$state',
         function ($scope, $http, $state) {           
             
-            $http.get('api/999/libros').then(function (response) {
-                    $scope.allLibros = response.data;
+            $http.get('api/999/libros/disponibles').then(function (response) {
+                    $scope.allLibrosDisponibles = response.data;
                 });
                 
                 $scope.agregarLibroPrestamo = function (laId) {

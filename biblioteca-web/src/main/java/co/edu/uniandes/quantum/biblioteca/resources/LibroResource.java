@@ -65,6 +65,16 @@ public class LibroResource {
         }
     }
     
+    @GET
+    @Path("disponibles")   
+    public List<LibroDetailDTO> getBooksDisponibles() throws BusinessLogicException {
+        if (listEntity2DTO(LibroLogic.getLibrosDisponibles()).isEmpty()) {
+            throw new WebApplicationException("No hay libros disponibles para prestamos en el sistema.");
+        } else {
+            return listEntity2DetailDTO(LibroLogic.getLibrosDisponibles());
+        }
+    }
+    
    // @GET
  //   @Path("{actual}/{prestamo}")
   //  public List<LibroDTO> getBooksPrestamo(@PathParam("idPrestamo") Long idPrestamo ) throws BusinessLogicException {
@@ -95,6 +105,20 @@ public class LibroResource {
         }
         return new LibroDTO(entity);
     }
+    
+    @PUT
+    @Path("{id: \\d+}/devolver")
+    public void devolverLibro(@PathParam("id") Long idLibro) throws BusinessLogicException {
+        LibroEntity entity = LibroLogic.getLibro(idLibro);
+        
+        if (entity == null) {
+            throw new WebApplicationException(MENSAJE_ERROR + idLibro + NO_EXISTE, 404);
+        }
+        
+        LibroLogic.devolverLibro(entity);
+    }
+    
+    
 
     /**
      *
