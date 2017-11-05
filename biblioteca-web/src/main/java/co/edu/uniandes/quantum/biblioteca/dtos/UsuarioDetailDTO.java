@@ -6,6 +6,7 @@
 package co.edu.uniandes.quantum.biblioteca.dtos;
 
 import co.edu.uniandes.quantum.biblioteca.entities.ComentarioEntity;
+import co.edu.uniandes.quantum.biblioteca.entities.MedioPagoEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.MultaEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.PrestamoEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.ReservaEntity;
@@ -23,7 +24,7 @@ public class UsuarioDetailDTO extends UsuarioDTO
     private List<PrestamoDTO> prestamos;
     private List<ComentarioDTO> comentarios;
     private List<ReservaDTO> reservas;
-    private MedioPagoDTO medioPago;
+    private List<MedioPagoDTO> medioPago;
 
     public List<MultaDTO> getMultas() {
         return multas;
@@ -57,11 +58,11 @@ public class UsuarioDetailDTO extends UsuarioDTO
         this.reservas = reservas;
     }
 
-    public MedioPagoDTO getMedioPago() {
+    public List<MedioPagoDTO> getMedioPago() {
         return medioPago;
     }
 
-    public void setMedioPago(MedioPagoDTO medioPago) {
+    public void setMedioPago(List<MedioPagoDTO> medioPago) {
         this.medioPago = medioPago;
     }
     
@@ -96,6 +97,12 @@ public class UsuarioDetailDTO extends UsuarioDTO
             reservas = new ArrayList<>();
             for (ReservaEntity entityReserva : entity.getReservas()) {
                 reservas.add(new ReservaDTO(entityReserva));
+            }
+        }
+        if (entity.getMedioPago() != null) {
+            medioPago = new ArrayList<>();
+            for (MedioPagoEntity entityReserva : entity.getMedioPago()) {
+                medioPago.add(new MedioPagoDTO(entityReserva));
             }
         }
         
@@ -133,6 +140,15 @@ public class UsuarioDetailDTO extends UsuarioDTO
             }
             usEnt.setComentarios(comentariosEntity);
         }
+        
+        if (getMedioPago() != null) {
+            List<MedioPagoEntity> MedioPagoEntity = new ArrayList<>();
+            for (MedioPagoDTO dtoReserva : getMedioPago()) {
+                MedioPagoEntity.add(dtoReserva.toEntity());
+            }
+            usEnt.setMedioPago(MedioPagoEntity);
+        }
+
         return usEnt;    
     }
     

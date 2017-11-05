@@ -67,9 +67,9 @@ public class UsuarioLogic {
     public UsuarioEntity updateUsuario(Long id, UsuarioEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar usuario con id={0}", id);
         
-        UsuarioEntity newEntity = persistence.update(entity);
+        int newEntity = persistence.update(entity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar usuario con id={0}", entity.getId());
-        return newEntity;
+        return entity;
     }
 
     public void deleteUsuario(Long id) {
