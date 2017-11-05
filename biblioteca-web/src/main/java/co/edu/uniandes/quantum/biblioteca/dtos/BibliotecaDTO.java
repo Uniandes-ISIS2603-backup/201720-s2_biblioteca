@@ -40,6 +40,8 @@ public class BibliotecaDTO {
     
     private String ubicacion;
     
+    private String imagen;
+    
     /**
      * Constructor por defecto
      */
@@ -57,7 +59,9 @@ public class BibliotecaDTO {
         if(biblioteca!=null){
         this.id = biblioteca.getId();
         this.name = biblioteca.getName();
-        this.ubicacion = biblioteca.getUbicacion();}
+        this.ubicacion = biblioteca.getUbicacion();
+        this.imagen = biblioteca.getImagen();
+        }
         else
             throw new NullPointerException("La biblioteca fue nula");
     }
@@ -92,7 +96,17 @@ public class BibliotecaDTO {
 
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
-    }    
+    }   
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+    
+    
     /**
      * Convertir DTO a Entity
      *
@@ -103,6 +117,7 @@ public class BibliotecaDTO {
         entity.setId(this.id);
         entity.setName(this.name);
         entity.setUbicacion(ubicacion);
+        entity.setImagen(imagen);
         return entity;
     }
     

@@ -78,6 +78,7 @@ public class BibliotecaResource {
     @POST
     public BibliotecaDTO createBiblioteca(@PathParam("idAcceso") Long idAcceso,BibliotecaDTO Biblioteca) throws BusinessLogicException {
          validarAccesoAdmin(idAcceso);
+         System.out.println(Biblioteca.getImagen());
         return new BibliotecaDetailDTO(bibliotecaLogic.createBiblioteca(Biblioteca.toEntity()));
     }
 

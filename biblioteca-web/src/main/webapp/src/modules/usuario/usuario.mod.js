@@ -75,7 +75,7 @@
                         controller: 'usuarioDeleteCtrl'
                     }
                 }
-});;
+});
         }
     ]);
 })(window.angular);

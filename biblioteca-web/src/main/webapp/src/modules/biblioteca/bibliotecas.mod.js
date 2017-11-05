@@ -9,7 +9,17 @@
             // Mostrar la lista de autores será el estado por defecto del módulo
             //$urlRouterProvider.otherwise("/bibliotecasList");
             // Definición del estado 'authorsList' donde se listan los autores
-            $stateProvider.state('bibliotecasList', {
+            $stateProvider.state('bibliotecas', {
+                url: '/bibliotecas',
+                abstract: true,
+                views: {
+                    'mainView': {
+                        templateUrl: basePath + 'bibliotecas.html',
+                        controller: 'bibliotecaCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('bibliotecasList', {
                 // Url que aparecerá en el browser
                 url: '/bibliotecas',
                 views: {
@@ -19,16 +29,8 @@
                         controllerAs: 'ctrl'
                     }
                 }
-            }).state('bibliotecaList', {
-                url: '/list',
-                parent: 'bibliotecas',
-                views: {
-                    'listView': {
-                        templateUrl: basePath + 'bibliotecas.list.html'
-                    }
-                }
             }).state('bibliotecaDetail', {
-                url: '/{bibliotecaId:int}',
+                url: '/{bibliotecaId:int}/detail',
                 parent: 'bibliotecas',
                 param: {
                     bibliotecaId: null
@@ -42,8 +44,40 @@
                     }
 
                 }
-
-            });
+            }).state('bibliotecaCreate', {
+                url: '/create',
+                parent: 'bibliotecas',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'new/bibliotecas.new.html',
+                        controller: 'bibliotecaNewCtrl'
+                    }
+                }
+            }).state('bibliotecaUpdate', {
+                url: '/{bibliotecaId:int}/update',
+                parent: 'bibliotecas',
+                param: {
+                    bibliotecaId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'new/bibliotecas.new.html',
+                        controller: 'bibliotecaUpdateCtrl'
+                    }
+                }
+            }).state('bibliotecaDelete', {
+                url: '/{bibliotecaId:int}/delete',
+                parent: 'bibliotecas',
+                param: {
+                    bibliotecaId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'delete/bibliotecas.delete.html',
+                        controller: 'bibliotecaDeleteCtrl'
+                    }
+                }
+});;
         }
     ]);
 })(window.angular);

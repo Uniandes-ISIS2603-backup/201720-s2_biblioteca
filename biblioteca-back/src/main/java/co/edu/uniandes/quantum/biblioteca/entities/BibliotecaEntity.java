@@ -45,6 +45,8 @@ public class BibliotecaEntity extends BaseEntity implements Serializable {
      * Ubicación biblioteca
      */
     private String ubicacion;
+        
+    private String imagen;
     
     @PodamExclude
     @OneToMany(mappedBy = "miBiblioteca", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -121,4 +123,13 @@ public class BibliotecaEntity extends BaseEntity implements Serializable {
     {
         salas.add(sala);
     }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }   
+    
 }

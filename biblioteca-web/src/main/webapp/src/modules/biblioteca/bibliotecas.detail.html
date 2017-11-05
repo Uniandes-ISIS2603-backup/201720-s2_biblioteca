@@ -2,7 +2,10 @@
     <div class="panel-body">
     <div class="row">
         <div class="col-md-3">
-            <dl>                
+            <dl>    
+                <dt>Imagen:</dt>
+                <dd> <img src={{currentBiblioteca.imagen}} alt="Imagen biblioteca" width="350" height="350"></dd>
+               
                 <dt>Id:</dt>
                 <dd>{{currentBiblioteca.id}}</dd>
                 
@@ -17,8 +20,10 @@
             </dl>
         </div>
     </div>
-        <ul class="nav nav-tabs">
-            
+        <ul class="nav nav-tabs">            
+                    <li role="presentation" class="active"> <a ui-sref="librosList({bibliotecaId: currentBiblioteca.id})">Libros</a></li>  
+                    <li role="presentation" class="active"> <a ui-sref="videosList({bibliotecaId: currentBiblioteca.id})">Videos</a></li>
+                    <li role="presentation" class="active"> <a ui-sref="salasList({bibliotecaId: currentBiblioteca.id})">Salas</a></li>            
                 </ul>
         </div>
     <div class="row">
