@@ -51,6 +51,9 @@
                     <td id="{{$index}}-id"><a ui-sref="libroDetail({libroId: librito.id})">{{librito.id}}</a></td>
                     <td id="{{$index}}-name">{{librito.name}}</td>  
                     <td id="{{$index}}-autor">{{librito.autor}}</td> 
+                    <td>
+<a class="btn btn-info" ng-click="devolverLibroPrestamo(librito.id)"><span class="glyphicon glyphicon-book"></span>   Devolver</a>
+</td>
                 </tr>
             </tbody>
         </table></dd>

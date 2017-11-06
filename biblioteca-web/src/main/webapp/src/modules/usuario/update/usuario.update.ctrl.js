@@ -7,7 +7,7 @@
                 function ($scope, $http, usuarioContext, $state, prestamoContext, $rootScope, $filter) {
                     $rootScope.edit = true;
 
-                    var idUsuario = $state.params.libroId;
+                    var idUsuario = $state.params.usuarioId;
 
                     //Consulto el autor a editar.
                     console.info(usuarioContext+'/' + idUsuario);
@@ -25,7 +25,7 @@
                             telefono: $scope.usuarioTelefono,
                             direccion: $scope.usuarioDireccion
                         }).then(function (response) {                            
-                            $state.go('usuariosList', {usuarioId: response.data.id}, {reload: true});
+                            $state.go('usuarioList', {usuarioId: response.data.id}, {reload: true});
                         });
                     };                   
                 }

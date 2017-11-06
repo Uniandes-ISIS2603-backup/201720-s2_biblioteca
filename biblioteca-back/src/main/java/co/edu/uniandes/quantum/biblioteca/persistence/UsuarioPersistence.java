@@ -53,8 +53,8 @@ public class UsuarioPersistence{ private static final Logger LOGGER = Logger.get
         "UPDATE table_codigo SET column1 = value1, column2 = value2, ... WHERE condition;" en SQL.
          */
          TypedQuery<UsuarioEntity> q
-                = em.createQuery("UPDATE UsuarioEntity SET DIRECCION='"+entity.getDireccion()+"', NAME='"+entity.getName()+
-                        "',TELEFONO='"+entity.getTelefono()+"' where u.id = "+entity.getId(), UsuarioEntity.class);
+                = em.createQuery("UPDATE UsuarioEntity SET direccion='"+entity.getDireccion()+"', name='"+entity.getName()+
+                        "', telefono='"+entity.getTelefono()+"' where id = "+entity.getId(), UsuarioEntity.class);
          
         return q.executeUpdate();
     }

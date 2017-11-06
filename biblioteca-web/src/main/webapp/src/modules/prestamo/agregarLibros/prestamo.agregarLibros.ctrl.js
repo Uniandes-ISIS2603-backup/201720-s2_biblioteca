@@ -10,13 +10,18 @@
                 });
                 
                 $scope.agregarLibroPrestamo = function (laId) {
-                $http.put('api/999/usuarios/' + $state.params.usuarioId+'/prestamos/'+$state.params.prestamoId+'/libros/actual/prestamo/'+laId, {
-                    
+                $http.put('api/999/usuarios/' + $state.params.usuarioId + '/prestamos/' + $state.params.prestamoId + '/libros/actual/prestamo/' + laId, {
+
                 }).then(function (response) {
                     //Prestamo created successfully
                     $state.go('prestamoList', {prestamoId: response.data.id}, {reload: true});
                 });
             };
+            
+            
+
+
+
             
         }
     ]);
