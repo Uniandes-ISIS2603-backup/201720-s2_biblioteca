@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div class="col-md-4">
+        <div class="panel-heading"><label>Agregar un libro a una reserva. </label></div>
+       
+<div class="container-fluid">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>    
+                    <th>Name</th>  
+                    <th>Autor</th>
+                    <th>Actions</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="lib in allLibrosDisponibles">
+                    <td id="{{$index}}-id">{{lib.id}}</td> 
+                    <td id="{{$index}}-name">{{lib.name}}</td>
+                    <td id="{{$index}}-autor">{{lib.autor}}</td>
+                    <td id="{{$index}}-actions">
+                    <td>
+<a class="btn btn-info" ng-click="agregarLibroReserva(lib.id)"><span class="glyphicon glyphicon-plus-sign"></span></a>
+
+</td>
+                </tr>
+            </tbody>
+        </table>
+</div>

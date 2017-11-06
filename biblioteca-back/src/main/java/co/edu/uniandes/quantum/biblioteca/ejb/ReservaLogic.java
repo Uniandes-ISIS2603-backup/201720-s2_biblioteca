@@ -182,4 +182,8 @@ public class ReservaLogic {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }*/
 
+   public ReservaEntity getReserva(Long prestamoid) {
+        return persistence.findPorId(prestamoid);
+    }
+
 }

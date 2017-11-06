@@ -6,6 +6,7 @@
 package co.edu.uniandes.quantum.biblioteca.resources;
 
 import co.edu.uniandes.quantum.biblioteca.dtos.ReservaDTO;
+import co.edu.uniandes.quantum.biblioteca.dtos.ReservaDetailDTO;
 import co.edu.uniandes.quantum.biblioteca.ejb.ReservaLogic;
 import co.edu.uniandes.quantum.biblioteca.entities.ReservaEntity;
 import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
@@ -41,8 +42,8 @@ public class ReservaResource
     ReservaLogic reservaLogic;
      
       @GET
-    public List<ReservaDTO> getReservas(@PathParam("idUsuario") Long idUsuario) throws BusinessLogicException {
-        return listEntity2DTO(reservaLogic.getReservas(idUsuario));
+    public List<ReservaDetailDTO> getReservas(@PathParam("idUsuario") Long idUsuario) throws BusinessLogicException {
+        return listEntity2DetailDTO(reservaLogic.getReservas(idUsuario));
     }
     
     
@@ -57,17 +58,17 @@ public class ReservaResource
 //    }
     @GET
     @Path("{id: \\d+}")
-    public ReservaDTO getReserva(@PathParam("idUsuario") Long idUsuario, @PathParam("id") Long id) throws BusinessLogicException
+    public ReservaDetailDTO getReserva(@PathParam("idUsuario") Long idUsuario, @PathParam("id") Long id) throws BusinessLogicException
     {
         ReservaEntity entity = reservaLogic.getReserva(idUsuario, id);
         if (entity == null) {
             throw new WebApplicationException(MEN_ERROR + idUsuario + "/reservas/" + id + NO_EXISTE, 404);
         }
-        return new ReservaDTO(entity);
+        return new ReservaDetailDTO(entity);
     }
     @POST
-    public ReservaDTO createReserva(@PathParam("idUsuario") Long idUsuario, ReservaDTO reserva) throws BusinessLogicException {
-        return new ReservaDTO(reservaLogic.createReserva(idUsuario, reserva.toEntity()));
+    public ReservaDetailDTO createReserva(@PathParam("idUsuario") Long idUsuario, ReservaDetailDTO reserva) throws BusinessLogicException {
+        return new ReservaDetailDTO(reservaLogic.createReserva(idUsuario, reserva.toEntity()));
     }
     
     
@@ -125,4 +126,13 @@ public class ReservaResource
         if(id!=999)
             throw new WebApplicationException("Sólo un administrador del sistema puede realizar esta operación.");
     }
+
+    private List<ReservaDetailDTO> listEntity2DetailDTO(List<ReservaEntity> reservas) {
+        //To change body of generated methods, choose Tools | Templates.
+         List<ReservaDetailDTO> list = new ArrayList<>();
+        for (ReservaEntity entity : reservas) {
+            list.add(new ReservaDetailDTO(entity));
+        }
+        return list;
+}
 }

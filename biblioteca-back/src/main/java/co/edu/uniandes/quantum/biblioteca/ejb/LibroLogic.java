@@ -8,6 +8,7 @@ package co.edu.uniandes.quantum.biblioteca.ejb;
 import co.edu.uniandes.quantum.biblioteca.entities.BibliotecaEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.LibroEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.PrestamoEntity;
+import co.edu.uniandes.quantum.biblioteca.entities.ReservaEntity;
 import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
 import co.edu.uniandes.quantum.biblioteca.persistence.LibroPersistence;
 import java.util.ArrayList;
@@ -34,6 +35,8 @@ public class LibroLogic {
 
     @Inject
     private PrestamoLogic prestamoLogic;
+        @Inject
+    private ReservaLogic reservaLogic;
 
     /**
      * Devuelve los libros que se encuentran en la base de datos.
@@ -162,6 +165,16 @@ public class LibroLogic {
         LOGGER.info("Termina proceso de colocar libro en prestamo");
         return entity;
     }
+     public LibroEntity colocarLibroReserva(LibroEntity entity, Long idPrestamo) throws BusinessLogicException {
+        LOGGER.info("Inicia proceso de agregar libro al prestamo");
+        LibroEntity ent= persistence.find(entity.getId());
+        ReservaEntity p=reservaLogic.getReserva(idPrestamo);
+        ent.setMiReserva(p);
+        persistence.update(ent);
+        LOGGER.info("Termina proceso de colocar libro en prestamo");
+        return entity;
+    }
+    
     
     public LibroEntity colocarLibroBiblioteca(LibroEntity entity, Long idBiblioteca) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de agregar libro al prestamo");
@@ -222,4 +235,5 @@ public class LibroLogic {
         LOGGER.log(Level.INFO, "Termina proceso de borrar libro con id={0}", id);
     }
 
+  
 }

@@ -141,6 +141,13 @@ public class LibroResource {
         return new LibroDTO(LibroLogic.colocarLibroPrestamo(lib,idPrestamo));
     }
     
+    @PUT
+     @Path("{actual}/{reserva}/{idLibrito: \\d+}/colocarlibro")
+    public LibroDTO ponerBookReserva(@PathParam("idReserva") Long idReserva, @PathParam("idLibrito") Long idB) throws BusinessLogicException {
+        
+        LibroEntity lib=LibroLogic.getLibro(idB);
+        return new LibroDTO(LibroLogic.colocarLibroReserva(lib,idReserva));
+    }
     @POST
     public LibroDTO createBook(@PathParam("idAcceso") Long idAcceso,LibroDTO book) throws BusinessLogicException {
          validarAccesoAdmin(idAcceso);

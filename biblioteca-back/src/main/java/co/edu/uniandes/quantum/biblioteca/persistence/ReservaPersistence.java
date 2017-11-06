@@ -123,5 +123,21 @@ public class ReservaPersistence
             Reserva = results.get(0);
         }
         return Reserva;
-    }    
+    }   
+    
+    public ReservaEntity findPorId(Long prestamoid) {
+        TypedQuery<ReservaEntity> q = em.createQuery("select p from ReservaEntity p where (p.id = :Reservaid)", ReservaEntity.class);
+        q.setParameter("Reservaid", prestamoid);
+        List<ReservaEntity> results = q.getResultList();
+       ReservaEntity prestamo = null;
+        if (results == null) {
+            prestamo = null;
+        } else if (results.isEmpty()) {
+            prestamo = null;
+        } else if (!results.isEmpty()) {
+            prestamo = results.get(0);
+        }
+        return prestamo;
+    }  
+    
 }

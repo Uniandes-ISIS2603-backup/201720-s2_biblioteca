@@ -10,6 +10,7 @@
         'bibliotecaModule',
         'librosModule',
         'prestamoModule',
+         'reservaModule',
         'multaModule',
         'medioPagoModule'
     ]);
