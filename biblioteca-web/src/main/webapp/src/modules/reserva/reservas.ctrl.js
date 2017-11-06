@@ -19,7 +19,7 @@
                 });
             }       
             
-            $scope.devolverLibroreserva = function (laId) {
+            $scope.devolverLibroReserva = function (laId) {
                 $http.put('api/999/libros/'+laId+'/devolverreserva', {
 
                 }).then(function (response) {
