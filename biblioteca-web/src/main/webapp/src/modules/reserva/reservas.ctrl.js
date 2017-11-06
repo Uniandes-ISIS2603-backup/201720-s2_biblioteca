@@ -20,7 +20,7 @@
             }       
             
             $scope.devolverLibroreserva = function (laId) {
-                $http.put('api/999/libros/'+laId+'/devolver', {
+                $http.put('api/999/libros/'+laId+'/devolverreserva', {
 
                 }).then(function (response) {
                     //reserva created successfully

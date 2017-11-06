@@ -67,6 +67,16 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('reservaUpdate', {
+                url: '/{reservaId:int}/update',
+                parent: 'reservas',
+                views: {
+                    'detailView': {
+                        templateUrl: 'src/modules/reserva/update/reserva.update.html',
+                        controller: 'reservaUpdateCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             });
             ;
         }

@@ -22,6 +22,7 @@
                     <td id="{{$index}}-id"><a ui-sref="reservaDetail({reservaId: reserva.id})">{{reserva.id}}</a></td>
                      <td id="{{$index}}-name">{{reserva.completada}}</td>
                     <td id="{{$index}}-actions">
+                         <a class="btn btn-default btn-sm" ui-sref="reservaUpdate({reservaId: reserva.id})"><span class="glyphicon glyphicon-edit"></span></a>
 <a class="btn btn-danger btn-sm" ui-sref="reservaDelete({reservaId: reserva.id})"><span class="glyphicon glyphicon-trash"></span></a>
 
 </td>

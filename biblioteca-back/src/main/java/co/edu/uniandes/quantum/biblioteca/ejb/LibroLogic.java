@@ -192,7 +192,12 @@ public class LibroLogic {
         ent.setMiPrestamo(null);
         persistence.update(ent);
     }
-
+public void devolverLibroReserva(LibroEntity entity) throws BusinessLogicException
+    {
+        LibroEntity ent=persistence.find(entity.getId());
+        ent.setMiReserva(null);
+        persistence.update(ent);
+    }
     /**
      * Método privado desde el cual se verifica que un id sea valido para un
      * libro.

@@ -118,6 +118,17 @@ public class LibroResource {
         LibroLogic.devolverLibro(entity);
     }
     
+     @PUT
+    @Path("{id: \\d+}/devolverreserva")
+    public void devolverLibroReserva(@PathParam("id") Long idLibro) throws BusinessLogicException {
+        LibroEntity entity = LibroLogic.getLibro(idLibro);
+        
+        if (entity == null) {
+            throw new WebApplicationException(MENSAJE_ERROR + idLibro + NO_EXISTE, 404);
+        }
+        
+        LibroLogic.devolverLibroReserva(entity);
+    }
     
 
     /**
