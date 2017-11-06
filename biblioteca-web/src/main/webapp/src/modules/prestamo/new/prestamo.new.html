@@ -5,20 +5,21 @@
                 <form ng-submit="createPrestamo()" name="prestamo">
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="prestamoFechaInicio" class="col-sm-2">Fecha de Inicio:</label>
+                            <label for="prestamoFechaInicio" class="col-sm-2">Fecha de Inicio (En formato: yyyy-mm-dd):</label>
                             <input id="prestamoFechaInicio" required ng-model="prestamoFechaInicio" this.style.color='#000' class="col-sm-6"/>
+                                     
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="prestamoFechaFinal" class="col-sm-2">Fecha de Finalización:</label>
+                            <label for="prestamoFechaFinal" class="col-sm-2">Fecha de Finalización (En formato: yyyy-mm-dd):</label>
                             <input id="prestamoFechaFinal" required ng-model="prestamoFechaFinal" class="col-sm-6">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="prestamoExterno" class="col-sm-2">Externo:</label>
-                            <input id="prestamoExterno" required ng-model="prestamoExterno" class="col-sm-6">
+                            <label for="prestamoExterno" class="col-sm-2">Externo (Escriba 0 si no, 1 si es externo):</label>
+                            <input type="number" name="quantity" min="0" max="1" required ng-model="prestamoExterno" class="col-sm-6">
                         </div>
                     </div>            
                     <div class="form-group row">

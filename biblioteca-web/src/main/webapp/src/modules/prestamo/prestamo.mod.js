@@ -57,6 +57,16 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('prestamoUpdate', {
+                url: '/{prestamoId:int}/update',
+                parent: 'prestamos',
+                views: {
+                    'detailView': {
+                        templateUrl: 'src/modules/prestamo/update/prestamo.update.html',
+                        controller: 'prestamoUpdateCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             }).state('prestamoAgregarLibros', {
                 url: '/{prestamoId:int}/agregarLibros',
                 parent: 'prestamos',
