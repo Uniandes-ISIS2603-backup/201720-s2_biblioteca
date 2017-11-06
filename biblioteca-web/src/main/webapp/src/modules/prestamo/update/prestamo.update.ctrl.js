@@ -14,7 +14,7 @@
                         var prest = response.data;
                         $scope.prestfechaInicio = prest.fechaInicio;
                         $scope.prestfechaFinal = prest.fechaFinal;
-                        $scope.prestgeneroMulta = prest.generoMulta;
+                        $scope.prestgeneroMulta = prest.generomulta;
                         $scope.prestretornado = prest.retornado;
                         $scope.prestexterno = prest.externo;
                     });     
