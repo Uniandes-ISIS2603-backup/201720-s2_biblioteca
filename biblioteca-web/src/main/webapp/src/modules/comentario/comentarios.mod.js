@@ -8,20 +8,21 @@
             var basePath = 'src/modules/comentario/';
             // Mostrar la lista de comentarios será el estado por defecto del módulo
             //$urlRouterProvider.otherwise("/comentarioList");
-            // Definición del estado 'comentarioList' donde se listan los autores
+            // Definición del estado 'comentarioList' donde se listan los comentarios
             $stateProvider.state('comentarioList', {
                 // Url que aparecerá en el browser
                 url: '/comentario',
+                abstract: true,
                 views: {
                     'mainView': {
-                        templateUrl: basePath + 'comentarios.list.html',
+                        templateUrl: basePath + 'comentarios.html',
                         controller: 'comentarioCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
             }).state('comentarioList', {
                 url: '/list',
-                parent: 'comentarios',
+                parent: 'comentario',
                 views: {
                     'listView': {
                         templateUrl: basePath + 'comentarios.list.html'
@@ -42,7 +43,39 @@
                     }
 
                 }
-
+            }).state('comentarioCreate', {
+                url: '/create',
+                parent: 'comentarios',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/new/comentarios.new.html',
+                        controller: 'comentarioNewCtrl'
+                    }
+                }
+            }).state('comentarioUpdate', {
+                url: '/{comentarioId:int}/update',
+                parent: 'comentario',
+                param: {
+                    comentarioId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/new/comentarios.new.html',
+                        controller: 'comentarioUpdateCrl'
+                    }
+                }
+            }).state('comentarioDelete', {
+                url: '/{comentarioId:int}/delete',
+                parent: 'comentario',
+                param: {
+                    comentarioId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/delete/comentarios.delete.html',
+                        controller: 'comentarioDeleteCtrl'
+                    }
+                }
             });
         }
     ]);

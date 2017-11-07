@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <div class="col-md-4">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>    
+                    <th>Name</th>  
+                    <th>Calificacion</th>  
+                    <th>FechaPublicado</th>  
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="comentario in comentarioRecords">
+                    <td id="{{$index}}-id"><a ui-sref="comentarioDetail({comentarioId comentario.id})">{{comentario.id}}</a></td>
+                    <td id="{{$index}}-name">{{comentario.name}}</td>   
+                    <td id="{{$index}}-calificacion">{{comentario.calificacion}}</td>
+                    <td id="{{$index}}-fechaPublicado">{{comentario.fechaPublicado}}</td>
+                <td id="{{$index}}-actions">
+                        <a class="btn btn-default btn-sm" ui-sref="comentarioUpdate({comentarioId: comentario.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                        <a class="btn btn-danger btn-sm" ui-sref="comentarioDelete({comentarioId: comentario.id})"><span class="glyphicon glyphicon-trash"></span></a>
+
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+                        <a class="btn btn-info" ui-sref="comentarioCreate"><span class="glyphicon glyphicon-plus-sign">Crear</span></a>
+    </div>
+</div>
+

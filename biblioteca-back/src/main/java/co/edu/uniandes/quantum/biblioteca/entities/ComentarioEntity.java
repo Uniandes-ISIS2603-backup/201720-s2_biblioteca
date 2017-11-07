@@ -21,8 +21,7 @@ public class ComentarioEntity extends BaseEntity implements Serializable{
   
      @ManyToOne
     private UsuarioEntity miUsuario;
-    @Temporal(TemporalType.DATE)
-    private Date fechaPublicado;
+    private String fechaPublicado;
     
     /**
      * comentario que deja el usuario en el blog
@@ -38,7 +37,7 @@ public class ComentarioEntity extends BaseEntity implements Serializable{
      * obtiene la fecha de publicacion
      * @return 
      */
-    public Date getFechaPublicado(){
+    public String getFechaPublicado(){
         return fechaPublicado;
     }
     

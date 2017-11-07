@@ -9,6 +9,8 @@
         'usuarioModule',
         'bibliotecaModule',
         'librosModule',
+        'blogModule',
+        'comentarioModule',
         'videosModule',
         'prestamoModule',
         'reservaModule',

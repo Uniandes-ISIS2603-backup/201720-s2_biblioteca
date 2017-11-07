@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <div class="col-md-4">
+        <div class="panel-heading"><label>Lista de blogs</label></div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>    
+                    <th>Name</th> 
+                    <th>Calificacion</th>  
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="blog in blogRecords">
+                    <td id="{{$index}}-id"><a ui-sref="blogDetail({blogId blog.id})">{{blog.id}}</a></td>
+                    <td id="{{$index}}-name">{{blog.name}}</td>      
+                    <td id="{{$index}}-calificacion">{{blog.calificacion}}</td>
+                    <td id="{{$index}}-actions">
+                        <a class="btn btn-default btn-sm" ui-sref="blogUpdate({blogId: blog.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                        <a class="btn btn-danger btn-sm" ui-sref="blogDelete({blogId: blog.id})"><span class="glyphicon glyphicon-trash"></span></a>
+
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+                        <a class="btn btn-info" ui-sref="blogCreate"><span class="glyphicon glyphicon-plus-sign">Crear</span></a>
+    </div>
+</div>
+
+

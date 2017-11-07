@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <div class="panel-group">
+        <div class="panel panel-secondary">
+            <div class="panel-heading"><label id="createBlog">Ingrese la informacion del blog</label>
+                <label ng-if="edit" id="editBlog">Edit Blog</label></div>
+            <div class="panel-body">
+                <form ng-submit="createBlog()" name="blog">
+                    <div class="form-group row">
+                            <label for="blogName" class="col-sm-2">Nombre:</label>
+                            <input id="blogName" required ng-model="blogName" class="col-sm-6"/>
+                    </div>
+                    <div class="form-group row">
+                            <label for="blogCalificacion" class="col-sm-2">Calificacion:</label>
+                            <textarea id="blogCalificacion" required ng-model="blogCalificacion" class="col-sm-6"></textarea>
+                    </div>
+                         
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4" ng-if="!blog.$valid">
+
+                            <div class="alert alert-warning" >
+                                <strong>Atención!</strong><p>Todavía hay campos sin llenar*</p>
+                            </div> 
+                        </div> 
+                    </div> 
+                    <div class="form-group row">
+                        <div class="form-group col-sm-12">
+                            <input ng-show="blog.$valid" type="submit" value="Save" class="btn btn-success"/>
+                            <a class="btn btn-info" ui-sref="blogList">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+

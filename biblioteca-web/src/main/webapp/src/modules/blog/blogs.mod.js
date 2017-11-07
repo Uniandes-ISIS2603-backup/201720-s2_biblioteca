@@ -12,16 +12,17 @@
             $stateProvider.state('blogList', {
                 // Url que aparecerá en el browser
                 url: '/blog',
+                abstract: true,
                 views: {
                     'mainView': {
-                        templateUrl: basePath + 'blogs.list.html',
+                        templateUrl: basePath + 'blogs.html',
                         controller: 'blogCtrl',
                         controllerAs: 'ctrl'
                       }
                 }
             }).state('blogList', {
                 url: '/list',
-                parent: 'blogs',
+                parent: 'blog',
                 views: {
                     'listView': {
                         templateUrl: basePath + 'blogs.list.html'
@@ -42,7 +43,39 @@
                     }
 
                 }
-
+            }).state('blogCreate', {
+                url: '/create',
+                parent: 'blog',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/new/blogs.new.html',
+                        controller: 'blogNewCtrl'
+                    }
+                }
+            }).state('blogUpdate', {
+                url: '/{blogId:int}/update',
+                parent: 'blog',
+                param: {
+                    blogId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/new/blogs.new.html',
+                        controller: 'blogUpdateCtrl'
+                    }
+                }
+            }).state('blogDelete', {
+                url: '/{blogId:int}/delete',
+                parent: 'blog',
+                param: {
+                    blogId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/delete/blogs.delete.html',
+                        controller: 'blogDeleteCtrl'
+                    }
+                }
             });
         }
     ]);

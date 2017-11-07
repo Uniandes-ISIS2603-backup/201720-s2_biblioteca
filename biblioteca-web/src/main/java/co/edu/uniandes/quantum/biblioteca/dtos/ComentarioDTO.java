@@ -30,11 +30,10 @@ public class ComentarioDTO {
      */
     private double calificacion;
          
-    /**
-     * fecha en la que se hizo el comentario
-     */
-    @Temporal(TemporalType.DATE)
-    private Date fechaPublicado;
+  /**fecha del comentario
+   * 
+   */
+    private String fechaPublicado;
     
     public ComentarioDTO()
     {
@@ -90,7 +89,7 @@ public class ComentarioDTO {
      * pone la fecha de publicacion del comentario
      * @param fecha 
      */
-    public void setFechaPublicado(Date fecha){
+    public void setFechaPublicado(String fecha){
         this.fechaPublicado = fecha;
     }
     
@@ -98,7 +97,7 @@ public class ComentarioDTO {
      * obtiene la fecha de publicacion del comentario
      * @return fecha de publicacion del comentario
      */
-    public Date getFechaPublicado ()
+    public String getFechaPublicado ()
     {
         return fechaPublicado;
     }
