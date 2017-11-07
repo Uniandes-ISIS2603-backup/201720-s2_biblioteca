@@ -35,7 +35,9 @@
                     libroId: null
                 },
                 views: {
-                    
+                    'listView': {
+                        templateUrl: basePath + 'libros.list.html'
+                    },
                     'detailView': {
                         templateUrl: basePath + 'libros.detail.html',
                         controller: 'librosCtrl',

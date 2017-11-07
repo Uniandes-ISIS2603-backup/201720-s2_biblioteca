@@ -35,7 +35,9 @@
                     videoId: null
                 },
                 views: {
-                    
+                    'listView': {
+                        templateUrl: basePath + 'videos.list.html'
+                    },
                     'detailView': {
                         templateUrl: basePath + 'videos.detail.html',
                         controller: 'videosCtrl',

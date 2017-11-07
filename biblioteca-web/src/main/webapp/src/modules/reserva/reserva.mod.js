@@ -51,6 +51,11 @@
                 url: '/{reservaId:int}/detail',
                 parent: 'reservas',
                 views: {
+                     'listView': {
+                        templateUrl: basePath + 'reservas.list.html',
+                        controller: 'reservaCtrl',
+                        controllerAs: 'ctrl'
+                    },
                     'detailView': {
                         templateUrl: basePath + 'reservas.detail.html',
                         controller: 'reservaCtrl',
