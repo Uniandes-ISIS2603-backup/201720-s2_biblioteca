@@ -28,8 +28,7 @@ public class MultaEntity extends BaseEntity implements Serializable {
     /**
      * Fecha en que se pusó la multa.
      */
-     @Temporal(TemporalType.DATE)
-    private Date fecha;
+    private String fecha;
     
     /**
      * Costo de la multa.
@@ -67,11 +66,11 @@ public class MultaEntity extends BaseEntity implements Serializable {
         this.miUsuario = miUsuario;
     }    
     
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

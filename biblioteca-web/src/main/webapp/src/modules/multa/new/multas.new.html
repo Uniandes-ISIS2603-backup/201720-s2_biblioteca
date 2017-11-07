@@ -1,0 +1,48 @@
+<div class="container-fluid">
+    <div class="panel-group">
+        <div class="panel panel-secondary">
+            <div class="panel-heading"><label id="createMulta">Ingrese la informacion del multa</label>
+                <label ng-if="edit" id="editMulta">Edit Multa</label></div>
+            <div class="panel-body">
+                <form ng-submit="createMulta()" name="multa">
+                    <div class="form-group row">
+                            <label for="fecha" class="col-sm-2">Fecha (En formato: yyyy-mm-dd):</label>
+                            <textarea id="fecha" required ng-model="fecha" class="col-sm-6"></textarea>
+                    </div>
+                    <div class="form-group row">
+                            <label for="medioPago" class="col-sm-2">Medio de pago:</label>
+                            <input id="medioPago" required ng-model="medioPago" class="col-sm-6"/>
+                    </div>
+                    <div class="form-group row">
+                            <label for="costo" class="col-sm-2">Costo:</label>
+                            <textarea id="costo" required ng-model="costo" class="col-sm-6"></textarea>
+                    </div>
+                    <div class="form-group row">
+                            <label for="pagada" class="col-sm-2">Pagada:</label>
+                            <textarea id="pagada" required ng-model="pagada" class="col-sm-6"></textarea>
+                    </div>  
+                    <div class="form-group row">
+                            <label for="descripcion" class="col-sm-2">Descripción:</label>
+                            <textarea id="descripcion" required ng-model="descripcion" class="col-sm-6"></textarea>
+                    </div>           
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4" ng-if="!multa.$valid">
+
+                            <div class="alert alert-warning" >
+                                <strong>Atención!</strong><p>Todavía hay campos sin llenar*</p>
+                            </div> 
+                        </div> 
+                    </div> 
+                    <div class="form-group row">
+                        <div class="form-group col-sm-12">
+                            <input ng-show="multa.$valid" type="submit" value="Save" class="btn btn-success"/>
+                            <a class="btn btn-info" ui-sref="multaList">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+

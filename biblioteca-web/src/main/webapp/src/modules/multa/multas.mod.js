@@ -14,7 +14,7 @@
                 parent: 'usuarioDetail',
                 views: {
                     'childrenView': {
-                        templateUrl: basePath + 'multas.html',                        
+                        templateUrl: basePath + 'multas.html'                       
                     }
                 }
             }).state('multaList', {
@@ -37,7 +37,40 @@
                         controllerAs: 'ctrl'
                     }
                 }
-            });
+            }).state('multaCreate', {
+                url: '/create',
+                parent: 'multas',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'new/multas.new.html',
+                        controller: 'multaNewCtrl'
+                    }
+                }
+            }).state('multaUpdate', {
+                url: '/{multaId:int}/update',
+                parent: 'multas',
+                param: {
+                    multaId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'new/multas.new.html',
+                        controller: 'multaUpdateCtrl'
+                    }
+                }
+            }).state('multaDelete', {
+                url: '/{multaId:int}/delete',
+                parent: 'multas',
+                param: {
+                    multaId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'delete/multas.delete.html',
+                        controller: 'multaDeleteCtrl'
+                    }
+                }
+});;
         }
     ]);
 })(window.angular);

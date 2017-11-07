@@ -18,7 +18,7 @@ public class MultaDTO {
     /**
      * Fecha en que se pusó la multa.
      */
-    private Date fecha;
+    private String fecha;
     
     /**
      * Costo de la multa.
@@ -69,11 +69,11 @@ public class MultaDTO {
         this.id = id;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

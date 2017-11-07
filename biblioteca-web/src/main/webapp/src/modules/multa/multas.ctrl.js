@@ -10,9 +10,9 @@
                 });
             }
             
-            if ($state.params.prestamoId !== undefined) {
-                $http.get('api/999/usuarios/' + $state.params.usuarioId+'/multas/'+$state.params.prestamoId).then(function (response) {
-                    $scope.multaRecords = response.data.prestamos;
+            if ($state.params.multaId !== undefined) {
+                $http.get('api/999/usuarios/' + $state.params.usuarioId+'/multas/'+$state.params.multaId).then(function (response) {
+                    $scope.multaRecords = response.data.multas;
                     $scope.currentMulta = response.data;
                 });
             }
