@@ -24,7 +24,7 @@ import javax.ws.rs.WebApplicationException;
 
 /**
  *
- * @author jp.sanmiguel
+ * @author f.posada
  */
 
 @Produces("application/json")

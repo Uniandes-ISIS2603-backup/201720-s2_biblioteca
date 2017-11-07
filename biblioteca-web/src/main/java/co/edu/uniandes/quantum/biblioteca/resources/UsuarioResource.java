@@ -17,6 +17,7 @@ import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.GET;;
@@ -36,7 +37,7 @@ import javax.ws.rs.WebApplicationException;
 @Path("{idAcceso: \\d+}/usuarios")
 @Produces("application/json")
 @Consumes("application/json")
-@RequestScoped
+@Stateless
 public class UsuarioResource {
 
     private static final String MEN_ERROR="El recurso /usuarios/";
