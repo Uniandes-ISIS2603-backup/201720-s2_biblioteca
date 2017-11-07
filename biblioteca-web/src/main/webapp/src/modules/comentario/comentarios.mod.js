@@ -9,7 +9,7 @@
             // Mostrar la lista de comentarios será el estado por defecto del módulo
             //$urlRouterProvider.otherwise("/comentarioList");
             // Definición del estado 'comentarioList' donde se listan los comentarios
-            $stateProvider.state('comentarioList', {
+            $stateProvider.state('comentario', {
                 // Url que aparecerá en el browser
                 url: '/comentario',
                 abstract: true,

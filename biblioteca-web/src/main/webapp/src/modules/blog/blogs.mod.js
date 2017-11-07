@@ -9,7 +9,7 @@
             // Mostrar la lista de blog será el estado por defecto del módulo
             //$urlRouterProvider.otherwise("/blogList");
             // Definición del estado 'blogList' donde se listan los autores
-            $stateProvider.state('blogList', {
+            $stateProvider.state('blog', {
                 // Url que aparecerá en el browser
                 url: '/blog',
                 abstract: true,
