@@ -8,8 +8,10 @@ package co.edu.uniandes.quantum.biblioteca.ejb;
 import co.edu.uniandes.quantum.biblioteca.entities.BibliotecaEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.VideoEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.PrestamoEntity;
+import co.edu.uniandes.quantum.biblioteca.entities.ReservaEntity;
 import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
 import co.edu.uniandes.quantum.biblioteca.persistence.VideoPersistence;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,6 +36,9 @@ private static final Logger LOGGER = Logger.getLogger(VideoLogic.class.getName()
   
  @Inject
     private PrestamoLogic PrestamoLogic;
+ 
+ @Inject
+    private ReservaLogic reservaLogic;
  
  /**
   * Devuelve los Videos que se encuentran en la base de datos.
@@ -64,6 +69,32 @@ private static final Logger LOGGER = Logger.getLogger(VideoLogic.class.getName()
             throw new BusinessLogicException("La biblioteca que consulta aún no tiene videos");
         }
         return biblioteca.getVideos();
+    }
+    
+        public List<VideoEntity> getVideosDisponibles() {
+        LOGGER.info("Inicia proceso de consultar todos los videos");
+        List<VideoEntity> Videos = persistence.findAll();
+        List<VideoEntity> finalL =new ArrayList();
+        for(VideoEntity le:Videos)
+        {
+            if(le.getMiPrestamo()==null)
+            {
+                finalL.add(le);
+            }
+        }
+        LOGGER.info("Termina proceso de consultar todos los videos");
+        return finalL;
+    }
+        
+        public List<VideoEntity> getVideosPrestamo(Long idPrestamo) throws BusinessLogicException {
+        LOGGER.info("Inicia proceso de consultar los videos del prestamo con id " + idPrestamo);
+        List<VideoEntity> l=persistence.findByPrestamo(idPrestamo);
+        if (l.isEmpty()) 
+        {
+            throw new BusinessLogicException("El prestamo que consulta aún no tiene videos");
+        }
+        else
+            return l;
     }
   
   /**
@@ -138,15 +169,36 @@ private static final Logger LOGGER = Logger.getLogger(VideoLogic.class.getName()
         LOGGER.info("Termina proceso de colocar video en prestamo");
         return entity;
     }
+        public VideoEntity colocarVideoReserva(VideoEntity entity, Long idPrestamo) throws BusinessLogicException {
+        LOGGER.info("Inicia proceso de agregar video a la reserva");
+        VideoEntity ent= persistence.find(entity.getId());
+        ReservaEntity p=reservaLogic.getReserva(idPrestamo);
+        ent.setMiReserva(p);
+        persistence.update(ent);
+        LOGGER.info("Termina proceso de colocar video en reserva");
+        return entity;
+    }
    
        public VideoEntity colocarVideoBiblioteca(VideoEntity entity, Long idBiblioteca) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de agregar Video al prestamo");
+        LOGGER.info("Inicia proceso de agregar Video a la biblioteca");
         VideoEntity ent= persistence.find(entity.getId());
         BibliotecaEntity p= BibliotecaLogic.getBiblioteca(idBiblioteca);
         ent.setMiBiblioteca(p);
         persistence.update(ent);
-        LOGGER.info("Termina proceso de colocar Video en biblioteca");
+        LOGGER.info("Termina proceso de colocar Video en la biblioteca");
         return entity;
+    }
+     public void devolverVideo(VideoEntity entity) throws BusinessLogicException
+    {
+        VideoEntity ent=persistence.find(entity.getId());
+        ent.setMiPrestamo(null);
+        persistence.update(ent);
+    }
+    public void devolverVideoReserva(VideoEntity entity) throws BusinessLogicException
+    {
+        VideoEntity ent=persistence.find(entity.getId());
+        ent.setMiReserva(null);
+        persistence.update(ent);
     }
        
            /**

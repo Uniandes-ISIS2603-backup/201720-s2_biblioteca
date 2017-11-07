@@ -44,6 +44,39 @@
 
                 }
 
+            }).state('videosCreate', {
+                url: '/create',
+                parent: 'videos',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/new/videos.new.html',
+                        controller: 'videoNewCtrl'
+                    }
+                }
+            }).state('videoDelete', {
+                url: '/{videoId:int}/delete',
+                parent: 'videos',
+                param: {
+                    videoId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/delete/video.delete.html',
+                        controller: 'videosDeleteCtrl'
+                    }
+                }
+            }).state('videoUpdate', {
+                url: '/{videoId:int}/update',
+                parent: 'videos',
+                param: {
+                    usuarioId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/new/videos.new.html',
+                        controller: 'videosUpdateCtrl'
+                    }
+                }
             });
         }]);
 })(window.angular);

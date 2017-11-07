@@ -9,8 +9,9 @@
         'usuarioModule',
         'bibliotecaModule',
         'librosModule',
+        'videosModule',
         'prestamoModule',
-         'reservaModule',
+        'reservaModule',
         'multaModule',
         'medioPagoModule'
     ]);

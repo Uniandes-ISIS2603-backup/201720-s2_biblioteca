@@ -29,7 +29,7 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author jf.garcia
  */
-@Path("{idAcceso: \\\\d+}/videos")
+@Path("{idAcceso: \\d+}/videos")
 @Produces("application/json")
 @Consumes("application/json")
 
@@ -38,7 +38,7 @@ public class VideoResource {
     @Inject
     VideoLogic VideoLogic;
 
-    private static final String MENSAJE_ERROR = "El recurso /Videos/";
+    private static final String MENSAJE_ERROR = "El recurso /videos/";
     private static final String NO_EXISTE = "no existe.";
 
     @GET
@@ -57,6 +57,16 @@ public class VideoResource {
             throw new WebApplicationException("No hay videos en el sistema.");
         } else {
             return listEntity2DetailDTO(VideoLogic.getVideos());
+        }
+    }
+    
+    @GET
+    @Path("disponibles")   
+    public List<VideoDetailDTO> getVideoDisponibles() throws BusinessLogicException {
+        if (listEntity2DTO(VideoLogic.getVideosDisponibles()).isEmpty()) {
+            throw new WebApplicationException("No hay videos disponibles para prestamos en el sistema.");
+        } else {
+            return listEntity2DetailDTO(VideoLogic.getVideosDisponibles());
         }
     }
 
@@ -101,6 +111,30 @@ public class VideoResource {
         
         VideoEntity vid = video.toEntity();
         return new VideoDTO(VideoLogic.colocarVideoPrestamo(vid,idPrestamo));
+    }
+    
+        @PUT
+    @Path("{id: \\d+}/devolver")
+    public void devolverVideo(@PathParam("id") Long idVideo) throws BusinessLogicException {
+        VideoEntity entity = VideoLogic.getVideo(idVideo);
+        
+        if (entity == null) {
+            throw new WebApplicationException(MENSAJE_ERROR + idVideo + NO_EXISTE, 404);
+        }
+        
+        VideoLogic.devolverVideo(entity);
+    }
+    
+     @PUT
+    @Path("{id: \\d+}/devolverreserva")
+    public void devolverVideoReserva(@PathParam("id") Long idVideo) throws BusinessLogicException {
+        VideoEntity entity = VideoLogic.getVideo(idVideo);
+        
+        if (entity == null) {
+            throw new WebApplicationException(MENSAJE_ERROR + idVideo + NO_EXISTE, 404);
+        }
+        
+        VideoLogic.devolverVideoReserva(entity);
     }
 
     @POST

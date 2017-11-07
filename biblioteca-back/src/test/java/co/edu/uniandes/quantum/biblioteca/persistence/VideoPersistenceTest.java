@@ -160,17 +160,17 @@ public class VideoPersistenceTest
         VideoEntity deleted = em.find(VideoEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-
-    /**
-     * Test of find method, of class LibroPersistence.
+    
+     /**
+     * Test of find method, of class VideoPersistence.
      */
-//    @Test
-//    public void testFind() throws Exception {
-//        VideoEntity entity = data.get(0);
-//        VideoEntity newEntity = persistence.find(entity.getId());
-//        Assert.assertNotNull(newEntity);
-//        Assert.assertEquals(entity.getName(), newEntity.getName());
-//    }
+    @Test
+    public void testFind() throws Exception {
+        VideoEntity entity = data.get(0);
+        VideoEntity newEntity = persistence.find(entity.getId());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getName(), newEntity.getName());
+    }
 
     @Test
     public void testFindByName() {
