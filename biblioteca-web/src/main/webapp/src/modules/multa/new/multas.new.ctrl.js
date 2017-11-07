@@ -5,7 +5,6 @@
         function ($scope, $http, multasContext, $state, $rootScope) {
             $scope.createMulta = function () {
                 $http.post('api/999/usuarios/' + $state.params.usuarioId+'/multas', {
-                    medioPago: $scope.medioPago,
                     fecha: $scope.fecha,
                     costo: $scope.costo,
                     pagada: $scope.pagada,
