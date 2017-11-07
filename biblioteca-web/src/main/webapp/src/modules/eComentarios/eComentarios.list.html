@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    <div class="col-sm-12">
+        <br>
+        <table ng-if="!messageeComentarios" class="table table-striped">
+
+            <tbody>
+            <tr ng-repeat=" com in eComentariosRecords[0].comentarios">
+                <td id="{{$index}}-id"><b>{{eComentariosRecords[0].titulo}}</b><span>: </span>{{com.comentario}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <table ng-if="messageeComentarios" class="table table-striped">
+
+            <tbody>
+            <tr>
+                <td><b>{{messageeComentarios}}</b></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

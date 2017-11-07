@@ -45,6 +45,39 @@
                 }
             }
 
+        }).state('eVideosCreate', {
+            url: '/create',
+            parent: 'eVideos',
+            views: {
+                'detailView': {
+                    templateUrl: basePath + '/new/eVideo.new.html',
+                    controller: 'eVideoNewCtrl'
+                }
+            }
+        }).state('eVideoUpdate', {
+            url: '/update/{eVideoId:int}',
+            parent: 'eVideos',
+            param: {
+                eVideoId: null
+            },
+            views: {
+                'detailView': {
+                    templateUrl: basePath + '/new/eVideo.new.html',
+                    controller: 'eVideoUpdateCtrl'
+                }
+            }
+        }).state('eVideoDelete', {
+            url: '/delete/{eVideoId:int}',
+            parent: 'eVideos',
+            param: {
+                eVideoId: null
+            },
+            views: {
+                'detailView': {
+                    templateUrl: basePath + '/delete/eVideo.delete.html',
+                    controller: 'eVideoDeleteCtrl'
+                }
+            }
         });
     }
     ]);

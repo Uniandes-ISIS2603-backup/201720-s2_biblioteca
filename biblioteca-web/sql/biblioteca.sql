@@ -14,6 +14,8 @@ delete from salaEntity;
 delete from videoEntity;
 delete  from usuarioEntity;
 
+
+
 insert into bibliotecaEntity (id,name,ubicacion) values (1,'VirgilioBarco','Calle63');
 
 

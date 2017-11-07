@@ -1,5 +1,6 @@
 package co.edu.uniandes.quantum.biblioteca.ejb;
 
+import co.edu.uniandes.quantum.biblioteca.entities.ComentarioEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.EVideoEntity;
 import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
 import co.edu.uniandes.quantum.biblioteca.persistence.EVideoPersistence;

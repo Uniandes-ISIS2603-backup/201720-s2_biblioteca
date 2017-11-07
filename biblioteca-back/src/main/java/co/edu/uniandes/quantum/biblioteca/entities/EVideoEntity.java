@@ -1,12 +1,19 @@
 package co.edu.uniandes.quantum.biblioteca.entities;
 
+import uk.co.jemos.podam.common.PodamExclude;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class EVideoEntity extends BaseEntity implements Serializable {
     Integer duracion;
     String autor, direccion;
+
 
     public Integer getDuracion() {
         return duracion;

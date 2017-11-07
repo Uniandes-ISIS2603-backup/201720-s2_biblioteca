@@ -1,0 +1,70 @@
+<div class="container-fluid">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label ng-if="!edit" id="createEVideo">Crear un nuevo eVideo</label>
+                <label ng-if="edit" id="editEVideo">Editar un eVideo</label></div>
+            <div class="panel-body">
+                <form ng-submit="createEVideo()" name="eVideo">
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="eVideoTitle" class="col-sm-2">Titulo:</label>
+                            <input id="eVideoTitle" required ng-model="eVideoTitle" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="eVideoAuthor" class="col-sm-2">Autor:</label>
+                            <input id="eVideoAuthor" required ng-model="eVideoAuthor" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="eVideoDuration" class="col-sm-2">Duración:</label>
+                            <input id="eVideoDuration" required ng-model="eVideoDuration" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div ng-if="edit" class="panel-group" id="theVideos">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">Associated Videos</div>
+                            <div class="panel-body">
+                                <div id="div2" ondrop="angular.element(document.getElementById('theVideos')).scope().dropAdd(event)" ondragover="angular.element(document.getElementById('theVideos')).scope().allowDrop(event)">
+                                    <label></label>
+                                    <div ng-show="edit" ng-repeat="Video in allVideosAuthor">
+                                        <p draggable="true" ondragstart="angular.element(document.getElementById('theVideos')).scope().drag(event)" id="{{Video.id}}">{{Video.name}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-success">
+                            <div class="panel-heading">All Videos</div>
+                            <div class="panel-body">
+                                <div id="div1" ondrop="angular.element(document.getElementById('theVideos')).scope().dropDelete(event)" ondragover="angular.element(document.getElementById('theVideos')).scope().allowDrop(event)">
+                                    <label></label>
+                                    <div ng-repeat="Video in allVideosShow">
+                                        <p draggable="true" ondragstart="angular.element(document.getElementById('theVideos')).scope().drag(event)" id="{{Video.id}}">{{Video.name}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4" ng-if="!author.$valid">
+
+                            <div class="alert alert-warning" >
+                                <strong>Warning!</strong><p>All inputs are required*</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-sm-12">
+                            <input ng-show="eVideo.$valid" type="submit" value="Save" class="btn btn-success"/>
+                            <a class="btn btn-info" ui-sref="eVideosList">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

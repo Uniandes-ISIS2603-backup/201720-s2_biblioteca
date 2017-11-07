@@ -45,6 +45,39 @@
                 }
             }
 
+        }).state('eBooksCreate', {
+            url: '/create',
+            parent: 'eBooks',
+            views: {
+                'detailView': {
+                    templateUrl: basePath + '/new/eBook.new.html',
+                    controller: 'eBookNewCtrl'
+                }
+            }
+        }).state('eBookUpdate', {
+            url: '/update/{eBookId:int}',
+            parent: 'eBooks',
+            param: {
+                eBookId: null
+            },
+            views: {
+                'detailView': {
+                    templateUrl: basePath + '/new/eBook.new.html',
+                    controller: 'eBookUpdateCtrl'
+                }
+            }
+        }).state('eBookDelete', {
+            url: '/delete/{eBookId:int}',
+            parent: 'eBooks',
+            param: {
+                eBookId: null
+            },
+            views: {
+                'detailView': {
+                    templateUrl: basePath + '/delete/eBook.delete.html',
+                    controller: 'eBookDeleteCtrl'
+                }
+            }
         });
     }
     ]);

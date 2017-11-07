@@ -1,20 +1,43 @@
 <div class="container-fluid">
-    <div class="col-md-4">
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th>Titulo</th>
-                <th>Autor</th>
-                <th>Número de páginas</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="ebook in eBooksRecords">
-                <td id="{{$index}}-titulo">   <a ui-sref="eBookDetail({eBookId: ebook.id})">{{ebook.titulo}}</a></td>
-                <td id="{{$index}}-autor">{{ebook.autor}}</td>
-                <td id="{{$index}}-numeroPaginas">{{ebook.numeroPaginas}}</td>
-            </tr>
-            </tbody>
-        </table>
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label>eBooks</label></div>
+            <div class="panel-body">
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <a class="btn btn-info" ui-sref="eBooksCreate"><span class="glyphicon glyphicon-plus-sign"></span> Agregue un eBook</a>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Titulo</th>
+                            <th>Autor</th>
+                            <th>Número de páginas</th>
+                            <th>Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="ebook in eBooksRecords">
+                            <td id="{{$index}}-titulo">   <a ui-sref="eBookDetail({eBookId: ebook.id})">{{ebook.titulo}}</a></td>
+                            <td id="{{$index}}-autor">{{ebook.autor}}</td>
+                            <td id="{{$index}}-numeroPaginas">{{ebook.numeroPaginas}}</td>
+                            <td id="{{$index}}-acciones">
+                                <a class="btn btn-default btn-sm" ui-sref="eBookUpdate({eBookId: eBook.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                                <a class="btn btn-danger btn-sm" ui-sref="eBookDelete({eBookId: eBook.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
+
+
 </div>
+
+
+
+

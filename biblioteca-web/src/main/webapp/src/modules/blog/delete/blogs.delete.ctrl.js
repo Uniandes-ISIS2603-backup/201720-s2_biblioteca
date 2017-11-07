@@ -11,4 +11,4 @@
         }
     ]);
 }
-)(windows.angular);
+)(window.angular);

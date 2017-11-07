@@ -4,7 +4,15 @@
     "titulo" : "El tio petros y la conjetura de Goldbach",
     "autor" : "Apostolos Dioxiadis",
     "numeroPaginas" : 187,
-    "direccion" : "http://www.librosmaravillosos.com/conjeturagoldbach/pdf/El%20Tio%20Petros%20y%20la%20Conjetura%20de%20Goldbach%20-%20Apostolos%20Doxiadis.pdf"
+    "direccion" : "http://www.librosmaravillosos.com/conjeturagoldbach/pdf/El%20Tio%20Petros%20y%20la%20Conjetura%20de%20Goldbach%20-%20Apostolos%20Doxiadis.pdf",
+    "comentarios" : [
+      {
+        "comentario" : "Muy buen libro"
+      },
+      {
+        "comentario" : "Muy mal libro"
+      }
+    ]
   },
   {
     "id" : 2,

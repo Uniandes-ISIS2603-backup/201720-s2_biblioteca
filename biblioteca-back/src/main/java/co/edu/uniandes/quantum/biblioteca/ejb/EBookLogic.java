@@ -2,6 +2,8 @@ package co.edu.uniandes.quantum.biblioteca.ejb;
 
 import co.edu.uniandes.quantum.biblioteca.entities.ComentarioEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.EBookEntity;
+import co.edu.uniandes.quantum.biblioteca.entities.EComentarioEntity;
+import co.edu.uniandes.quantum.biblioteca.entities.UsuarioEntity;
 import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
 import co.edu.uniandes.quantum.biblioteca.persistence.EBookPersistence;
 import co.edu.uniandes.quantum.biblioteca.persistence.UsuarioPersistence;
@@ -68,6 +70,90 @@ public class EBookLogic {
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar eBook con id={0}", id);
     }
+
+    /**
+     * Obtiene una colección de instancias de ComentarioEntity asociadas a una
+     * instancia de eBook
+     *
+     * @param eBookId Identificador de la instancia de eBook
+     * @return Colección de instancias de ComentarioEntity asociadas a la instancia
+     * de eBook
+     *
+     */
+    public List<EComentarioEntity> listComentarios(Long eBookId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los comentarios del eBook con id = {0}", eBookId);
+        return getEBook(eBookId).getComentarios();
+    }
+
+    /**
+     * Obtiene una instancia de ComentarioEntity asociada a una instancia de eBook
+     *
+     * @param eBookId Identificador de la instancia de eBook
+     * @param comentarioId Identificador de la instancia de Comentario
+     *
+     */
+    public EComentarioEntity getComentario(Long eBookId, Long comentarioId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar un comentarios del eBook con id = {0}", eBookId);
+        List<EComentarioEntity> list = getEBook(eBookId).getComentarios();
+        EComentarioEntity comentariosEntity = new EComentarioEntity();
+        comentariosEntity.setId(comentarioId);
+        int index = list.indexOf(comentariosEntity);
+        if (index >= 0) {
+            return list.get(index);
+        }
+        return null;
+    }
+
+    /**
+     * Asocia un Comentario existente a un eBook
+     *
+     * @param eBookId Identificador de la instancia de eBook
+     * @param comentarioId Identificador de la instancia de Comentario
+     * @return Instancia de ComentarioEntity que fue asociada a eBook
+     *
+     */
+    public EComentarioEntity addComentario(Long eBookId, Long comentarioId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de asociar un comentarios al eBook con id = {0}", eBookId);
+        EBookEntity eBookEntity = getEBook(eBookId);
+        EComentarioEntity comentariosEntity = new EComentarioEntity();
+        comentariosEntity.setId(comentarioId);
+        eBookEntity.getComentarios().add(comentariosEntity);
+        return getComentario(eBookId, comentarioId);
+    }
+
+    /**
+     * Remplaza las instancias de Comentario asociadas a una instancia de eBook
+     *
+     * @param eBookId Identificador de la instancia de eBook
+     * @param list Colección de instancias de ComentarioEntity a asociar a instancia
+     * de eBook
+     * @return Nueva colección de ComentarioEntity asociada a la instancia de eBook
+     *
+     */
+    public List<EComentarioEntity> replaceComentarios(Long eBookId, List<EComentarioEntity> list) {
+        LOGGER.log(Level.INFO, "Inicia proceso de reemplazar un comentarios del eBook con id = {0}", eBookId);
+        EBookEntity eBookEntity = getEBook(eBookId);
+        eBookEntity.setComentarios(list);
+        return eBookEntity.getComentarios();
+    }
+
+    /**
+     * Desasocia un Comentario existente de un eBook existente
+     *
+     * @param eBookId Identificador de la instancia de eBook
+     * @param comentariosId Identificador de la instancia de Comentario
+     *
+     */
+    public void removeComentario(Long eBookId, Long comentariosId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar un comentarios del eBook con id = {0}", eBookId);
+        EBookEntity entity = getEBook(eBookId);
+        EComentarioEntity comentariosEntity = new EComentarioEntity();
+        comentariosEntity.setId(comentariosId);
+        entity.getComentarios().remove(comentariosEntity);
+    }
+
+
+    
 
 
 }
