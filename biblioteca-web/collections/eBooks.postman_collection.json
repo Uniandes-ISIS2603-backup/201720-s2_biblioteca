@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "eBooks",
-		"_postman_id": "7b1c78d8-8088-0879-94c5-86b0236321eb",
+		"_postman_id": "2d27ef1b-1932-2df1-d4ab-2b7f8f5cba1b",
 		"description": "Pruebas para el recurso eBook\n",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -22,7 +22,7 @@
 			],
 			"request": {
 				"url": {
-					"raw": "http://localhost:8080/biblioteca-web/api/eBooks",
+					"raw": "http://localhost:8080/biblioteca-web/api/999/eBooks",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -31,6 +31,7 @@
 					"path": [
 						"biblioteca-web",
 						"api",
+						"999",
 						"eBooks"
 					],
 					"query": [
@@ -66,7 +67,7 @@
 			],
 			"request": {
 				"url": {
-					"raw": "http://localhost:8080/biblioteca-web/api/eBooks",
+					"raw": "http://localhost:8080/biblioteca-web/api/999/eBooks",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -75,6 +76,7 @@
 					"path": [
 						"biblioteca-web",
 						"api",
+						"999",
 						"eBooks"
 					],
 					"query": [
@@ -119,7 +121,7 @@
 			],
 			"request": {
 				"url": {
-					"raw": "http://localhost:8080/biblioteca-web/api/eBooks",
+					"raw": "http://localhost:8080/biblioteca-web/api/999/eBooks",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -128,6 +130,7 @@
 					"path": [
 						"biblioteca-web",
 						"api",
+						"999",
 						"eBooks"
 					],
 					"query": [
@@ -172,7 +175,7 @@
 			],
 			"request": {
 				"url": {
-					"raw": "http://localhost:8080/biblioteca-web/api/eBooks",
+					"raw": "http://localhost:8080/biblioteca-web/api/999/eBooks",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -181,6 +184,7 @@
 					"path": [
 						"biblioteca-web",
 						"api",
+						"999",
 						"eBooks"
 					],
 					"query": [
@@ -216,7 +220,7 @@
 			],
 			"request": {
 				"url": {
-					"raw": "http://localhost:8080/biblioteca-web/api/eBooks/2",
+					"raw": "http://localhost:8080/biblioteca-web/api/999/eBooks/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -225,6 +229,7 @@
 					"path": [
 						"biblioteca-web",
 						"api",
+						"999",
 						"eBooks",
 						"2"
 					],
@@ -271,7 +276,7 @@
 			],
 			"request": {
 				"url": {
-					"raw": "http://localhost:8080/biblioteca-web/api/eBooks/2",
+					"raw": "http://localhost:8080/biblioteca-web/api/999/eBooks/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -280,6 +285,7 @@
 					"path": [
 						"biblioteca-web",
 						"api",
+						"999",
 						"eBooks",
 						"2"
 					],
@@ -325,7 +331,7 @@
 			],
 			"request": {
 				"url": {
-					"raw": "https://localhost:8080/biblioteca-web/api/eBooks/1?",
+					"raw": "https://localhost:8080/biblioteca-web/api//999eBooks/1",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -334,7 +340,8 @@
 					"path": [
 						"biblioteca-web",
 						"api",
-						"eBooks",
+						"",
+						"999eBooks",
 						"1"
 					],
 					"query": [

@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "eVideos",
-		"_postman_id": "29e4fa0b-f044-497d-0856-f8cd9a4625eb",
+		"_postman_id": "b9c42f67-d029-144b-c732-10e4918a9d59",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -23,7 +23,7 @@
 			],
 			"request": {
 				"url": {
-					"raw": "http://localhost:8080/biblioteca-web/api/eVideos",
+					"raw": "http://localhost:8080/biblioteca-web/api/999/eVideos",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -32,6 +32,7 @@
 					"path": [
 						"biblioteca-web",
 						"api",
+						"999",
 						"eVideos"
 					],
 					"query": [
@@ -67,7 +68,7 @@
 			],
 			"request": {
 				"url": {
-					"raw": "http://localhost:8080/biblioteca-web/api/eVideos",
+					"raw": "http://localhost:8080/biblioteca-web/api/999/eVideos",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -76,6 +77,7 @@
 					"path": [
 						"biblioteca-web",
 						"api",
+						"999",
 						"eVideos"
 					],
 					"query": [
@@ -120,7 +122,7 @@
 			],
 			"request": {
 				"url": {
-					"raw": "http://localhost:8080/biblioteca-web/api/eVideos",
+					"raw": "http://localhost:8080/biblioteca-web/api/999/eVideos",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -129,6 +131,7 @@
 					"path": [
 						"biblioteca-web",
 						"api",
+						"999",
 						"eVideos"
 					],
 					"query": [
@@ -173,7 +176,7 @@
 			],
 			"request": {
 				"url": {
-					"raw": "http://localhost:8080/biblioteca-web/api/eVideos",
+					"raw": "http://localhost:8080/biblioteca-web/api/999/eVideos",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -182,6 +185,7 @@
 					"path": [
 						"biblioteca-web",
 						"api",
+						"999",
 						"eVideos"
 					],
 					"query": [
@@ -217,7 +221,7 @@
 			],
 			"request": {
 				"url": {
-					"raw": "http://localhost:8080/biblioteca-web/api/eVideos/2",
+					"raw": "http://localhost:8080/biblioteca-web/api/999/eVideos/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -226,6 +230,7 @@
 					"path": [
 						"biblioteca-web",
 						"api",
+						"999",
 						"eVideos",
 						"2"
 					],
@@ -272,7 +277,7 @@
 			],
 			"request": {
 				"url": {
-					"raw": "http://localhost:8080/biblioteca-web/api/eVideos/2",
+					"raw": "http://localhost:8080/biblioteca-web/api/999/eVideos/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -281,6 +286,7 @@
 					"path": [
 						"biblioteca-web",
 						"api",
+						"999",
 						"eVideos",
 						"2"
 					],
@@ -326,7 +332,7 @@
 			],
 			"request": {
 				"url": {
-					"raw": "https://localhost:8080/biblioteca-web/api/eVideos/1?",
+					"raw": "https://localhost:8080/biblioteca-web/api/999/eVideos/1",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -335,6 +341,7 @@
 					"path": [
 						"biblioteca-web",
 						"api",
+						"999",
 						"eVideos",
 						"1"
 					],
