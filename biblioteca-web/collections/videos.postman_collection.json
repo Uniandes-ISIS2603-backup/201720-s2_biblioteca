@@ -26,7 +26,7 @@
 					"enabled": true
 				}
 			],
-			"url": "http://localhost:8080/biblioteca-web/api/bibliotecas/1/videos",
+			"url": "http://localhost:8080/biblioteca-web/api/999/bibliotecas/1/videos",
 			"queryParams": [],
 			"preRequestScript": null,
 			"pathVariables": {},
@@ -56,7 +56,7 @@
 					"enabled": true
 				}
 			],
-			"url": "http://localhost:8080/biblioteca-web/api/bibliotecas/1/videos/bib",
+			"url": "http://localhost:8080/biblioteca-web/api/999/bibliotecas/1/videos/bib",
 			"queryParams": [],
 			"preRequestScript": null,
 			"pathVariables": {},
@@ -79,7 +79,7 @@
 			"id": "c6f392ed-8150-4588-5cbf-8868977da0fb",
 			"headers": "",
 			"headerData": [],
-			"url": "http://localhost:8080/biblioteca-web/api/bibliotecas/1/videos/1",
+			"url": "http://localhost:8080/biblioteca-web/api/999/bibliotecas/1/videos/1",
 			"queryParams": [],
 			"preRequestScript": null,
 			"pathVariables": {},
@@ -107,7 +107,7 @@
 					"enabled": true
 				}
 			],
-			"url": "http://localhost:8080/biblioteca-web/api/bibliotecas/1/videos/1",
+			"url": "http://localhost:8080/biblioteca-web/api/999/bibliotecas/1/videos/1",
 			"queryParams": [],
 			"preRequestScript": null,
 			"pathVariables": {},

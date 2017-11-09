@@ -20,7 +20,7 @@
 			"id": "0b05966c-6897-2965-beb6-c6fa6ae32069",
 			"headers": "",
 			"headerData": [],
-			"url": "http://localhost:8080/biblioteca-web/api/bibliotecas/1/salas/1",
+			"url": "http://localhost:8080/biblioteca-web/api/999/bibliotecas/1/salas/1",
 			"queryParams": [],
 			"preRequestScript": null,
 			"pathVariables": {},
@@ -49,7 +49,7 @@
 					"enabled": false
 				}
 			],
-			"url": "http://localhost:8080/biblioteca-web/api/bibliotecas/1/salas/1",
+			"url": "http://localhost:8080/biblioteca-web/api/999/bibliotecas/1/salas/1",
 			"queryParams": [],
 			"preRequestScript": null,
 			"pathVariables": {},
@@ -79,7 +79,7 @@
 					"enabled": true
 				}
 			],
-			"url": "http://localhost:8080/biblioteca-web/api/bibliotecas/1/salas",
+			"url": "http://localhost:8080/biblioteca-web/api/999/bibliotecas/1/salas",
 			"queryParams": [],
 			"preRequestScript": null,
 			"pathVariables": {},
@@ -110,7 +110,7 @@
 					"enabled": true
 				}
 			],
-			"url": "http://localhost:8080/biblioteca-web/api/bibliotecas/1/salas/1",
+			"url": "http://localhost:8080/biblioteca-web/api/999/bibliotecas/1/salas/1",
 			"queryParams": [],
 			"preRequestScript": null,
 			"pathVariables": {},
@@ -140,7 +140,7 @@
 					"enabled": true
 				}
 			],
-			"url": "http://localhost:8080/biblioteca-web/api/bibliotecas/1/salas",
+			"url": "http://localhost:8080/biblioteca-web/api/999/bibliotecas/1/salas",
 			"queryParams": [],
 			"preRequestScript": null,
 			"pathVariables": {},
