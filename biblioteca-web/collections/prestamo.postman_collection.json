@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "prestamo",
-		"_postman_id": "68cf1bbb-7b32-eedb-9afa-c6980ea8c403",
+		"_postman_id": "6b0ef7e8-4dca-c47d-569b-54cab69819c2",
 		"description": "Coleccion de postman del recurso prestamo",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -22,7 +22,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/prestamos",
+				"url": "http://localhost:8080/biblioteca-web/api/999/usuarios/1/prestamos",
 				"method": "GET",
 				"header": [
 					{
@@ -54,7 +54,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/prestamos/1",
+				"url": "http://localhost:8080/biblioteca-web/api/999/usuarios/1/prestamos/1",
 				"method": "GET",
 				"header": [
 					{
@@ -86,7 +86,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/prestamos",
+				"url": "http://localhost:8080/biblioteca-web/api/999/usuarios/1/prestamos",
 				"method": "POST",
 				"header": [
 					{
@@ -118,7 +118,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/prestamos/1",
+				"url": "http://localhost:8080/biblioteca-web/api/999/usuarios/1/prestamos/2",
 				"method": "DELETE",
 				"header": [
 					{
@@ -150,7 +150,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/prestamos/2",
+				"url": "http://localhost:8080/biblioteca-web/api/999/usuarios/1/prestamos/2",
 				"method": "PUT",
 				"header": [
 					{
@@ -162,6 +162,70 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\n\t\"fechaInicio\":\"2017-12-12\",\n\t\"fechaFinal\":\"2017-12-13\",\n\t\"generomulta\":true,\n\t\"externo\":true,\n\t\"retornado\":false\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar el libro con id 2 al prestamo con id 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/biblioteca-web/api/999/usuarios/1/prestamos/1/libros/actual/prestamo/2",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Devolver el libro 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/biblioteca-web/api/999/libros/2/devolver",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n\t\"name\":\"Usuario1\",\n\t\"telefono\":\"telefono1\",\n\t\"direccion\":\"calle1\"\n\t\n\t\n}"
 				},
 				"description": ""
 			},

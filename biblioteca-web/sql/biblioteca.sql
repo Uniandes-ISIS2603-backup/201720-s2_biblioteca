@@ -29,6 +29,8 @@ insert into ebookEntity (id, name, autor, numeroPaginas) values (1,'El tio petro
 insert into ebookEntity (id, name, autor, numeroPaginas) values (2,'Calculo Vectorial' , 'Jerrold Marsden, Antony Tromba ', 666);
 
 insert into prestamoentity (id,fechainicio,fechafinal,generomulta,externo,retornado,miusuario_id) values (1,'2017-11-09','2017-11-23',0,1,0,1);
+insert into prestamoentity (id,fechainicio,fechafinal,generomulta,externo,retornado,miusuario_id) values (2,'2017-10-09','2017-10-23',0,1,0,1);
+
 
 insert into evideoEntity (id, name, autor, duracion) values (1,'Curso AngularJS - Introduccion' , 'codigoFacilito', 10);
 insert into evideoEntity (id, name, autor, duracion) values (2,'Curso AngularJS - Hola Mundo' , 'codigoFacilito', 5);

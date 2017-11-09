@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "reserva copy",
-		"_postman_id": "4c427503-bbf1-35ed-0f52-da0b8be3671f",
+		"_postman_id": "b13c1116-f0c1-8212-6e1e-853833007af9",
 		"description": "pruebas de integración para reserva",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -21,7 +21,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/usuarios",
+				"url": "http://localhost:8080/biblioteca-web/api/999/usuarios",
 				"method": "POST",
 				"header": [
 					{
@@ -52,7 +52,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/reservas",
+				"url": "http://localhost:8080/biblioteca-web/api/999/usuarios/1/reservas",
 				"method": "GET",
 				"header": [],
 				"body": {
@@ -77,7 +77,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/reservas",
+				"url": "http://localhost:8080/biblioteca-web/api/999/usuarios/1/reservas",
 				"method": "POST",
 				"header": [
 					{
@@ -108,7 +108,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/reservas",
+				"url": "http://localhost:8080/biblioteca-web/api/999/usuarios/1/reservas",
 				"method": "GET",
 				"header": [],
 				"body": {
@@ -133,7 +133,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/reservas/1",
+				"url": "http://localhost:8080/biblioteca-web/api/999/usuarios/1/reservas/1",
 				"method": "PUT",
 				"header": [
 					{
@@ -164,7 +164,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/usuarios/14/reservas/1",
+				"url": "http://localhost:8080/biblioteca-web/api/999/usuarios/14/reservas/1",
 				"method": "DELETE",
 				"header": [
 					{

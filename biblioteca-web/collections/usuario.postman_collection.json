@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "usuario",
-		"_postman_id": "99588ed5-9d85-8d53-028b-6991646c0cc0",
+		"_postman_id": "a6ec5fe8-2d42-03bd-1b72-ece94b994332",
 		"description": "Coleccion de postman para el recurso usuario",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -22,7 +22,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/usuarios",
+				"url": "http://localhost:8080/biblioteca-web/api/999/usuarios",
 				"method": "GET",
 				"header": [
 					{
@@ -54,7 +54,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/usuarios/1",
+				"url": "http://localhost:8080/biblioteca-web/api/999/usuarios/1",
 				"method": "GET",
 				"header": [
 					{
@@ -86,7 +86,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/usuarios",
+				"url": "http://localhost:8080/biblioteca-web/api/999/usuarios",
 				"method": "POST",
 				"header": [
 					{
@@ -98,38 +98,6 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\n\n\t\"name\":\"Usuario3\",\n\t\"telefono\":\"telefono3\",\n\t\"direccion\":\"calle3\"\n\t\n\t\n}"
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Crear un usuario con informacion repetida (ERROR)",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"",
-							"tests[\"Status code is 412\"] = responseCode.code === 412;"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/usuarios",
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\n\t\"name\":\"Nombre1\",\n\t\"telefono\":\"Telefono1\",\n\t\"direccion\":\"Direccion1\"\n\t\n\t\n}"
 				},
 				"description": ""
 			},
@@ -150,7 +118,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/usuarios/1",
+				"url": "http://localhost:8080/biblioteca-web/api/999/usuarios/1",
 				"method": "PUT",
 				"header": [
 					{
@@ -168,7 +136,7 @@
 			"response": []
 		},
 		{
-			"name": "Borrar el usuario 1",
+			"name": "Borrar el usuario 2",
 			"event": [
 				{
 					"listen": "test",
@@ -182,7 +150,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/usuarios/1",
+				"url": "http://localhost:8080/biblioteca-web/api/999/usuarios/2",
 				"method": "DELETE",
 				"header": [
 					{

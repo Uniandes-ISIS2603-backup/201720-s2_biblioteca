@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "medioPago",
-		"_postman_id": "f3d3b4b5-5f36-9cf0-5052-b0f03c033324",
+		"_postman_id": "f8f34d2b-1c5e-088c-6a1f-e715144168e6",
 		"description": "Coleccion de Postman para el recurso medioPago",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -22,7 +22,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/medioPago",
+				"url": "http://localhost:8080/biblioteca-web/api/999/usuarios/1/medioPago",
 				"method": "GET",
 				"header": [
 					{
@@ -54,7 +54,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/usuarios/2/medioPago",
+				"url": "http://localhost:8080/biblioteca-web/api/999/usuarios/2/medioPago",
 				"method": "GET",
 				"header": [
 					{
@@ -86,7 +86,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/usuarios/2/medioPago",
+				"url": "http://localhost:8080/biblioteca-web/api/999/usuarios/1/medioPago",
 				"method": "POST",
 				"header": [
 					{
@@ -97,39 +97,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n        \"descripcion\": \"2222 1111 2222\",\n        \n        \"tipo\": 1\n    }"
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "Actualizar el medioPago del usuario 1",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"",
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/medioPago/1",
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n        \"descripcion\": \"3333 1111 2222\",\n        \n        \"tipo\": 1\n    }"
+					"raw": "{\n        \"descripcion\": \"2223332 1111 2222\",\n        \n        \"tipo\": 1\n    }"
 				},
 				"description": ""
 			},
@@ -150,7 +118,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/usuarios/1/medioPago/1",
+				"url": "http://localhost:8080/biblioteca-web/api/999/usuarios/1/medioPago/1",
 				"method": "DELETE",
 				"header": [
 					{
