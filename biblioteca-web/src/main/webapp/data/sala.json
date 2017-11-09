@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "capacidad":10
+        
+    },
+    {
+        "id": 2,
+        "capacidad":15
+        
+    },
+    {
+        "id": 3,
+        "capacidad":6
+        
+    }
+]

@@ -6,7 +6,7 @@
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             // En basePath se encuentran los templates y controladores de módulo
             var basePath = 'src/modules/video/';
-            // Mostrar la lista de autores será el estado por defecto del módulo
+            // Mostrar la lista de videos será el estado por defecto del módulo
             $urlRouterProvider.otherwise("/videosList");
             // Definición del estado 'videosList' donde se listan los videos
             $stateProvider.state('videos', {
@@ -71,7 +71,7 @@
                 url: '/{videoId:int}/update',
                 parent: 'videos',
                 param: {
-                    usuarioId: null
+                    videoId: null
                 },
                 views: {
                     'detailView': {

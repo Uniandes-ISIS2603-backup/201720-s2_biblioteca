@@ -12,6 +12,7 @@
         'blogModule',
         'comentarioModule',
         'videosModule',
+        'salasModule',
         'prestamoModule',
         'reservaModule',
         'multaModule',
