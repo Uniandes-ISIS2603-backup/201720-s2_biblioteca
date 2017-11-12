@@ -1,7 +1,7 @@
 (function (ng) {
     var mod = ng.module("eComentarioModule", ['eBookModule', 'ui.router']);
     mod.constant("eComentariosContext", "eComentarios");
-    mod.constant("eBooksContext", "api/eBooks");
+    mod.constant("eBooksContext", "api/999/eBooks");
 
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
         var basePath = 'src/modules/eComentarios/';
