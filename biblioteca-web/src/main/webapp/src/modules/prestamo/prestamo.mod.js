@@ -77,6 +77,16 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('prestamoAgregarVideos', {
+                url: '/{prestamoId:int}/agregarVideos',
+                parent: 'prestamos',
+                views: {
+                    'detailView': {
+                        templateUrl: 'src/modules/prestamo/agregarVideos/prestamo.agregarVideos.html',
+                        controller: 'prestamoAgregarVideosCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             });
             ;
         }

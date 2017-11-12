@@ -38,7 +38,8 @@ insert into evideoEntity (id, name, autor, duracion) values (2,'Curso AngularJS 
 
 insert into libroEntity(id,aniopublicacion,autor,name,numpaginas, miprestamo_id) values (1,1996,'James','Moby Dick',123,1);
 insert into libroEntity(id,aniopublicacion,autor,name,numpaginas) values (2,1997,'Javier','Oliver Twist',123);
-insert into libroEntity(id,aniopublicacion,autor,name,numpaginas,mibiblioteca_id) values (3,1998,'Jax','Twister',123,1);
+insert into libroEntity(id,aniopublicacion,autor,name,numpaginas) values (3,1998,'Jax','Twister',123);
 
+insert into videoEntity (id,name,autor,duracion) values (1,'Cosmos','Carl Sagan',92);
 
 

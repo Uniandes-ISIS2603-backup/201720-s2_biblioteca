@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div class="col-md-4">
+        <div class="panel-heading"><label>Agregar un video a un prestamo </label></div>
+       
+<div class="container-fluid">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>    
+                    <th>Name</th>  
+                    <th>Autor</th>
+                    <th>Actions</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="vid in allVideosDisponibles">
+                    <td id="{{$index}}-id">{{vid.id}}</td> 
+                    <td id="{{$index}}-name">{{vid.name}}</td>
+                    <td id="{{$index}}-autor">{{vid.autor}}</td>
+                    <td id="{{$index}}-actions">
+                    <td>
+<a class="btn btn-info" ng-click="agregarVideoPrestamo(vid.id)"><span class="glyphicon glyphicon-plus-sign"></span></a>
+
+</td>
+                </tr>
+            </tbody>
+        </table>
+</div>

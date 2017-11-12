@@ -106,10 +106,10 @@ public class VideoResource {
     }
     
      @PUT
-     @Path("{actual}/{prestamo}")
-    public VideoDTO ponerVideoPrestamo(VideoDTO video, @PathParam("idPrestamo") Long idPrestamo) throws BusinessLogicException {
+     @Path("{actual}/{prestamo}/{idVideito: \\d+}")
+    public VideoDTO ponerVideoPrestamo(@PathParam("idPrestamo") Long idPrestamo, @PathParam("idVideito") Long idV) throws BusinessLogicException {
         
-        VideoEntity vid = video.toEntity();
+        VideoEntity vid = VideoLogic.getVideo(idV);
         return new VideoDTO(VideoLogic.colocarVideoPrestamo(vid,idPrestamo));
     }
     
