@@ -28,6 +28,15 @@
                 });
             };
             
+            $scope.devolverVideoPrestamo = function (laId) {
+                $http.put('api/999/videos/'+laId+'/devolver', {
+
+                }).then(function (response) {
+                    //Prestamo created successfully
+                    $state.go('prestamoList', {prestamoId: response.data.id}, {reload: true});
+                });
+            };
+            
         }
     ]);
 }

@@ -5,8 +5,8 @@
     mod.controller('prestamoAgregarVideosCtrl', ['$scope', '$http', '$state',
         function ($scope, $http, $state) {           
             
-            $http.get('api/999/libros/disponibles').then(function (response) {
-                    $scope.allLibrosDisponibles = response.data;
+            $http.get('api/999/videos/disponibles').then(function (response) {
+                    $scope.allVideosDisponibles = response.data;
                 });
                 
                 $scope.agregarVideoPrestamo = function (laId) {
