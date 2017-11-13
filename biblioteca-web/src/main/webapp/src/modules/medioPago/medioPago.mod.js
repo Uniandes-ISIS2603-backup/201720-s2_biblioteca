@@ -47,13 +47,13 @@
                         controller: 'medioPagoNewCtrl'
                     }
                 }
-            }).state('medioPagoDetail', {
-                url: '/{medioPagoId:int}/detail',
+            }).state('medioPagoUpdate', {
+                url: '/{medioPagoId:int}/update',
                 parent: 'medioPagos',
                 views: {
                     'detailView': {
-                        templateUrl: basePath + 'medioPago.detail.html',
-                        controller: 'medioPagoCtrl',
+                        templateUrl: 'src/modules/medioPago/update/medioPago.update.html',
+                        controller: 'medioPagoUpdateCtrl',
                         controllerAs: 'ctrl'
                     }
                 }

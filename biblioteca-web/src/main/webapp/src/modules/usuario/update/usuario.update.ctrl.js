@@ -11,7 +11,7 @@
 
                     //Consulto el autor a editar.
                     console.info(usuarioContext+'/' + idUsuario);
-                    $http.get(usuarioContext + '/' + idUsuario).then(function (response) {
+                        $http.get(usuarioContext + '/' + idUsuario).then(function (response) {
                         var usuario = response.data;
                         $scope.usuarioName = usuario.name;
                         $scope.usuarioTelefono = usuario.telefono;
