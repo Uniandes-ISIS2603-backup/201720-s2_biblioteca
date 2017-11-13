@@ -47,7 +47,7 @@ public class LibroResource {
     private static final String NO_EXISTE = "no existe.";
 
     @GET
-    @Path("{perBib}")    
+ @Path("biblioteca/{idBiblioteca: \\d+}")  
     public List<LibroDTO> getBooksBiblioteca(@PathParam("idBiblioteca") Long idBiblioteca) throws BusinessLogicException {
         if (listEntity2DTO(LibroLogic.getLibros(idBiblioteca)).isEmpty()) {
             throw new WebApplicationException("No hay libros en el sistema.");
@@ -164,6 +164,22 @@ public class LibroResource {
          validarAccesoAdmin(idAcceso);
         return new LibroDTO(LibroLogic.crearLibro(book.toEntity()));
     }
+     /**
+     *
+     * @param book
+     * @param idBiblioteca
+     * @return
+     * @throws co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException
+     * @throws BusinessLogicException
+     */
+    @POST
+    @Path("bibliotecaCrear/{idBiblioteca: \\d+}")
+    public LibroDTO createBook(LibroDTO book, @PathParam("idBiblioteca") Long idBiblioteca) throws BusinessLogicException {
+        return new LibroDTO(LibroLogic.crearLibro(book.toEntity(), idBiblioteca));
+    }
+    
+    
+   
 
     @PUT
     @Path("{id: \\d+}")
@@ -187,6 +203,43 @@ public class LibroResource {
             throw new WebApplicationException("El recurso /books/" + id + " no existe.", 404);
         }
         LibroLogic.deleteBook(id);
+    }
+    
+     
+    
+     /**
+     *
+     * Ejemplo: { "description": "Las habilidades gerenciales en arquitectos de
+     * software.", "editorial": { "id": 200, "name": "Oveja Negra 2" }, "image":
+     * "https://images-na.ssl-images-amazon.com/images/I/516GyHY9p6L.jpg",
+     * "isbn": "930330149-8", "name": "La comunicación en el software",
+     * "publishingdate": "2017-08-20T00:00:00-05:00" }
+     *
+     * @param id
+     * @param book
+     * @param idBiblioteca
+     * @return
+     * @throws BusinessLogicException
+     */
+    @PUT
+    @Path("{id: \\d+}/biblioteca/{idBiblioteca: \\d+}")
+    public LibroDTO updateBook(@PathParam("id") Long id, LibroDTO book, @PathParam("idBiblioteca") Long idBiblioteca) throws BusinessLogicException {
+        book.setId(id);
+        LibroEntity entity = LibroLogic.getLibro(idBiblioteca, id);
+        if (entity == null) {
+            throw new WebApplicationException(MENSAJE_ERROR + id + " no existe.", 404);
+        }
+        return new LibroDTO(LibroLogic.updateBook(id, book.toEntity(), idBiblioteca));
+    }
+
+    @DELETE
+    @Path("{booksId: \\d+}/biblioteca/{idBiblioteca: \\d+}")
+    public void deleteBookBiblioteca(@PathParam("booksId") Long id, @PathParam("idBiblioteca") Long idBiblioteca) throws BusinessLogicException {
+        LibroEntity entity = LibroLogic.getLibro(idBiblioteca, id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /books/" + id + " no existe.", 404);
+        }
+        LibroLogic.deleteBook(id, idBiblioteca);
     }
 
     /**

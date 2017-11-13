@@ -141,19 +141,15 @@ public class LibroLogic {
     public LibroEntity crearLibro(LibroEntity entity, Long idBiblioteca) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de libro");
         BibliotecaEntity biblioteca = bibliotecaLogic.getBiblioteca(idBiblioteca);
-        entity.setMiBiblioteca(biblioteca);
-        List<LibroEntity> libros = biblioteca.getLibros();
+     
+       LibroEntity e= crearLibro(entity);
+        e.setMiBiblioteca(biblioteca);
+   
 
-        for (LibroEntity libro : libros) {
-            if (libro != null) {
-                if (libro.getAnioPublicacion() == entity.getAnioPublicacion() && libro.getAutor().equals(entity.getAutor())) {
-                    throw new BusinessLogicException("Ya existe un usuario con el mismo nombre, telefono y dirección.");
-                }
-            }
-        }
-        persistence.create(entity);
+     
+      
         LOGGER.info("Termina proceso de creación de libro");
-        return entity;
+        return e;
     }
 
     public LibroEntity colocarLibroPrestamo(LibroEntity entity, Long idPrestamo) throws BusinessLogicException {
@@ -209,6 +205,36 @@ public void devolverLibroReserva(LibroEntity entity) throws BusinessLogicExcepti
         return !(id == null || id == 0);
     }
 
+    /**
+  * Devuelve el libro que se actualizo en la base de datos.
+  * @param id ISBN del libro a actualizar.
+  * @param entity libro a actualizar
+  * @return  el libro como un objeto Entity.
+  * Corresponde a la lógica de PUT libros/{id}
+  */
+      public LibroEntity updateBook(Long id, LibroEntity entity, Long idBiblioteca) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar libro con id={0}", id);
+        entity.setMiBiblioteca(bibliotecaLogic.getBiblioteca(idBiblioteca));
+        if (!validateId(entity.getId())) {
+            throw new BusinessLogicException("El ISBN  (id) es inválido");
+        }
+        LibroEntity newEntity = persistence.update(entity);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar libro con id={0}", entity.getId());
+        return newEntity;
+    }
+
+  /**
+  * Devuelve el libro que se borrará de la base de datos.
+  * @param id ISBN del libro a borrar.
+  * Corresponde a la lógica de DELETE libros/{id}
+  */
+    public void deleteBook(Long id, Long idBiblioteca) throws BusinessLogicException 
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar libro con id={0}", id);
+           LibroEntity old = getLibro(idBiblioteca, id);
+        persistence.delete(old.getId());
+        LOGGER.log(Level.INFO, "Termina proceso de borrar libro con id={0}", id);
+    }
     /**
      * Devuelve el libro que se actualizo en la base de datos.
      *
