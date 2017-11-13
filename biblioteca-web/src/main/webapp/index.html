@@ -105,6 +105,11 @@
         <script src="src/modules/reserva/delete/reserva.delete.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/reserva/agregarLibros/reserva.agregarLibros.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/reserva/update/reserva.update.ctrl.js" type="text/javascript"></script>
+        
+         <script src="src/modules/login/login.mod.js" type="text/javascript"></script>
+        <script src="src/modules/login/login.ctrl.js" type="text/javascript"></script>        
+        <script src="src/modules/login/logout.ctrl.js" type="text/javascript"></script>
+      
     </head>    
     <body class="span4">
         <div class="container-fluid">
@@ -117,9 +122,12 @@
                     <h3>by Quantum</h3>
                 </div>
                 <div class="col-md-5">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Regístrate</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Ingresa</a></li>
+                    <ul ng-if="!isAuthenticated()" class="nav navbar-nav navbar-right">
+                        <li><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    </ul>
+                    <ul ng-if="isAuthenticated()" class="nav navbar-nav pull-right">
+                        <li class="nameUser">Hola, {{currentUser}}</li>
+                        <li><a ui-sref="logout">Logout</a></li>
                     </ul>
                 </div>
 

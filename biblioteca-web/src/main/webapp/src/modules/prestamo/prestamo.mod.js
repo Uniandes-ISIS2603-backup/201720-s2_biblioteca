@@ -27,6 +27,10 @@
                         controller: 'prestamoCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['admin', 'assistant']
                 }
             }).state('prestamoDelete', {
                 url: '/{prestamoId:int}/delete',
@@ -37,6 +41,10 @@
                         controller: 'prestamoDeleteCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['admin', 'assistant']
                 }
             }).state('prestamoCreate', {
                 url: '/create',
@@ -46,6 +54,10 @@
                         templateUrl: 'src/modules/prestamo/new/prestamo.new.html',
                         controller: 'prestamoNewCtrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['admin', 'assistant']
                 }
             }).state('prestamoDetail', {
                 url: '/{prestamoId:int}/detail',
@@ -56,6 +68,10 @@
                         controller: 'prestamoCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['admin', 'assistant']
                 }
             }).state('prestamoUpdate', {
                 url: '/{prestamoId:int}/update',
@@ -66,6 +82,10 @@
                         controller: 'prestamoUpdateCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['admin', 'assistant']
                 }
             }).state('prestamoAgregarLibros', {
                 url: '/{prestamoId:int}/agregarLibros',
@@ -76,6 +96,10 @@
                         controller: 'prestamoAgregarLibrosCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['admin', 'assistant']
                 }
             }).state('prestamoAgregarVideos', {
                 url: '/{prestamoId:int}/agregarVideos',
@@ -86,6 +110,10 @@
                         controller: 'prestamoAgregarVideosCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['admin', 'assistant']
                 }
             });
             ;

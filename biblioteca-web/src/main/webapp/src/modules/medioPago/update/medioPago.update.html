@@ -1,4 +1,5 @@
 <div class="container-fluid">
+<div ng-if="isAuthenticated() && hasPermissions()">
     <div class="panel-group">
             <div class="panel-heading"><label id="createMedioPago">Ingrese la informacion del medio de pago</label>
             <div class="panel-body">
@@ -33,4 +34,6 @@
             </div>
         </div>
     
+</div>
+</div>
 </div>

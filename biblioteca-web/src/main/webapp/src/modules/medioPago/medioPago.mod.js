@@ -27,6 +27,10 @@
                         controller: 'medioPagoCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['admin', 'assistant']
                 }
             }).state('medioPagoDelete', {
                 url: '/{medioPagoId:int}/delete',
@@ -37,6 +41,10 @@
                         controller: 'medioPagoDeleteCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['admin', 'assistant']
                 }
             }).state('medioPagoCreate', {
                 url: '/create',
@@ -46,6 +54,10 @@
                         templateUrl: 'src/modules/medioPago/new/medioPago.new.html',
                         controller: 'medioPagoNewCtrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['admin', 'assistant']
                 }
             }).state('medioPagoUpdate', {
                 url: '/{medioPagoId:int}/update',
@@ -56,6 +68,10 @@
                         controller: 'medioPagoUpdateCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['admin', 'assistant']
                 }
             });
             ;

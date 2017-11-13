@@ -26,6 +26,10 @@
                     'listView': {
                         templateUrl: basePath + 'usuarios.list.html'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['admin', 'assistant']
                 }
             }).state('usuarioDetail', {
                 url: '/{usuarioId:int}/detail',
@@ -41,6 +45,10 @@
                         controllerAs: 'ctrl'
                     }
 
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['admin', 'assistant']
                 }
             }).state('usuarioCreate', {
                 url: '/create',
@@ -50,6 +58,10 @@
                         templateUrl: basePath + '/new/usuarios.new.html',
                         controller: 'usuarioNewCtrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['admin', 'assistant']
                 }
             }).state('usuarioUpdate', {
                 url: '/{usuarioId:int}/update',
@@ -62,6 +74,10 @@
                         templateUrl: basePath + '/new/usuarios.new.html',
                         controller: 'usuarioUpdateCtrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['admin', 'assistant']
                 }
             }).state('usuarioDelete', {
                 url: '/{usuarioId:int}/delete',
@@ -74,8 +90,12 @@
                         templateUrl: basePath + '/delete/usuario.delete.html',
                         controller: 'usuarioDeleteCtrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['admin', 'assistant']
                 }
-});
+            });
         }
     ]);
 })(window.angular);

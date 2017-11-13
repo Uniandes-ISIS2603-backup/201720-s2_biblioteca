@@ -1,33 +1,46 @@
 <div class="container-fluid">
-    <div class="col-md-4">
+    <div class="col-md-4" ng-if="isAuthenticated() && hasPermissions()">
         <div class="panel-heading"><label>Préstamos </label></div>
         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <a class="btn btn-info" ui-sref="prestamoCreate"><span class="glyphicon glyphicon-plus-sign">   Agregar</span></a>
-                    </div>
-                </div>
-<div class="container-fluid">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Id</th>    
-                    <th>Fecha de Inicio</th>  
-                    <th>Fecha Final</th>
-                    <th>Acciones</th>
-                    
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="prestamo in prestamoRecords">
-                    <td id="{{$index}}-id"><a ui-sref="prestamoDetail({prestamoId: prestamo.id})">{{prestamo.id}}</a></td>
-                    <td id="{{$index}}-name" width="200">{{prestamo.fechaInicio}}</td> 
-                    <td id="{{$index}}-name" width="150">{{prestamo.fechaFinal}}</td>
-                    <td id="{{$index}}-actions" width="150">
-                        <a class="btn btn-default btn-sm" ui-sref="prestamoUpdate({prestamoId: prestamo.id})"><span class="glyphicon glyphicon-edit"></span></a>
-                        <a class="btn btn-danger btn-sm" ui-sref="prestamoDelete({prestamoId: prestamo.id})"><span class="glyphicon glyphicon-trash"></span></a>
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+                <a class="btn btn-info" ui-sref="prestamoCreate"><span class="glyphicon glyphicon-plus-sign">   Agregar</span></a>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>    
+                        <th>Fecha de Inicio</th>  
+                        <th>Fecha Final</th>
+                        <th>Acciones</th>
 
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="prestamo in prestamoRecords">
+                        <td id="{{$index}}-id"><a ui-sref="prestamoDetail({prestamoId: prestamo.id})">{{prestamo.id}}</a></td>
+                        <td id="{{$index}}-name" width="200">{{prestamo.fechaInicio}}</td> 
+                        <td id="{{$index}}-name" width="150">{{prestamo.fechaFinal}}</td>
+                        <td id="{{$index}}-actions" width="150">
+                            <a class="btn btn-default btn-sm" ui-sref="prestamoUpdate({prestamoId: prestamo.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                            <a class="btn btn-danger btn-sm" ui-sref="prestamoDelete({prestamoId: prestamo.id})"><span class="glyphicon glyphicon-trash"></span></a>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+     <div class="center-block well text-center" ng-if="!isAuthenticated() || !hasPermissions()">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <h1 class="float-left display-3 mr-4">Atención</h1>
+                    <h4 >No tiene permiso para realizar esta acción</h4>
+                    <p >Contacte al administrador para obtener autorización.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
