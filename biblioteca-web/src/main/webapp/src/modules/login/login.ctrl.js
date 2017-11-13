@@ -11,12 +11,13 @@
             });
 
             $scope.autenticar = function () {
+                
                 var flag = false;
                 for (var item in $scope.users) {
                     if ($scope.users[item].user == $scope.data.username && $scope.users[item].password == $scope.data.password && $scope.users[item].rol == $scope.data.rol) {
                         flag = true;
                         $scope.user = $scope.users[item];
-                        $state.go('booksList', {}, {reload: true});
+                        $state.go('usuarioList', {}, {reload: true});
                         break;
                     }
                 }
