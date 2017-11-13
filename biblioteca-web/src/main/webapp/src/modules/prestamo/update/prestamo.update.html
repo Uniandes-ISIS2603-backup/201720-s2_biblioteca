@@ -13,25 +13,25 @@
                     <div class="form-group row">
                         <div class="form-group col-md-6">
                             <label for="prestfechaFinal" class="col-sm-2">Fecha de Finalización (En formato: yyyy-mm-dd):</label>
-                            <input id="prestfechaFinal" required ng-model="prestfechaFinal" class="col-sm-6">
+                            <input id="prestfechaInicio" required ng-model="prestfechaFinal" class="col-sm-6">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="prestexterno" class="col-sm-2">Externo (Escriba 0 si no, 1 si es externo):</label>
-                            <input type="number"  name="quantity" min="0" max="1" required ng-model="prestexterno" class="col-sm-6">
+                            <label for="prestexterno" class="col-sm-2">Externo:</label>
+                            <input type="checkbox"   ng-model="prestexterno" class="col-sm-6">
                         </div>
                     </div>  
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="prestgeneroMulta" class="col-sm-2">Genero multa (Escriba 0 si no, 1 si es externo):</label>
-                            <input type="number" name="quantity" min="0" max="1" required ng-model="prestgeneroMulta" class="col-sm-6">
+                            <label for="prestgeneroMulta" class="col-sm-2">Generó multa:</label>
+                            <input type="checkbox"  ng-model="prestgeneroMulta" class="col-sm-6">
                         </div>
                     </div> 
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="prestretornado" class="col-sm-2">Retornado (Escriba 0 si no, 1 si es externo):</label>
-                            <input type="number" name="quantity" min="0" max="1" required ng-model="prestretornado" class="col-sm-6">
+                            <label for="prestretornado" class="col-sm-2">Retornado:</label>
+                            <input type="checkbox"  ng-model="prestretornado" class="col-sm-6">
                         </div>
                     </div> 
                     <div class="form-group row">

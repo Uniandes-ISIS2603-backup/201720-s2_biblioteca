@@ -1,5 +1,5 @@
 delete from libroEntity;
-delete from prestamoEntity;
+delete from videoEntity;
 delete from mediopagoEntity;
 delete from multaEntity;
 delete from reservaEntity;
@@ -12,7 +12,7 @@ delete from evideoEntity;
 delete from recursoEntity;
 delete from reservaEntity_recursoEntity;
 delete from salaEntity;
-delete from videoEntity;
+delete from prestamoEntity;
 delete from usuarioEntity;
 
 

@@ -24,7 +24,7 @@
                         $http.put('api/999/usuarios/' + $state.params.usuarioId+'/prestamos/'+idPrestamo, {
                             fechaInicio: $scope.prestfechaInicio,
                             fechaFinal: $scope.prestfechaFinal,
-                            generoMulta: $scope.prestgeneroMulta,
+                            generomulta: $scope.prestgeneroMulta,
                             retornado: $scope.prestretornado,
                             externo: $scope.prestexterno
                         }).then(function (response) {                            
