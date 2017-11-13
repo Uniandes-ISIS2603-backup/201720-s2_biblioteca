@@ -5,20 +5,24 @@
                 <form ng-submit="createPrestamo()" name="prestamo">
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="prestamoFechaInicio" class="col-sm-2">Fecha de Inicio (En formato: yyyy-mm-dd):</label>
-                            <input id="prestamoFechaInicio" required ng-model="prestamoFechaInicio" this.style.color='#000' class="col-sm-6"/>
-                                     
+                            <label for="prestamoFechaInicio" class="col-sm-2">Fecha de Inicio:</label>
+                            Dia:<input type="number" min="1" max="31" id="diaFechaInicio" required ng-model="diaFechaInicio" this.style.color='#000' width="48" /> 
+                            Mes:<input type="number" min="1" max="12" id="mesFechaInicio" required ng-model="mesFechaInicio" this.style.color='#000'/> 
+                            Año:<input type="number" min="2014" max="3000" id="anioFechaInicio" required ng-model="anioFechaInicio" this.style.color='#000'/>
+
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="prestamoFechaFinal" class="col-sm-2">Fecha de Finalización (En formato: yyyy-mm-dd):</label>
-                            <input id="prestamoFechaFinal" required ng-model="prestamoFechaFinal" class="col-sm-6">
+                            <label for="prestamoFechaFinal" class="col-sm-2">Fecha de Finalización:</label>
+                            Dia:<input type="number" min="1" max="31" id="diaFechaFinal" required ng-model="diaFechaFinal" this.style.color='#000' width="48" /> 
+                            Mes:<input type="number" min="1" max="12" id="mesFechaFinal" required ng-model="mesFechaFinal" this.style.color='#000'/> 
+                            Año:<input type="number" min="2014" max="3000" id="anioFechaFinal" required ng-model="anioFechaFinal" this.style.color='#000'/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="prestamoExterno" class="col-sm-2">Externo (Escriba 0 si no, 1 si es externo):</label>
+                            <label for="prestamoExterno" class="col-sm-2">Externo:</label>
                             <input type="checkbox" ng-model="prestamoExterno" class="col-sm-6">
                         </div>
                     </div>            
