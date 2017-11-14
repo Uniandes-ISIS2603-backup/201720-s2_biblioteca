@@ -15,7 +15,7 @@
                 parent: 'usuarioDetail',
                 views: {
                     'childrenView': {
-                        templateUrl: basePath + 'medioPago.html',                        
+                        templateUrl: basePath + 'medioPago.html'                       
                     }
                 }
             }).state('medioPagoList', {
