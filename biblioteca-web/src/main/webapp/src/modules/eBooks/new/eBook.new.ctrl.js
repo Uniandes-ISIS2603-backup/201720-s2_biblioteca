@@ -6,10 +6,9 @@
                 $rootScope.edit = false;
                 $scope.createEBook = function () {
                     $http.post(eBooksContext, {
-                        id : $scope.eBookId,
-                        name : $scope.eBookTitle,
-                        autor : $scope.eBookAuthor,
-                        numeroPaginas : $scope.eBookNumPages
+                        name: $scope.eBookName,
+                        autor: $scope.eBookAutor,
+                        numeroPaginas: $scope.eBookNumeroPaginas
                     }).then(function (response) {
                         //eBook created successfully
                         $state.go('eBooksList', {eBookId: response.data.id}, {reload: true});
@@ -17,5 +16,4 @@
                 };
             }
         ]);
-    }
-)(angular);
+    })(angular);

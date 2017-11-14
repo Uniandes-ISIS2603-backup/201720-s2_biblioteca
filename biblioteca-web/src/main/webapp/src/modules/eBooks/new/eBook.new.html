@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="panel-group">
+    <div ng-if="isAuthenticated() && hasPermissions()" class="panel-group">
         <div class="panel panel-primary">
             <div class="panel-heading"><label ng-if="!edit" id="createEBook">Crear un nuevo eBook</label>
                 <label ng-if="edit" id="editEbook">Editar un eBook</label></div>
@@ -7,52 +7,29 @@
                 <form ng-submit="createEBook()" name="eBook">
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="eBookTitle" class="col-sm-2">Titulo:</label>
-                            <input id="eBookTitle" required ng-model="eBookTitle" class="col-sm-6"/>
+                            <label for="eBookName" class="col-sm-2">Titulo:</label>
+                            <input id="eBookName" required ng-model="eBookName" class="col-sm-6"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="eBookAuthor" class="col-sm-2">Autor:</label>
-                            <input id="eBookAuthor" required ng-model="eBookAuthor" class="col-sm-6"/>
+                            <label for="eBookAutor" class="col-sm-2">Autor:</label>
+                            <input id="eBookAutor" required ng-model="eBookAutor" class="col-sm-6"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="eBookNumPages" class="col-sm-2">Numero de páginas:</label>
-                            <input id="eBookNumPages" required ng-model="eBookNumPages" class="col-sm-6"/>
-                        </div>
-                    </div>
-                    <div ng-if="edit" class="panel-group" id="theBooks">
-                        <div class="panel panel-info">
-                            <div class="panel-heading">Associated books</div>
-                            <div class="panel-body">
-                                <div id="div2" ondrop="angular.element(document.getElementById('theBooks')).scope().dropAdd(event)" ondragover="angular.element(document.getElementById('theBooks')).scope().allowDrop(event)">
-                                    <label></label>
-                                    <div ng-show="edit" ng-repeat="book in allBooksAuthor">
-                                        <p draggable="true" ondragstart="angular.element(document.getElementById('theBooks')).scope().drag(event)" id="{{book.id}}">{{book.name}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-success">
-                            <div class="panel-heading">All books</div>
-                            <div class="panel-body">
-                                <div id="div1" ondrop="angular.element(document.getElementById('theBooks')).scope().dropDelete(event)" ondragover="angular.element(document.getElementById('theBooks')).scope().allowDrop(event)">
-                                    <label></label>
-                                    <div ng-repeat="book in allBooksShow">
-                                        <p draggable="true" ondragstart="angular.element(document.getElementById('theBooks')).scope().drag(event)" id="{{book.id}}">{{book.name}}</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <label for="eBookNumeroPaginas" class="col-sm-2">Numero de páginas:</label>
+                            <input id="eBookNumeroPaginas" required ng-model="eBookNumeroPaginas" class="col-sm-6"/>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <div class="form-group col-sm-4" ng-if="!author.$valid">
+                        <div class="form-group col-sm-4" ng-if="!eBook.$valid">
 
-                            <div class="alert alert-warning" >
-                                <strong>Warning!</strong><p>All inputs are required*</p>
+                            <div class="alert alert-warning">
+                                <strong>Warning!</strong>
+                                <p>All inputs are required*</p>
                             </div>
                         </div>
                     </div>
@@ -64,6 +41,17 @@
                     </div>
                 </form>
 
+            </div>
+        </div>
+    </div>
+    <div class="center-block well text-center" ng-if="!isAuthenticated() || !hasPermissions()">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <h1 class="float-left display-3 mr-4">Atención</h1>
+                    <h4>No tiene permiso para realizar esta acción</h4>
+                    <p>Contacte al administrador para obtener autorización.</p>
+                </div>
             </div>
         </div>
     </div>

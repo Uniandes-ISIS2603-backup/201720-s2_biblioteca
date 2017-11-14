@@ -53,6 +53,10 @@
                     templateUrl: basePath + '/new/eBook.new.html',
                     controller: 'eBookNewCtrl'
                 }
+            },
+            data: {
+                requireLogin: true,
+                roles: ['admin']
             }
         }).state('eBookUpdate', {
             url: '/update/{eBookId:int}',
@@ -65,6 +69,10 @@
                     templateUrl: basePath + '/new/eBook.new.html',
                     controller: 'eBookUpdateCtrl'
                 }
+            },
+            data: {
+                requireLogin: true,
+                roles: ['admin', 'assistant']
             }
         }).state('eBookDelete', {
             url: '/delete/{eBookId:int}',
@@ -77,6 +85,10 @@
                     templateUrl: basePath + '/delete/eBook.delete.html',
                     controller: 'eBookDeleteCtrl'
                 }
+            },
+            data: {
+                requireLogin: true,
+                roles: ['admin']
             }
         });
     }

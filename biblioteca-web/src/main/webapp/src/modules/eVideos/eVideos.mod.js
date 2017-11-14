@@ -53,6 +53,10 @@
                     templateUrl: basePath + '/new/eVideo.new.html',
                     controller: 'eVideoNewCtrl'
                 }
+            },
+            data: {
+                requireLogin: true,
+                roles: ['admin']
             }
         }).state('eVideoUpdate', {
             url: '/update/{eVideoId:int}',
@@ -65,6 +69,10 @@
                     templateUrl: basePath + '/new/eVideo.new.html',
                     controller: 'eVideoUpdateCtrl'
                 }
+            },
+            data: {
+                requireLogin: true,
+                roles: ['admin', 'assistant']
             }
         }).state('eVideoDelete', {
             url: '/delete/{eVideoId:int}',
@@ -77,6 +85,10 @@
                     templateUrl: basePath + '/delete/eVideo.delete.html',
                     controller: 'eVideoDeleteCtrl'
                 }
+            },
+            data: {
+                requireLogin: true,
+                roles: ['admin']
             }
         });
     }
