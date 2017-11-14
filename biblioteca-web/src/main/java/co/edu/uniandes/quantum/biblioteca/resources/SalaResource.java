@@ -27,7 +27,6 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author cg.chavarro
  */
-@Path("{idAcceso: \\d+}/salas")
 @Produces("application/json")
 @Consumes("application/json")
 
@@ -47,17 +46,45 @@ public class SalaResource
         return listEntity2DTO(SalaLogic.getSalas(idBiblioteca));
     }
     
+    @GET
+    @Path("disponibles")
+    public List<SalaDTO> getSalasDisponibles(@PathParam("idBiblioteca") Long idBiblioteca) throws BusinessLogicException {
+        return listEntity2DTO(SalaLogic.getSalasDisponibles());
+    }
+    
+     @GET
+     @Path("enPrestamo")
+    public List<SalaDTO> getSalasPrestamo(@PathParam("idPrestamo") Long prestamoId) throws BusinessLogicException {
+        return listEntity2DTO(SalaLogic.getSalasPrestamo(prestamoId));
+    }
+    
 
     
     @GET
     @Path("{id: \\d+}")
-    public SalaDTO getSala(@PathParam("idBiblioteca") Long idBiblioteca, @PathParam("idSala") Long idSala) throws BusinessLogicException {
+    public SalaDTO getSala(@PathParam("idBiblioteca") Long idBiblioteca, @PathParam("id") Long idSala) throws BusinessLogicException {
         SalaEntity entity = SalaLogic.getSala(idBiblioteca,idSala);
         if (entity == null) {
             throw new WebApplicationException("El recurso /bibliotecas/" + idBiblioteca + "/salas/" + idSala + " no existe.", 404);
         }
         return new SalaDTO(entity);
     }
+    
+    @GET
+    @Path("{id: \\d+}/ind")
+    public SalaDTO getSala(@PathParam("id") Long idSala) throws BusinessLogicException {
+        SalaEntity entity = SalaLogic.getSala(idSala);
+        if (entity == null) {
+            throw new WebApplicationException("La sala con id " + idSala + " no existe.", 404);
+        }
+        return new SalaDTO(entity);
+    }
+    
+    
+    
+    
+    
+    
     
     @POST
     public SalaDTO createSala(@PathParam("idAcceso") Long idAcceso,@PathParam("idBiblioteca") Long idBiblioteca, SalaDTO sala) throws BusinessLogicException {
@@ -67,7 +94,7 @@ public class SalaResource
    
     @PUT
     @Path("{id: \\d+}")
-    public SalaDTO updateSala(@PathParam("idAcceso") Long idAcceso,@PathParam("idBiblioteca") Long idBiblioteca, @PathParam("idSala") Long idSala, SalaDTO sala) throws BusinessLogicException {
+    public SalaDTO updateSala(@PathParam("idAcceso") Long idAcceso,@PathParam("idBiblioteca") Long idBiblioteca, @PathParam("id") Long idSala, SalaDTO sala) throws BusinessLogicException {
         validarAccesoAdmin(idAcceso);
         sala.setId(idSala);
         SalaEntity entity = SalaLogic.getSala(idBiblioteca,idSala);
@@ -76,6 +103,27 @@ public class SalaResource
         }
         return new SalaDTO(SalaLogic.updateSala(idBiblioteca, sala.toEntity()));
     }
+    
+    @PUT
+     @Path("actual/{idPz: \\d+}/prestamo/{idSalita: \\d+}")
+    public SalaDTO ponerSalaPrestamo(@PathParam("idPz") Long idPrestamo, @PathParam("idSalita") Long idB) throws BusinessLogicException {
+        
+        SalaEntity lib=SalaLogic.getSala(idB);
+        return new SalaDTO(SalaLogic.colocarSalaPrestamo(lib,idPrestamo));
+    }
+    
+    @PUT
+    @Path("{id: \\d+}/devolver")
+    public void devolverSala(@PathParam("id") Long idSala) throws BusinessLogicException {
+        SalaEntity entity = SalaLogic.getSala(idSala);
+        
+        if (entity == null) {
+            throw new WebApplicationException("La sala no existe");
+        }
+        
+        SalaLogic.devolverSala(entity);
+    }
+
 
   
     

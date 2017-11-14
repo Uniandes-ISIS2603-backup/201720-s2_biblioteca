@@ -16,6 +16,7 @@
                     $scope.currentPrestamo = response.data;
                     $scope.currentPrestamoLibros=response.data.libros;
                     $scope.currentPrestamoVideos=response.data.videos;
+                    $scope.currentPrestamoSalas=response.data.salas;
                 });
             }       
             
@@ -30,6 +31,15 @@
             
             $scope.devolverVideoPrestamo = function (laId) {
                 $http.put('api/999/videos/'+laId+'/devolver', {
+
+                }).then(function (response) {
+                    //Prestamo created successfully
+                    $state.go('prestamoList', {prestamoId: response.data.id}, {reload: true});
+                });
+            };
+            
+            $scope.devolverSalaPrestamo = function (laId) {
+                $http.put('api/999/bibliotecas/1/salas/'+laId+'/devolver', {
 
                 }).then(function (response) {
                     //Prestamo created successfully

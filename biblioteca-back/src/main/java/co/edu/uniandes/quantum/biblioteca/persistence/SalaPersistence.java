@@ -122,4 +122,12 @@ public class SalaPersistence
         // Note que en el query se hace uso del método getResultList() que obtiene una lista de salas.
         return query.getResultList();
     }
+    
+    public List<SalaEntity> findByPrestamo(Long idP) {
+        LOGGER.log(Level.INFO, "Consultando los salas con idPrestamo= ", idP);
+        TypedQuery<SalaEntity> q
+                = em.createQuery("select * from SalaEntity where miprestamo_id = idP", SalaEntity.class);
+        q = q.setParameter("idP", idP);
+        return q.getResultList();
+    }
 }

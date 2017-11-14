@@ -20,6 +20,10 @@ public class SalaEntity extends BaseEntity implements Serializable{
     @PodamExclude
    @ManyToOne    
     private BibliotecaEntity miBiblioteca;
+    
+    @PodamExclude
+    @ManyToOne   
+    private PrestamoEntity miPrestamo;
      
     
     private Integer capacidad;
@@ -41,5 +45,15 @@ public class SalaEntity extends BaseEntity implements Serializable{
     {
         capacidad = pCapacidad;
     }
+
+    public PrestamoEntity getMiPrestamo() {
+        return miPrestamo;
+    }
+
+    public void setMiPrestamo(PrestamoEntity miPrestamo) {
+        this.miPrestamo = miPrestamo;
+    }
+    
+    
 }
 

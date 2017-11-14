@@ -81,6 +81,31 @@
                 </tr>
             </tbody>
         </table></dd>
+        
+         <dd><table class="table table-hover">
+            
+            <thead>
+                <h2>Sala:</h2>
+                Agregar una sala al prestamo:
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    
+                        <a class="btn btn-info" ui-sref="prestamoAgregarSalas({prestamoId: currentPrestamo.id})"><span class="glyphicon glyphicon-plus-sign"></span></a>
+                    </div>
+                <tr>
+                    <th>Id</th>    
+                    <th>Cantidad</th>  
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="salita in currentPrestamo.salas">
+                    <td>{{salita.id}}</td>
+                    <td>{{salita.capacidad}}</td>  
+                    <td>
+<a class="btn btn-info" ng-click="devolverSalaPrestamo(salita.id)"><span class="glyphicon glyphicon-book"></span>   Devolver</a>
+</td>
+                </tr>
+            </tbody>
+        </table></dd>
 
             </dl>
         </div>

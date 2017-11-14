@@ -33,6 +33,10 @@ public class PrestamoEntity extends BaseEntity implements Serializable {
     
     @PodamExclude
    @OneToMany(mappedBy = "miPrestamo")
+   private List<SalaEntity> salas = new ArrayList<>();    
+    
+    @PodamExclude
+   @OneToMany(mappedBy = "miPrestamo")
    private List<VideoEntity> videos = new ArrayList<>();
     
      @PodamExclude
@@ -108,6 +112,15 @@ public class PrestamoEntity extends BaseEntity implements Serializable {
     public void setExterno(boolean externo) {
         this.externo = externo;
     }
+
+    public List<SalaEntity> getSalas() {
+        return salas;
+    }
+
+    public void setSalas(List<SalaEntity> salas) {
+        this.salas = salas;
+    }
+    
     
     
     

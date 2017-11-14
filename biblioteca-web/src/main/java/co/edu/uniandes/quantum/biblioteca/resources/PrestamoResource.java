@@ -71,6 +71,16 @@ public class PrestamoResource {
         }
         return VideoResource.class;
     }
+    
+    @Path("{idPrestamo: \\d+}/salas")
+    public Class<SalaResource> getSalaResource(@PathParam("idUsuario") Long idUsuario,@PathParam("idPrestamo") Long prestamoId) {
+        PrestamoEntity entity = prestamoLogic.getPrestamo(idUsuario,prestamoId);
+        if (entity == null) {
+            throw new WebApplicationException(MEN_ERROR + idUsuario + "/prestamos/" + prestamoId + NO_EXISTE, 404);
+        }
+        return SalaResource.class;
+    }
+
 
     
     @POST

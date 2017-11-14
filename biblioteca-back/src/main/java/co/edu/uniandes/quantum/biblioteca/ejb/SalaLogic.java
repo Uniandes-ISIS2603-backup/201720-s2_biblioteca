@@ -6,9 +6,12 @@
 package co.edu.uniandes.quantum.biblioteca.ejb;
 
 import co.edu.uniandes.quantum.biblioteca.entities.BibliotecaEntity;
+import co.edu.uniandes.quantum.biblioteca.entities.LibroEntity;
+import co.edu.uniandes.quantum.biblioteca.entities.PrestamoEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.SalaEntity;
 import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
 import co.edu.uniandes.quantum.biblioteca.persistence.SalaPersistence;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,6 +29,9 @@ private static final Logger LOGGER = Logger.getLogger(SalaLogic.class.getName())
  
  @Inject
     private SalaPersistence persistence;
+ 
+ @Inject
+    private PrestamoLogic prestamoLogic;
  
  @Inject
     private BibliotecaLogic BibliotecaLogic;
@@ -49,6 +55,57 @@ private static final Logger LOGGER = Logger.getLogger(SalaLogic.class.getName())
         return salas;
     }
   
+  public List<SalaEntity> getSalasPrestamo(Long idPrestamo) throws BusinessLogicException {
+        LOGGER.info("Inicia proceso de consultar los salas del prestamo con id " + idPrestamo);
+        List<SalaEntity> l=persistence.findByPrestamo(idPrestamo);
+        if (l.isEmpty()) 
+        {
+            throw new BusinessLogicException("El prestamo que consulta aún no tiene salas");
+        }
+        else
+            return l;
+    }
+  
+  public List<SalaEntity> getSalasDisponibles() throws BusinessLogicException {
+        List<SalaEntity> l=persistence.findAll();
+        List<SalaEntity> res=new ArrayList();
+        if (l.isEmpty()) 
+        {
+            throw new BusinessLogicException("No hay salas");
+        }
+        else
+        {
+            for(SalaEntity sa:l)
+            {
+                if(sa.getMiPrestamo()==null)
+                    res.add(sa);
+            }
+        }
+        if(res.isEmpty())
+            throw new BusinessLogicException("No hay salas disponibles");
+        else
+            return res;
+            
+    }
+  
+  public void devolverSala(SalaEntity entity) throws BusinessLogicException
+    {
+        SalaEntity ent=persistence.find(entity.getId());
+        ent.setMiPrestamo(null);
+        persistence.update(ent);
+    }
+  
+  public SalaEntity getSala(Long id) throws BusinessLogicException
+  {
+      SalaEntity e=persistence.find(id);
+      if(e==null)
+          throw new BusinessLogicException("La sala no existe");
+      else
+          return e;
+  }
+  
+  
+
   /**
   * Devuelve el Sala que se encuentran en la base de datos con el id dado.
   * @param idBiblioteca de la Biblioteca a buscar en la DB.
@@ -87,6 +144,16 @@ private static final Logger LOGGER = Logger.getLogger(SalaLogic.class.getName())
         entity.setMiBiblioteca(biblioteca);
         LOGGER.info("Termina proceso de creación de Sala");
         return persistence.create(entity);
+    }
+   
+   public SalaEntity colocarSalaPrestamo(SalaEntity entity, Long idPrestamo) throws BusinessLogicException {
+        LOGGER.info("Inicia proceso de agregar libro al prestamo");
+        SalaEntity ent= persistence.find(entity.getId());
+        PrestamoEntity p=prestamoLogic.getPrestamo(idPrestamo);
+        ent.setMiPrestamo(p);
+        persistence.update(ent);
+        LOGGER.info("Termina proceso de colocar libro en prestamo");
+        return entity;
     }
     
   /**

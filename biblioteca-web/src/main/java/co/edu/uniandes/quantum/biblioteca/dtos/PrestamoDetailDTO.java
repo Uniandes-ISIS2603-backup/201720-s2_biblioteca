@@ -7,6 +7,7 @@ package co.edu.uniandes.quantum.biblioteca.dtos;
 
 import co.edu.uniandes.quantum.biblioteca.entities.LibroEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.PrestamoEntity;
+import co.edu.uniandes.quantum.biblioteca.entities.SalaEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.VideoEntity;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,7 @@ public class PrestamoDetailDTO extends PrestamoDTO
 {
     private List<LibroDTO> libros;
     private List<VideoDTO> videos;
+    private List<SalaDTO> salas;
 
     
     
@@ -41,6 +43,11 @@ public class PrestamoDetailDTO extends PrestamoDTO
             for (LibroEntity entityLibro : entity.getLibros()) {
                 libros.add(new LibroDTO(entityLibro));
             }
+            salas = new ArrayList<>();
+            for (SalaEntity entitySala : entity.getSalas()) {
+                salas.add(new SalaDTO(entitySala));
+            }
+
         }
     }
 
@@ -59,6 +66,16 @@ public class PrestamoDetailDTO extends PrestamoDTO
     public void setVideos(List<VideoDTO> videos) {
         this.videos = videos;
     }
+
+    public List<SalaDTO> getSalas() {
+        return salas;
+    }
+
+    public void setSalas(List<SalaDTO> salas) {
+        this.salas = salas;
+    }
+    
+    
     
     public PrestamoEntity toEntity()
     {       
@@ -79,6 +96,14 @@ public class PrestamoDetailDTO extends PrestamoDTO
             }
             preEnt.setLibros(multasEntity);
         }
+        if (getSalas() != null) {
+            List<SalaEntity> multasEntity = new ArrayList<>();
+            for (SalaDTO dtoSala : getSalas()) {
+                multasEntity.add(dtoSala.toEntity());
+            }
+            preEnt.setSalas(multasEntity);
+        }
+
         return preEnt;   
         
     }

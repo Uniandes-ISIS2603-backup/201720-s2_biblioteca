@@ -115,6 +115,20 @@
                     requireLogin: true,
                     roles: ['admin', 'assistant']
                 }
+            }).state('prestamoAgregarSalas', {
+                url: '/{prestamoId:int}/agregarSalas',
+                parent: 'prestamos',
+                views: {
+                    'detailView': {
+                        templateUrl: 'src/modules/prestamo/agregarSalas/prestamo.agregarSalas.html',
+                        controller: 'prestamoAgregarSalasCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['admin', 'assistant']
+                }
             });
             ;
         }
