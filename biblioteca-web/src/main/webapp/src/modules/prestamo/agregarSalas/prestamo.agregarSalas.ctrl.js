@@ -11,7 +11,6 @@
                 
                 var idPrestamo=$state.params.prestamoId;
                 $scope.agregarSalaPrestamo = function (laId) {
-                    api/999/bibliotecas/1/salas/actual/1/prestamo/3
                 $http.put('api/999/bibliotecas/1/salas/actual/' +idPrestamo+ '/prestamo/' + laId, {
 
                 }).then(function (response) {
