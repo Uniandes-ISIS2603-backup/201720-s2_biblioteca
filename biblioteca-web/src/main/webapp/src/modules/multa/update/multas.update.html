@@ -5,7 +5,7 @@
             <div class="panel-heading"><label id="createMulta">Ingrese la informacion del multa</label>
                 <label ng-if="edit" id="editMulta">Edit Multa</label></div>
             <div class="panel-body">
-                <form ng-submit="createMulta()" name="multa">
+                <form ng-submit="updateMulta()" name="multa">
                     <div class="form-group row">
                             <label for="fecha" class="col-sm-2">Fecha (En formato: yyyy-mm-dd):</label>
                             <textarea id="fecha" required ng-model="fecha" class="col-sm-6"></textarea>
@@ -41,8 +41,8 @@
             </div>
         </div>
     </div>
+        </div>
 </div>
-    </div>
 <div class="center-block well text-center" ng-if="!isAuthenticated() || !hasPermissions()">
         <div class="container">
             <div class="row justify-content-center">
@@ -55,3 +55,4 @@
         </div>
     </div>
 </div>
+

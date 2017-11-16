@@ -52,6 +52,10 @@
                         templateUrl: basePath + 'new/bibliotecas.new.html',
                         controller: 'bibliotecaNewCtrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['admin', 'assistant']
                 }
             }).state('bibliotecaUpdate', {
                 url: '/{bibliotecaId:int}/update',
@@ -64,6 +68,10 @@
                         templateUrl: basePath + 'new/bibliotecas.new.html',
                         controller: 'bibliotecaUpdateCtrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['admin', 'assistant']
                 }
             }).state('bibliotecaDelete', {
                 url: '/{bibliotecaId:int}/delete',
@@ -76,6 +84,10 @@
                         templateUrl: basePath + 'delete/bibliotecas.delete.html',
                         controller: 'bibliotecaDeleteCtrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: ['admin', 'assistant']
                 }
 });;
         }

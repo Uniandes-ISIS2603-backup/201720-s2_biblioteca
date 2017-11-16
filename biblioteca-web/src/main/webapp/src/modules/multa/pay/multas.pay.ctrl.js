@@ -3,7 +3,7 @@
             var mod = ng.module("multaModule");
             mod.constant("usuarioContext", "api/999/usuarios");
             mod.constant("multaContext", "api/books");
-            mod.controller('multaUpdateCtrl', ['$scope', '$http', 'usuariosContext', '$state', 'multaContext', '$rootScope', '$filter',
+            mod.controller('multaPayCtrl', ['$scope', '$http', 'usuariosContext', '$state', 'multaContext', '$rootScope', '$filter',
                 function ($scope, $http, usuarioContext, $state, multaContext, $rootScope, $filter) {
                     $rootScope.edit = true;       
                     
@@ -20,11 +20,11 @@
                     });     
                                         
 
-                    $scope.updateMulta = function () {                   
+                    $scope.payMulta = function () {                   
                         $http.put('api/999/usuarios/' + idUsuario+'/multas/'+idMulta, {
                             fecha: $scope.fecha,
                             costo: $scope.costo,
-                            pagada: $scope.pagada,
+                            pagada: '1',
                             descripcion: $scope.descripcion,
                             medioPago: $scope.medioPago
                         }).then(function (response) { 

@@ -9,7 +9,6 @@
                     var idBiblioteca = $state.params.bibliotecaId;
 
                     //Consulto el autor a editar.
-                    console.info(bibliotecaContext+'/' + idBiblioteca);
                     $http.get(bibliotecaContext + '/' + idBiblioteca).then(function (response) {
                         var biblioteca = response.data;
                         $scope.bibliotecaName = biblioteca.name;
@@ -18,11 +17,12 @@
                     });        
                     
 
-                    $scope.createBiblioteca = function () {                   
+                    $scope.createBiblioteca = function () { 
+                    console.info(bibliotecaContext+'/' + idBiblioteca);                  
                         $http.put(bibliotecaContext + "/" + idBiblioteca, {
                             name: $scope.bibliotecaName,
                             ubicacion: $scope.bibliotecaUbicacion,
-                            imagen: $scope.bibliotebibliotecaImagencaDireccion
+                            imagen: $scope.bibliotecaImagen
                         }).then(function (response) {                            
                             $state.go('bibliotecasList', {bibliotecaId: response.data.id}, {reload: true});
                         });

@@ -64,7 +64,6 @@ public class MultaResource {
             throw new WebApplicationException("El recurso /usuarios/" + idUsuario + "/multas/" + id + " no existe.", 404);
         }
         return new MultaDTO(multaLogic.updateMulta(idUsuario, multa.toEntity()));
-
     }
 
     @DELETE

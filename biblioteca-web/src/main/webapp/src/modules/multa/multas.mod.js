@@ -54,8 +54,20 @@
                 },
                 views: {
                     'detailView': {
-                        templateUrl: basePath + 'new/multas.new.html',
+                        templateUrl: basePath + 'update/multas.update.html',
                         controller: 'multaUpdateCtrl'
+                    }
+                }
+            }).state('multaPay', {
+                url: '/{multaId:int}/pay',
+                parent: 'multas',
+                param: {
+                    multaId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'pay/multas.pay.html',
+                        controller: 'multaPayCtrl'
                     }
                 }
             }).state('multaDelete', {

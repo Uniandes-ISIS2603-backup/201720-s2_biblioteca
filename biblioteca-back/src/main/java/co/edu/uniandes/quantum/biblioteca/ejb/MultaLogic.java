@@ -88,7 +88,7 @@ public class MultaLogic {
      * 
      */
     public MultaEntity updateMulta(Long usuarioid, MultaEntity entity) {
-        LOGGER.info("Inicia proceso de actualizar review");
+        LOGGER.info("Inicia proceso de actualizar multa");
         UsuarioEntity usuario = usuarioLogic.getUsuario(usuarioid);
         entity.setMiUsuario(usuario);
         return persistence.update(entity);
@@ -102,7 +102,7 @@ public class MultaLogic {
      * 
      */
     public void deleteMulta(Long usuarioid, Long id) {
-        LOGGER.info("Inicia proceso de borrar review");
+        LOGGER.info("Inicia proceso de borrar multa");
         MultaEntity old = getMulta(usuarioid, id);
         persistence.delete(old.getId());
     }

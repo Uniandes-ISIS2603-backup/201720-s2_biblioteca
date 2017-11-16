@@ -78,7 +78,8 @@ public class BibliotecaLogic {
     public BibliotecaEntity updateBiblioteca(BibliotecaEntity entity)
     {
         LOGGER.info("Inicia el proceso de actualizar una Biblioteca");  
-        BibliotecaEntity entityActualizado = persistence.update(entity);
+        BibliotecaEntity entityActualizado;
+        entityActualizado = persistence.update(entity);
         LOGGER.info("Termina el proceso de actualizar una Biblioteca");  
         return entityActualizado;
     }

@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="panel-group">
+    <div ng-if="isAuthenticated() && hasPermissions()" class="panel-group">
         <div class="panel panel-secondary">
             <div class="panel-heading"><label id="createBiblioteca">Ingrese la informacion del biblioteca</label>
                 <label ng-if="edit" id="editBiblioteca">Edit Biblioteca</label></div>
@@ -28,7 +28,7 @@
                     <div class="form-group row">
                         <div class="form-group col-sm-12">
                             <input ng-show="biblioteca.$valid" type="submit" value="Save" class="btn btn-success"/>
-                            <a class="btn btn-info" ui-sref="bibliotecaList">Cancel</a>
+                            <a class="btn btn-info" ui-sref="bibliotecasList">Cancel</a>
                         </div>
                     </div>
                 </form>
@@ -36,5 +36,15 @@
             </div>
         </div>
     </div>
+<div class="center-block well text-center" ng-if="!isAuthenticated() || !hasPermissions()">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <h1 class="float-left display-3 mr-4">Atención</h1>
+                    <h4 >No tiene permiso para realizar esta acción</h4>
+                    <p >Contacte al administrador para obtener autorización.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
