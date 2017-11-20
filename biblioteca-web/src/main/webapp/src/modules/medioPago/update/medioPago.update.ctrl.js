@@ -12,13 +12,14 @@
                     console.info(idUsuario);
                     console.info(idMedioPago);
 
-
-                    $scope.updateMedioPago = function () {                   
-                        $http.put(usuarioContext + "/" + idUsuario+"/medioPago/"+idMedioPago, {
+                    $scope.updateMedioPago = function () {
+                        var direc=usuarioContext + "/" + idUsuario+"/"+"medioPago"+"/"+idMedioPago;
+                        console.info(direc);
+                        $http.put(direc, {
                             descripcion: $scope.medioPagoDesc,
                             tipo: $scope.medioPagoTip
                         }).then(function (response) {                            
-                            $state.go('medioPagoList', {usuarioId: response.data.id}, {reload: true});
+                            $state.go('medioPagoList', {usuarioId: idUsuario}, {reload: true});
                         });
                     };                   
                 }

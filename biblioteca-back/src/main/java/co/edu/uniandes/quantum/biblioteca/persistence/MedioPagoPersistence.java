@@ -97,7 +97,11 @@ public class MedioPagoPersistence {
             medioPago = results.get(0);
         }
         return medioPago;
-    }      
+    }    
+    
+    public MedioPagoEntity find(Long medioPagoid) {
+        return em.find(MedioPagoEntity.class, medioPagoid);
+    }    
     
     public List<MedioPagoEntity> findAll(Long usuarioid) {
         TypedQuery<MedioPagoEntity> q = em.createQuery("select p from MedioPagoEntity p where p.miUsuario.id = :usuarioid", MedioPagoEntity.class);

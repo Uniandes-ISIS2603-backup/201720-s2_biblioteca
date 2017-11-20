@@ -8,23 +8,21 @@
                     $rootScope.edit = true;
 
                     var idUsuario = $state.params.usuarioId;
+                     $scope.dataNewUsuario={};    
 
                     //Consulto el autor a editar.
                     console.info(usuarioContext+'/' + idUsuario);
                         $http.get(usuarioContext + '/' + idUsuario).then(function (response) {
                         var usuario = response.data;
-                        $scope.usuarioName = usuario.name;
-                        $scope.usuarioTelefono = usuario.telefono;
-                        $scope.usuarioDireccion = usuario.direccion;
-                    });        
+                        $scope.dataNewUsuario.name = usuario.name;
+                        $scope.dataNewUsuario.telefono = usuario.telefono;
+                        $scope.dataNewUsuario.direccion = usuario.direccion;
+                    });    
                     
+                                   
 
                     $scope.createUsuario = function () {                   
-                        $http.put(usuarioContext + "/" + idUsuario, {
-                            name: $scope.usuarioName,
-                            telefono: $scope.usuarioTelefono,
-                            direccion: $scope.usuarioDireccion
-                        }).then(function (response) {                            
+                        $http.put(usuarioContext + "/" + idUsuario, $scope.dataNewUsuario).then(function (response) {                            
                             $state.go('usuarioList', {usuarioId: response.data.id}, {reload: true});
                         });
                     };                   

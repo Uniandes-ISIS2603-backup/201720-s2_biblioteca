@@ -7,15 +7,15 @@
                 <form ng-submit="createUsuario()" name="usuario">
                     <div class="form-group row">
                             <label for="usuarioName" class="col-sm-2">Nombre:</label>
-                            <input id="usuarioName" required ng-model="usuarioName" class="col-sm-6"/>
+                            <input id="usuarioName" required ng-model="dataNewUsuario.name" class="col-sm-6"/>
                     </div>
                     <div class="form-group row">
                             <label for="usuarioTelefono" class="col-sm-2">Telefono:</label>
-                            <textarea id="usuarioTelefono" required ng-model="usuarioTelefono" class="col-sm-6"></textarea>
+                            <textarea id="usuarioTelefono" required ng-model="dataNewUsuario.telefono" class="col-sm-6"></textarea>
                     </div>
                     <div class="form-group row">
                             <label for="usuarioDireccion" class="col-sm-2">Direccion:</label>
-                            <textarea id="usuarioDireccion" required ng-model="usuarioDireccion" class="col-sm-6"></textarea>
+                            <textarea id="usuarioDireccion" required ng-model="dataNewUsuario.direccion" class="col-sm-6"></textarea>
                     </div>            
                     <div class="form-group row">
                         <div class="form-group col-sm-4" ng-if="!usuario.$valid">

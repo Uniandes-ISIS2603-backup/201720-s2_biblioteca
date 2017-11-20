@@ -89,8 +89,8 @@ public class MedioPagoLogic {
      */
     public MedioPagoEntity updateMedioPago(Long usuarioid, MedioPagoEntity entity) {
         LOGGER.info("Inicia proceso de actualizar review");
-        UsuarioEntity usuario = usuarioLogic.getUsuario(usuarioid);
-        entity.setMiUsuario(usuario);
+        MedioPagoEntity med = persistence.find(entity.getId());
+        entity.setMiUsuario(usuarioLogic.getUsuario(usuarioid));
         return persistence.update(entity);
     }
 

@@ -1,5 +1,4 @@
 <div class="container-fluid">
-    <div ng-if="isAuthenticated() && hasPermissions()" class="panel-group">
             <div class="panel-heading"><label id="createMedioPago">Ingrese la informacion del medio de pago</label>
             <div class="panel-body">
                 <form ng-submit="createMedioPago()" name="medioPago">
@@ -31,18 +30,7 @@
                 </form>
 
             </div>
-        </div>
-    
-</div>
-     <div class="center-block well text-center" ng-if="!isAuthenticated() || !hasPermissions()">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-12">
-                    <h1 class="float-left display-3 mr-4">Atención</h1>
-                    <h4 >No tiene permiso para realizar esta acción</h4>
-                    <p >Contacte al administrador para obtener autorización.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+        </div>  
+
+     
 </div>
