@@ -1,1 +1,6 @@
 input {color:black;}
+.floatLeft { width: 50%; float: left; }
+.floatRight {width: 50%; float: right; }
+.container { overflow: hidden; }
+table{float:right;}
+panel{float:right;}
