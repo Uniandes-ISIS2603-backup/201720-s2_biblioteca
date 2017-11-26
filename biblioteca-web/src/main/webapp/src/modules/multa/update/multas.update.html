@@ -1,9 +1,5 @@
 <div class="container-fluid">
-    <div ng-if="isAuthenticated() && hasPermissions()" class="panel-group">
-    <div class="panel-group">
-        <div class="panel panel-secondary">
-            <div class="panel-heading"><label id="createMulta">Ingrese la informacion del multa</label>
-                <label ng-if="edit" id="editMulta">Edit Multa</label></div>
+            <div class="panel-heading"><label id="createMulta">Ingrese la informacion de la nueva multa</label>
             <div class="panel-body">
                 <form ng-submit="updateMulta()" name="multa">
                     <div class="form-group row">

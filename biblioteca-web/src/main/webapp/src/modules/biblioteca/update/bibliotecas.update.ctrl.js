@@ -7,23 +7,20 @@
                     $rootScope.edit = true;
 
                     var idBiblioteca = $state.params.bibliotecaId;
+                     $scope.dataNewBiblioteca={};    
 
                     //Consulto el autor a editar.
                     $http.get(bibliotecaContext + '/' + idBiblioteca).then(function (response) {
                         var biblioteca = response.data;
-                        $scope.bibliotecaName = biblioteca.name;
-                        $scope.bibliotecaUbicacion = biblioteca.ubicacion;
-                        $scope.bibliotecaImagen = biblioteca.imagen;
+                        $scope.dataNewBiblioteca.name = biblioteca.name;
+                        $scope.dataNewBiblioteca.ubicacion = biblioteca.ubicacion;
+                        $scope.dataNewBiblioteca.imagen = biblioteca.imagen;
                     });        
                     
 
                     $scope.createBiblioteca = function () { 
                     console.info(bibliotecaContext+'/' + idBiblioteca);                  
-                        $http.put(bibliotecaContext + "/" + idBiblioteca, {
-                            name: $scope.bibliotecaName,
-                            ubicacion: $scope.bibliotecaUbicacion,
-                            imagen: $scope.bibliotecaImagen
-                        }).then(function (response) {                            
+                        $http.put(bibliotecaContext + "/" + idBiblioteca, $scope.dataNewBiblioteca).then(function (response) {                            
                             $state.go('bibliotecasList', {bibliotecaId: response.data.id}, {reload: true});
                         });
                     };                   

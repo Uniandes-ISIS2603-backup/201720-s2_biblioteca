@@ -1,14 +1,15 @@
 <div class="container-fluid">
-    <div ng-if="isAuthenticated() && hasPermissions()" class="panel-group">
-    <div class="panel-group">
-        <div class="panel panel-secondary">
-            <div class="panel-heading"><label id="createMulta">Ingrese la informacion del multa</label>
-                <label ng-if="edit" id="editMulta">Edit Multa</label></div>
+            <div class="panel-heading"><label id="createMulta">Ingrese la informacion de la multa</label>
             <div class="panel-body">
                 <form ng-submit="createMulta()" name="multa">
                     <div class="form-group row">
-                            <label for="fecha" class="col-sm-2">Fecha (En formato: yyyy-mm-dd):</label>
-                            <textarea id="fecha" required ng-model="fecha" class="col-sm-6"></textarea>
+                        <div class="form-group col-md-6">
+                            <label for="prestamoFechaInicio" class="col-sm-2">Fecha de Inicio:</label>
+                            Dia:<input type="number" min="1" max="31" id="diaFechaInicio" required ng-model="diaFechaInicio" this.style.color='#000' width="48" /> 
+                            Mes:<input type="number" min="1" max="12" id="mesFechaInicio" required ng-model="mesFechaInicio" this.style.color='#000'/> 
+                            Año:<input type="number" min="2014" max="3000" id="anioFechaInicio" required ng-model="anioFechaInicio" this.style.color='#000'/>
+                            
+                    </div>
                     </div>
                     <div class="form-group row">
                             <label for="costo" class="col-sm-2">Costo:</label>

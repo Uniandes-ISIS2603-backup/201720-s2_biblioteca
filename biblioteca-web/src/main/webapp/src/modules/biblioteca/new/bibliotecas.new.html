@@ -7,15 +7,15 @@
                 <form ng-submit="createBiblioteca()" name="biblioteca">
                     <div class="form-group row">
                             <label for="bibliotecaName" class="col-sm-2">Nombre:</label>
-                            <input id="bibliotecaName" required ng-model="bibliotecaName" class="col-sm-6"/>
+                            <input id="bibliotecaName" required ng-model="dataNewBiblioteca.name" class="col-sm-6"/>
                     </div>
                     <div class="form-group row">
                             <label for="bibliotecaUbicacion" class="col-sm-2">Ubicacion:</label>
-                            <textarea id="bibliotecaUbicacion" required ng-model="bibliotecaUbicacion" class="col-sm-6"></textarea>
+                            <textarea id="bibliotecaUbicacion" required ng-model="dataNewBiblioteca.ubicacion" class="col-sm-6"></textarea>
                     </div>
                     <div class="form-group row">
                             <label for="bibliotecaImagen" class="col-sm-2">Imagen:</label>
-                            <textarea id="bibliotecaImagen" required ng-model="bibliotecaImagen" class="col-sm-6"></textarea>
+                            <textarea id="bibliotecaImagen" required ng-model="dataNewBiblioteca.imagen" class="col-sm-6"></textarea>
                     </div>            
                     <div class="form-group row">
                         <div class="form-group col-sm-4" ng-if="!biblioteca.$valid">
