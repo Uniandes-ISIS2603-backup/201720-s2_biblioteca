@@ -6,7 +6,6 @@
 package co.edu.uniandes.quantum.biblioteca.dtos;
 
 import co.edu.uniandes.quantum.biblioteca.entities.LibroEntity;
-import co.edu.uniandes.quantum.biblioteca.entities.PrestamoEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.ReservaEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.VideoEntity;
 import java.util.ArrayList;
@@ -61,6 +60,7 @@ public class ReservaDetailDTO extends ReservaDTO
         this.videos = videos;
     }
     
+    @Override
     public ReservaEntity toEntity()
     {       
         ReservaEntity preEnt=super.toEntity();

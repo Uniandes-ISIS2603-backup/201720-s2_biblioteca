@@ -12,9 +12,9 @@ import co.edu.uniandes.quantum.biblioteca.entities.LibroEntity;
 import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
 import co.edu.uniandes.quantum.biblioteca.persistence.ReservaPersistence;
 import java.util.ArrayList;
-import java.util.LinkedList;
+
 import java.util.List;
-import java.util.logging.Level;
+
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
