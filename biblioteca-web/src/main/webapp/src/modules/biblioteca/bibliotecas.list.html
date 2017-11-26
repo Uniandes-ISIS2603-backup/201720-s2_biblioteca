@@ -1,27 +1,23 @@
 <div class="container-fluid">
-    <div class="col-md-4">        
-        <div class="panel-heading"><label>Lista de bibliotecas</label></div>
-        <table class="table table-hover">
-            <thead>
-                <tr>  
-                    <th>Id</th>  
-                    <th>Nombre</th>  
-                    <th>Ubicacion</th>  
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="biblioteca in bibliotecasRecords">
-                    <td id="{{$index}}-id"><a ui-sref="bibliotecaDetail({bibliotecaId: biblioteca.id})">{{biblioteca.id}}</a></td>
-                    <td id="{{$index}}-name">{{biblioteca.name}}</td>
-                    <td id="{{$index}}-ubicacion">{{biblioteca.ubicacion}}</td>
-                    <td id="{{$index}}-actions">
-                        <a class="btn btn-default btn-sm" ui-sref="bibliotecaUpdate({bibliotecaId: biblioteca.id})"><span class="glyphicon glyphicon-edit"></span></a>
+            <a class="btn btn-info" ui-sref="bibliotecaCreate"><span class="glyphicon glyphicon-plus-sign">Crear</span></a>
+    <div class="row">
+        <div class="col-md-4" ng-repeat="biblioteca in bibliotecasRecords">
+            <div class="caption text-center">    
+            <a ui-sref="bibliotecaDetail({bibliotecaId: biblioteca.id})">               
+                    <img  ng-src='{{biblioteca.imagen}}' alt="{{biblioteca.name}}" width="350" height="350" />                  
+                </a>
+                    <p>{{biblioteca.name}}</p>
+                    <p>{{biblioteca.ubicacion}}</p>
+                     <a class="btn btn-default btn-sm" ui-sref="bibliotecaUpdate({bibliotecaId: biblioteca.id})"><span class="glyphicon glyphicon-edit"></span></a>
                         <a class="btn btn-danger btn-sm" ui-sref="bibliotecaDelete({bibliotecaId: biblioteca.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                        
+                    <p></p>
+                </div>
 
-                    </td>
-                </tr>
-                
-            </tbody>
-        </table>
-                        <a class="btn btn-info" ui-sref="bibliotecaCreate"><span class="glyphicon glyphicon-plus-sign">Crear</span></a>
-    </div>
+            
+            </div>
+        
+            </div>
+    
+                    <p>corrimiento</p>
+            </div>
