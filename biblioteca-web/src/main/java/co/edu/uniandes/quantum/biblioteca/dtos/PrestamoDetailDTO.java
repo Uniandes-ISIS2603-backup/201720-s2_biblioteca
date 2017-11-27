@@ -77,6 +77,7 @@ public class PrestamoDetailDTO extends PrestamoDTO
     
     
     
+    @Override
     public PrestamoEntity toEntity()
     {       
         PrestamoEntity preEnt=super.toEntity();

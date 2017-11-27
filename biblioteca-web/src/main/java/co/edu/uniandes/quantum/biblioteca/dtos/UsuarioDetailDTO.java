@@ -25,6 +25,48 @@ public class UsuarioDetailDTO extends UsuarioDTO
     private List<ComentarioDTO> comentarios;
     private List<ReservaDTO> reservas;
     private List<MedioPagoDTO> medioPago;
+    
+     public UsuarioDetailDTO ()
+    {
+        super();
+    }
+    
+    public UsuarioDetailDTO(UsuarioEntity entity)
+    {
+        super(entity);
+        if (entity.getPrestamos() != null) {
+            prestamos = new ArrayList<>();
+            for (PrestamoEntity entityPrestamo : entity.getPrestamos()) {
+                prestamos.add(new PrestamoDTO(entityPrestamo));
+            }
+        }
+        if (entity.getMultas() != null) {
+            multas = new ArrayList<>();
+            for (MultaEntity entityMulta : entity.getMultas()) {
+                multas.add(new MultaDTO(entityMulta));
+            }
+        }
+        if (entity.getComentarios() != null) {
+            comentarios = new ArrayList<>();
+            for (ComentarioEntity entityComentario : entity.getComentarios()) {
+                comentarios.add(new ComentarioDTO(entityComentario));
+            }
+        }
+        if (entity.getReservas() != null) {
+            reservas = new ArrayList<>();
+            for (ReservaEntity entityReserva : entity.getReservas()) {
+                reservas.add(new ReservaDTO(entityReserva));
+            }
+        }
+        if (entity.getMedioPago() != null) {
+            medioPago = new ArrayList<>();
+            for (MedioPagoEntity entityReserva : entity.getMedioPago()) {
+                medioPago.add(new MedioPagoDTO(entityReserva));
+            }
+        }
+        
+        
+    }
 
     public List<MultaDTO> getMultas() {
         return multas;
@@ -67,48 +109,9 @@ public class UsuarioDetailDTO extends UsuarioDTO
     }
     
     
-    public UsuarioDetailDTO ()
-    {
-        super();
-    }
+   
     
-    public UsuarioDetailDTO(UsuarioEntity entity)
-    {
-        super(entity);
-        if (entity.getPrestamos() != null) {
-            prestamos = new ArrayList<>();
-            for (PrestamoEntity entityPrestamo : entity.getPrestamos()) {
-                prestamos.add(new PrestamoDTO(entityPrestamo));
-            }
-        }
-        if (entity.getMultas() != null) {
-            multas = new ArrayList<>();
-            for (MultaEntity entityMulta : entity.getMultas()) {
-                multas.add(new MultaDTO(entityMulta));
-            }
-        }
-        if (entity.getComentarios() != null) {
-            comentarios = new ArrayList<>();
-            for (ComentarioEntity entityComentario : entity.getComentarios()) {
-                comentarios.add(new ComentarioDTO(entityComentario));
-            }
-        }
-        if (entity.getReservas() != null) {
-            reservas = new ArrayList<>();
-            for (ReservaEntity entityReserva : entity.getReservas()) {
-                reservas.add(new ReservaDTO(entityReserva));
-            }
-        }
-        if (entity.getMedioPago() != null) {
-            medioPago = new ArrayList<>();
-            for (MedioPagoEntity entityReserva : entity.getMedioPago()) {
-                medioPago.add(new MedioPagoDTO(entityReserva));
-            }
-        }
-        
-        
-    }
-    
+    @Override
     public UsuarioEntity toEntity()
     {
         UsuarioEntity usEnt=super.toEntity();
@@ -142,11 +145,11 @@ public class UsuarioDetailDTO extends UsuarioDTO
         }
         
         if (getMedioPago() != null) {
-            List<MedioPagoEntity> MedioPagoEntity = new ArrayList<>();
+            List<MedioPagoEntity> medioPagoz = new ArrayList<>();
             for (MedioPagoDTO dtoReserva : getMedioPago()) {
-                MedioPagoEntity.add(dtoReserva.toEntity());
+                medioPagoz.add(dtoReserva.toEntity());
             }
-            usEnt.setMedioPago(MedioPagoEntity);
+            usEnt.setMedioPago(medioPagoz);
         }
 
         return usEnt;    

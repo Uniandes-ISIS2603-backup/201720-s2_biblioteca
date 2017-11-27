@@ -6,9 +6,6 @@
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             // En basePath se encuentran los templates y controladores de módulo
             var basePath = 'src/modules/prestamo/';
-            // Mostrar la lista de autores será el estado por defecto del módulo
-            //$urlRouterProvider.otherwise("/prestamoList");
-            // Definición del estado 'authorsList' donde se listan los autores
             $stateProvider.state('prestamos', {
                 url: '/prestamos',
                 abstract: true,

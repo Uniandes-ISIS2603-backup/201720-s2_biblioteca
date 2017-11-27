@@ -6,14 +6,11 @@
 package co.edu.uniandes.quantum.biblioteca.persistence;
 
 import co.edu.uniandes.quantum.biblioteca.entities.MedioPagoEntity;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
-import javax.persistence.CascadeType;
 import javax.persistence.EntityManager;
-import javax.persistence.OneToMany;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
@@ -93,7 +90,7 @@ public class MedioPagoPersistence {
             medioPago = null;
         } else if (results.isEmpty()) {
             medioPago = null;
-        } else if (results.size() >= 1) {
+        } else if (!results.isEmpty()) {
             medioPago = results.get(0);
         }
         return medioPago;
@@ -106,8 +103,7 @@ public class MedioPagoPersistence {
     public List<MedioPagoEntity> findAll(Long usuarioid) {
         TypedQuery<MedioPagoEntity> q = em.createQuery("select p from MedioPagoEntity p where p.miUsuario.id = :usuarioid", MedioPagoEntity.class);
         q.setParameter("usuarioid", usuarioid);
-        List<MedioPagoEntity> results = q.getResultList();
-        return results;
+        return q.getResultList();
     }   
 
     

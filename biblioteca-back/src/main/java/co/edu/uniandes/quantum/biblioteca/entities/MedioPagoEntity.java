@@ -8,7 +8,6 @@ package co.edu.uniandes.quantum.biblioteca.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -17,6 +16,9 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class MedioPagoEntity extends BaseEntity implements Serializable {
+       
+    private int tipo;
+    private String descripcion;
     
     @PodamExclude
     @ManyToOne  
@@ -29,9 +31,6 @@ public class MedioPagoEntity extends BaseEntity implements Serializable {
     public void setMiUsuario(UsuarioEntity miUsuario) {
         this.miUsuario = miUsuario;
     }
-    
-    private int tipo;
-    private String descripcion;
     
     public MedioPagoEntity()
     {

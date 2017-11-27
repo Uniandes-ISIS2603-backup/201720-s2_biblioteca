@@ -125,15 +125,15 @@ public List<LibroEntity> listLibros(Long usuarioId, Long prestamoId) {
      * Obtiene una instancia de LibroEntity asociada a una instancia de Prestamo
      *
      * @param prestamoId Identificador de la instancia de Prestamo
-     * @param LibrosId Identificador de la instancia de Libro
+     * @param libId Identificador de la instancia de Libro
      * 
      */
-    public LibroEntity getLibro(Long usuarioId, Long prestamoId, Long LibrosId) {
+    public LibroEntity getLibro(Long usuarioId, Long prestamoId, Long libId) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar un Libro del prestamo con id = {0}", prestamoId);
         List<LibroEntity> list = getPrestamo(usuarioId,prestamoId).getLibros();
-        LibroEntity LibrosEntity = new LibroEntity();
-        LibrosEntity.setId(LibrosId);
-        int index = list.indexOf(LibrosEntity);
+        LibroEntity libEnt = new LibroEntity();
+        libEnt.setId(libId);
+        int index = list.indexOf(libEnt);
         if (index >= 0) {
             return list.get(index);
         }
@@ -144,17 +144,17 @@ public List<LibroEntity> listLibros(Long usuarioId, Long prestamoId) {
      * Asocia un Libro existente a un Prestamo
      *
      * @param prestamoId Identificador de la instancia de Prestamo
-     * @param LibrosId Identificador de la instancia de Libro
+     * @param libId Identificador de la instancia de Libro
      * @return Instancia de LibroEntity que fue asociada a Prestamo
      * 
      */
-    public LibroEntity addLibro(Long usuarioId,Long prestamoId, Long LibrosId) {
+    public LibroEntity addLibro(Long usuarioId,Long prestamoId, Long libId) {
         LOGGER.log(Level.INFO, "Inicia proceso de asociar un Libro al prestamo con id = {0}", prestamoId);
         PrestamoEntity PrestamoEntity = getPrestamo(usuarioId,prestamoId);
-        LibroEntity LibrosEntity = new LibroEntity();
-        LibrosEntity.setId(LibrosId);
-        PrestamoEntity.getLibros().add(LibrosEntity);
-        return getLibro(usuarioId, prestamoId, LibrosId);
+        LibroEntity libEnt = new LibroEntity();
+        libEnt.setId(libId);
+        PrestamoEntity.getLibros().add(libEnt);
+        return getLibro(usuarioId, prestamoId, libId);
     }
 
     /**
@@ -168,24 +168,24 @@ public List<LibroEntity> listLibros(Long usuarioId, Long prestamoId) {
      */
     public List<LibroEntity> replaceLibros(Long usuarioId,Long prestamoId, List<LibroEntity> list) {
         LOGGER.log(Level.INFO, "Inicia proceso de reemplazar un Libro del prestamo con id = {0}", prestamoId);
-        PrestamoEntity PrestamoEntity = getPrestamo(usuarioId,prestamoId);
-        PrestamoEntity.setLibros(list);
-        return PrestamoEntity.getLibros();
+        PrestamoEntity prestEnt = getPrestamo(usuarioId,prestamoId);
+        prestEnt.setLibros(list);
+        return prestEnt.getLibros();
     }
 
     /**
      * Desasocia un Libro existente de un Prestamo existente
      *
      * @param prestamoId Identificador de la instancia de Prestamo
-     * @param LibrosId Identificador de la instancia de Libro
+     * @param libId Identificador de la instancia de Libro
      * 
      */
-    public void removeLibro(Long usuarioId, Long prestamoId, Long LibrosId) {
+    public void removeLibro(Long usuarioId, Long prestamoId, Long libId) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un Libro del prestamo con id = {0}", prestamoId);
         PrestamoEntity entity = getPrestamo(usuarioId,prestamoId);
-        LibroEntity LibrosEntity = new LibroEntity();
-        LibrosEntity.setId(LibrosId);
-        entity.getLibros().remove(LibrosEntity);
+        LibroEntity libEnt = new LibroEntity();
+        libEnt.setId(libId);
+        entity.getLibros().remove(libEnt);
     }
     
     
@@ -198,15 +198,15 @@ public List<VideoEntity> listVideos(Long usuarioId, Long prestamoId) {
      * Obtiene una instancia de VideoEntity asociada a una instancia de Prestamo
      *
      * @param prestamoId Identificador de la instancia de Prestamo
-     * @param VideosId Identificador de la instancia de Video
+     * @param vidId Identificador de la instancia de Video
      * 
      */
-    public VideoEntity getVideo(Long usuarioId, Long prestamoId, Long VideosId) {
+    public VideoEntity getVideo(Long usuarioId, Long prestamoId, Long vidId) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar un Video del prestamo con id = {0}", prestamoId);
         List<VideoEntity> list = getPrestamo(usuarioId,prestamoId).getVideos();
-        VideoEntity VideosEntity = new VideoEntity();
-        VideosEntity.setId(VideosId);
-        int index = list.indexOf(VideosEntity);
+        VideoEntity vidEnt = new VideoEntity();
+        vidEnt.setId(vidId);
+        int index = list.indexOf(vidEnt);
         if (index >= 0) {
             return list.get(index);
         }
@@ -217,17 +217,17 @@ public List<VideoEntity> listVideos(Long usuarioId, Long prestamoId) {
      * Asocia un Video existente a un Prestamo
      *
      * @param prestamoId Identificador de la instancia de Prestamo
-     * @param VideosId Identificador de la instancia de Video
+     * @param vidId Identificador de la instancia de Video
      * @return Instancia de VideoEntity que fue asociada a Prestamo
      * 
      */
-    public VideoEntity addVideo(Long usuarioId,Long prestamoId, Long VideosId) {
+    public VideoEntity addVideo(Long usuarioId,Long prestamoId, Long vidId) {
         LOGGER.log(Level.INFO, "Inicia proceso de asociar un Video al prestamo con id = {0}", prestamoId);
-        PrestamoEntity PrestamoEntity = getPrestamo(usuarioId,prestamoId);
-        VideoEntity VideosEntity = new VideoEntity();
-        VideosEntity.setId(VideosId);
-        PrestamoEntity.getVideos().add(VideosEntity);
-        return getVideo(usuarioId, prestamoId, VideosId);
+        PrestamoEntity presEnt = getPrestamo(usuarioId,prestamoId);
+        VideoEntity vidEnt = new VideoEntity();
+        vidEnt.setId(vidId);
+        presEnt.getVideos().add(vidEnt);
+        return getVideo(usuarioId, prestamoId, vidId);
     }
 
     /**
@@ -241,24 +241,24 @@ public List<VideoEntity> listVideos(Long usuarioId, Long prestamoId) {
      */
     public List<VideoEntity> replaceVideos(Long usuarioId,Long prestamoId, List<VideoEntity> list) {
         LOGGER.log(Level.INFO, "Inicia proceso de reemplazar un Video del prestamo con id = {0}", prestamoId);
-        PrestamoEntity PrestamoEntity = getPrestamo(usuarioId,prestamoId);
-        PrestamoEntity.setVideos(list);
-        return PrestamoEntity.getVideos();
+        PrestamoEntity presEnt = getPrestamo(usuarioId,prestamoId);
+        presEnt.setVideos(list);
+        return presEnt.getVideos();
     }
 
     /**
      * Desasocia un Video existente de un Prestamo existente
      *
      * @param prestamoId Identificador de la instancia de Prestamo
-     * @param VideosId Identificador de la instancia de Video
+     * @param vidId Identificador de la instancia de Video
      * 
      */
-    public void removeVideo(Long usuarioId, Long prestamoId, Long VideosId) {
+    public void removeVideo(Long usuarioId, Long prestamoId, Long vidId) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un Video del prestamo con id = {0}", prestamoId);
         PrestamoEntity entity = getPrestamo(usuarioId,prestamoId);
-        VideoEntity VideosEntity = new VideoEntity();
-        VideosEntity.setId(VideosId);
-        entity.getVideos().remove(VideosEntity);
+        VideoEntity vidEnt = new VideoEntity();
+        vidEnt.setId(vidId);
+        entity.getVideos().remove(vidEnt);
     }
 
 

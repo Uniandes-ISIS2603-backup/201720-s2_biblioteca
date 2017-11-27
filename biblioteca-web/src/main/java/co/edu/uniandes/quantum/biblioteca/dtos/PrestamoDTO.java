@@ -6,7 +6,6 @@
 package co.edu.uniandes.quantum.biblioteca.dtos;
 
 import co.edu.uniandes.quantum.biblioteca.entities.PrestamoEntity;
-import java.util.Date;
 
 /**
  *

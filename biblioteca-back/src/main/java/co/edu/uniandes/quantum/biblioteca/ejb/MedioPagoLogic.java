@@ -6,13 +6,10 @@
 package co.edu.uniandes.quantum.biblioteca.ejb;
 
 import co.edu.uniandes.quantum.biblioteca.entities.MedioPagoEntity;
-import co.edu.uniandes.quantum.biblioteca.entities.MedioPagoEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.UsuarioEntity;
 import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
 import co.edu.uniandes.quantum.biblioteca.persistence.MedioPagoPersistence;
-import co.edu.uniandes.quantum.biblioteca.persistence.MedioPagoPersistence;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -43,10 +40,10 @@ public class MedioPagoLogic {
         LOGGER.info("Inicia proceso de consultar todos los medioPagos");
         List<MedioPagoEntity> med=persistence.findAll(usuarioid);
         if (med == null) {
-            throw new BusinessLogicException("El usuario que consulta aún no tiene medioPagos");
+            throw new BusinessLogicException("El usuario que consulta aún no tiene medios de pago");
         }
         if (med.isEmpty()) {
-            throw new BusinessLogicException("El usuario que consulta aún no tiene medioPagos");
+            throw new BusinessLogicException("El usuario que consulta aún no tiene medios de pago");
         }
         return med;
     }
@@ -88,8 +85,7 @@ public class MedioPagoLogic {
      * 
      */
     public MedioPagoEntity updateMedioPago(Long usuarioid, MedioPagoEntity entity) {
-        LOGGER.info("Inicia proceso de actualizar review");
-        MedioPagoEntity med = persistence.find(entity.getId());
+        LOGGER.info("Inicia proceso de actualizar medioPago");
         entity.setMiUsuario(usuarioLogic.getUsuario(usuarioid));
         return persistence.update(entity);
     }
@@ -102,7 +98,7 @@ public class MedioPagoLogic {
      * 
      */
     public void deleteMedioPago(Long usuarioid, Long id) {
-        LOGGER.info("Inicia proceso de borrar review");
+        LOGGER.info("Inicia proceso de borrar medioPago");
         MedioPagoEntity old = getMedioPago(usuarioid, id);
         persistence.delete(old.getId());
     }

@@ -10,7 +10,6 @@ import co.edu.uniandes.quantum.biblioteca.entities.MedioPagoEntity;
 import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -32,6 +31,11 @@ import javax.ws.rs.WebApplicationException;
 
 public class MedioPagoResource {
     
+    private final static String RECURSOUSERS = "El recurso /usuarios/";
+    private final static String MEDIOPAGOS = "/medioPago/";
+    private final static String NOEXISTE = " no existe.";
+
+
     @Inject
     MedioPagoLogic medioPagoLogic;
 
@@ -46,7 +50,7 @@ public class MedioPagoResource {
     public MedioPagoDTO getMedioPago(@PathParam("idUsuario") Long idUsuario, @PathParam("id") Long id) throws BusinessLogicException {
         MedioPagoEntity entity = medioPagoLogic.getMedioPago(idUsuario, id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + idUsuario + "/medioPagos/" + id + " no existe.", 404);
+            throw new WebApplicationException(RECURSOUSERS + idUsuario + MEDIOPAGOS + id + NOEXISTE, 404);
         }
         return new MedioPagoDTO(entity);
     }
@@ -63,7 +67,7 @@ public class MedioPagoResource {
         medioPago.setId(id);
         MedioPagoEntity entity = medioPagoLogic.getMedioPago(idUsuario, id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + idUsuario + "/medioPagos/" + id + " no existe.", 404);
+            throw new WebApplicationException(RECURSOUSERS + idUsuario + MEDIOPAGOS + id + NOEXISTE, 404);
         }
         return new MedioPagoDTO(medioPagoLogic.updateMedioPago(idUsuario, medioPago.toEntity()));
 
@@ -74,7 +78,7 @@ public class MedioPagoResource {
     public void deleteMedioPago(@PathParam("idUsuario") Long idUsuario, @PathParam("id") Long id) throws BusinessLogicException {
         MedioPagoEntity entity = medioPagoLogic.getMedioPago(idUsuario, id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + idUsuario + "/medioPagos/" + id + " no existe.", 404);
+            throw new WebApplicationException(RECURSOUSERS + idUsuario + MEDIOPAGOS + id + NOEXISTE , 404);
         }
         medioPagoLogic.deleteMedioPago(idUsuario, id);
     }

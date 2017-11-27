@@ -32,19 +32,19 @@ public class UsuarioLogic {
 
     public List<UsuarioEntity> getUsuarios() {
         LOGGER.info("Inicia proceso de consultar todos los usuarios");
-        List<UsuarioEntity> Usuarios = persistence.findAll();
+        List<UsuarioEntity> userz = persistence.findAll();
         LOGGER.info("Termina proceso de consultar todos los usuarios");
-        return Usuarios;
+        return userz;
     }
 
     public UsuarioEntity getUsuario(Long id) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar usuario con id={0}", id);
-        UsuarioEntity Usuario = persistence.find(id);
-        if (Usuario == null) {
+        UsuarioEntity usu = persistence.find(id);
+        if (usu == null) {
             LOGGER.log(Level.SEVERE, "El usuario con el id {0} no existe", id);
         }
         LOGGER.log(Level.INFO, "Termina proceso de consultar usuario con id={0}", id);
-        return Usuario;
+        return usu;
     }
 
     
@@ -52,13 +52,11 @@ public class UsuarioLogic {
         LOGGER.info("Inicia proceso de creación de usuario");    
         List<UsuarioEntity> usuarioz= persistence.findByName(entity.getName());
         for (UsuarioEntity usuario: usuarioz){
-        if(usuario!=null)
-        {
-            if (usuario.getDireccion().equals(entity.getDireccion()) && usuario.getTelefono().equals(entity.getTelefono()))
+        if(usuario!=null&&usuario.getDireccion().equals(entity.getDireccion()) && usuario.getTelefono().equals(entity.getTelefono()))
             {
                 throw new BusinessLogicException("Ya existe un usuario con el mismo nombre, telefono y dirección.");
             }
-        }}
+        }
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de usuario");
         return entity;
@@ -66,8 +64,7 @@ public class UsuarioLogic {
 
     public UsuarioEntity updateUsuario(Long id, UsuarioEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar usuario con id={0}", id);
-        
-        int newEntity = persistence.update(entity);
+        persistence.update(entity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar usuario con id={0}", entity.getId());
         return entity;
     }
@@ -77,13 +74,7 @@ public class UsuarioLogic {
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar usuario con id={0}", id);
     }
-
-    private boolean validateID(Long id) {
-        if (id == null) {
-            return false;
-        }
-        return true;
-    }
+    
 
     /**
      * Obtiene una colección de instancias de PrestamoEntity asociadas a una
@@ -128,10 +119,10 @@ public class UsuarioLogic {
      */
     public PrestamoEntity addPrestamo(Long usuarioId, Long prestamosId) {
         LOGGER.log(Level.INFO, "Inicia proceso de asociar un prestamo al usuario con id = {0}", usuarioId);
-        UsuarioEntity UsuarioEntity = getUsuario(usuarioId);
+        UsuarioEntity usEnt = getUsuario(usuarioId);
         PrestamoEntity prestamosEntity = new PrestamoEntity();
         prestamosEntity.setId(prestamosId);
-        UsuarioEntity.getPrestamos().add(prestamosEntity);
+        usEnt.getPrestamos().add(prestamosEntity);
         return getPrestamo(usuarioId, prestamosId);
     }
 
@@ -146,9 +137,9 @@ public class UsuarioLogic {
      */
     public List<PrestamoEntity> replacePrestamos(Long usuarioId, List<PrestamoEntity> list) {
         LOGGER.log(Level.INFO, "Inicia proceso de reemplazar un prestamo del usuario con id = {0}", usuarioId);
-        UsuarioEntity UsuarioEntity = getUsuario(usuarioId);
-        UsuarioEntity.setPrestamos(list);
-        return UsuarioEntity.getPrestamos();
+        UsuarioEntity usEnt = getUsuario(usuarioId);
+        usEnt.setPrestamos(list);
+        return usEnt.getPrestamos();
     }
 
     /**
@@ -209,10 +200,10 @@ public class UsuarioLogic {
      */
     public MultaEntity addMulta(Long usuarioId, Long multasId) {
         LOGGER.log(Level.INFO, "Inicia proceso de asociar un multa al usuario con id = {0}", usuarioId);
-        UsuarioEntity UsuarioEntity = getUsuario(usuarioId);
+        UsuarioEntity usEnt = getUsuario(usuarioId);
         MultaEntity multasEntity = new MultaEntity();
         multasEntity.setId(multasId);
-        UsuarioEntity.getMultas().add(multasEntity);
+        usEnt.getMultas().add(multasEntity);
         return getMulta(usuarioId, multasId);
     }
 
@@ -227,9 +218,9 @@ public class UsuarioLogic {
      */
     public List<MultaEntity> replaceMultas(Long usuarioId, List<MultaEntity> list) {
         LOGGER.log(Level.INFO, "Inicia proceso de reemplazar un multa del usuario con id = {0}", usuarioId);
-        UsuarioEntity UsuarioEntity = getUsuario(usuarioId);
-        UsuarioEntity.setMultas(list);
-        return UsuarioEntity.getMultas();
+        UsuarioEntity usEnt = getUsuario(usuarioId);
+        usEnt.setMultas(list);
+        return usEnt.getMultas();
     }
 
     /**
@@ -290,10 +281,10 @@ public class UsuarioLogic {
      */
     public ReservaEntity addReserva(Long usuarioId, Long reservasId) {
         LOGGER.log(Level.INFO, "Inicia proceso de asociar un reserva al usuario con id = {0}", usuarioId);
-        UsuarioEntity UsuarioEntity = getUsuario(usuarioId);
+        UsuarioEntity usEnt = getUsuario(usuarioId);
         ReservaEntity reservasEntity = new ReservaEntity();
         reservasEntity.setId(reservasId);
-        UsuarioEntity.getReservas().add(reservasEntity);
+        usEnt.getReservas().add(reservasEntity);
         return getReserva(usuarioId, reservasId);
     }
 
@@ -308,9 +299,9 @@ public class UsuarioLogic {
      */
     public List<ReservaEntity> replaceReservas(Long usuarioId, List<ReservaEntity> list) {
         LOGGER.log(Level.INFO, "Inicia proceso de reemplazar un reserva del usuario con id = {0}", usuarioId);
-        UsuarioEntity UsuarioEntity = getUsuario(usuarioId);
-        UsuarioEntity.setReservas(list);
-        return UsuarioEntity.getReservas();
+        UsuarioEntity usEnt = getUsuario(usuarioId);
+        usEnt.setReservas(list);
+        return usEnt.getReservas();
     }
 
     /**
@@ -371,10 +362,10 @@ public class UsuarioLogic {
      */
     public ComentarioEntity addComentario(Long usuarioId, Long comentariosId) {
         LOGGER.log(Level.INFO, "Inicia proceso de asociar un comentarios al usuario con id = {0}", usuarioId);
-        UsuarioEntity UsuarioEntity = getUsuario(usuarioId);
+        UsuarioEntity usEnt = getUsuario(usuarioId);
         ComentarioEntity comentariosEntity = new ComentarioEntity();
         comentariosEntity.setId(comentariosId);
-        UsuarioEntity.getComentarios().add(comentariosEntity);
+        usEnt.getComentarios().add(comentariosEntity);
         return getComentario(usuarioId, comentariosId);
     }
 
@@ -389,9 +380,9 @@ public class UsuarioLogic {
      */
     public List<ComentarioEntity> replaceComentarios(Long usuarioId, List<ComentarioEntity> list) {
         LOGGER.log(Level.INFO, "Inicia proceso de reemplazar un comentarios del usuario con id = {0}", usuarioId);
-        UsuarioEntity UsuarioEntity = getUsuario(usuarioId);
-        UsuarioEntity.setComentarios(list);
-        return UsuarioEntity.getComentarios();
+        UsuarioEntity usEnt = getUsuario(usuarioId);
+        usEnt.setComentarios(list);
+        return usEnt.getComentarios();
     }
 
     /**

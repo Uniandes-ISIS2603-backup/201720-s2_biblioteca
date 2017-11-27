@@ -18,9 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.ejb.Stateless;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.ws.rs.GET;;
+import javax.ws.rs.GET;
+;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
@@ -34,35 +34,41 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author f.posada
  */
+
+
 @Path("{idAcceso: \\d+}/usuarios")
 @Produces("application/json")
 @Consumes("application/json")
 @Stateless
 public class UsuarioResource {
 
-    private static final String MEN_ERROR="El recurso /usuarios/";
-    private static final String NO_EXISTE="no existe.";
-    
+    private static final String MEN_ERROR = "El recurso /usuarios/";
+    private static final String NO_EXISTE = "no existe.";
+    private static final String SOLOADMIN = "Sólo un admin o el usuario con id ";
+    private static final String PUEDE = " puede ver esta información.";
+
     @Inject
     UsuarioLogic usuarioLogic;
-    
+
     @Inject
     PrestamoLogic prestamoLogic;
 
     @GET
     public List<UsuarioDTO> getUsuarios(@PathParam("idAcceso") Long idAcceso) throws BusinessLogicException {
         validarAccesoAdmin(idAcceso);
-        if(listUsuarioEntity2DetailDTO(usuarioLogic.getUsuarios()).isEmpty())
+        if (listUsuarioEntity2DetailDTO(usuarioLogic.getUsuarios()).isEmpty()) {
             throw new WebApplicationException("No hay usuarios");
-        else
-        return listUsuarioEntity2DTO(usuarioLogic.getUsuarios());
+        } else {
+            return listUsuarioEntity2DTO(usuarioLogic.getUsuarios());
+        }
     }
 
     @GET
     @Path("{id: \\d+}")
-    public UsuarioDetailDTO getUsuario(@PathParam("idAcceso") Long idAcceso,@PathParam("id") Long id) throws BusinessLogicException {
-        if(!Objects.equals(idAcceso, id)&&idAcceso!=999)
-            throw new WebApplicationException("Sólo un admin o el usuario con id "+id+" puede ver esta información.");
+    public UsuarioDetailDTO getUsuario(@PathParam("idAcceso") Long idAcceso, @PathParam("id") Long id) throws BusinessLogicException {
+        if (!Objects.equals(idAcceso, id) && idAcceso != 999) {
+            throw new WebApplicationException(SOLOADMIN + id + PUEDE);
+        }
         UsuarioEntity entity = usuarioLogic.getUsuario(id);
         if (entity == null) {
             throw new WebApplicationException(MEN_ERROR + id + NO_EXISTE, 404);
@@ -70,17 +76,17 @@ public class UsuarioResource {
         return new UsuarioDetailDTO(entity);
     }
 
-   
     @POST
-    public UsuarioDetailDTO createUsuario(UsuarioDetailDTO usuario) throws BusinessLogicException {        
-         return new UsuarioDetailDTO(usuarioLogic.createUsuario(usuario.toEntity()));
+    public UsuarioDetailDTO createUsuario(UsuarioDetailDTO usuario) throws BusinessLogicException {
+        return new UsuarioDetailDTO(usuarioLogic.createUsuario(usuario.toEntity()));
     }
 
     @PUT
     @Path("{id: \\d+}")
-    public UsuarioDetailDTO updateUsuario(@PathParam("idAcceso") Long idAcceso,@PathParam("id") Long id, UsuarioDetailDTO usuario) throws BusinessLogicException {
-        if(!Objects.equals(idAcceso, id)&&idAcceso!=999)
-            throw new WebApplicationException("Sólo un admin o el usuario con id "+id+" puede ver esta información.");
+    public UsuarioDetailDTO updateUsuario(@PathParam("idAcceso") Long idAcceso, @PathParam("id") Long id, UsuarioDetailDTO usuario) throws BusinessLogicException {
+        if (!Objects.equals(idAcceso, id) && idAcceso != 999) {
+            throw new WebApplicationException(SOLOADMIN + id + PUEDE);
+        }
         usuario.setId(id);
         UsuarioEntity entity = usuarioLogic.getUsuario(id);
         if (entity == null) {
@@ -91,61 +97,64 @@ public class UsuarioResource {
 
     @DELETE
     @Path("{usuariosId: \\d+}")
-    public void deleteUsuario(@PathParam("idAcceso") Long idAcceso,@PathParam("usuariosId") Long id) throws BusinessLogicException {
-        if(!Objects.equals(idAcceso, id)&&idAcceso!=999)
-            throw new WebApplicationException("Sólo un admin o el usuario con id "+id+" puede ver esta información.");
+    public void deleteUsuario(@PathParam("idAcceso") Long idAcceso, @PathParam("usuariosId") Long id) throws BusinessLogicException {
+        if (!Objects.equals(idAcceso, id) && idAcceso != 999) {
+            throw new WebApplicationException(SOLOADMIN + id + PUEDE);
+        }
         UsuarioEntity entity = usuarioLogic.getUsuario(id);
         if (entity == null) {
             throw new WebApplicationException(MEN_ERROR + id + NO_EXISTE, 404);
         }
         usuarioLogic.deleteUsuario(id);
-    }   
-    
+    }
+
     @Path("{idUsuario: \\d+}/prestamos")
-    public Class<PrestamoResource> getPrestamoResource(@PathParam("idAcceso") Long idAcceso,@PathParam("idUsuario") Long usuarioId) throws BusinessLogicException {
-        if(!Objects.equals(idAcceso, usuarioId)&&idAcceso!=999)
-            throw new WebApplicationException("Sólo un admin o el usuario con id "+usuarioId+" puede ver esta información.");
+    public Class<PrestamoResource> getPrestamoResource(@PathParam("idAcceso") Long idAcceso, @PathParam("idUsuario") Long usuarioId) throws BusinessLogicException {
+        if (!Objects.equals(idAcceso, usuarioId) && idAcceso != 999) {
+            throw new WebApplicationException(SOLOADMIN + usuarioId + PUEDE);
+        }
         UsuarioEntity entity = usuarioLogic.getUsuario(usuarioId);
         if (entity == null) {
             throw new WebApplicationException(MEN_ERROR + usuarioId + "/prestamos no existe.", 404);
         }
         return PrestamoResource.class;
     }
-    
+
     @Path("{idUsuario: \\d+}/multas")
-    public Class<MultaResource> getMultaResource(@PathParam("idAcceso") Long idAcceso,@PathParam("idUsuario") Long usuariosId) {
-       if(!Objects.equals(idAcceso, usuariosId)&&idAcceso!=999)
-            throw new WebApplicationException("Sólo un admin o el usuario con id "+usuariosId+" puede ver esta información.");
+    public Class<MultaResource> getMultaResource(@PathParam("idAcceso") Long idAcceso, @PathParam("idUsuario") Long usuariosId) {
+        if (!Objects.equals(idAcceso, usuariosId) && idAcceso != 999) {
+            throw new WebApplicationException(SOLOADMIN + usuariosId + PUEDE);
+        }
         UsuarioEntity entity = usuarioLogic.getUsuario(usuariosId);
         if (entity == null) {
             throw new WebApplicationException(MEN_ERROR + usuariosId + "/multas no existe.", 404);
         }
         return MultaResource.class;
     }
-    
-     @Path("{idUsuario: \\d+}/medioPago")
-    public Class<MedioPagoResource> getMedioPagoResource(@PathParam("idAcceso") Long idAcceso,@PathParam("idUsuario") Long usuariosId) {
-       if(!Objects.equals(idAcceso, usuariosId)&&idAcceso!=999)
-            throw new WebApplicationException("Sólo un admin o el usuario con id "+usuariosId+" puede ver esta información.");
+
+    @Path("{idUsuario: \\d+}/medioPago")
+    public Class<MedioPagoResource> getMedioPagoResource(@PathParam("idAcceso") Long idAcceso, @PathParam("idUsuario") Long usuariosId) {
+        if (!Objects.equals(idAcceso, usuariosId) && idAcceso != 999) {
+            throw new WebApplicationException(SOLOADMIN + usuariosId + PUEDE);
+        }
         UsuarioEntity entity = usuarioLogic.getUsuario(usuariosId);
         if (entity == null) {
             throw new WebApplicationException(MEN_ERROR + usuariosId + "/medioPago no existe.", 404);
         }
         return MedioPagoResource.class;
     }
-    
-    
+
     @Path("{idUsuario: \\d+}/reservas")
-    public Class<ReservaResource> getReservaResource(@PathParam("idAcceso") Long idAcceso,@PathParam("idUsuario") Long usuariosId) {
+    public Class<ReservaResource> getReservaResource(@PathParam("idAcceso") Long idAcceso, @PathParam("idUsuario") Long usuariosId) {
+        if (!Objects.equals(idAcceso, usuariosId) && idAcceso != 999) {
+            throw new WebApplicationException(SOLOADMIN + usuariosId + PUEDE);
+        }
         UsuarioEntity entity = usuarioLogic.getUsuario(usuariosId);
         if (entity == null) {
             throw new WebApplicationException(MEN_ERROR + usuariosId + "/reservas no existe.", 404);
         }
         return ReservaResource.class;
     }
-    
-    
-    
 
     private List<UsuarioDetailDTO> listUsuarioEntity2DetailDTO(List<UsuarioEntity> entityList) {
         List<UsuarioDetailDTO> list = new ArrayList<>();
@@ -154,7 +163,7 @@ public class UsuarioResource {
         }
         return list;
     }
-    
+
     private List<UsuarioDTO> listUsuarioEntity2DTO(List<UsuarioEntity> entityList) {
         List<UsuarioDTO> list = new ArrayList<>();
         for (UsuarioEntity entity : entityList) {
@@ -162,18 +171,12 @@ public class UsuarioResource {
         }
         return list;
     }
-    
-    private List<PrestamoDetailDTO> alistUsuarioEntity2DetailDTO(List<PrestamoEntity> entityList) {
-        List<PrestamoDetailDTO> list = new ArrayList<>();
-        for (PrestamoEntity entity : entityList) {
-            list.add(new PrestamoDetailDTO(entity));
-        }
-        return list;
-    }
-    
-    private void validarAccesoAdmin(Long id)
-    {
-        if(id!=999)
+
+   
+
+    private void validarAccesoAdmin(Long id) {
+        if (id != 999) {
             throw new WebApplicationException("Sólo un administrador del sistema puede realizar esta operación.");
+        }
     }
 }
