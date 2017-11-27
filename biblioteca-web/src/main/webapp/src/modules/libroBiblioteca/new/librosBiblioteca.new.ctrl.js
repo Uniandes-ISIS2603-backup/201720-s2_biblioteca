@@ -8,7 +8,9 @@
                 $http.post(librosBibliotecaCrearContext + "/"+ $state.params.bibliotecaId, {
                     name: $scope.libroName,
                    anioPublicacion: $scope.libroAnioPublicacion,
-                   numPaginas: $scope.libroNumeroPaginas
+                   numPaginas: $scope.libroNumeroPaginas,
+                   imagen:$scope.libroImagen,
+                                      autor:$scope.libroAutor
                 }).then(function (response) {
                     //Usuario created successfully
                     $state.go('librosBibliotecaList', {libroId: response.data.id}, {reload: true});

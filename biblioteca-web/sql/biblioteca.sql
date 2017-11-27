@@ -46,9 +46,9 @@ insert into evideoEntity (id, name, autor, duracion) values (1,'Curso AngularJS 
 insert into evideoEntity (id, name, autor, duracion) values (2,'Curso AngularJS - Hola Mundo' , 'codigoFacilito', 5);
 
 
-insert into libroEntity(id,aniopublicacion,autor,name,numpaginas, miprestamo_id) values (1,1996,'James','Moby Dick',123,1);
-insert into libroEntity(id,aniopublicacion,autor,name,numpaginas) values (2,1997,'Javier','Oliver Twist',123);
-insert into libroEntity(id,aniopublicacion,autor,name,numpaginas) values (3,1998,'Jax','Twister',123);
+insert into libroEntity(id,aniopublicacion,autor,name,numpaginas, miprestamo_id,imagen) values (1,1996,'James','Moby Dick',123,1,'https://images-na.ssl-images-amazon.com/images/I/417%2B4OtvXhL._SX319_BO1,204,203,200_.jpg');
+insert into libroEntity(id,aniopublicacion,autor,name,numpaginas,imagen) values (2,1997,'Javier','Oliver Twist',123, 'https://cdne.diariocorreo.pe/thumbs/uploads/articles/images/dia-del-libro-porque-es-bueno--jpg_604x0.jpg');
+insert into libroEntity(id,aniopublicacion,autor,name,numpaginas,imagen) values (3,1998,'Jax','Twister',123,'https://cdn1.thr.com/sites/default/files/2016/09/oliver_twist_-_screen_shot-p_2016.jpg');
 
 insert into videoEntity (id,name,autor,duracion) values (1,'Cosmos','Carl Sagan',92);
 

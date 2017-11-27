@@ -21,6 +21,9 @@ public class LibroEntity extends BaseEntity implements Serializable
     private int numPaginas;
     private int anioPublicacion;
     
+        private String imagen;
+  
+    
        @PodamExclude
     @ManyToOne   
     private PrestamoEntity miPrestamo; 
@@ -76,7 +79,13 @@ public class LibroEntity extends BaseEntity implements Serializable
     }
     
  
-   
+   public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    } 
     
     public int getNumeroPaginas()
     {return numPaginas;}

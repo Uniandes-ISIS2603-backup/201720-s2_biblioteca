@@ -2,6 +2,12 @@
     <div class="panel-body">
     <div class="row">
         <div class="col-md-3">
+                <div class="thumb">
+                    <img  ng-src='{{currentLibro.imagen}}' alt="{{currentLibro.name}}" width="350" height="350" />
+                </div>
+
+            </div>
+        <div class="col-md-3">
             <dl>                
                 <dt>Id:</dt>
                 <dd>{{currentLibro.id}}</dd>
@@ -9,6 +15,10 @@
                 <hr>
                 <dt>Nombre:</dt>
                 <dd>{{currentLibro.name}}</dd>
+                
+                <hr>
+                <dt>Autor:</dt>
+                <dd>{{currentLibro.autor}}</dd>
           
                 <hr>
                 <dt>Numero páginas:</dt>

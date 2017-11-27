@@ -18,6 +18,7 @@ public class LibroDTO
     private String autor;
     private int numPaginas; 
     private int anioPublicacion;
+       private String imagen;
     
  
     public LibroDTO(LibroEntity l)
@@ -27,7 +28,8 @@ public class LibroDTO
         this.name =l.getName();
         this.numPaginas=l.getNumeroPaginas();
         this.anioPublicacion=l.getAnioPublicacion();
-        this.autor=l.getAutor();}
+        this.autor=l.getAutor();
+         this.imagen =l.getImagen();}
         else
             throw new NullPointerException("El libro fue nulo");
              
@@ -78,6 +80,13 @@ public class LibroDTO
         this.autor = autor;
     }   
   
+     public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
     
     public LibroEntity toEntity()
     {
@@ -86,7 +95,8 @@ public class LibroDTO
         entity.setAutor(this.autor);
         entity.setId(this.id);
         entity.setName(this.name);
-        entity.setNumeroPaginas(this.numPaginas);
+        entity.setNumeroPaginas(this.numPaginas); 
+                entity.setImagen(imagen);
         
         return entity;
     }
