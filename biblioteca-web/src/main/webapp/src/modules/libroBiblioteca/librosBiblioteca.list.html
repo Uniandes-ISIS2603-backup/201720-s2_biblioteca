@@ -1,0 +1,34 @@
+<div class="container-fluid">
+    <div class="col-md-4">
+         <div class="panel-heading"><label>Lista de libros de la biblioteca.  </label></div>
+
+         <p> Si desea ver el detalle de alguno, oprima el id del mismo.</p>
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <a class="btn btn-info" ui-sref="librosBibliotecaCreate"><span class="glyphicon glyphicon-plus-sign">Agregar un nuevo libro a la biblioteca.</span></a>
+                    </div>
+                </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>    
+                    <th>Nombre libro</th>  
+                     <th>Año publicación</th>             
+                        <th>Acciones libro.</th> 
+              
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="libro in libroBibliotecaRecords">
+                    <td id="{{$index}}-descrption"><a ui-sref="libroDetail({libroId: libro.id})">{{libro.id}}</a></td>
+                    <td id="{{$index}}-name">{{libro.name}}</td>
+                             <td id="{{$index}}-aniopublicacion">{{libro.anioPublicacion}}</td>   
+                              <td id="{{$index}}-actions">
+                             <a class="btn btn-default btn-sm" ui-sref="libroUpdate({libroId: libro.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                               <a class="btn btn-danger btn-sm" ui-sref="libroDelete({libroId: libro.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                        </td>
+                                          </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

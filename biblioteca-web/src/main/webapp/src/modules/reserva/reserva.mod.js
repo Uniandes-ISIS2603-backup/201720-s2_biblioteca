@@ -15,7 +15,7 @@
                 parent: 'usuarioDetail',
                 views: {
                     'childrenView': {
-                        templateUrl: basePath + 'reservas.html',                        
+                        templateUrl: basePath + 'reservas.html'                        
                     }
                 }
             }).state('reservaList', {
