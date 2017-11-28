@@ -36,6 +36,9 @@
                     bibliotecaId: null
                 },
                 views: {
+                    'listView': {
+                        templateUrl: basePath + 'bibliotecas.list.html'
+                    },
                     
                     'detailView': {
                         templateUrl: basePath + 'bibliotecas.detail.html',

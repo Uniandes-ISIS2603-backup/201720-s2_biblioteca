@@ -31,6 +31,11 @@
                 url: '/{multaId:int}/detail',
                 parent: 'multas',
                 views: {
+                    'listView': {
+                        templateUrl: basePath + 'multas.list.html',
+                        controller: 'multaCtrl',
+                        controllerAs: 'ctrl'
+                    },
                     'detailView': {
                         templateUrl: basePath + 'multas.detail.html',
                         controller: 'multaCtrl',
