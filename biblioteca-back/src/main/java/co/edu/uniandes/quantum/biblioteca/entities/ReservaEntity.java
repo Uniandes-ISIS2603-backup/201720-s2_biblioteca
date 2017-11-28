@@ -27,11 +27,37 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class ReservaEntity extends BaseEntity implements Serializable
 {
     
-   
+    private static final String MENSAJECOMPLETADA ="Tu reserva ya está lista para ser reclamada en nuestra biblioteca.";
+    private static final String MENSAJENOCOMPLETADA ="Animo, tu reserva podría estar lista en unos momentos.";
+     private static final String IMAGENNOCOMPLETADA ="https://upload.wikimedia.org/wikipedia/en/a/a4/Red_x_large.png";
+      private static final String  IMAGENCOMPLETADA ="https://ayuda.tigoune.co/hc/article_attachments/115011237588/Chulo.png";
+      
     private boolean completada;
+    private String imagen;
+    private String mensaje;
      
     @Temporal(TemporalType.DATE)
     private Date fechaInicio;
+
+    public String getImagen() {
+        if(completada){ imagen =IMAGENCOMPLETADA;} 
+        else imagen = IMAGENNOCOMPLETADA;
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    public String getMensaje() {
+       if(completada) mensaje= MENSAJECOMPLETADA;
+        else mensaje =MENSAJENOCOMPLETADA;
+       return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
     
     
     

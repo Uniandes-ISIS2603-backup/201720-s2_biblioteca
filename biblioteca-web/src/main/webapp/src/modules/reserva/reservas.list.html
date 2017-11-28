@@ -1,32 +1,36 @@
-<div class="container-fluid">
-    <div class="col-md-4">
-        <div class="panel-heading"><label>Reservas del usuario. </label></div>
-        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <a class="btn btn-info" ui-sref="reservaCreate"><span class="glyphicon glyphicon-plus-sign">   Agregar una reserva.</span></a>
-                    </div>
-                </div>
-<div class="container-fluid">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Id</th>    
-                    <th>¿Se completo la reserva?</th>  
+     
+ <div class="container-fluid">
+    <p>  </p>
+    <p>  </p>
+    <p>  </p>
+    <p>  </p>
+    <p>  </p>
+    
+    
+            <a class="btn btn-info" ui-sref="reservaCreate"><span class="glyphicon glyphicon-plus-sign">Crear una reserva.</span></a>
+                <p>  </p>
+                 <p>  </p>
+                  <p>  </p>
+                  
+    <div class="row">
+        <div class="col-md-4" ng-repeat="reserva in reservaRecords">
+            <div class="caption text-center">    
+            <a ui-sref="reservaDetail({reservaId: reserva.id})">               
+                    <img  ng-src='{{reserva.imagen}}' alt="{{reserva.id}}" width="200" height="200" />                  
+                </a>
+                    <p>{{reserva.completada}}</p>
+                    <p>{{reserva.mensaje}}</p>
                     
-                    <th>Actions</th>
-                    
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="reserva in reservaRecords">
-                    <td id="{{$index}}-id"><a ui-sref="reservaDetail({reservaId: reserva.id})">{{reserva.id}}</a></td>
-                     <td id="{{$index}}-name">{{reserva.completada}}</td>
-                    <td id="{{$index}}-actions">
-                         <a class="btn btn-default btn-sm" ui-sref="reservaUpdate({reservaId: reserva.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                   <a class="btn btn-default btn-sm" ui-sref="reservaUpdate({reservaId: reserva.id})"><span class="glyphicon glyphicon-edit"></span></a>
 <a class="btn btn-danger btn-sm" ui-sref="reservaDelete({reservaId: reserva.id})"><span class="glyphicon glyphicon-trash"></span></a>
 
-</td>
-                </tr>
-            </tbody>
-        </table>
-</div>
+<p></p>
+                </div>
+
+            
+            </div>
+        
+            </div>
+    
+                 
+            </div>

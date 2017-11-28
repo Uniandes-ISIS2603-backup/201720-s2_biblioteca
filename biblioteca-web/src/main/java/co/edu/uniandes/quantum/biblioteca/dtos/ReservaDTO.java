@@ -18,6 +18,8 @@ public class ReservaDTO
     private String name;
     private boolean completada;
     private Date fechaInicio;
+    private String imagen;
+    private String mensaje;
     
     public ReservaDTO(ReservaEntity l)
     {
@@ -25,6 +27,8 @@ public class ReservaDTO
          this.id=l.getId();
         this.name =l.getName();
         this.completada=l.isCompletada();
+        this.imagen = l.getImagen();
+        this.mensaje =l.getMensaje();
         this.fechaInicio=l.getFechaInicio();}
         else
             throw new NullPointerException("La reserva fue nula");
@@ -55,6 +59,25 @@ public class ReservaDTO
     public void setCompletada(boolean completada) {
         this.completada = completada;
     }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
+    
+    
+    
     
     public ReservaDTO()
     {
@@ -69,6 +92,8 @@ public class ReservaDTO
         entity.setName(this.name);
        entity.setCompletada(this.completada);
        entity.setFechaInicio(this.fechaInicio);
+       entity.setImagen(this.imagen);
+       entity.setMensaje(this.mensaje);
         return entity;
     }
     

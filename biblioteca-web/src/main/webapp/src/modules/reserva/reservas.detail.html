@@ -2,6 +2,12 @@
     <div class="panel-body">
     <div class="row">
         <div class="col-md-3">
+                <div class="thumb">
+                    <img  ng-src='{{currentReserva.imagen}}' alt="{{currentReserva.name}}" width="200" height="200" />
+                </div>
+
+            </div>
+        <div class="col-md-3">
             <dl>                
                 <dt>Id:</dt>
                 <dd>{{currentReserva.id}}</dd>
@@ -11,6 +17,9 @@
                 <dt>¿Completada?</dt>
                 <dd>{{currentReserva.completada}}</dd>
                 
+                <hr>
+                <dt>Mensaje</dt>
+                <dd>{{currentReserva.mensaje}}</dd>
                 
                 <hr>
                 <dd><table class="table table-hover">
