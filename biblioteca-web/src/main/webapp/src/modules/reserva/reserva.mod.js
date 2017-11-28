@@ -72,6 +72,16 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('reservaAgregarVideos', {
+                url: '/{reservaId:int}/agregarVideos',
+                parent: 'reservas',
+                views: {
+                    'detailView': {
+                        templateUrl: 'src/modules/reserva/agregarVideos/reserva.agregarVideos.html',
+                        controller: 'reservaAgregarVideosCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             }).state('reservaUpdate', {
                 url: '/{reservaId:int}/update',
                 parent: 'reservas',

@@ -28,6 +28,15 @@
                 });
             };
             
+            $scope.devolverVideoReserva = function (laId) {
+                $http.put('api/999/videos/'+laId+'/devolverreserva', {
+
+                }).then(function (response) {
+                    //Prestamo created successfully
+                    $state.go('reservaList', {preservaId: response.data.id}, {reload: true});
+                });
+            };
+            
         }
     ]);
 }

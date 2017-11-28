@@ -47,12 +47,37 @@
 </td>
                 </tr>
             </tbody>
-        </table></dd>
-
-            </dl>
+        </table>
+          
         </div>
         
-        
+            <div class="floatRight">
+                    <table class="table table-hover">
+            
+            <thead>
+                <h2>Videos:</h2>
+                Agregar un video al prestamo:
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    
+                        <a class="btn btn-info" ui-sref="reservaAgregarVideos({reservaId: currentReserva.id})"><span class="glyphicon glyphicon-plus-sign"></span></a>
+                    </div>
+                <tr>
+                    <th>Id</th>    
+                    <th>Name</th>  
+                    <th>Autor</th> 
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="videito in currentReserva.videos">
+                    <td><a ui-sref="videoDetail({videoId: videito.id})">{{videito.id}}</a></td>
+                    <td>{{videito.name}}</td>  
+                    <td>{{videito.autor}}</td> 
+                    <td>
+<a class="btn btn-warning" ng-click="devolverVideoReserva(videito.id)"><span class="glyphicon glyphicon-facetime-video"></span>   Devolver</a>
+</td>
+                </tr>
+            </tbody>
+                    </table> </div></div></dd>
     </div>
         </div>
     </div>
