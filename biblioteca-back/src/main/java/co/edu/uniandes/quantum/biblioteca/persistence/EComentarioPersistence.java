@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.quantum.biblioteca.persistence;
 
+import co.edu.uniandes.quantum.biblioteca.entities.EBookEntity;
 import co.edu.uniandes.quantum.biblioteca.entities.EComentarioEntity;
 import java.util.List;
 import java.util.logging.Level;
@@ -90,6 +91,23 @@ public class EComentarioPersistence
         return em.find(EComentarioEntity.class, id);
     }
 
+    /**
+     * Retorna la lista de comentarios de el eBook con id dado
+     * @param id
+     * @return
+     */
+    public List<EComentarioEntity> findCommentsEBook(Long id){
+        TypedQuery<EComentarioEntity> query =  em.createQuery("select c from EComentarioEntity c where c.recurso.id = :idRecurso", EComentarioEntity.class);
+        query.setParameter("idRecurso", id);
+        return query.getResultList();
+    }
+
+
+    /**
+     * Encuentra el comentario con el nombre(título) dado por parámetro
+     * @param name
+     * @return
+     */
     public List<EComentarioEntity> findByName(String name) {
         LOGGER.log(Level.INFO, "Consultando el EComentario con name= ", name);
         TypedQuery<EComentarioEntity> q
