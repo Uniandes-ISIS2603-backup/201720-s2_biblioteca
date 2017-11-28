@@ -21,6 +21,10 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class MultaEntity extends BaseEntity implements Serializable {
     
+    public final static String MULTA_NO_PAGADA = "https://openclipart.org/image/2400px/svg_to_png/279690/Button---Sad.png";
+    
+    public final static String MULTA_PAGADA = "https://openclipart.org/image/2400px/svg_to_png/279689/Button---Happy.png";
+    
     @PodamExclude
     @ManyToOne    
     private UsuarioEntity miUsuario;
@@ -49,6 +53,11 @@ public class MultaEntity extends BaseEntity implements Serializable {
      * Nombre del servicio por el que se creó la multa.
      */
     private String tituloServicio;
+    
+    /**
+     * Imagen multa.
+     */
+    private String imagen;
     
     /**
      * Medio de pago de la multa.
@@ -114,5 +123,20 @@ public class MultaEntity extends BaseEntity implements Serializable {
         this.medioPago = medioPago;
     }
 
+   public void setImagen(String imagen)
+   {
+       this.imagen = imagen;
+   }
    
+   public String getImagen()
+   {
+        if(pagada == false)
+        {
+            return MULTA_NO_PAGADA;
+        }    
+        else
+        {
+            return MULTA_PAGADA;
+        }
+   }
 }

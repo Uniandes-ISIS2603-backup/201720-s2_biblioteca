@@ -1,29 +1,23 @@
-<div class="container-fluid">
-    <div class="col-md-4">
-        <div class="panel-heading"><label>Multas</label></div>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Id</th>    
-                    <th>Fecha</th>  
-                    <th>Actions</th>
-                    
-                    
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="multa in multaRecords">
-                    <td id="{{$index}}-id"><a ui-sref="multaDetail({multaId: multa.id})">{{multa.id}}</a></td>
-                    <td id="{{$index}}-fecha">{{multa.fecha}}</td> 
-                    <td id="{{$index}}-actions">
+     
+ <div class="container-fluid">           
+        <a class="btn btn-info" ui-sref="multaCreate"><span class="glyphicon glyphicon-plus-sign">Crear</span></a>       
+    <div class="row">
+        <div class="col-md-4" ng-repeat="multa in multaRecords">
+            <div class="caption text-center">   
+            <a ui-sref="multaDetail({multaId: multa.id})">    
+                    <img  ng-src='{{multa.imagen}}' alt="{{multa.id}}" width="200" height="200" />                  
+                </a>
+                <p></p>
+                 <p>{{multa.fecha}}</p>
+                 <p>{{multa.descripcion}}</p>
+                    <p id="{{$index}}-actions">
                     <a class="btn btn-default btn-sm" ui-sref="multaUpdate({multaId: multa.id})"><span class="glyphicon glyphicon-edit"></span></a>
                     <a class="btn btn-danger btn-sm" ui-sref="multaDelete({multaId: multa.id})"><span class="glyphicon glyphicon-trash"></span></a>
                     <a class="btn btn-info btn-sm" ui-sref="multaPay({multaId: multa.id})"><span class="glyphicon glyphicon-euro"></span></a>
-                    </td>
+                    </p>
                 </tr>
             </tbody>
         </table>
-        <a class="btn btn-info" ui-sref="multaCreate"><span class="glyphicon glyphicon-plus-sign">Crear</span></a>
     </div>
         
 </div>

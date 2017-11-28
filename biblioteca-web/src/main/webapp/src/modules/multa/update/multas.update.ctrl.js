@@ -9,14 +9,15 @@
                     
                      var idMulta = $state.params.multaId;
                     var idUsuario = $state.params.usuarioId;
-                    console.info(usuarioContext+'/' + idUsuario);
                     $http.get('api/999/usuarios/' + $state.params.usuarioId+'/multas/'+idMulta).then(function (response) {
                         var multa = response.data;
+                    console.info(multa.costo);
                         $scope.fecha = multa.fecha;
                         $scope.costo = multa.costo;
                         $scope.pagada = multa.pagada;
                         $scope.descripcion = multa.descripcion;
                         $scope.medioPago = multa.medioPago;
+                        
                     });     
                                         
 

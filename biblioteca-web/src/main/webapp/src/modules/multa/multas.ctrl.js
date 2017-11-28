@@ -6,7 +6,7 @@
         function ($scope, $http, $state) {
             if ($state.params.usuarioId !== undefined && $state.params.usuarioId !== null) {
                 $http.get('api/999/usuarios/' + $state.params.usuarioId+'/multas').then(function (response) {
-                    $scope.multaRecords = response.data;                    
+                    $scope.multaRecords = response.data;
                 });
             }
             

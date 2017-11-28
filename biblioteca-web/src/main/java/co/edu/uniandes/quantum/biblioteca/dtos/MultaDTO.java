@@ -35,6 +35,8 @@ public class MultaDTO {
      */
     private String descripcion;
     
+    private String imagen;
+    
     /**
      * Nombre del servicio por el que se creó la multa.
      */
@@ -53,7 +55,8 @@ public class MultaDTO {
         this.pagada=entityMulta.isPagada();
         this.descripcion=entityMulta.getDescripcion();
         this.fecha=entityMulta.getFecha();
-        this.tituloServicio=entityMulta.getTituloServicio();}
+        this.imagen = entityMulta.getImagen();
+        }
         else
             throw new NullPointerException("La multa fue nula");
         
@@ -109,6 +112,14 @@ public class MultaDTO {
         this.tituloServicio = tituloServicio;
     }
     
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+    
    
 
     public MultaEntity toEntity() {
@@ -119,6 +130,7 @@ public class MultaDTO {
         entity.setDescripcion(descripcion);
         entity.setPagada(pagada);
         entity.setTituloServicio(tituloServicio);
+        entity.setImagen(imagen);
         return entity;
     }
     
