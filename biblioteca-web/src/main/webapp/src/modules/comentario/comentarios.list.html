@@ -1,30 +1,35 @@
 <div class="container-fluid">
     <div class="col-md-4">
+         <div class="panel-heading"><label>Lista de comentarios del sistema de bibliotecas. </label></div>
+         <p> Ahora, se presentan los comentarios existentes en las bibliotecas del sistema.</p>
+         <p> Si desea ver el detalle de alguno, oprima el id del mismo.</p>
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <a class="btn btn-info" ui-sref="comentariosCreate"><span class="glyphicon glyphicon-plus-sign">Agregar un nuevo comentario</span></a>
+                    </div>
+                </div>
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Id</th>    
-                    <th>Name</th>  
-                    <th>Calificacion</th>  
-                    <th>FechaPublicado</th>  
+                    <th>Nombre comentario</th>  
+                     <th>calificacion</th>   
+                      <th>comentario</th>   
+                   <th>Acciones comentario.</th> 
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="comentario in comentarioRecords">
-                    <td id="{{$index}}-id"><a ui-sref="comentarioDetail({comentarioId comentario.id})">{{comentario.id}}</a></td>
-                    <td id="{{$index}}-name">{{comentario.name}}</td>   
-                    <td id="{{$index}}-calificacion">{{comentario.calificacion}}</td>
-                    <td id="{{$index}}-fechaPublicado">{{comentario.fechaPublicado}}</td>
-                <td id="{{$index}}-actions">
-                        <a class="btn btn-default btn-sm" ui-sref="comentarioUpdate({comentarioId: comentario.id})"><span class="glyphicon glyphicon-edit"></span></a>
-                        <a class="btn btn-danger btn-sm" ui-sref="comentarioDelete({comentarioId: comentario.id})"><span class="glyphicon glyphicon-trash"></span></a>
-
-                    </td>
+                    <td id="{{$index}}-descrption"><a ui-sref="comentarioDetail({comentarioId: comentario.id})">{{comentario.id}}</a></td>
+                    <td id="{{$index}}-name">{{comentario.name}}</td>
+                             <td id="{{$index}}-calificacion">{{comentario.calificacion}}</td>   
+                                <td id="{{$index}}-comentario">{{comentario.comentario}}</td>   
+                              <td id="{{$index}}-actions">
+                             <a class="btn btn-default btn-sm" ui-sref="comentarioUpdate({comentarioId: comentario.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                               <a class="btn btn-danger btn-sm" ui-sref="comentarioDelete({comentarioId: comentario.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                        </td>
                 </tr>
-                
             </tbody>
         </table>
-                        <a class="btn btn-info" ui-sref="comentarioCreate"><span class="glyphicon glyphicon-plus-sign">Crear</span></a>
     </div>
 </div>
-

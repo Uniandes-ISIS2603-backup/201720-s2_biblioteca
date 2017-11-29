@@ -12,7 +12,7 @@
         'librosBibliotecaModule',
       
         'blogModule',
-        'comentarioModule',
+        'comentariosModule',
         'videosModule',
         'salasModule', 
         'prestamoModule',

@@ -1,23 +1,22 @@
 <div class="container-fluid">
     <div class="panel-group">
         <div class="panel panel-secondary">
-            <div class="panel-heading"><label id="createComentario">Ingrese la informacion del comentario</label>
-                <label ng-if="edit" id="editComentario">Edit Comentario</label></div>
+            <div class="panel-heading"><label id="createComentario">Ingrese la informacion del comentario a crear.</label>
+                <label ng-if="edit" id="editComentario">Edit comentario</label></div>
             <div class="panel-body">
                 <form ng-submit="createComentario()" name="comentario">
                     <div class="form-group row">
-                            <label for="comentarioName" class="col-sm-2">Nombre:</label>
+                            <label for="comentarioName" class="col-sm-2">Nombre del comentario:</label>
                             <input id="comentarioName" required ng-model="comentarioName" class="col-sm-6"/>
                     </div>
                     <div class="form-group row">
                             <label for="comentarioCalificacion" class="col-sm-2">Calificacion:</label>
                             <textarea id="comentarioCalificacion" required ng-model="comentarioCalificacion" class="col-sm-6"></textarea>
-                    </div>
-                     <div class="form-group row">
-                            <label for="fechaPublicacion" class="col-sm-2">Fecha de publicacion:</label>
-                            <textarea id="fechaPublicacion" required ng-model="fechaPublicacion" class="col-sm-6"></textarea>
-                    </div>
-                         
+                    </div>  
+                      <div class="form-group row">
+                            <label for="comentario" class="col-sm-2">Comentario:</label>
+                            <textarea id="comentario" required ng-model="comentario" class="col-sm-6"></textarea>
+                    </div> 
                     <div class="form-group row">
                         <div class="form-group col-sm-4" ng-if="!comentario.$valid">
 
@@ -29,7 +28,7 @@
                     <div class="form-group row">
                         <div class="form-group col-sm-12">
                             <input ng-show="comentario.$valid" type="submit" value="Save" class="btn btn-success"/>
-                            <a class="btn btn-info" ui-sref="comentarioList">Cancel</a>
+                            <a class="btn btn-info" ui-sref="comentariosList">Cancel</a>
                         </div>
                     </div>
                 </form>

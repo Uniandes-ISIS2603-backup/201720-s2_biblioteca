@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "Nombre1",
+        "calificacion": 5,
+        "comentario":"jijijijij"
+        
+    },
+    {
+        "id": 2,
+        "name": "Nombre2",
+        "califcicacion": 4,
+        "duracion":"muy bueno"
+        
+    },
+    {
+        "id": 3,
+        "name": "Nombre3",
+        "calificacion": 4,
+        "duracion":"malo"
+        
+    }
+]

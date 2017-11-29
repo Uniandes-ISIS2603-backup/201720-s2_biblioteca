@@ -1,28 +1,28 @@
 (function (ng) {
     // Definición del módulo
-    var mod = ng.module("comentarioModule", ['ui.router']);
-
+    var mod = ng.module("comentariosModule", ['ui.router']);
+ mod.constant("comentariosContext", "api/999/comentario");
     // Configuración de los estados del módulo
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             // En basePath se encuentran los templates y controladores de módulo
             var basePath = 'src/modules/comentario/';
             // Mostrar la lista de comentarios será el estado por defecto del módulo
-            //$urlRouterProvider.otherwise("/comentarioList");
-            // Definición del estado 'comentarioList' donde se listan los comentarios
-            $stateProvider.state('comentario', {
+            $urlRouterProvider.otherwise("/comentariosList");
+            // Definición del estado 'comentariosList' donde se listan los comentarios
+            $stateProvider.state('comentarios', {
                 // Url que aparecerá en el browser
-                url: '/comentario',
+                url: '/comentarios',
                 abstract: true,
                 views: {
                     'mainView': {
                         templateUrl: basePath + 'comentarios.html',
-                        controller: 'comentarioCtrl',
+                        controller: 'comentariosCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
-            }).state('comentarioList', {
+             }).state('comentariosList', {
                 url: '/list',
-                parent: 'comentario',
+                parent: 'comentarios',
                 views: {
                     'listView': {
                         templateUrl: basePath + 'comentarios.list.html'
@@ -35,15 +35,18 @@
                     comentarioId: null
                 },
                 views: {
-                    
+                    'listView': {
+                        templateUrl: basePath + 'comentarios.list.html'
+                    },
                     'detailView': {
                         templateUrl: basePath + 'comentarios.detail.html',
-                        controller: 'comentarioCtrl',
+                        controller: 'comentariosCtrl',
                         controllerAs: 'ctrl'
                     }
 
                 }
-            }).state('comentarioCreate', {
+
+            }).state('comentariosCreate', {
                 url: '/create',
                 parent: 'comentarios',
                 views: {
@@ -52,31 +55,30 @@
                         controller: 'comentarioNewCtrl'
                     }
                 }
+            }).state('comentarioDelete', {
+                url: '/{comentarioId:int}/delete',
+                parent: 'comentarios',
+                param: {
+                    comentarioId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/delete/comentario.delete.html',
+                        controller: 'comentariosDeleteCtrl'
+                    }
+                }
             }).state('comentarioUpdate', {
                 url: '/{comentarioId:int}/update',
-                parent: 'comentario',
+                parent: 'comentarios',
                 param: {
                     comentarioId: null
                 },
                 views: {
                     'detailView': {
                         templateUrl: basePath + '/new/comentarios.new.html',
-                        controller: 'comentarioUpdateCrl'
-                    }
-                }
-            }).state('comentarioDelete', {
-                url: '/{comentarioId:int}/delete',
-                parent: 'comentario',
-                param: {
-                    comentarioId: null
-                },
-                views: {
-                    'detailView': {
-                        templateUrl: basePath + '/delete/comentarios.delete.html',
-                        controller: 'comentarioDeleteCtrl'
+                        controller: 'comentariosUpdateCtrl'
                     }
                 }
             });
-        }
-    ]);
-})(angular);
+        }]);
+})(window.angular);
