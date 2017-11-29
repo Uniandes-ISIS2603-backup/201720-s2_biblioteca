@@ -3,8 +3,8 @@
             var mod = ng.module("videosModule");
             mod.constant("videosContext", "api/999/videos");
             mod.constant("prestamoContext", "api/videos");
-            mod.controller('videosUpdateCtrl', ['$scope', '$http', 'videosContext', '$state', 'videosContext', '$rootScope',
-                function ($scope, $http, videosContext, $state, prestamoContext, $rootScope) {
+            mod.controller('videosUpdateCtrl', ['$scope', '$http', 'videosContext', '$state', 'prestamoContext', '$rootScope',
+                function ($scope, $http, videosContext, $state, $rootScope) {
                     $rootScope.edit = true;
 
                     var idVideo = $state.params.videoId;

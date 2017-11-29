@@ -45,7 +45,6 @@
                     }
 
                 }
-
             }).state('videosCreate', {
                 url: '/create',
                 parent: 'videos',
