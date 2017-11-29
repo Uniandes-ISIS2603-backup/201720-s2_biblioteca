@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div ng-if="isAuthenticated() && hasPermissions()" class="panel-group">
         <div class="panel panel-primary">
-            <div class="panel-heading"><label ng-if="!edit" id="createEBook">Crear un nuevo comentario</label>
+            <div class="panel-heading"><label ng-if="!edit" id="createComentario">Crear un nuevo comentario</label>
                 <label ng-if="edit" id="editComentario">Edit comentario</label></div>
             <div class="panel-body">
                 <form ng-submit="createComentario()" name="comentario">

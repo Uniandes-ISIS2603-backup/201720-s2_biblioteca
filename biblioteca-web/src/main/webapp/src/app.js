@@ -11,7 +11,7 @@
         'librosModule',
         'librosBibliotecaModule',
       
-        'blogModule',
+        'blogsModule',
         'comentariosModule',
         'videosModule',
         'salasModule', 

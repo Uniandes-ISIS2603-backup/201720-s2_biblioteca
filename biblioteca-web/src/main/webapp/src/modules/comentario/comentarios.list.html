@@ -1,16 +1,17 @@
 <div class="container-fluid">
-    <div class="col-md-4">
-         <div class="panel-heading"><label>Lista de comentarios del sistema de bibliotecas. </label></div>
-         <p> Ahora, se presentan los comentarios existentes en las bibliotecas del sistema.</p>
-         <p> Si desea ver el detalle de alguno, oprima el id del mismo.</p>
-        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label>Comentarios</label></div>
+            <div class="panel-body">
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <a class="btn btn-info" ui-sref="comentariosCreate"><span class="glyphicon glyphicon-plus-sign">Agregar un nuevo comentario</span></a>
+                        <a class="btn btn-info" ui-sref="comentariosCreate"><span class="glyphicon glyphicon-plus-sign"></span> Agregue un Comentario</a>
                     </div>
                 </div>
-        <table class="table table-hover">
-            <thead>
-                <tr>
+                <div class="col-md-8">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
                     <th>Id</th>    
                     <th>Nombre comentario</th>  
                      <th>calificacion</th>   
@@ -28,8 +29,16 @@
                              <a class="btn btn-default btn-sm" ui-sref="comentarioUpdate({comentarioId: comentario.id})"><span class="glyphicon glyphicon-edit"></span></a>
                                <a class="btn btn-danger btn-sm" ui-sref="comentarioDelete({comentarioId: comentario.id})"><span class="glyphicon glyphicon-trash"></span></a>
                         </td>
-                </tr>
-            </tbody>
-        </table>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
+
+
 </div>
+
+
+

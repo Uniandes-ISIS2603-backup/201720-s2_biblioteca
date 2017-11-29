@@ -1,30 +1,43 @@
 <div class="container-fluid">
-    <div class="col-md-4">
-        <div class="panel-heading"><label>Lista de blogs</label></div>
-        <table class="table table-hover">
-            <thead>
-                <tr>
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label>Blog</label></div>
+            <div class="panel-body">
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <a class="btn btn-info" ui-sref="blogsCreate"><span class="glyphicon glyphicon-plus-sign"></span> Agregue un Blog</a>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
                     <th>Id</th>    
-                    <th>Name</th> 
-                    <th>Calificacion</th>  
+                    <th>Nombre blog</th>  
+                     <th>Autor</th>   
+                   <th>Acciones blog.</th> 
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="blog in blogRecords">
-                    <td id="{{$index}}-id"><a ui-sref="blogDetail({blogId blog.id})">{{blog.id}}</a></td>
-                    <td id="{{$index}}-name">{{blog.name}}</td>      
-                    <td id="{{$index}}-calificacion">{{blog.calificacion}}</td>
-                    <td id="{{$index}}-actions">
-                        <a class="btn btn-default btn-sm" ui-sref="blogUpdate({blogId: blog.id})"><span class="glyphicon glyphicon-edit"></span></a>
-                        <a class="btn btn-danger btn-sm" ui-sref="blogDelete({blogId: blog.id})"><span class="glyphicon glyphicon-trash"></span></a>
-
-                    </td>
-                </tr>
-                
-            </tbody>
-        </table>
-                        <a class="btn btn-info" ui-sref="blogCreate"><span class="glyphicon glyphicon-plus-sign">Crear</span></a>
+                    <td id="{{$index}}-descrption"><a ui-sref="blogDetail({blogId: blog.id})">{{blog.id}}</a></td>
+                    <td id="{{$index}}-name">{{blog.name}}</td>
+                             <td id="{{$index}}-calificacion">{{blog.calificacion}}</td>   
+                                <td id="{{$index}}-blogC">{{blog.blogC}}</td>   
+                              <td id="{{$index}}-actions">
+                             <a class="btn btn-default btn-sm" ui-sref="blogUpdate({blogId: blog.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                               <a class="btn btn-danger btn-sm" ui-sref="blogDelete({blogId: blog.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                        </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
+
+
 </div>
+
 
 

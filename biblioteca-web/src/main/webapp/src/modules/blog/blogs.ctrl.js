@@ -1,16 +1,16 @@
 (function (ng) {
-    var mod = ng.module("blogModule");
-    mod.constant("blogContext", "api/999/blogs");
-    mod.controller('blogCtrl', ['$scope', '$http', 'blogContext', '$state',
-        function ($scope, $http, blogContext,$state) {
-            $http.get(blogContext).then(function (response) {
+    var mod = ng.module("blogsModule");
+    mod.constant("blogsContext", "api/999/blog");
+    mod.controller('blogsCtrl', ['$scope', '$http', 'blogsContext', '$state',
+        function ($scope, $http, blogsContext, $state) {
+            $http.get(blogsContext).then(function (response) {
                 $scope.blogRecords = response.data;
-          });
+            });
             
-            if ($state.params.blogId !== undefined) {
-                $http.get(blogContext + '/' + $state.params.blogId).then(function (response) {
-                    $scope.blogRecords = response.data.blog;
-                    $scope.currentBlog = response.data;
+            if ($state.params.blogId !== undefined && ($state.params.blogId !== null)) {
+                $http.get(blogsContext + '/' + $state.params.blogId).then(function (response) {
+                      $scope.blogRecords = response.data.blogs;
+                  $scope.currentBlog = response.data;
                 });
             }
         }
