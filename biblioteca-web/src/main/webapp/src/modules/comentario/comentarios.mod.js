@@ -53,8 +53,12 @@
                     'detailView': {
                         templateUrl: basePath + '/new/comentarios.new.html',
                         controller: 'comentarioNewCtrl'
-                    }
-                }
+                      }
+            },
+            data: {
+                requireLogin: true,
+                roles: ['admin']
+            }
             }).state('comentarioDelete', {
                 url: '/{comentarioId:int}/delete',
                 parent: 'comentarios',
@@ -66,7 +70,11 @@
                         templateUrl: basePath + '/delete/comentario.delete.html',
                         controller: 'comentariosDeleteCtrl'
                     }
-                }
+                },
+            data: {
+                requireLogin: true,
+                roles: ['admin']
+            }
             }).state('comentarioUpdate', {
                 url: '/{comentarioId:int}/update',
                 parent: 'comentarios',
@@ -77,8 +85,12 @@
                     'detailView': {
                         templateUrl: basePath + '/new/comentarios.new.html',
                         controller: 'comentariosUpdateCtrl'
-                    }
-                }
+                     }
+            },
+            data: {
+                requireLogin: true,
+                roles: ['admin', 'assistant']
+            }
             });
         }]);
 })(window.angular);

@@ -1,7 +1,7 @@
 <div class="container-fluid">
-    <div class="panel-group">
-        <div class="panel panel-secondary">
-            <div class="panel-heading"><label id="createComentario">Ingrese la informacion del comentario a crear.</label>
+    <div ng-if="isAuthenticated() && hasPermissions()" class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label ng-if="!edit" id="createEBook">Crear un nuevo comentario</label>
                 <label ng-if="edit" id="editComentario">Edit comentario</label></div>
             <div class="panel-body">
                 <form ng-submit="createComentario()" name="comentario">
@@ -29,10 +29,21 @@
                         <div class="form-group col-sm-12">
                             <input ng-show="comentario.$valid" type="submit" value="Save" class="btn btn-success"/>
                             <a class="btn btn-info" ui-sref="comentariosList">Cancel</a>
-                        </div>
+                       </div>
                     </div>
                 </form>
 
+            </div>
+        </div>
+    </div>
+    <div class="center-block well text-center" ng-if="!isAuthenticated() || !hasPermissions()">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <h1 class="float-left display-3 mr-4">Atención</h1>
+                    <h4>No tiene permiso para realizar esta acción</h4>
+                    <p>Contacte al administrador para obtener autorización.</p>
+                </div>
             </div>
         </div>
     </div>
