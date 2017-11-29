@@ -11,6 +11,8 @@ public class EVideoDTO {
     private String autor;
     private String direccion;
 
+    private String imagen;
+
     public EVideoDTO() {
 //Se deja el constructor vacio ya que es necesario
     }
@@ -22,7 +24,8 @@ public class EVideoDTO {
         setName(entity.getName());
         setAutor(entity.getAutor());
         setDireccion(entity.getDireccion());
-        setDuracion(entity.getDuracion());}
+        setDuracion(entity.getDuracion());
+        setImagen(entity.getImagen());}
         else
             throw new NullPointerException("El Evideo fue nula");
 }
@@ -66,6 +69,14 @@ public class EVideoDTO {
         this.direccion = direccion;
     }
 
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
     public EVideoEntity toEntity() {
         EVideoEntity entity = new EVideoEntity();
 
@@ -74,6 +85,7 @@ public class EVideoDTO {
         entity.setAutor(getAutor());
         entity.setDireccion(getDireccion());
         entity.setDuracion(getDuracion());
+        entity.setImagen(getImagen());
 
         return entity;
     }

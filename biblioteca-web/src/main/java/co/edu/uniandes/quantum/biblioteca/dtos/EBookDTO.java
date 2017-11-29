@@ -9,6 +9,7 @@ public class EBookDTO {
     private Integer numeroPaginas;
     private String autor;
     private String direccion;
+    private String imagen;
 
     public EBookDTO(){
         //Se deja el constructor vacio ya que es necesario
@@ -21,7 +22,9 @@ public class EBookDTO {
         setName(entity.getName());
         setAutor(entity.getAutor());
         setDireccion(entity.getDireccion());
-        setNumeroPaginas(entity.getNumeroPaginas());}
+        setNumeroPaginas(entity.getNumeroPaginas());
+        setImagen(entity.getImagen());
+        }
         else
             throw new NullPointerException("El EBook fue nula");
     }
@@ -67,7 +70,13 @@ public class EBookDTO {
         this.direccion = direccion;
     }
 
+    public String getImagen() {
+        return imagen;
+    }
 
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
 
     public EBookEntity toEntity(){
         EBookEntity entity = new EBookEntity();
@@ -77,8 +86,11 @@ public class EBookDTO {
         entity.setAutor(getAutor());
         entity.setDireccion(getDireccion());
         entity.setNumeroPaginas(getNumeroPaginas());
+        entity.setImagen(getImagen());
 
 
         return entity;
     }
+
+
 }

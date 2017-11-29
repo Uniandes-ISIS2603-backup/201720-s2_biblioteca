@@ -13,13 +13,15 @@
                 $scope.eVideoName = eVideo.name;
                 $scope.eVideoAutor = eVideo.autor;
                 $scope.eVideoDuracion = eVideo.duracion;
+                $scope.eVideoImagen = eVideo.imagen;
             });
 
             $scope.createEVideo = function () {
                 $http.put(eVideosContext + "/" + idEVideo, {
                     name: $scope.eVideoName,
                     autor: $scope.eVideoAutor,
-                    duracion: $scope.eVideoDuracion
+                    duracion: $scope.eVideoDuracion,
+                    imagen : $scope.eVideoImagen
                 }).then(function (response) {
                     //eVideo created successfully
                     $state.go('eVideosList', {eVideoId: response.data.id}, {reload: true});

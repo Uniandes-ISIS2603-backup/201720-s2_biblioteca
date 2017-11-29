@@ -13,13 +13,15 @@
                     $scope.eBookName = eBook.name;
                     $scope.eBookAutor = eBook.autor;
                     $scope.eBookNumeroPaginas = eBook.numeroPaginas;
+                    $scope.eBookImagen = eBook.imagen;
                 });
 
                 $scope.createEBook = function () {
                     $http.put(eBooksContext + "/" + idEBook, {
                         name: $scope.eBookName,
                         autor: $scope.eBookAutor,
-                        numeroPaginas: $scope.eBookNumeroPaginas
+                        numeroPaginas: $scope.eBookNumeroPaginas,
+                        imagen: $scope.eBookImagen
                     }).then(function (response) {
                         //eBook created successfully
                         $state.go('eBooksList', {eBookId: response.data.id}, {reload: true});

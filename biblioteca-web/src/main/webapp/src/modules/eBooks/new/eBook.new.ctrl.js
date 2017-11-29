@@ -8,7 +8,8 @@
                     $http.post(eBooksContext, {
                         name: $scope.eBookName,
                         autor: $scope.eBookAutor,
-                        numeroPaginas: $scope.eBookNumeroPaginas
+                        numeroPaginas: $scope.eBookNumeroPaginas,
+                        imagen: $scope.eBookImagen,
                     }).then(function (response) {
                         //eBook created successfully
                         $state.go('eBooksList', {eBookId: response.data.id}, {reload: true});

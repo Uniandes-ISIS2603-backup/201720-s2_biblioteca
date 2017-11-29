@@ -20,8 +20,14 @@
 
                 </dl>
                 <ul class="nav nav-tabs">
-                    <li class="active"> <a ui-sref="eComentariosList({eBookId: currentEBook.id})">Comentarios</a></li>
+                    <li class="active"><a ui-sref="eComentariosList({eBookId: currentEBook.id})">Comentarios</a></li>
                 </ul>
+            </div>
+            <div class="col-md-3">
+                <div class="thumb">
+                    <img ng-src='{{currentEBook.imagen}}' alt="{{currentEBook.name}}" width="350" height="350"/>
+                </div>
+
             </div>
         </div>
         <div class="row">

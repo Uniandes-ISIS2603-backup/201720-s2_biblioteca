@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 public class EVideoEntity extends BaseEntity implements Serializable {
     Integer duracion;
-    String autor, direccion;
+    String autor, direccion, imagen;
 
 
     public Integer getDuracion() {
@@ -37,5 +37,13 @@ public class EVideoEntity extends BaseEntity implements Serializable {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 }
