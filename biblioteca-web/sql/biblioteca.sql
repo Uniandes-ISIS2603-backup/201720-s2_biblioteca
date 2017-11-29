@@ -45,6 +45,11 @@ insert into prestamoentity (id,fechainicio,fechafinal,generomulta,externo,retorn
 insert into evideoEntity (id, name, autor, duracion) values (1,'Curso AngularJS - Introduccion' , 'codigoFacilito', 10);
 insert into evideoEntity (id, name, autor, duracion) values (2,'Curso AngularJS - Hola Mundo' , 'codigoFacilito', 5);
 
+insert into blogEntity (id, name, autor) values (1,'Game of Thrones' , 'George RR Martin');
+insert into blogEntity (id, name, autor) values (2,'gitBook' , 'Rubby ');
+
+insert into comentarioEntity (id, name, calificacion, comentario) values (1,'Game of Thrones' , 5,'ya quiero que saquen el siguiente, muy buen libro');
+insert into comentarioEntity (id, name, calificacion, comentario) values (2,'SW en eq' , 4,'entretenido');
 
 insert into libroEntity(id,aniopublicacion,autor,name,numpaginas, miprestamo_id,imagen) values (1,1996,'James','Moby Dick',123,1,'https://images-na.ssl-images-amazon.com/images/I/417%2B4OtvXhL._SX319_BO1,204,203,200_.jpg');
 insert into libroEntity(id,aniopublicacion,autor,name,numpaginas,imagen) values (2,1997,'Javier','Oliver Twist',123, 'https://cdne.diariocorreo.pe/thumbs/uploads/articles/images/dia-del-libro-porque-es-bueno--jpg_604x0.jpg');
