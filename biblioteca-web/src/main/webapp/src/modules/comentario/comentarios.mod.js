@@ -11,7 +11,7 @@
             // Definición del estado 'comentariosList' donde se listan los comentarios
             $stateProvider.state('comentarios', {
                 // Url que aparecerá en el browser
-                url: '/comentarios',
+                url: '/comentario',
                 abstract: true,
                 views: {
                     'mainView': {
