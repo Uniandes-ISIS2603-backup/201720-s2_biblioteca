@@ -50,6 +50,8 @@ insert into libroEntity(id,aniopublicacion,autor,name,numpaginas, miprestamo_id,
 insert into libroEntity(id,aniopublicacion,autor,name,numpaginas,imagen) values (2,1997,'Javier','Oliver Twist',123, 'https://cdne.diariocorreo.pe/thumbs/uploads/articles/images/dia-del-libro-porque-es-bueno--jpg_604x0.jpg');
 insert into libroEntity(id,aniopublicacion,autor,name,numpaginas,imagen) values (3,1998,'Jax','Twister',123,'https://cdn1.thr.com/sites/default/files/2016/09/oliver_twist_-_screen_shot-p_2016.jpg');
 
-insert into videoEntity (id,name,autor,duracion) values (1,'Cosmos','Carl Sagan',92);
+insert into videoEntity (id,name,autor,duracion) values (1,'Cosmos','Carl Sagan',92,'https://static5planetadelibroscom.cdnstatics.com/usuaris/libros/fotos/10/original/portada_cosmos_carl-sagan_201505260939.jpg');
+insert into videoEntity (id,name,autor,duracion) values (2,'Candy Paint','Post Malone',3,'https://images.genius.com/a38d3f7d7da4d09156925f24fcf83692.1000x1000x1.jpg');
+insert into videoEntity (id,name,autor,duracion) values (3,'Despacito','Luis Fonsi',5,'https://i1.sndcdn.com/artworks-lJddMb517XoZ-0-t500x500.jpg');
 
 

@@ -22,6 +22,7 @@ public class VideoDTO
     private String name;
     private String autor;
     private int duracion;
+    private String imagen;
     
     public VideoDTO(VideoEntity l)
     {
@@ -66,13 +67,22 @@ public class VideoDTO
         this.duracion = duracion;
     }
     
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+    
     public VideoEntity toEntity() 
     {
         VideoEntity ent=new VideoEntity();
         ent.setId(this.id);
         ent.setAutor(this.autor);
         ent.setDuracion(duracion);
-          ent.setName(name);
+        ent.setName(name);
+        ent.setImagen(imagen);
         return ent;
         
     }

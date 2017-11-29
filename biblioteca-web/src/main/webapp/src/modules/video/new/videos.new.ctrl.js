@@ -7,9 +7,11 @@
             $scope.createVideo = function () {
                 $http.post(videosContext, {
                     name: $scope.videoName,
+                    autor: $scope.videoAutor,
                    duracion: $scope.videoDuracion,
+                   imagen:$scope.videoImagen,
                 }).then(function (response) {
-                    //Usuario created successfully
+                    //Video created successfully
                     $state.go('videosList', {videoId: response.data.id}, {reload: true});
                 });
             };
