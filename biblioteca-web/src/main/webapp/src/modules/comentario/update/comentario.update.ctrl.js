@@ -1,7 +1,7 @@
 (
         function (ng) {
             var mod = ng.module("comentariosModule");
-            mod.constant("comentariosContext", "api/999/comentarios");
+            mod.constant("comentariosContext", "api/999/comentario");
             mod.controller('comentariosUpdateCtrl', ['$scope', '$http', 'comentariosContext', '$state', 'comentariosContext', '$rootScope',
                 function ($scope, $http, comentariosContext, $state, comentariosContext, $rootScope) {
                     $rootScope.edit = true;
@@ -12,17 +12,17 @@
                        console.info(comentariosContext+'/' + idComentario);
                     $http.get(comentariosContext + '/' + idComentario).then(function (response) {
                         var comentario = response.data;
-                        $scope.comentarioName = comentario.name;
+                      
                         $scope.comentarioCalificacion = comentario.calificacion;
-                        $scope.comentarioC = comentario.comentarioC;
+                        $scope.comentario = comentario.comentario;
                     });           
                     
 
                     $scope.createComentario = function () {                   
                         $http.put(comentariosContext + '/' + idComentario, {
-                          name: $scope.comentarioName,
+                       
                    calificacion: $scope.comentarioCalificacion,
-                   comentarioC: $scope.comentarioC,
+                   comentario: $scope.comentario,
                         }).then(function (response) {                            
                             $state.go('comentariosList', {comentarioId: response.data.id}, {reload: true});
                         });

@@ -1,18 +1,21 @@
 <div class="container-fluid">
-    <div ng-if="isAuthenticated() && hasPermissions()" class="panel-group">
-        <div class="panel panel-primary">
+    <div class="panel-group">
+        <div class="panel panel-secondary">
             <div class="panel-heading"><label ng-if="!edit" id="createComentario">Crear un nuevo comentario</label>
                 <label ng-if="edit" id="editComentario">Edit comentario</label></div>
             <div class="panel-body">
                 <form ng-submit="createComentario()" name="comentario">
-                  
+                    <div class="form-group row">
+                            <label for="comentarioName" class="col-sm-2">Nombre del comentario:</label>
+                            <input id="comentarioName" required ng-model="comentarioName" class="col-sm-6"/>
+                    </div>
                     <div class="form-group row">
                             <label for="comentarioCalificacion" class="col-sm-2">Calificacion:</label>
                             <textarea id="comentarioCalificacion" required ng-model="comentarioCalificacion" class="col-sm-6"></textarea>
                     </div>  
                       <div class="form-group row">
-                            <label for="comentario" class="col-sm-2">Comentario:</label>
-                            <textarea id="comentario" required ng-model="comentario" class="col-sm-6"></textarea>
+                            <label for="comentarioC" class="col-sm-2">Comentario:</label>
+                            <textarea id="comentarioC" required ng-model="comentarioC" class="col-sm-6"></textarea>
                     </div> 
                     <div class="form-group row">
                         <div class="form-group col-sm-4" ng-if="!comentario.$valid">
@@ -26,21 +29,10 @@
                         <div class="form-group col-sm-12">
                             <input ng-show="comentario.$valid" type="submit" value="Save" class="btn btn-success"/>
                             <a class="btn btn-info" ui-sref="comentariosList">Cancel</a>
-                       </div>
+                      </div>
                     </div>
                 </form>
 
-            </div>
-        </div>
-    </div>
-    <div class="center-block well text-center" ng-if="!isAuthenticated() || !hasPermissions()">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-12">
-                    <h1 class="float-left display-3 mr-4">Atención</h1>
-                    <h4>No tiene permiso para realizar esta acción</h4>
-                    <p>Contacte al administrador para obtener autorización.</p>
-                </div>
             </div>
         </div>
     </div>

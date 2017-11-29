@@ -10,7 +10,7 @@
         'bibliotecaModule',
         'librosModule',
         'librosBibliotecaModule',
-      
+        'comentariosBlogModule',
         'blogsModule',
         'comentariosModule',
         'videosModule',

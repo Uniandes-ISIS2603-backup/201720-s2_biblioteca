@@ -1,6 +1,7 @@
 (function (ng) {
     var mod = ng.module("comentariosModule");
     mod.constant("comentariosContext", "api/999/comentario");
+    mod.constant("blogContext","api/999/blogs");
     mod.controller('comentariosCtrl', ['$scope', '$http', 'comentariosContext', '$state',
         function ($scope, $http, comentariosContext, $state) {
             $http.get(comentariosContext).then(function (response) {

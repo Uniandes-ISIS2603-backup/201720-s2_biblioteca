@@ -1,6 +1,6 @@
 (function (ng) {
     var mod = ng.module("blogsModule");
-    mod.constant("blogsContext", "api/999/blog");
+    mod.constant("blogsContext", "api/999/blogs");
     mod.controller('blogsCtrl', ['$scope', '$http', 'blogsContext', '$state',
         function ($scope, $http, blogsContext, $state) {
             $http.get(blogsContext).then(function (response) {
