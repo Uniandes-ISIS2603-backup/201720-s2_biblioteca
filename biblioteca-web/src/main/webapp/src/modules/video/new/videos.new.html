@@ -10,9 +10,17 @@
                             <input id="videoName" required ng-model="videoName" class="col-sm-6"/>
                     </div>
                     <div class="form-group row">
+                            <label for="videoAutor" class="col-sm-2">Autor:</label>
+                            <textarea id="videoAutor" required ng-model="videoAutor" class="col-sm-6"></textarea>
+                    </div> 
+                    <div class="form-group row">
                             <label for="videoDuracion" class="col-sm-2">Duración:</label>
                             <textarea id="videoDuracion" required ng-model="videoDuracion" class="col-sm-6"></textarea>
-                    </div>        
+                    </div>   
+                    <div class="form-group row">
+                            <label for="bibliotecaImagen" class="col-sm-2">Imagen:</label>
+                            <textarea id="bibliotecaImagen" required ng-model="videoImagen" class="col-sm-6"></textarea>
+                    </div>  
                     <div class="form-group row">
                         <div class="form-group col-sm-4" ng-if="!video.$valid">
 

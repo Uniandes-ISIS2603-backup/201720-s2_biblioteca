@@ -20,6 +20,7 @@ public class VideoEntity extends BaseEntity implements Serializable {
     
     private int duracion;
     private String autor;
+    private String imagen;
     
     @PodamExclude
     @ManyToOne    
@@ -89,5 +90,13 @@ public class VideoEntity extends BaseEntity implements Serializable {
     {
         duracion = pDuracion;
     }
+    
+       public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    } 
 
 }
