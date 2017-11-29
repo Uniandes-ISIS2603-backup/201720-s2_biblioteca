@@ -11,7 +11,6 @@ import co.edu.uniandes.quantum.biblioteca.entities.EComentarioEntity;
 import co.edu.uniandes.quantum.biblioteca.exceptions.BusinessLogicException;
 import co.edu.uniandes.quantum.biblioteca.persistence.EBookPersistence;
 import co.edu.uniandes.quantum.biblioteca.persistence.EComentarioPersistence;
-
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -53,7 +52,7 @@ public class EComentarioLogic {
      * @throws BusinessLogicException
      */
     public List<EComentarioEntity> getEComentariosEBook(Long idEbook)throws BusinessLogicException{
-        LOGGER.info("Se verifica que el eBook con el id dado existe.");
+        LOGGER.info("Se verifica que el eBook con el id " + idEbook + "dado existe.");
         if(eBookPersistence.find(idEbook)==null)
             throw new BusinessLogicException("No existe un eBook con el id dado.");
 
@@ -94,11 +93,10 @@ public class EComentarioLogic {
         EBookEntity eBook = eBookPersistence.find(idEBook);
         if (eBook!= null) {
             LOGGER.info("El eBook existe de creación de EComentario");
-
-            if(persistence.findByName(entity.getName())!=null)
-                throw new BusinessLogicException("Ya existe un comentario con el mismo título");
+            LOGGER.info("El eBook existe de creación de EComentario");
+            
             if(persistence.find(entity.getId())!=null)
-                throw new BusinessLogicException("Ya existe un comentario con el id dado");
+                throw new BusinessLogicException("Ya existe un comentario con el id " + entity.getId());
             entity.setRecurso(eBook);
             persistence.create(entity);
             LOGGER.info("Termina proceso de creación de EComentario");
@@ -125,14 +123,23 @@ public class EComentarioLogic {
      * @return el EComentario como un objeto Entity.
      * Corresponde a la lógica de PUT EComentario/{id}
      */
-    public EComentarioEntity updateEComentario(Long id, EComentarioEntity entity) throws BusinessLogicException {
+    public EComentarioEntity updateEComentario(Long id, EComentarioEntity entity, Long idEBook) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar EComentario con id={0}", id);
         if (!validateId(entity.getId())) {
-            throw new BusinessLogicException("El   (id) es inválido");
+            throw new BusinessLogicException("El (id) es inválido");
         }
-        EComentarioEntity newEntity = persistence.update(entity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar EComentario con id={0}", entity.getId());
-        return newEntity;
+        EBookEntity eBook = eBookPersistence.find(idEBook);
+        if (eBook!= null) {
+            LOGGER.info("El eBook existe de creación de EComentario");
+            
+            if(persistence.find(entity.getId())==null)
+                throw new BusinessLogicException("No existe un comentario con el id " + entity.getId());
+            entity.setRecurso(eBook);
+            EComentarioEntity newEntity = persistence.update(entity);
+            LOGGER.log(Level.INFO, "Termina proceso de actualizar EComentario con id={0}", entity.getId());
+            return newEntity;
+        }
+        else throw new BusinessLogicException("No existe el eBook que se quiere comentar");
     }
 
     /**

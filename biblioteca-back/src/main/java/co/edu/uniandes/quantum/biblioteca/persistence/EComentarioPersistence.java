@@ -125,7 +125,7 @@ public class EComentarioPersistence
      */
     public List<EComentarioEntity> findAll()
     {
-        LOGGER.info("Consultando todos los EComentarios.");
+        LOGGER.log(Level.INFO, "Consultando todos los EComentarios.");
         // Se crea un query para buscar los EComentarios en la base de datos.
         TypedQuery query = em.createQuery("select u from EComentarioEntity u", EComentarioEntity.class);
         // Note que en el query se hace uso del método getResultList() que obtiene una lista de EComentarios.

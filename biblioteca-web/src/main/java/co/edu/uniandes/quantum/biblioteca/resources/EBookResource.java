@@ -104,7 +104,7 @@ public class EBookResource {
             throw new WebApplicationException(SOLOADMIN + eBookId + PUEDE);
         }
         EBookEntity entity = logic.getEBook(eBookId);
-        if (entity == null) {
+        if (entity == null && eBookId!=0) {
             throw new WebApplicationException(MEN_ERROR + eBookId + "/comments no existe.", 404);
         }
         return EComentarioResource.class;
