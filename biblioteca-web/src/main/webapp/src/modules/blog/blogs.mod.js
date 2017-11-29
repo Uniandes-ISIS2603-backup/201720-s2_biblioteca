@@ -1,7 +1,7 @@
 (function (ng) {
     // Definición del módulo
     var mod = ng.module("blogsModule", ['ui.router']);
- mod.constant("blogsContext", "api/999/blog");
+ mod.constant("blogsContext", "api/999/blogs");
     // Configuración de los estados del módulo
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             // En basePath se encuentran los templates y controladores de módulo
@@ -11,7 +11,7 @@
             // Definición del estado 'blogsList' donde se listan los blogs
             $stateProvider.state('blogs', {
                 // Url que aparecerá en el browser
-                url: '/blog',
+                url: '/blogs',
                 abstract: true,
                 views: {
                     'mainView': {

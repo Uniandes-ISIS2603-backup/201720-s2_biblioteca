@@ -6,9 +6,9 @@
             $rootScope.edit = false;
             $scope.createComentario = function () {
                 $http.post(comentariosContext, {
-                    name: $scope.comentarioName,
+                  
                    calificacion: $scope.comentarioCalificacion,
-                   comentarioC: $scope.comentarioC,
+                   comentarioC: $scope.comentario,
                 }).then(function (response) {
                     //Comentario created successfully
                     $state.go('comentariosList', {comentarioId: response.data.id}, {reload: true});

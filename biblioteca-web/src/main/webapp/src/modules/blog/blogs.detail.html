@@ -1,32 +1,31 @@
 <div class="panel panel-default"> 
     <div class="panel-body">
-    <div class="row">
-        <div class="col-md-3">
-            <dl>                
-                <dt>Id:</dt>
-                <dd>{{currentBlog.id}}</dd>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="thumb">
                 
-                <hr>
-                <dt>Nombre:</dt>
-                <dd>{{currentBlog.name}}</dd>
-          
-                <hr>
-                <dt>Autor:</dt>
-                <dd>{{currentBlog.autor}}</dd>
-                
-              
-            </dl>
+                </div>
+
+            </div>
+            <div class="col-md-3">
+                <dl>     
+                    <dt>{{currentBlog.name}}</dt>
+                    <hr>
+                    <dt> autor</dt>
+                    <dd>{{currentBlog.autor}}</dd>
+                    <hr>
+                </dl>
+                <ul class="nav nav-tabs">
+                   <li role="presentation" class="active"> <a ui-sref="comentarioBlogList({blogId: currentBlog.id})">Comentario</a></li>  
+                  
+                </ul>
+            </div>
         </div>
-    </div>
-        <ul class="nav nav-tabs">
-                   
-                   </ul>
-        </div>
-    <div class="row">
+        <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-9">
                 <div ui-view="childrenView"></div>
             </div>
         </div>
-    
+    </div>
 </div>
