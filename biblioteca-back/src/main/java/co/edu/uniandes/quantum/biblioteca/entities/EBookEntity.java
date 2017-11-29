@@ -14,6 +14,7 @@ public class EBookEntity extends BaseEntity implements Serializable{
     private Integer numeroPaginas;
     private String autor;
     private String direccion;
+    private String imagen;
 
     @PodamExclude
     @OneToMany(mappedBy = "recurso", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -49,5 +50,13 @@ public class EBookEntity extends BaseEntity implements Serializable{
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 }
