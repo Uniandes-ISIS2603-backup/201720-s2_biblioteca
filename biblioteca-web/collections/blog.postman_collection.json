@@ -8,9 +8,9 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:8080/biblioteca-web/api/blog/",
+			"name": "http://localhost:8080/biblioteca-web/api/999/blog/",
 			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/blog/",
+				"url": "http://localhost:8080/biblioteca-web/api/999/blog/",
 				"method": "POST",
 				"header": [
 					{
@@ -28,9 +28,9 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/biblioteca-web/api/blog/",
+			"name": "http://localhost:8080/biblioteca-web/api/999/blog/",
 			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/blog/",
+				"url": "http://localhost:8080/biblioteca-web/api/999/blog/",
 				"method": "GET",
 				"header": [
 					{
@@ -48,9 +48,9 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/biblioteca-web/api/blog/1",
+			"name": "http://localhost:8080/biblioteca-web/api/999/blog/1",
 			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/blog/1",
+				"url": "http://localhost:8080/biblioteca-web/api/999/blog/1",
 				"method": "PUT",
 				"header": [
 					{
@@ -68,9 +68,9 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/biblioteca-web/api/blog/1",
+			"name": "http://localhost:8080/biblioteca-web/api/999/blog/1",
 			"request": {
-				"url": "http://localhost:8080/biblioteca-web/api/blog/1",
+				"url": "http://localhost:8080/biblioteca-web/api/999/blog/1",
 				"method": "GET",
 				"header": [
 					{
