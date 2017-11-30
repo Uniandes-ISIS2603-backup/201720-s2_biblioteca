@@ -50,7 +50,7 @@
             parent: 'eBooks',
             views: {
                 'detailView': {
-                    templateUrl: basePath + '/new/eBook.new.html',
+                    templateUrl: basePath + '/new/eComentario.new.html',
                     controller: 'eBookNewCtrl'
                 }
             },
@@ -66,7 +66,7 @@
             },
             views: {
                 'detailView': {
-                    templateUrl: basePath + '/new/eBook.new.html',
+                    templateUrl: basePath + '/new/eComentario.new.html',
                     controller: 'eBookUpdateCtrl'
                 }
             },
@@ -89,6 +89,31 @@
             data: {
                 requireLogin: true,
                 roles: ['admin']
+            }
+        }).state('eComentarioCreate', {
+            url: '/{eBookId:int}/createComment',
+            parent: 'eBooks',
+            param: {
+                eBookId: null
+            },
+            views: {
+                'detailView': {
+                    templateUrl: basePath + '/newComment/eComentario.new.html',
+                    controller: 'eComentarioNewCtrl'
+                }
+            }
+        }).state('eComentarioDelete', {
+            url: '/{eBookId:int}/deleteComment/{eComentarioId:int}',
+            parent: 'eBooks',
+            param: {
+                eBookId: null,
+                eComentarioId: null
+            },
+            views: {
+                'detailView': {
+                    templateUrl: basePath + '/deleteComment/eComentario.delete.html',
+                    controller: 'eComentarioDeleteCtrl'
+                }
             }
         });
     }

@@ -18,6 +18,9 @@
             }
         }).state('eComentariosList', {
             url: '/list',
+            param: {
+                eBookId: null
+            },
             parent: 'eComentarios',
             views: {
                 'listView': {

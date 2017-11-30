@@ -1,13 +1,14 @@
 (function (ng) {
         var mod = ng.module("eComentarioModule");
-        mod.constant("eComentariosContext", "eComentarios");
-        mod.constant("eBooksContext", "api/eBooks");
-        mod.controller('eComentariosCtrl', ['$scope', '$http', 'eBooksContext', '$state', 'eComentariosContext',
-            function ($scope, $http, eBooksContext, $state, eComentariosContext) {
-                $http.get('data/eBooks.json').then(function (response) {
-                    $scope.eComentariosRecords = response.data;
+        mod.constant("eBooksContext", "api/999/eBooks");
+        mod.controller('eComentariosCtrl', ['$scope', '$http', 'eBooksContext', '$state',
+            function ($scope, $http, eBooksContext, $state) {
+                $http.get(eBooksContext + '/' + $state.params.eBookId + '/comments').then(function (response) {
+                    $scope.comments = response.data;
+                    $scope.ebookId = $state.params.eBookId;
                 });
-            }
-        ]);
+            }]);
+
+
     }
 )(angular);

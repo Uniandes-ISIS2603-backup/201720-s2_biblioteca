@@ -1,22 +1,41 @@
 <div class="container-fluid">
-    <div class="col-sm-12">
-        <br>
-        <table ng-if="!messageeComentarios" class="table table-striped">
-
-            <tbody>
-            <tr ng-repeat=" com in eComentariosRecords[0].comentarios">
-                <td id="{{$index}}-id"><b>{{eComentariosRecords[0].titulo}}</b><span>: </span>{{com.comentario}}</td>
-            </tr>
-            </tbody>
-        </table>
-        <table ng-if="messageeComentarios" class="table table-striped">
-
-            <tbody>
-            <tr>
-                <td><b>{{messageeComentarios}}</b></td>
-            </tr>
-            </tbody>
-        </table>
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label>Comentarios del libro:</label></div>
+            <div class="panel-body">
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <a class="btn btn-info" ui-sref="eComentarioCreate({eBookId: ebookId})"><span
+                                class="glyphicon glyphicon-plus-sign"></span> Agregue un comentario a este libro</a>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Titulo</th>
+                            <th>Comentario</th>
+                            <th>Fecha de Publicación</th>
+                            <th>calificacion</th>
+                            <th>Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat=" com in comments">
+                            <td id="{{$index}}-titulo"><b>{{com.name}}</b></td>
+                            <td id="{{$index}}-comentario">{{com.comentario}}</td>
+                            <td id="{{$index}}-fechaPublicacion">{{com.fechaPublicacion}}</td>
+                            <td id="{{$index}}-calificacion">{{com.calificacion}}</td>
+                            <td id="{{$index}}-acciones">
+                                <a class="btn btn-danger btn-sm" ui-sref="eComentarioDelete({eBookId: ebookId , eComentarioId: com.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
+
 
 </div>

@@ -12,6 +12,7 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
+                            <th>Fotico</th>
                             <th>Titulo</th>
                             <th>Autor</th>
                             <th>Número de páginas</th>
@@ -20,12 +21,13 @@
                         </thead>
                         <tbody>
                         <tr ng-repeat="ebook in eBooksRecords">
+                            <td id="{{$index}}-imagen"> <img ng-src="{{ebook.imagen}}" alt="{{ebook.name}}" /></td>
                             <td id="{{$index}}-titulo">   <a ui-sref="eBookDetail({eBookId: ebook.id})">{{ebook.name}}</a></td>
                             <td id="{{$index}}-autor">{{ebook.autor}}</td>
                             <td id="{{$index}}-numeroPaginas">{{ebook.numeroPaginas}}</td>
                             <td id="{{$index}}-acciones">
-                                <a class="btn btn-default btn-sm" ui-sref="eBookUpdate({eBookId: eBook.id})"><span class="glyphicon glyphicon-edit"></span></a>
-                                <a class="btn btn-danger btn-sm" ui-sref="eBookDelete({eBookId: eBook.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                                <a class="btn btn-default btn-sm" ui-sref="-eBookUpdate({eBookId: ebook.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                                <a class="btn btn-danger btn-sm" ui-sref="eBookDelete({eBookId: ebook.id})"><span class="glyphicon glyphicon-trash"></span></a>
                             </td>
                         </tr>
                         </tbody>

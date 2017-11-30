@@ -1,7 +1,7 @@
 <div class="center-block well text-center">
     <div ng-if="isAuthenticated() && hasPermissions()">
         <h1>¿Está seguro que quiere eliminar este eBook?</h1>
-        <button id="confirm-delete" ng-click="deleteEBoook()" class="btn btn-danger">Delete</button>
+        <button id="confirm-delete" ng-click="deleteEBook()" class="btn btn-danger">Delete</button>
         <a id="cancel-delete" ui-sref="eBooksList" class="btn btn-info">Cancel</a>
     </div>
     <div class="center-block well text-center" ng-if="!isAuthenticated() || !hasPermissions()">
