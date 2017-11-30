@@ -1,4 +1,3 @@
-
 (function (ng) {
         var mod = ng.module("eVideoModule");
         mod.constant("eVideosContext", "api/999/eVideos");
@@ -9,21 +8,20 @@
                 });
                 if (($state.params.eVideoId !== undefined) && ($state.params.eVideoId !== null)) {
                     $http.get(eVideosContext + '/' + $state.params.eVideoId).then(function (response) {
-                    $scope.currentEVideo = response.data;
-                     });
-                    
+                        $scope.currentEVideo = response.data;
+                    });
+
                 }
             }
         ]);
-    }
-)(window.angular);
+    })(window.angular);
 
 /**
- * 
+ *
  * EN CASO DE QUE NO SIRVAN LOS REST, PROBAR CON LOS JSON, CODIGO COMENTADO ABAJO   |
- *                                                                                  V 
- * 
-(function (ng) {
+ *                                                                                  V
+ *
+ (function (ng) {
         var mod = ng.module("eVideoModule");
         mod.constant("eVideosContext", "api/999/eVideos");
         mod.controller('eVideoCtrl', ['$scope', '$http', 'eVideosContext', '$state',
@@ -43,6 +41,6 @@
             }
         ]);
     }
-)(window.angular);
-*/
+ )(window.angular);
+ */
 

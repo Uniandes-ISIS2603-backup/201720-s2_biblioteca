@@ -6,7 +6,7 @@
                 $http.get(eBooksContext).then(function (response) {
                     $scope.eBooksRecords = response.data;
                 });
-                if (($state.params.eBookId !== undefined) && ($state.params.eBookId !== null) ) {
+                if (($state.params.eBookId !== undefined) && ($state.params.eBookId !== null)) {
                     $http.get(eBooksContext + '/' + $state.params.eBookId).then(function (response) {
                         $scope.currentEBook = response.data;
                     });
@@ -14,8 +14,7 @@
                 }
             }
         ]);
-    }
-)(window.angular);
+    })(window.angular);
 
 /**
  *

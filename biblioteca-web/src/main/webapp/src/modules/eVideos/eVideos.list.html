@@ -12,6 +12,7 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
+                            <th>Fotico</th>
                             <th>Titulo</th>
                             <th>Autor</th>
                             <th>Duración</th>
@@ -20,12 +21,13 @@
                         </thead>
                         <tbody>
                         <tr ng-repeat="evideo in eVideosRecords">
+                            <td id="{{$index}}-imagen"> <img ng-src="{{evideo.imagen}}" alt="{{evideo.name}}" /></td>
                             <td id="{{$index}}-titulo">   <a ui-sref="eVideoDetail({eVideoId: evideo.id})">{{evideo.name}}</a></td>
                             <td id="{{$index}}-autor">{{evideo.autor}}</td>
                             <td id="{{$index}}-duracion">{{evideo.duracion}}</td>
                             <td id="{{$index}}-acciones">
-                                <a class="btn btn-default btn-sm" ui-sref="eVideoUpdate({eVideoId: eVideo.id})"><span class="glyphicon glyphicon-edit"></span></a>
-                                <a class="btn btn-danger btn-sm" ui-sref="eVideoDelete({eVideoId: eVideo.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                                <a class="btn btn-default btn-sm" ui-sref="eVideoUpdate({eVideoId: evideo.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                                <a class="btn btn-danger btn-sm" ui-sref="eVideoDelete({eVideoId: evideo.id})"><span class="glyphicon glyphicon-trash"></span></a>
                             </td>
                         </tr>
                         </tbody>
